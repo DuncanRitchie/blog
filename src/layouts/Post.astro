@@ -1,0 +1,51 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+export interface Props { frontmatter: {
+	title: string;
+	date: string;
+	draft: boolean;
+	tags: string[];
+}}
+
+const { title, date: dateAsString, draft, tags } = Astro.props.frontmatter;
+const date = new Date(dateAsString);
+const dateIso = date.toISOString().slice(0, 10);
+const dateReadable = date.toLocaleDateString('en-gb', { weekday: "long", year: "numeric", month: "long", day: "2-digit" }) ;
+---
+
+<BaseLayout title={ title + " — Duncan Ritchie’s blog"} showBlogHomeLinkInFooter={true}>
+
+	<aside>
+		<p>
+			This article was written on
+			<time datetime={dateIso}>
+				{dateReadable}
+			</time>
+			by Duncan Ritchie.
+		</p>
+
+		{draft && <strong>It is a draft.</strong>}
+
+		{
+			tags.length > 0 && (
+				<p style="display: inline;">
+					It is tagged as:
+				</p>
+
+				<ul style="padding: 0; margin-top: 0; display: inline-block;">
+					{tags.map(tag => <li style="display: inline-block; list-style: none; margin: 0 0.125em;">
+							<a href="tag/{ tag }" style="display: inline-block; border: 2px solid var(--colour6); padding: 0.25em 0.5em; margin-bottom: -2px;">
+								{ tag }
+							</a>
+						</li>)}
+				</ul>
+			)
+		}
+	</aside>
+
+	<main>
+		<slot />
+	</main>
+
+</BaseLayout>
