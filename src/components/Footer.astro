@@ -1,0 +1,32 @@
+---
+export interface Props {
+	showBlogHomeLink: boolean;
+}
+
+const { showBlogHomeLink } = Astro.props;
+---
+
+<footer>
+	<ul>
+		<li>
+			<a href="https://www.duncanritchie.co.uk/" title="Home — Duncan Ritchie’s portfolio">
+				By Duncan Ritchie
+			</a>
+		</li>
+		{
+			showBlogHomeLink && <li>
+				<a href="./" title="Duncan Ritchie’s blog">
+					Blog home
+				</a>
+			</li>
+		}
+		<li>
+			<a href="https://github.com/DuncanRitchie/eleventy-blog" title="Code on GitHub">
+				See the code
+			</a>
+		</li>
+	</ul>
+</footer>
+<style>
+
+</style>
