@@ -1,7 +1,7 @@
 ---
 date: 2022-08-22
 title: Boolean HTML attributes in Angular
-layout: '../layouts/Post.astro'
+layout: ../../layouts/Post.astro
 tags: ['Software']
 ---
 
