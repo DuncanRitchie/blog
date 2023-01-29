@@ -1,7 +1,7 @@
 ---
 title: Words for “puffin”
 date: 2022-05-29
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 tags: ['Funny', 'Linguistics']
 ---
 

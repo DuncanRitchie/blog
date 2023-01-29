@@ -1,7 +1,7 @@
 ---
 date: 2022-03-22
 title: Places you can sit
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 tags: ['Funny', 'Linguistics']
 ---
 

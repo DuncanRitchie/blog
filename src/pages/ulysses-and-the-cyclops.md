@@ -1,7 +1,7 @@
 ---
 date: 2020-05-01
 title: Ulysses and the Cyclops
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 tags: ['Funny', 'Linguistics']
 ---
 

@@ -1,7 +1,7 @@
 ---
 date: 2021-09-29
 title: Difficulties I’ve had with object-oriented codebases
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 tags: ['Software']
 ---
 

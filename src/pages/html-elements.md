@@ -1,7 +1,7 @@
 ---
 date: 2022-12-20
 title: HTML elements and where I’ve used them
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 draft: false
 tags: ['Software']
 ---

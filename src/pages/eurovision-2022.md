@@ -1,7 +1,7 @@
 ---
 title: Eurovision 2022 — My rankings
 date: 2022-05-14
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 tags: ['Eurovision']
 ---
 

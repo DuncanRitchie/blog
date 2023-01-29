@@ -1,7 +1,7 @@
 ---
 title: An obscure trivia question
 date: 2022-06-18
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 ---
 
 # An obscure trivia question

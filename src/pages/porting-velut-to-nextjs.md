@@ -1,7 +1,7 @@
 ---
 title: How I ported my Latin dictionary to Next.js
 date: 2023-01-28
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 draft: false
 tags: ['Software']
 ---

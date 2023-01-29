@@ -1,7 +1,7 @@
 ---
 title: <div> soup
 date: 2022-09-18
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 draft: false
 tags: ['Software']
 ---

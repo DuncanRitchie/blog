@@ -1,7 +1,7 @@
 ---
 date: 2022-05-09
 title: Vim
-layout: blog-layout.html
+layout: '../layouts/Post.astro'
 tags: ['Software']
 ---
 
