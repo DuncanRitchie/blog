@@ -308,7 +308,7 @@ The [Toml file](https://github.com/DuncanRitchie/velut/blob/main/fly.toml) in th
 
 I set a [GitHub workflow](https://github.com/DuncanRitchie/velut/blob/main/.github/workflows/main.yml) up to deploy whenever I push changes to GitHub.
 
-```yml
+```yaml
 name: Fly Deploy
 on: [push]
 env:
