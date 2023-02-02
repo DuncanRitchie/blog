@@ -59,6 +59,6 @@ A puffin is an auk of the genus _Fratercula_ with a colourful beak. I recently l
 Bonus: in English, a colony of puffins is a puffinry and a puffin chick is a puffling.
 
 <figure style="margin-top: 2rem; margin-left: auto; margin-right: auto;">
-<img width="400" style="aspect-ratio: 4/3;" alt="Puffin and guillemot swimming" src="assets/puffin-and-guillemot.webp"/>
+<img width="400" style="aspect-ratio: 4/3;" alt="Puffin and guillemot swimming" src="images/puffin-and-guillemot.webp"/>
 <figcaption>An Atlantic puffin next to a guillemot</figcaption>
 </figure>

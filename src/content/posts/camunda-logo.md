@@ -22,8 +22,8 @@ When I first saw [Camunda](https://camunda.com)’s old logo, I wasn’t <em>cog
 
 <figure>
 	<div style="flex-wrap: wrap;">
-  	<img alt='Reinterpretation of the Camunda logo in MS Paint' style='aspect-ratio: 1/1;' src='./assets/camunda-reinterpretation.webp' width='150' >
-  	<img alt='Actual Camunda logo with two cogs on a red background' style='aspect-ratio: 1/1;' src='./assets/camunda-cogs.webp' width='150' >
+  	<img alt='Reinterpretation of the Camunda logo in MS Paint' style='aspect-ratio: 1/1;' src='./images/camunda-reinterpretation.webp' width='150' >
+  	<img alt='Actual Camunda logo with two cogs on a red background' style='aspect-ratio: 1/1;' src='./images/camunda-cogs.webp' width='150' >
 	</div>
 	<figcaption>
 	 Spot the difference

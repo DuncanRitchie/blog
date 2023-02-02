@@ -41,8 +41,8 @@ As coursework for my apprenticeship, I wrote a 10,000-word treatise about my wor
 ## Birdlife
 
 <figure>
-<img width="400" style="aspect-ratio: 3/2;" alt="A male and female mandarin duck swimming" src="assets/two-mandarins-swimming.webp"/>
-<img width="400" style="aspect-ratio: 3/2;" alt="A small brown bird on a branch" src="assets/chiffchaff.webp"/>
+<img width="400" style="aspect-ratio: 3/2;" alt="A male and female mandarin duck swimming" src="images/two-mandarins-swimming.webp"/>
+<img width="400" style="aspect-ratio: 3/2;" alt="A small brown bird on a branch" src="images/chiffchaff.webp"/>
 <figcaption>Mandarin ducks and chiffchaff</figcaption>
 </figure>
 

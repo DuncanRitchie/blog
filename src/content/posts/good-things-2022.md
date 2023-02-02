@@ -27,7 +27,7 @@ My efforts to reduce velut’s reliance on Microsoft Excel continued, in accorda
 In April I had a couple of weeks in the Scottish Highlands with my parents. We visited Portknockie’s Bow-Fiddle Rock, a natural rock formation; I also enjoyed looking at the fulmars, shags, razorbills, and other birds roosting nearby.
 
 <figure>
-<img alt="A rocky cove containing a rock arch that is curved like a fiddle’s bow" width="600" style="aspect-ratio: 4/3;" src="./assets/bow-fiddle-rock.webp" />
+<img alt="A rocky cove containing a rock arch that is curved like a fiddle’s bow" width="600" style="aspect-ratio: 4/3;" src="./images/bow-fiddle-rock.webp" />
 <figcaption>Bow-Fiddle Rock</figcaption>
 </figure>
 
@@ -44,8 +44,8 @@ In April I had a couple of weeks in the Scottish Highlands with my parents. We v
 
 <figure id="ravens-figure" style="margin-top: -3px;">
 <div style="display: flex; flex-wrap: wrap;">
-<img alt="Raven flying over the sea; it has a diamond-shaped tail" width="450" style="aspect-ratio: 3/2;" src="./assets/raven-flying.webp" />
-<img alt="Raven on a cliff; much of its torso is hidden behind the grass" width="450" style="aspect-ratio: 3/2;" src="./assets/raven-on-cliff.webp" />
+<img alt="Raven flying over the sea; it has a diamond-shaped tail" width="450" style="aspect-ratio: 3/2;" src="./images/raven-flying.webp" />
+<img alt="Raven on a cliff; much of its torso is hidden behind the grass" width="450" style="aspect-ratio: 3/2;" src="./images/raven-on-cliff.webp" />
 </div>
 <figcaption>Raven at Portknockie</figcaption>
 </figure>
@@ -59,6 +59,6 @@ And in July/August, I had another couple of weeks in Scotland with my parents. M
 I saw stock doves and teal while walking the dog.
 
 <figure>
-<img alt="Stock dove amid brickwork" width="450" style="aspect-ratio: 4/3;" src="./assets/stock-dove.webp" />
+<img alt="Stock dove amid brickwork" width="450" style="aspect-ratio: 4/3;" src="./images/stock-dove.webp" />
 <figcaption>Stock dove</figcaption>
 </figure>
