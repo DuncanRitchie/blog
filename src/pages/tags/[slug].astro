@@ -1,0 +1,38 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { slugify } from '../../utils/slugify';
+
+// Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts');
+
+	const allPostsSorted = allPosts
+		.filter(post => !post.data.draft)
+		.sort((a, b) => a.data.date < b.data.date ? 1 : -1);
+
+	const tags: Set<string> = allPostsSorted.reduce((set, current) => {
+		set.delete("");
+		current.data.tags.forEach(tag => set.add(tag));
+		return set;
+	}, new Set(""));
+
+	const tagsWithPosts: {[key: string]: CollectionEntry<"posts">[]} = {};
+	tags.forEach(tag => tagsWithPosts[tag] = allPostsSorted.filter(post => post.data.tags.includes(tag)))
+
+  return [...tags].map(tag => ({
+    params: { slug: slugify(tag) }, props: { tag, posts: tagsWithPosts[tag] },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`Posts tagged as “${tag}” — Duncan Ritchie’s blog`} showBlogHomeLinkInFooter={true}>
+	<main>
+		<h1>Posts tagged as “{ tag }”</h1>
+		<ul>
+			{posts.map((post: CollectionEntry<"posts">) => <li><a href={'../' + post.slug}>{post.data.title}</a></li>)}
+		</ul>
+	</main>
+</BaseLayout>
