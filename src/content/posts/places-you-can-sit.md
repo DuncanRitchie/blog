@@ -2,6 +2,7 @@
 date: 2022-03-22
 title: Places you can sit
 layout: ../../layouts/Post.astro
+draft: false
 tags: ['Funny', 'Linguistics']
 ---
 

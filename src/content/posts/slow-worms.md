@@ -2,6 +2,7 @@
 date: 2021-05-22
 title: Slow worms
 layout: ../../layouts/Post.astro
+draft: false
 tags: ['Funny', 'Linguistics']
 ---
 

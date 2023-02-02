@@ -2,6 +2,7 @@
 date: 2022-08-22
 title: Boolean HTML attributes in Angular
 layout: ../../layouts/Post.astro
+draft: false
 tags: ['Software']
 ---
 

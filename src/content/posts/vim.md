@@ -2,6 +2,7 @@
 date: 2022-05-09
 title: Vim
 layout: ../../layouts/Post.astro
+draft: false
 tags: ['Software']
 ---
 
