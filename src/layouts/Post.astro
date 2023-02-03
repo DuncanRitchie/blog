@@ -15,7 +15,11 @@ const dateIso = date.toISOString().slice(0, 10);
 const dateReadable = date.toLocaleDateString('en-gb', { weekday: "long", year: "numeric", month: "long", day: "2-digit" }) ;
 ---
 
-<BaseLayout title={ title + " — Duncan Ritchie’s blog"} showBlogHomeLinkInFooter={true}>
+<BaseLayout
+	title={ title + " — Duncan Ritchie’s blog"}
+	description={`Blogpost by Duncan Ritchie entitled “${title}”`}
+	showBlogHomeLinkInFooter={true}
+>
 
 	<aside>
 		<p>

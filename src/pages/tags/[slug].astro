@@ -29,7 +29,11 @@ export async function getStaticPaths() {
 const { tag, posts } = Astro.props;
 ---
 
-<BaseLayout title={`Posts tagged as “${tag}” — Duncan Ritchie’s blog`} showBlogHomeLinkInFooter={true}>
+<BaseLayout
+	title={`Posts tagged as “${tag}” — Duncan Ritchie’s blog`}
+	description={`List of blogposts by Duncan Ritchie tagged as “${tag}”`}
+	showBlogHomeLinkInFooter={true}
+>
 	<main>
 		<h1>Posts tagged as “{ tag }”</h1>
 		<PostList posts={posts} />

@@ -6,7 +6,11 @@ import PostList from '../components/PostList.astro';
 const allPosts = await getCollection('posts');
 ---
 
-<BaseLayout title="Duncan Ritchie’s blog" showBlogHomeLinkInFooter={false}>
+<BaseLayout
+	title="Duncan Ritchie’s blog"
+	description="Assorted notes that may or may not relate to web development, but that Duncan Ritchie felt should be recorded somewhere."
+	showBlogHomeLinkInFooter={false}
+>
 	<main>
 		<h1>Duncan Ritchie’s blog</h1>
 		<p>Assorted notes that may or may not relate to web development, but that I felt should be recorded somewhere…</p>
