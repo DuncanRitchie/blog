@@ -345,6 +345,8 @@ The readme for this [GitHub repo](https://github.com/theninthsky/client-side-ren
 
 This [article by Josh Collinsworth](https://joshcollinsworth.com/blog/self-fulfilling-prophecy-of-react) is skeptical of the value of React beyond sheer popularity. I still like JSX (the templating language React uses), even if writing `className` and `htmlFor` instead of the attributes `class` and `for` is clumsy.
 
+<ins>Update: A couple of days after I published this article, [Dan Abramov wrote an essay about Create React App’s future](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741), as a lengthy comment on a proposal to make CRA less prominent in React documentation. He says CRA has probably had its day and SSR frameworks are now a better choice for many websites. Coming from a core member of the React team, no less, this was a heartening read for me.</ins>
+
 Next.js has a lot of [official documentation](https://nextjs.org/docs/getting-started), including a [guide to moving from Create React App](https://nextjs.org/docs/migrating/from-create-react-app).
 
 And for the lolz, here’s a [song from Dylan Beattie about rewriting code](https://www.youtube.com/watch?v=xCGu5Z_vaps).
