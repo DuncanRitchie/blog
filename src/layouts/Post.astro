@@ -36,7 +36,7 @@ const dateReadable = date.toLocaleDateString('en-gb', { weekday: "long", year: "
 
 				<ul style="padding: 0; margin-top: 0; display: inline-block;">
 					{tags.map(tag => <li style="display: inline-block; list-style: none; margin: 0 0.125em;">
-							<a href={"tags/" + slugify(tag) } style="display: inline-block; border: 2px solid var(--colour6); padding: 0.25em 0.5em; margin-bottom: -2px;">
+							<a href={import.meta.env.BASE_URL + "tags/" + slugify(tag) } style="display: inline-block; border: 2px solid var(--colour6); padding: 0.25em 0.5em; margin-bottom: -2px;">
 								{ tag }
 							</a>
 						</li>)}

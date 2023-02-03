@@ -15,7 +15,7 @@ const { showBlogHomeLink } = Astro.props;
 		</li>
 		{
 			showBlogHomeLink && <li>
-				<a href="/" title="Duncan Ritchie’s blog">
+				<a href={import.meta.env.BASE_URL} title="Duncan Ritchie’s blog">
 					Blog home
 				</a>
 			</li>
