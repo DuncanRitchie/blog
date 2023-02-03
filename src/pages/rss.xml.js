@@ -1,4 +1,5 @@
 import rss from '@astrojs/rss';
+import sanitizeHtml from 'sanitize-html';
 import { getCollection } from 'astro:content';
 
 export async function get(context) {
@@ -9,7 +10,7 @@ export async function get(context) {
     description: 'Assorted notes that may or may not relate to web development',
     site: context.site,
     items: posts.map((post) => ({
-      title: post.data.title,
+      title: sanitizeHtml(post.data.title),
       pubDate: new Date(post.data.date),
       link: `/blog/${post.slug}/`,
     })),
