@@ -22,7 +22,7 @@ const allPostsSorted = allPosts
 						</time>
 					</dt>
 					<dd>
-						<a href={ post.slug }>
+						<a href={import.meta.env.BASE_URL + post.slug }>
 							{ post.data.title }
 						</a>
 					</dd>
