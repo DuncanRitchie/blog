@@ -921,7 +921,7 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 <dd>
 	<p>
 		This is useful when I don’t want to put some CSS in a file separate to the HTML.
-		For example, I haven’t quite figured out how to import .css files in Eleventy (the static-site-generator that I use for this blog).
+		For example, I use them in <del>Eleventy</del> <ins>Astro</ins> when making this blog.
 		So I’m using <code>&lt;style&gt;</code> elements here.
 	</p>
 	<p>
