@@ -1,15 +1,14 @@
 import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
 import sanitizeHtml from 'sanitize-html';
 import MarkdownIt from 'markdown-it/lib';
 const parser = new MarkdownIt();
 
-import { getCollection } from 'astro:content';
+import { sortPosts } from '../utils/sortPosts';
 
 export async function get(context) {
 	const posts = await getCollection('posts');
-	const postsSorted = posts
-		.filter(post => !post.data.draft)
-		.sort((a, b) => a.data.date < b.data.date ? 1 : -1);
+	const postsSorted = sortPosts(posts);
 
   return rss({
     title: 'Duncan Ritchie’s Blog',

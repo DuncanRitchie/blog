@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { sortPosts } from '../utils/sortPosts';
 
 export interface Props {
 	posts: CollectionEntry<"posts">[];
@@ -7,9 +8,7 @@ export interface Props {
 
 const { posts } = Astro.props;
 
-const allPostsSorted = posts
-	.filter(post => !post.data.draft)
-	.sort((a,b)=> a.data.date < b.data.date ? 1 : -1);
+const allPostsSorted = sortPosts(posts);
 
 ---
 
