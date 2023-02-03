@@ -5,6 +5,12 @@ My personal blog, a static site made with Astro. Posts are in Markdown files in 
 
 I previously made my blog with [Eleventy](https://www.11ty.dev). When I tried [Astro](https://astro.build/), I found it so intuitive that I migrated the blog.
 
+## RSS
+
+I love that Astro has [official support for RSS](https://docs.astro.build/en/guides/rss/). You can [subscribe to my blog](https://www.duncanritchie.co.uk/blog/rss.xml) if you like.
+
+The RSS feed is formatted through [Matt Webb’s XSL stylesheet](https://github.com/genmon/aboutfeeds/blob/main/tools/pretty-feed-v3.xsl).
+
 ## Draft posts
 
 Draft posts have filenames ending with <samp>.draft.md</samp>, which allows me to exclude drafts from Git and prevent them getting published.
