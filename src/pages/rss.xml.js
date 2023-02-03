@@ -7,13 +7,15 @@ import { getCollection } from 'astro:content';
 
 export async function get(context) {
 	const posts = await getCollection('posts');
+	const postsSorted = posts
+		.filter(post => !post.data.draft)
+		.sort((a, b) => a.data.date < b.data.date ? 1 : -1);
 
   return rss({
     title: 'Duncan Ritchie’s Blog',
-    description: 'Assorted notes that may or may not relate to web development',
+    description: 'Assorted notes that may or may not relate to web development, but that I thought should be recorded somewhere.',
     site: context.site,
-    items: posts
-			.filter(post => !post.data.draft)
+    items: postsSorted
 			.map((post) => ({
 				title: sanitizeHtml(post.data.title),
 				pubDate: new Date(post.data.date),
