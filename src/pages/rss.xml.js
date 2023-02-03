@@ -12,13 +12,15 @@ export async function get(context) {
     title: 'Duncan Ritchie’s Blog',
     description: 'Assorted notes that may or may not relate to web development',
     site: context.site,
-    items: posts.map((post) => ({
-      title: sanitizeHtml(post.data.title),
-      pubDate: new Date(post.data.date),
-      link: `/blog/${post.slug}/`,
-			// Render the post’s body to HTML, then encode it
-			content: sanitizeHtml(parser.render(post.body)),
-    })),
+    items: posts
+			.filter(post => !post.data.draft)
+			.map((post) => ({
+				title: sanitizeHtml(post.data.title),
+				pubDate: new Date(post.data.date),
+				link: `/blog/${post.slug}/`,
+				// Render the post’s body to HTML, then encode it
+				content: sanitizeHtml(parser.render(post.body)),
+			})),
     customData: `<language>en-gb</language>`,
   });
 }
