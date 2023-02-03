@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+	posts: CollectionEntry<"posts">[];
+}
+
+const { posts } = Astro.props;
+
+const allPostsSorted = posts
+	.filter(post => !post.data.draft)
+	.sort((a,b)=> a.data.date < b.data.date ? 1 : -1);
+
+---
+
+<dl>
+	{allPostsSorted.map(post => (
+		<div>
+			<dt>
+				<time datetime={ post.data.date.toISOString().slice(0, 10) }>
+					{ post.data.date.toLocaleDateString('en-gb', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }) }
+				</time>
+			</dt>
+			<dd>
+				<a href={import.meta.env.BASE_URL + post.slug }>
+					{ post.data.title }
+				</a>
+			</dd>
+		</div>
+	))}
+</dl>
+
+<style>
+	dl {
+		/* Autosizing grid columns CSS is adapted from https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/#aa-the-article-list */
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+		gap: calc(1rem + 1.25vw);
+	}
+	dl a {
+		text-decoration: none;
+	}
+	dl a:hover {
+		text-decoration: underline;
+	}
+</style>

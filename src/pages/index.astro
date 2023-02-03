@@ -1,11 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
 
 const allPosts = await getCollection('posts');
-const allPostsSorted = allPosts
-	.filter(post => !post.data.draft)
-	.sort((a,b)=> a.data.date < b.data.date ? 1 : -1)
 ---
 
 <BaseLayout title="Duncan Ritchie’s blog" showBlogHomeLinkInFooter={false}>
@@ -13,36 +11,6 @@ const allPostsSorted = allPosts
 		<h1>Duncan Ritchie’s blog</h1>
 		<p>Assorted notes that may or may not relate to web development, but that I felt should be recorded somewhere…</p>
 		<h2>All articles</h2>
-		<dl>
-			{allPostsSorted.map(post => (
-				<div>
-					<dt>
-						<time datetime={ post.data.date.toISOString().slice(0, 10) }>
-							{ post.data.date.toLocaleDateString('en-gb', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }) }
-						</time>
-					</dt>
-					<dd>
-						<a href={import.meta.env.BASE_URL + post.slug }>
-							{ post.data.title }
-						</a>
-					</dd>
-				</div>
-			))}
-		</dl>
+		<PostList posts={allPosts} />
 	</main>
 </BaseLayout>
-
-<style>
-	main dl {
-		/* Autosizing grid columns CSS is adapted from https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/#aa-the-article-list */
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
-		gap: calc(1rem + 1.25vw);
-	}
-	main dl a {
-		text-decoration: none;
-	}
-	main dl a:hover {
-		text-decoration: underline;
-	}
-</style>
