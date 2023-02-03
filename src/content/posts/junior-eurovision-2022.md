@@ -10,7 +10,7 @@ tags: ['Eurovision']
 
 I’ve been following the adult Eurovision Song Contest since I was small, because the UK has consistently participated and it’s always been on BBC TV.
 
-However, the UK has never entered the junior version of the contest, and so I’ve never paid much attention to it, until recently. My country is making its Junior Eurovision début in 2022, and I started this blog this year too, so I figured I should write this article, like I’ve done for [previous contests](tag/eurovision/).
+However, the UK has never entered the junior version of the contest, and so I’ve never paid much attention to it, until recently. My country is making its Junior Eurovision début in 2022, and I started this blog this year too, so I figured I should write this article, like I’ve done for [previous contests](tags/eurovision/).
 
 I ranked the sixteen songs in Junior Eurovision 2022, having seen the music videos but not any live performances. This is a reflection of my taste in music, rather than judgement on the performers; the kids are all great.
 
