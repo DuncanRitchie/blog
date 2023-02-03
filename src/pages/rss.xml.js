@@ -22,5 +22,6 @@ export async function get(context) {
 				content: sanitizeHtml(parser.render(post.body)),
 			})),
     customData: `<language>en-gb</language>`,
+		stylesheet: '/rss-styles.xsl'
   });
 }
