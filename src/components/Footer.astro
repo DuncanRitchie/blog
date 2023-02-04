@@ -1,29 +1,32 @@
 ---
 export interface Props {
-	showBlogHomeLink: boolean;
+	showBlogHomeLink: boolean
 }
 
-const { showBlogHomeLink } = Astro.props;
+const { showBlogHomeLink } = Astro.props
 ---
 
 <footer>
 	<ul>
 		<li>
-			<a href="https://www.duncanritchie.co.uk/" title="Home — Duncan Ritchie’s portfolio">
+			<a
+				href="https://www.duncanritchie.co.uk/"
+				title="Home — Duncan Ritchie’s portfolio"
+			>
 				By Duncan Ritchie
 			</a>
 		</li>
 		{
-			showBlogHomeLink && <li>
-				<a href={import.meta.env.BASE_URL} title="Duncan Ritchie’s blog">
-					Blog home
-				</a>
-			</li>
+			showBlogHomeLink && (
+				<li>
+					<a href={import.meta.env.BASE_URL} title="Duncan Ritchie’s blog">
+						Blog home
+					</a>
+				</li>
+			)
 		}
 		<li>
-			<a href={import.meta.env.BASE_URL + 'rss.xml'} title="rss.xml">
-				RSS
-			</a>
+			<a href={import.meta.env.BASE_URL + 'rss.xml'} title="rss.xml">RSS</a>
 		</li>
 		<li>
 			<a href="https://github.com/DuncanRitchie/blog" title="Code on GitHub">
@@ -32,6 +35,4 @@ const { showBlogHomeLink } = Astro.props;
 		</li>
 	</ul>
 </footer>
-<style>
-
-</style>
+<style></style>

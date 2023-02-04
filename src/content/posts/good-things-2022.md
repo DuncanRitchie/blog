@@ -7,7 +7,9 @@ tags: ['Annual review']
 ---
 
 # Good things happening to me in 2022
+
 ## Work
+
 I used the [Nest.js](https://nestjs.com/) framework to make three web services (Restful APIs, application programming interfaces using Representational State Transfer). The services comply with the Open API standard through [Swagger](https://swagger.io), which generates documentation about what they do and how to use them. Interoperability and standardisation — I like that!
 
 Despite the similarities in the names, Nest.js is [very much not the same](./web-technologies-with-confusing-names) as Next.js. (See the section below on my personal coding.)
@@ -17,6 +19,7 @@ And I built my first website with [Angular](https://angular.io), the popular fra
 Despite the similarities in the functionalities, Angular is also very much not the same as Next.js!
 
 ## Personal coding
+
 I made this blog to keep some of my thoughts about things going on in my life. It uses the [Eleventy](https://www.11ty.dev) static-site-generator.
 
 I converted my Latin website, [velut](https://www.velut.co.uk), to the Next.js framework, giving it server-side rendering. This means you can access it without having JavaScript enabled in your browser; it’s also better for search-engine optimisation and for users of assistive technologies such as screen-readers. It’s faster too, at least for UK visitors. I wrote an article on [how I made the switch to Next.js](./porting-velut-to-nextjs/).
@@ -24,6 +27,7 @@ I converted my Latin website, [velut](https://www.velut.co.uk), to the Next.js f
 My efforts to reduce velut’s reliance on Microsoft Excel continued, in accordance with a [plan](https://github.com/DuncanRitchie/velut/blob/main/plan.md) I put on GitHub. I made a [JavaScript script](https://www.duncanritchie.co.uk/velut-word-data-generator/) for generating certain data for every Latin word I have. Then I started writing a [script for generating more Latin words](https://www.duncanritchie.co.uk/velut-inflector/), by applying the rules of Latin inflection to the headwords (lemmata) that I have. I expect to finish this second script sometime in 2023.
 
 ## Holidays
+
 In April I had a couple of weeks in the Scottish Highlands with my parents. We visited Portknockie’s Bow-Fiddle Rock, a natural rock formation; I also enjoyed looking at the fulmars, shags, razorbills, and other birds roosting nearby.
 
 <figure>

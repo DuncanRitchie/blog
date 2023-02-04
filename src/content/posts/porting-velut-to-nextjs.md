@@ -27,6 +27,7 @@ Because I had never ported a site to Next.js before, I had a couple of false sta
 ## Folder structure
 
 The child folders of the root directory are:
+
 - <samp>.github</samp>, which simply contains the GitHub workflow that makes the site redeploy to Fly whenever I push changes;
 - <samp>css</samp>, which has the CSS for pages (see “Pages & components” section);
 - <samp>components</samp>, which has JSX and CSS for components (again see “Pages & components” section);
@@ -143,7 +144,7 @@ I should probably refactor this. It would be an opportunity to try a different C
 
 Here’s what happens when a user visits a client-side–rendered website. They request a page, then receive a practically empty HTML file, along with a load of JavaScript. The browser executes the JavaScript, and that fills in the page with whatever the user is supposed to see.
 
-With server-side rendering, this is inverted. It is the server that generates the full HTML for the page, so the first thing that the user sees for the page is the complete page. Next.js then performs a step called [“hydration”](https://en.wikipedia.org/wiki/Hydration_(web_development)), which attaches React event-handlers to the DOM nodes (the elements on the page), which re-renders elements and makes the site properly interactive with JavaScript.
+With server-side rendering, this is inverted. It is the server that generates the full HTML for the page, so the first thing that the user sees for the page is the complete page. Next.js then performs a step called [“hydration”](<https://en.wikipedia.org/wiki/Hydration_(web_development)>), which attaches React event-handlers to the DOM nodes (the elements on the page), which re-renders elements and makes the site properly interactive with JavaScript.
 
 Exceptions can be thrown when the rendered output on the server-side doesn’t match the initial render on the client-side — Next.js cannot hydrate the page. My “Subwords” page has a string of letters as an example of an input. Because this is generated at random on each page-visit, it needs to be generated in `getServerSideProps` (which runs on the back-end only), not anywhere like a `render` method (which runs on both back-end and front-end), otherwise the front-end will produce a value that does not match what the back-end produced.
 
@@ -192,7 +193,7 @@ Here’s how I implemented the SSR/CSR distinction. The page now has two separat
 
 ## Head component
 
-I set a default `<head>` for the entire site, by making a component using Next.js’s `Head` component and importing it in <samp>_app.js</samp>. Any property in the `<head>` can be overridden on any page by declaring another `Head` component in the JSX.
+I set a default `<head>` for the entire site, by making a component using Next.js’s `Head` component and importing it in <samp>\_app.js</samp>. Any property in the `<head>` can be overridden on any page by declaring another `Head` component in the JSX.
 
 ```jsx
 function DefaultHead() {
@@ -229,37 +230,37 @@ function About(props) {
 }
 ```
 
-## <samp>_app.js</samp> & <samp>_document<wbr>.js</samp>
+## <samp>\_app.js</samp> & <samp>\_document<wbr>.js</samp>
 
-Next.js allows a couple of files in the <samp>pages</samp> folder that are special because they are not pages themselves, but Next.js uses them to template the actual pages. In <samp>_app.js</samp> is where I have my default `<head>` component (see previous section) and a footer for all pages.
+Next.js allows a couple of files in the <samp>pages</samp> folder that are special because they are not pages themselves, but Next.js uses them to template the actual pages. In <samp>\_app.js</samp> is where I have my default `<head>` component (see previous section) and a footer for all pages.
 
 ```jsx
 function App({ Component, pageProps }) {
-  return (
-    <>
-      <DefaultHead />
-      <Component {...pageProps} />
-      <Footer />
-    </>
-  )
+	return (
+		<>
+			<DefaultHead />
+			<Component {...pageProps} />
+			<Footer />
+		</>
+	);
 }
 ```
 
-If you don’t have <samp>_document.js</samp>, Next.js won’t mind, but your `<html>` elements would be missing the `lang` attribute. Since the text of the velut website is mostly English (apart from the Latin words of course), I define <samp>_document.js</samp> simply like this;
+If you don’t have <samp>\_document.js</samp>, Next.js won’t mind, but your `<html>` elements would be missing the `lang` attribute. Since the text of the velut website is mostly English (apart from the Latin words of course), I define <samp>\_document.js</samp> simply like this;
 
 ```jsx
 class MyDocument extends Document {
-  render() {
-    return (
-      <Html lang="en">
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+	render() {
+		return (
+			<Html lang="en">
+				<Head />
+				<body>
+					<Main />
+					<NextScript />
+				</body>
+			</Html>
+		);
+	}
 }
 ```
 
@@ -271,24 +272,24 @@ I have files in the <samp>pages</samp> folder named <samp>404.js</samp> and <sam
 
 If you search for a [word that’s not in the dictionary](https://www.velut.co.uk/NotARealWord), you also get a 404 status, but this is given by the `Word` page, not <samp>404.js</samp>.
 
-I also have an <samp>_error.js</samp> file, which applies if the server fails with any other error.
+I also have an <samp>\_error.js</samp> file, which applies if the server fails with any other error.
 
 ```jsx
 function ErrorPage({ type = '/' }) {
-  return (
-    <>
-      <Head>
-        <title>Error on velut — a Latin rhyming dictionary</title>
-      </Head>
-      <div>
-        <Header textBeforeTitle="Error" />
-        <Search type={type} searchbarTitle="Type a Latin word" />
-        <p>
-          <span>Please try searching for something else!</span>
-        </p>
-      </div>
-    </>
-  )
+	return (
+		<>
+			<Head>
+				<title>Error on velut — a Latin rhyming dictionary</title>
+			</Head>
+			<div>
+				<Header textBeforeTitle="Error" />
+				<Search type={type} searchbarTitle="Type a Latin word" />
+				<p>
+					<span>Please try searching for something else!</span>
+				</p>
+			</div>
+		</>
+	);
 }
 ```
 

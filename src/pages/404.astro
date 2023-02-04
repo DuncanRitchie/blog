@@ -1,6 +1,7 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro'
 ---
+
 <BaseLayout
 	title="404 — Duncan Ritchie’s blog"
 	description="Page not found"
@@ -9,10 +10,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	<main>
 		<h1>Page not found <small>(404 error)</small></h1>
 		<p>
-			The page you wanted doesn’t exist. I may have moved or deleted it, so sorry about that!
+			The page you wanted doesn’t exist. I may have moved or deleted it, so
+			sorry about that!
 		</p>
 		<p>
-			You might like to go back to <a href={import.meta.env.BASE_URL} title="Duncan Ritchie’s blog">my blog’s homepage</a>.
+			You might like to go back to <a
+				href={import.meta.env.BASE_URL}
+				title="Duncan Ritchie’s blog"
+			>
+				my blog’s homepage
+			</a>.
 		</p>
 	</main>
 </BaseLayout>

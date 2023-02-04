@@ -31,6 +31,7 @@ There are a few other boolean attributes like this, such as `required` and `hidd
 ## Binding on boolean attributes in Angular
 
 For Angular, assuming `myVariable` is a boolean variable that we are binding to:
+
 - The syntax `<input [attr.disabled]="myVariable" />` gives HTML of `<input disabled="true" />` or `<input disabled="false" />`
 - The syntax `<input [attr.disabled]="myVariable || null" />` gives HTML of `<input disabled="true" />` or `<input />` because Angular removes null or undefined attributes.
 

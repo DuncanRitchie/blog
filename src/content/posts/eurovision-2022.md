@@ -7,6 +7,7 @@ tags: ['Eurovision']
 ---
 
 # Eurovision 2022 — My rankings
+
 I ranked the forty contestants in Eurovision 2022 based on the music videos and national final performances, before the semi-finals.
 
 In the list below I have also included the semi-final the songs competed in (1️ or 2️ with 🟩 for the Big Five countries that go straight through to the grand final), and whether the song got into the grand final (✅ or ❌).

@@ -1,6 +1,7 @@
 module.exports = {
-  endOfLine: 'crlf',
-  semi: false,
-  singleQuote: true,
-  trailingComma: 'all',
-}
+	endOfLine: 'crlf',
+	semi: true,
+	singleQuote: true,
+	trailingComma: 'all',
+	useTabs: true,
+};

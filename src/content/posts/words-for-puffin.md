@@ -7,6 +7,7 @@ tags: ['Funny', 'Linguistics']
 ---
 
 # Words for “puffin”
+
 A puffin is an auk of the genus _Fratercula_ with a colourful beak. I recently looked the word up on [Wiktionary](https://en.wiktionary.org/wiki/puffin#Translations) and the translations amused me, so here are some of them.
 
 <dl>

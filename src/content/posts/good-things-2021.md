@@ -30,9 +30,11 @@ I passed my Level 4 Software Developer apprenticeship. As coursework for that, I
 Also at work I joined the ICE Orchestration project, which has taught me a lot about several technologies that I was unfamiliar with (Java, Eclipse, Gradle, Liferay, Grafana, MySql, etc). I’m the main developer working on allowing users to access external lists of online services from our Orchestration platform.
 
 ## Personal coding
+
 On my [Latin vocabulary website](https://www.velut.co.uk), users can now input [multiple words at once](https://www.velut.co.uk/many) and find out which ones are in my dictionary. I have made a lot of progress in porting the site to the [Next.js](https://nextjs.org/) framework, which will improve performance and reduce the reliance on client-side JavaScript. I have further reduced my reliance on Excel.
 
 On my [personal website](https://www.duncanritchie.co.uk), users can toggle between two layout options.
 
 ## Holiday
+
 My parents, my dog, and I had a holiday in Northumberland. We went on several walks; visited a few castles, churches, museums, and ruins; ate a lot of food; and saw some birds (including curlew, wigeon, golden plover, and pink-footed goose). Places included Bamburgh, Lindisfarne, Craster, Cragside Estate, and Vercovicium.

@@ -28,6 +28,7 @@ tags: ['Annual review']
 Two children’s theatre groups that I volunteer for staged very good dramatisations of “Frankenstein” and a poem about refugees.
 
 ## Work
+
 I was allowed to work from home for one day a week. Then five.
 
 I passed an exam in project management in software development.
@@ -53,6 +54,7 @@ I’ve also been on some nice walks with my parents.
 Other unusual birds I saw this year included: chiffchaffs, whitethroat, grey wagtails, shelducks, stonechat, goldcrests, green woodpecker, teal, kingfisher, and sparrowhawk.
 
 ## Personal coding
+
 In 2019, I made myself a [personal website](https://www.duncanritchie.co.uk). In 2020, I redesigned it. It looks a lot nicer, I learnt a good amount, and I have a fairly clear idea of further improvements I can make.
 
 In early 2016, I started compiling Latin vocabulary into a spreadsheet and wrote Excel formulae to pick out words I was interested in, such as rhymes. In mid-2019, I made a [website](https://www.velut.co.uk) to let anyone access this information — it’s essentially an online rhyming dictionary for Latin. In 2020, I added a couple more big features. Visitors can now search for Latin vocabulary from the [English](https://www.velut.co.uk/english) meaning, and they can also search for Latin words from a [pattern](https://www.velut.co.uk/advanced) of letters and/or scansion. I have further big plans for how to reduce my reliance on Excel for this project.

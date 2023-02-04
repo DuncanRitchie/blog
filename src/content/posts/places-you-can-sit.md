@@ -7,10 +7,11 @@ tags: ['Funny', 'Linguistics']
 ---
 
 # Places you can sit
-* On a bench.
-* In a chair.
-* On a stool.
-* In a seat.
-* On a throne.
-* In a saddle.
-* On a horse.
+
+- On a bench.
+- In a chair.
+- On a stool.
+- In a seat.
+- On a throne.
+- In a saddle.
+- On a horse.

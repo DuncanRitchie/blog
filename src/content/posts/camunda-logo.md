@@ -7,6 +7,7 @@ tags: ['Funny', 'Software']
 ---
 
 # Camunda’s logo
+
 When I first saw [Camunda](https://camunda.com)’s old logo, I wasn’t <em>cog</em>nisant of what it was. I saw it as a double-headed wavy arrow between two spots.
 
 <style>

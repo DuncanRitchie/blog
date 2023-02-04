@@ -9,7 +9,8 @@ tags: []
 # An obscure trivia question
 
 What links the following cities?
-* Budapest
-* Barcelona
-* Amsterdam
-* Manila
+
+- Budapest
+- Barcelona
+- Amsterdam
+- Manila

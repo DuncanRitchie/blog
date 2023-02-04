@@ -1,4 +1,5 @@
 # Duncan Ritchie’s blog
+
 https://www.duncanritchie.co.uk/blog
 
 My personal blog, a static site made with Astro. Posts are in Markdown files in <samp>src/content/posts</samp>.
