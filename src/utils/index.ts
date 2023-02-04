@@ -2,11 +2,17 @@ import type { CollectionEntry } from 'astro:content'
 
 /**
  * Returns the slug (URL fragment) for the given blogpost.
- * This function exists because `blogpost.slug` includes the
- * subfolder (eg “2020/”), but blogpost URLs should not include this.
+ * This function exists because `blogpost.slug` includes the subfolder
+ * (eg “2020/”), and ends with “draft” if the post is a draft, but
+ * blogpost URLs should not include the subfolder or “draft” suffix.
  */
 const slugifyPost = (blogpost: CollectionEntry<'posts'>) => {
-	return blogpost.slug.replace(/.+\//, '')
+	const slugWithoutDraftSuffix = blogpost.data.draft
+		? blogpost.slug.replace(/draft$/, '')
+		: blogpost.slug
+
+	// Delete slashes and anything before them.
+	return slugWithoutDraftSuffix.replace(/.+\//, '')
 }
 
 /**
