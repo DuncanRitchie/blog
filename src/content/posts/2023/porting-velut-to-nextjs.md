@@ -222,18 +222,18 @@ For example, the About page (abridged):
 
 ```jsx
 function About(props) {
-  return (
-    <>
-      <Head>
-        <title>About velut — a Latin rhyming dictionary</title>
-        <meta name="Description" content="Explanation of the purpose and functionality of velut, the Latin vocabulary website" />
-      </Head>
+	return (
+		<>
+			<Head>
+				<title>About velut — a Latin rhyming dictionary</title>
+				<meta name="Description" content="Explanation of the purpose and functionality of velut, the Latin vocabulary website" />
+			</Head>
 
 			<!-- Page content here -->
 			<h1>About</h1>
 			<p>I’m a software developer who loves the Latin language…</p>
 		</>
-  )
+	)
 }
 ```
 
@@ -320,15 +320,15 @@ I set a [GitHub workflow](https://github.com/DuncanRitchie/velut/blob/main/.gith
 name: Fly Deploy
 on: [push]
 env:
-  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+	FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
-  deploy:
-    name: Deploy app
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only
+	deploy:
+		name: Deploy app
+		runs-on: ubuntu-latest
+		steps:
+			- uses: actions/checkout@v2
+			- uses: superfly/flyctl-actions/setup-flyctl@master
+			- run: flyctl deploy --remote-only
 ```
 
 ## TypeScript
