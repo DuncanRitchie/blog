@@ -24,6 +24,7 @@ const allPostsSorted = sortPosts(posts)
 							day: '2-digit',
 						})}
 					</time>
+					{post.data.draft && <span class="draft-marker"> draft</span>}
 				</dt>
 				<dd>
 					<a href={import.meta.env.BASE_URL + slugifyPost(post)}>
@@ -48,5 +49,15 @@ const allPostsSorted = sortPosts(posts)
 	}
 	dl a:hover {
 		text-decoration: underline;
+	}
+	.draft-marker {
+		text-transform: uppercase;
+		font-size: 0.6667em;
+		background: var(--colour3);
+		border: 1px solid var(--nav-text);
+		border-radius: 0.125em;
+		padding-inline: 0.25em;
+		margin-inline-start: 0.25em;
+		vertical-align: 0.125em;
 	}
 </style>
