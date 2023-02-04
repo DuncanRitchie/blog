@@ -1,16 +1,14 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import { slugify } from '../../utils/slugify'
+import { slugifyText, sortPosts } from '../../utils/'
 import PostList from '../../components/PostList.astro'
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
 	const allPosts = await getCollection('posts')
 
-	const allPostsSorted = allPosts
-		.filter((post) => !post.data.draft)
-		.sort((a, b) => (a.data.date < b.data.date ? 1 : -1))
+	const allPostsSorted = sortPosts(allPosts)
 
 	const tags: Set<string> = allPostsSorted.reduce((set, current) => {
 		set.delete('')
@@ -27,7 +25,7 @@ export async function getStaticPaths() {
 	)
 
 	return [...tags].map((tag) => ({
-		params: { slug: slugify(tag) },
+		params: { slug: slugifyText(tag) },
 		props: { tag, posts: tagsWithPosts[tag] },
 	}))
 }

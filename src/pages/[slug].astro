@@ -1,12 +1,12 @@
 ---
 import { getCollection } from 'astro:content'
-import { slugify } from '../utils/slugifyPost'
+import { slugifyPost } from '../utils/'
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
 	const blogEntries = await getCollection('posts')
 	return blogEntries.map((entry) => ({
-		params: { slug: slugify(entry) },
+		params: { slug: slugifyPost(entry) },
 		props: { entry },
 	}))
 }
