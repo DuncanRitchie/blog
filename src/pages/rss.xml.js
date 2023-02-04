@@ -23,6 +23,6 @@ export async function get(context) {
 				content: sanitizeHtml(parser.render(post.body)),
 			})),
     customData: `<language>en-gb</language>`,
-		stylesheet: '/rss-styles.xsl'
+		stylesheet: import.meta.env.BASE_URL + 'rss-styles.xsl'
   });
 }
