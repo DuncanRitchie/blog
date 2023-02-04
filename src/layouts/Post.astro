@@ -34,13 +34,13 @@ const dateReadable = date.toLocaleDateString('en-gb', { weekday: "long", year: "
 
 		{
 			tags.length > 0 && (
-				<p style="display: inline;">
+				<p class="tags-intro">
 					It is tagged as:
 				</p>
 
-				<ul style="padding: 0; margin-top: 0; display: inline-block;">
-					{tags.map(tag => <li style="display: inline-block; list-style: none; margin: 0 0.125em;">
-							<a href={import.meta.env.BASE_URL + "tags/" + slugify(tag) } style="display: inline-block; border: 2px solid var(--colour6); padding: 0.25em 0.5em; margin-bottom: -2px;">
+				<ul class="tags">
+					{tags.map(tag => <li>
+							<a href={import.meta.env.BASE_URL + "tags/" + slugify(tag) }>
 								{ tag }
 							</a>
 						</li>)}
@@ -54,3 +54,25 @@ const dateReadable = date.toLocaleDateString('en-gb', { weekday: "long", year: "
 	</main>
 
 </BaseLayout>
+
+<style>
+	.tags-intro {
+		display: inline;
+	}
+	.tags {
+		padding: 0;
+		margin-top: 0;
+		display: inline-block;
+	}
+	.tags li {
+		display: inline-block;
+		list-style:none;
+		margin: 0 0.125em;
+	}
+	.tags li a {
+		display: inline-block;
+		border: 2px solid var(--colour6);
+		padding: 0.25em 0.5em;
+		margin-bottom: -2px;
+	}
+</style>
