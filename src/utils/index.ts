@@ -23,9 +23,7 @@ const slugifyText = (text: string) => {
  * Returns the given posts, sorted reverse-chronologically.
  */
 const sortPosts = (posts: CollectionEntry<'posts'>[]) => {
-	return posts
-		.filter((post) => !post.data.draft)
-		.sort((a, b) => (a.data.date < b.data.date ? 1 : -1))
+	return posts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1))
 }
 
 export { slugifyPost, slugifyText, sortPosts }

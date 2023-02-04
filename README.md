@@ -16,7 +16,7 @@ The RSS feed is formatted through [Matt Webb’s XSL stylesheet](https://github.
 
 Draft posts have filenames ending with <samp>.draft.md</samp>, which allows me to exclude drafts from Git and prevent them getting published.
 
-Also, they have `draft: true` in their front matter.
+Also, they have `draft: true` in their front matter. This automatically makes Astro exclude them from production, even if I were to allow them in Git.
 
 ## Commands for me
 
