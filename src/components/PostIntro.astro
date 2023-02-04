@@ -1,0 +1,72 @@
+---
+import { slugifyText } from '../utils/'
+
+export interface Props {
+	frontmatter: {
+		date: string
+		draft: boolean
+		tags: string[]
+	}
+}
+
+const { date: dateAsString, draft, tags } = Astro.props.frontmatter
+const date = new Date(dateAsString)
+const dateIso = date.toISOString().slice(0, 10)
+const dateReadable = date.toLocaleDateString('en-gb', {
+	weekday: 'long',
+	year: 'numeric',
+	month: 'long',
+	day: '2-digit',
+})
+---
+
+<aside>
+	<p>
+		This article was written on
+		<time datetime={dateIso}>
+			{dateReadable}
+		</time>
+		by Duncan Ritchie.
+	</p>
+
+	{draft && <strong>It is a draft.</strong>}
+
+	{
+		tags.length > 0 && (
+			<>
+				<p class="tags-intro">It is tagged as:</p>
+				<ul class="tags">
+					{tags.map((tag) => (
+						<li>
+							<a href={import.meta.env.BASE_URL + 'tags/' + slugifyText(tag)}>
+								{tag}
+							</a>
+						</li>
+					))}
+				</ul>
+			</>
+		)
+	}
+</aside>
+
+<style>
+	.tags-intro {
+		display: inline;
+	}
+	.tags {
+		padding: 0;
+		margin-top: 0;
+		display: inline-block;
+	}
+	.tags li {
+		display: inline-block;
+		list-style: none;
+		margin: 0 0.125em;
+	}
+	.tags li a {
+		display: inline-block;
+		border: 2px solid var(--colour6);
+		padding: 0.25em 0.5em;
+		margin-bottom: -2px;
+	}
+</style>
