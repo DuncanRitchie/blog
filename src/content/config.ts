@@ -1,4 +1,4 @@
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection } from 'astro:content'
 
 const postsCollection = defineCollection({
 	schema: z.object({
@@ -7,9 +7,9 @@ const postsCollection = defineCollection({
 		draft: z.boolean(),
 		tags: z.array(z.string()),
 	}),
-});
+})
 
 // Keys here should match the collection directory names in "src/content"
 export const collections = {
 	posts: postsCollection,
-};
+}

@@ -1,25 +1,25 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import { slugify } from '../utils/slugify';
+import BaseLayout from './BaseLayout.astro'
+import { slugify } from '../utils/slugify'
 
 export interface Props {
 	frontmatter: {
-		title: string;
-		date: string;
-		draft: boolean;
-		tags: string[];
-	};
+		title: string
+		date: string
+		draft: boolean
+		tags: string[]
+	}
 }
 
-const { title, date: dateAsString, draft, tags } = Astro.props.frontmatter;
-const date = new Date(dateAsString);
-const dateIso = date.toISOString().slice(0, 10);
+const { title, date: dateAsString, draft, tags } = Astro.props.frontmatter
+const date = new Date(dateAsString)
+const dateIso = date.toISOString().slice(0, 10)
 const dateReadable = date.toLocaleDateString('en-gb', {
 	weekday: 'long',
 	year: 'numeric',
 	month: 'long',
 	day: '2-digit',
-});
+})
 ---
 
 <BaseLayout

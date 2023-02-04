@@ -1,15 +1,15 @@
-import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
-import sanitizeHtml from 'sanitize-html';
-import MarkdownIt from 'markdown-it/lib';
-const parser = new MarkdownIt();
+import rss from '@astrojs/rss'
+import { getCollection } from 'astro:content'
+import sanitizeHtml from 'sanitize-html'
+import MarkdownIt from 'markdown-it/lib'
+const parser = new MarkdownIt()
 
-import { sortPosts } from '../utils/sortPosts';
+import { sortPosts } from '../utils/sortPosts'
 import { slugify } from '../utils/slugifyPost'
 
 export async function get(context) {
-	const posts = await getCollection('posts');
-	const postsSorted = sortPosts(posts);
+	const posts = await getCollection('posts')
+	const postsSorted = sortPosts(posts)
 
 	return rss({
 		title: 'Duncan Ritchie’s Blog',
@@ -25,5 +25,5 @@ export async function get(context) {
 		})),
 		customData: `<language>en-gb</language>`,
 		stylesheet: import.meta.env.BASE_URL + 'rss-styles.xsl',
-	});
+	})
 }
