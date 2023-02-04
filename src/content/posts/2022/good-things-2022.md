@@ -1,7 +1,7 @@
 ---
 date: 2022-12-31
 title: Good things happening to me in 2022
-layout: ../../layouts/Post.astro
+layout: ../../../layouts/Post.astro
 draft: false
 tags: ['Annual review']
 ---

@@ -1,7 +1,7 @@
 ---
 title: How I ported my Latin dictionary to Next.js
 date: 2023-01-28
-layout: ../../layouts/Post.astro
+layout: ../../../layouts/Post.astro
 draft: false
 tags: ['Software']
 ---
@@ -70,8 +70,8 @@ let Header = (props) => {
 	return (
 		<header>
 			<h1>
-				…
-				<span className="title-author"> Duncan Ritchie’s </span><br />
+				…<span className="title-author"> Duncan Ritchie’s </span>
+				<br />
 				<abbr className="title"> velut </abbr>
 			</h1>
 			<p className="title-full"> … </p>
@@ -91,8 +91,8 @@ let Header = (props) => {
 	return (
 		<header className={styles.header}>
 			<h1>
-				…
-				<span className={styles.titleAuthor}> Duncan Ritchie’s </span><br />
+				…<span className={styles.titleAuthor}> Duncan Ritchie’s </span>
+				<br />
 				<abbr className={styles.title}> velut </abbr>
 			</h1>
 			<p className={styles.titleFull}> … </p>
@@ -171,9 +171,7 @@ Here’s a simplified snippet. Without JavaScript, the Search form makes a `get`
 		enterKeyHint="search"
 	/>
 
-	<button type="submit">
-		Search!
-	</button>
+	<button type="submit">Search!</button>
 </form>
 ```
 
@@ -197,17 +195,26 @@ I set a default `<head>` for the entire site, by making a component using Next.j
 
 ```jsx
 function DefaultHead() {
-  return (
-    <Head>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <link rel="shortcut icon" href="https://www.duncanritchie.co.uk/favicon.ico" />
-      <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
-      <meta name="theme-color" content="#000000" />
-      <title>velut — a Latin rhyming dictionary</title>
-      <meta name="Description" content="velut — a Latin dictionary with lists of rhymes, anagrams, homographs, consonyms, subwords, inflected forms, cognates, and links to other online resources." />
-    </Head>
-  )
+	return (
+		<Head>
+			<meta charSet="utf-8" />
+			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+			<link
+				rel="shortcut icon"
+				href="https://www.duncanritchie.co.uk/favicon.ico"
+			/>
+			<meta
+				name="viewport"
+				content="width=device-width,initial-scale=1,shrink-to-fit=no"
+			/>
+			<meta name="theme-color" content="#000000" />
+			<title>velut — a Latin rhyming dictionary</title>
+			<meta
+				name="Description"
+				content="velut — a Latin dictionary with lists of rhymes, anagrams, homographs, consonyms, subwords, inflected forms, cognates, and links to other online resources."
+			/>
+		</Head>
+	)
 }
 ```
 
@@ -242,7 +249,7 @@ function App({ Component, pageProps }) {
 			<Component {...pageProps} />
 			<Footer />
 		</>
-	);
+	)
 }
 ```
 
@@ -259,7 +266,7 @@ class MyDocument extends Document {
 					<NextScript />
 				</body>
 			</Html>
-		);
+		)
 	}
 }
 ```
@@ -289,7 +296,7 @@ function ErrorPage({ type = '/' }) {
 				</p>
 			</div>
 		</>
-	);
+	)
 }
 ```
 

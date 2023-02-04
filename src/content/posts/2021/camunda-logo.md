@@ -1,7 +1,7 @@
 ---
 date: 2021-03-23
 title: Camunda’s logo
-layout: ../../layouts/Post.astro
+layout: ../../../layouts/Post.astro
 draft: false
 tags: ['Funny', 'Software']
 ---

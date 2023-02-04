@@ -1,7 +1,7 @@
 ---
 title: Eurovision 2021 — My rankings
 date: 2021-05-22
-layout: ../../layouts/Post.astro
+layout: ../../../layouts/Post.astro
 draft: false
 tags: ['Eurovision']
 ---
