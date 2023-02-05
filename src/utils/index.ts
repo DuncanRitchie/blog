@@ -19,6 +19,9 @@ const slugifyPost = (blogpost: CollectionEntry<'posts'>) => {
  * Eg, "Annual review" => "annual-review"
  */
 const slugifyText = (text: string) => {
+	if (!text) {
+		return ''
+	}
 	return text
 		.trim()
 		.replace(/[^a-z0-9]+/i, '-')

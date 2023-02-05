@@ -3,6 +3,7 @@ import { CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { slugifyText, sortPosts } from '../../utils/'
 import PostList from '../../components/PostList.astro'
+import PreviousNextLinks from '../../components/PreviousNextLinks.astro'
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -24,13 +25,18 @@ export async function getStaticPaths() {
 			)),
 	)
 
-	return [...tags].map((tag) => ({
+	return [...tags].sort().map((tag, index, tags) => ({
 		params: { slug: slugifyText(tag) },
-		props: { tag, posts: tagsWithPosts[tag] },
+		props: {
+			tag,
+			posts: tagsWithPosts[tag],
+			previous: tags[index - 1],
+			next: tags[index + 1],
+		},
 	}))
 }
 
-const { tag, posts } = Astro.props
+const { tag, posts, previous, next } = Astro.props
 ---
 
 <BaseLayout
@@ -41,5 +47,12 @@ const { tag, posts } = Astro.props
 	<main>
 		<h1>Posts tagged as “{tag}”</h1>
 		<PostList posts={posts} />
+		<PreviousNextLinks
+			type="tag"
+			previous={previous}
+			previousUrl={'./' + slugifyText(previous)}
+			next={next}
+			nextUrl={'./' + slugifyText(next)}
+		/>
 	</main>
 </BaseLayout>
