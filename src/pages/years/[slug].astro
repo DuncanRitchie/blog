@@ -1,0 +1,43 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { sortPosts } from '../../utils/'
+import PostList from '../../components/PostList.astro'
+
+// Generate a new path for every collection entry
+export async function getStaticPaths() {
+	const allPosts = await getCollection('posts')
+
+	const allPostsSorted = sortPosts(allPosts)
+
+	const years: Set<number> = new Set(
+		allPostsSorted.map((post) => new Date(post.data.date).getFullYear()),
+	)
+
+	const yearsWithPosts: { [key: number]: CollectionEntry<'posts'>[] } = {}
+	years.forEach(
+		(year) =>
+			(yearsWithPosts[year] = allPostsSorted.filter(
+				(post) => year === new Date(post.data.date).getFullYear(),
+			)),
+	)
+
+	return [...years].map((year) => ({
+		params: { slug: year },
+		props: { year, posts: yearsWithPosts[year] },
+	}))
+}
+
+const { year, posts } = Astro.props
+---
+
+<BaseLayout
+	title={`Posts from ${year} — Duncan Ritchie’s blog`}
+	description={`List of blogposts by Duncan Ritchie from ${year}`}
+	showBlogHomeLinkInFooter={true}
+>
+	<main>
+		<h1>Posts from {year}</h1>
+		<PostList posts={posts} />
+	</main>
+</BaseLayout>
