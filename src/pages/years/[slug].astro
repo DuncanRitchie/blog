@@ -22,13 +22,18 @@ export async function getStaticPaths() {
 			)),
 	)
 
-	return [...years].map((year) => ({
+	return [...years].sort().map((year, index, years) => ({
 		params: { slug: year },
-		props: { year, posts: yearsWithPosts[year] },
+		props: {
+			year,
+			posts: yearsWithPosts[year],
+			previous: years[index - 1],
+			next: years[index + 1],
+		},
 	}))
 }
 
-const { year, posts } = Astro.props
+const { year, posts, previous, next } = Astro.props
 ---
 
 <BaseLayout
@@ -39,5 +44,40 @@ const { year, posts } = Astro.props
 	<main>
 		<h1>Posts from {year}</h1>
 		<PostList posts={posts} />
+		<div class="links-to-adjacent-years">
+			{
+				previous && (
+					<p class="previous">
+						Previous year: <a href={'./' + previous}>{previous}</a>
+					</p>
+				)
+			}
+			{
+				next && (
+					<p class="next">
+						Next year: <a href={'./' + next}>{next}</a>
+					</p>
+				)
+			}
+		</div>
 	</main>
 </BaseLayout>
+
+<style>
+	.links-to-adjacent-years {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.5rem;
+		padding-inline: 1rem;
+		margin-top: 2rem;
+		border-top: 3px solid var(--colour6);
+	}
+	.previous {
+		text-align: left;
+		grid-column: 1 / 2;
+	}
+	.next {
+		text-align: right;
+		grid-column: 2 / 3;
+	}
+</style>
