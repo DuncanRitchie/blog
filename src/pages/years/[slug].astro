@@ -3,6 +3,7 @@ import { CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { sortPosts } from '../../utils/'
 import PostList from '../../components/PostList.astro'
+import PreviousNextLinks from '../../components/PreviousNextLinks.astro'
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -44,40 +45,12 @@ const { year, posts, previous, next } = Astro.props
 	<main>
 		<h1>Posts from {year}</h1>
 		<PostList posts={posts} />
-		<div class="links-to-adjacent-years">
-			{
-				previous && (
-					<p class="previous">
-						Previous year: <a href={'./' + previous}>{previous}</a>
-					</p>
-				)
-			}
-			{
-				next && (
-					<p class="next">
-						Next year: <a href={'./' + next}>{next}</a>
-					</p>
-				)
-			}
-		</div>
+		<PreviousNextLinks
+			type="year"
+			previous={previous}
+			previousUrl={'./' + previous}
+			next={next}
+			nextUrl={'./' + next}
+		/>
 	</main>
 </BaseLayout>
-
-<style>
-	.links-to-adjacent-years {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0.5rem;
-		padding-inline: 1rem;
-		margin-top: 2rem;
-		border-top: 3px solid var(--colour6);
-	}
-	.previous {
-		text-align: left;
-		grid-column: 1 / 2;
-	}
-	.next {
-		text-align: right;
-		grid-column: 2 / 3;
-	}
-</style>

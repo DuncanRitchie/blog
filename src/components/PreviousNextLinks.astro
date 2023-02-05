@@ -1,0 +1,47 @@
+---
+export interface Props {
+	type: 'tag' | 'year'
+	previous: string
+	previousUrl: string
+	next: string
+	nextUrl: string
+}
+
+const { type, previous, previousUrl, next, nextUrl } = Astro.props
+---
+
+<div class="previous-next-links">
+	{
+		previous && (
+			<p class="previous">
+				Previous {type}: <a href={previousUrl}>{previous}</a>
+			</p>
+		)
+	}
+	{
+		next && (
+			<p class="next">
+				Next {type}: <a href={nextUrl}>{next}</a>
+			</p>
+		)
+	}
+</div>
+
+<style>
+	.previous-next-links {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.5rem;
+		padding-inline: 1rem;
+		margin-top: 2rem;
+		border-top: 3px solid var(--colour6);
+	}
+	.previous {
+		text-align: left;
+		grid-column: 1 / 2;
+	}
+	.next {
+		text-align: right;
+		grid-column: 2 / 3;
+	}
+</style>
