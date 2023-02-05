@@ -1,5 +1,5 @@
 ---
-import GlobalStyles from '../components/GlobalStyles.astro'
+import '../components/GlobalStyles.css'
 import Footer from '../components/Footer.astro'
 
 export interface Props {
@@ -58,8 +58,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 		/>
 	</head>
 	<body>
-		<GlobalStyles />
-
 		<slot />
 
 		<Footer showBlogHomeLink={showBlogHomeLinkInFooter} />

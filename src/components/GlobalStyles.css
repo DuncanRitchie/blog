@@ -1,0 +1,55 @@
+* {
+	tab-size: 2;
+}
+aside {
+	border: 3px solid var(--colour6);
+	margin: 1rem 2rem;
+	padding: 0 1rem;
+	font-size: 0.8rem;
+}
+aside:target {
+	background: linear-gradient(135deg, var(--colour5), transparent);
+}
+figure {
+	border: 3px solid var(--colour6);
+	width: fit-content;
+	max-width: 100%;
+	float: center;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-size: smaller;
+	display: flex;
+	flex-direction: column;
+}
+figure div {
+	margin: 0;
+}
+figcaption {
+	padding: 0.25rem;
+}
+img {
+	max-width: 100%;
+}
+i i {
+	font-style: normal;
+}
+code {
+	font-size: 0.9em;
+}
+pre {
+	max-width: calc(100% - 1rem);
+	overflow-x: auto;
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 3px solid var(--colour6);
+	padding: 0.5rem;
+}
+pre code,
+pre samp {
+	padding-right: 0.5rem;
+	background: none;
+}
+
+*:not(:lang(en)):not(li *) {
+	font-style: italic;
+}
