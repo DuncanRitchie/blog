@@ -1,7 +1,6 @@
 ---
 title: Web technologies with confusing names
 date: 2022-06-21
-layout: ../../../layouts/Post.astro
 draft: false
 tags: ['Funny', 'Software']
 ---

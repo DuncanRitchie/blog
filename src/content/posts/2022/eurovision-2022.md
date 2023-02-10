@@ -1,7 +1,6 @@
 ---
 title: Eurovision 2022 — My rankings
 date: 2022-05-14
-layout: ../../../layouts/Post.astro
 draft: false
 tags: ['Eurovision']
 ---

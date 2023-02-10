@@ -1,28 +1,5 @@
 ---
-import BaseLayout from './BaseLayout.astro'
-import PostIntro from '../components/PostIntro.astro'
-
-export interface Props {
-	frontmatter: {
-		title: string
-		date: string
-		draft: boolean
-		tags: string[]
-	}
-}
-
-const frontmatter = Astro.props.frontmatter
-const title = frontmatter.title
+// I want to delete this file, but Astro threw when I tried.
 ---
 
-<BaseLayout
-	title={title + ' — Duncan Ritchie’s blog'}
-	description={`Blogpost by Duncan Ritchie entitled “${title}”`}
-	showBlogHomeLinkInFooter={true}
->
-	<PostIntro frontmatter={frontmatter} />
-
-	<main>
-		<slot />
-	</main>
-</BaseLayout>
+<slot />

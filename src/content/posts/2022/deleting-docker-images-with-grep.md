@@ -1,7 +1,6 @@
 ---
 title: Deleting Docker images with grep
 date: 2022-10-26
-layout: ../../../layouts/Post.astro
 draft: false
 tags: ['Software']
 ---

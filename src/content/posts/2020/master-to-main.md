@@ -1,7 +1,6 @@
 ---
 title: Renaming “master” to “main”
 date: 2020-07-03
-layout: ../../../layouts/Post.astro
 draft: false
 tags: ['Software']
 ---
