@@ -19,7 +19,7 @@ Despite the similarities in the functionalities, Angular is also very much not t
 
 ## Personal coding
 
-I made this blog to keep some of my thoughts about things going on in my life. It uses the [Eleventy](https://www.11ty.dev) static-site-generator.
+I made this blog to keep some of my thoughts about things going on in my life. <del datetime="2023-02-03">It uses the [Eleventy](https://www.11ty.dev) static-site-generator.</del> <ins datetime="2023-02-03">Update from early 2023: my blog’s now in [Astro](https://astro.build).</ins>
 
 I converted my Latin website, [velut](https://www.velut.co.uk), to the Next.js framework, giving it server-side rendering. This means you can access it without having JavaScript enabled in your browser; it’s also better for search-engine optimisation and for users of assistive technologies such as screen-readers. It’s faster too, at least for UK visitors. I wrote an article on [how I made the switch to Next.js](./porting-velut-to-nextjs/).
 
