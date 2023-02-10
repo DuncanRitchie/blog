@@ -7,6 +7,10 @@ import type { CollectionEntry } from 'astro:content'
  * blogpost URLs should not include the subfolder or “draft” suffix.
  */
 const slugifyPost = (blogpost: CollectionEntry<'posts'>) => {
+	if (!blogpost) {
+		return ''
+	}
+
 	const slugWithoutDraftSuffix = blogpost.data.draft
 		? blogpost.slug.replace(/draft$/, '')
 		: blogpost.slug
