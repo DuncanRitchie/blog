@@ -7,6 +7,11 @@ const parser = new MarkdownIt()
 import { sortPosts } from '../utils/'
 import { slugifyPost } from '../utils/'
 
+function escapeHtml(text) {
+	// Other characters may need to be added here.
+	return text.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+}
+
 export async function get(context) {
 	const posts = await getCollection('posts')
 	const postsSorted = sortPosts(posts)
@@ -17,7 +22,7 @@ export async function get(context) {
 			'Assorted notes that may or may not relate to web development, but that I thought should be recorded somewhere.',
 		site: context.site,
 		items: postsSorted.map((post) => ({
-			title: sanitizeHtml(post.data.title),
+			title: escapeHtml(post.data.title),
 			pubDate: new Date(post.data.date),
 			link: `/blog/${slugifyPost(post)}/`,
 			// Render the post’s body to HTML, then encode it
