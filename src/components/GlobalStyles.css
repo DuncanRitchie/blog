@@ -61,3 +61,8 @@ pre samp {
 	gap: calc(1rem + 1.25vw);
 	margin-top: 1.75rem;
 }
+
+ul.auto-grid {
+	list-style: none;
+	padding-left: 0;
+}
