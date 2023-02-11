@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content'
+import { slugifyText, sortPosts } from '../utils'
+
+const allPosts = await getCollection('posts')
+
+const allPostsSorted = sortPosts(allPosts)
+
+const tagsSet: Set<string> = allPostsSorted.reduce((set, current) => {
+	set.delete('')
+	current.data.tags.forEach((tag) => set.add(tag))
+	return set
+}, new Set(''))
+
+const tags = [...tagsSet].sort()
+
+const tagsWithPostCounts: [string, string, number][] = tags.map((tag) => {
+	const slug = slugifyText(tag)
+	const count = allPostsSorted.filter((post) =>
+		post.data.tags.includes(tag),
+	).length
+	return [tag, slug, count]
+})
+
+---
+<ul class="auto-grid">
+	{
+		tagsWithPostCounts.map(([tag, slug, count]) => (
+			<li>
+				<a href={import.meta.env.BASE_URL + 'tags/' + slug}>{tag}</a>
+				<>
+					({count} {count === 1 ? ' article' : ' articles'})
+				</>
+			</li>
+		))
+	}
+</ul>
