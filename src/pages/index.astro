@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PostList from '../components/PostList.astro'
 import { logIfPostsHaveAmbiguousDraftStatus } from '../utils'
+import TagList from '../components/TagList.astro'
+import YearList from '../components/YearList.astro'
 
 const allPosts = await getCollection('posts')
 logIfPostsHaveAmbiguousDraftStatus()
@@ -21,5 +23,9 @@ logIfPostsHaveAmbiguousDraftStatus()
 		</p>
 		<h2>All articles</h2>
 		<PostList posts={allPosts} />
+		<h2>Articles by tag</h2>
+		<TagList />
+		<h2>Articles by year</h2>
+		<YearList />
 	</main>
 </BaseLayout>
