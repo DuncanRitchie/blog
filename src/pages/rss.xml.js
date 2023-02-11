@@ -4,8 +4,8 @@ import sanitizeHtml from 'sanitize-html'
 import MarkdownIt from 'markdown-it/lib'
 const parser = new MarkdownIt()
 
-import { sortPosts } from '../utils/sortPosts'
-import { slugify } from '../utils/slugifyPost'
+import { sortPosts } from '../utils/'
+import { slugify } from '../utils/'
 
 export async function get(context) {
 	const posts = await getCollection('posts')
