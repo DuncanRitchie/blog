@@ -10,7 +10,7 @@ I previously made my blog with [Eleventy](https://www.11ty.dev). When I tried [A
 
 I love that Astro has [official support for RSS](https://docs.astro.build/en/guides/rss/). You can [subscribe to my blog](https://www.duncanritchie.co.uk/blog/rss.xml) if you like.
 
-The RSS feed is formatted through [Matt Webb’s XSL stylesheet](https://github.com/genmon/aboutfeeds/blob/main/tools/pretty-feed-v3.xsl).
+The RSS feed is formatted through an adaption of [Matt Webb’s XSL stylesheet](https://github.com/genmon/aboutfeeds/blob/main/tools/pretty-feed-v3.xsl).
 
 ## Draft posts
 
