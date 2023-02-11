@@ -53,3 +53,11 @@ pre samp {
 *:not(:lang(en)):not(li *) {
 	font-style: italic;
 }
+
+.auto-grid {
+	/* Autosizing grid columns CSS is adapted from https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/#aa-the-article-list */
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+	gap: calc(1rem + 1.25vw);
+	margin-top: 1.75rem;
+}
