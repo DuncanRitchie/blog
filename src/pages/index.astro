@@ -2,8 +2,10 @@
 import { getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PostList from '../components/PostList.astro'
+import { logIfPostsHaveAmbiguousDraftStatus } from '../utils'
 
 const allPosts = await getCollection('posts')
+logIfPostsHaveAmbiguousDraftStatus()
 ---
 
 <BaseLayout
