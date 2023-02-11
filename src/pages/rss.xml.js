@@ -5,7 +5,7 @@ import MarkdownIt from 'markdown-it/lib'
 const parser = new MarkdownIt()
 
 import { sortPosts } from '../utils/'
-import { slugify } from '../utils/'
+import { slugifyPost } from '../utils/'
 
 export async function get(context) {
 	const posts = await getCollection('posts')
@@ -19,7 +19,7 @@ export async function get(context) {
 		items: postsSorted.map((post) => ({
 			title: sanitizeHtml(post.data.title),
 			pubDate: new Date(post.data.date),
-			link: `/blog/${slugify(post)}/`,
+			link: `/blog/${slugifyPost(post)}/`,
 			// Render the post’s body to HTML, then encode it
 			content: sanitizeHtml(parser.render(post.body)),
 		})),
