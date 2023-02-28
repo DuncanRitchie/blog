@@ -54,20 +54,6 @@ pre samp {
 	font-style: italic;
 }
 
-table {
-	min-width: 100%;
-}
-
-th,
-td {
-	padding: 0.125rem 0.25rem;
-}
-
-td {
-	border-bottom: 1px solid var(--colour6);
-	border-right: 1px solid var(--colour6);
-}
-
 .auto-grid {
 	/* Autosizing grid columns CSS is adapted from https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/#aa-the-article-list */
 	display: grid;
