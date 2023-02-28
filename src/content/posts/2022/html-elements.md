@@ -69,13 +69,13 @@ I will probably update this page (perhaps using <code>&lt;ins&gt;</code> element
 
 ## Counts
 
-Of 134 elements, 27 are deprecated and one is experimental. The other 106 I consider to be usable, if the right opportunity presents itself. Some elements are very esoteric and there is no need for a web developer to have used all of them. But I find it interesting to keep count; I’ve used 48.
+Of 134 elements, 27 are deprecated and one is experimental. The other 106 I consider to be usable, if the right opportunity presents itself. Some elements are very esoteric and there is no need for a web developer to have used all of them. But I find it interesting to keep count; I’ve used 74.
 
 <label for="meter">HTML elements that are neither deprecated nor experimental <small> 106 of 134 (79.1%)</small></label>
 <meter id="meter" min="0" value="106" max="134" style="--percentage: 79.1%"></progress>
 
-<label for="progress">Usable elements that I’ve used <small> 48 of 106 (45.3%)</small></label>
-<progress id="progress" value="48" max="106" style="--percentage: 45.3%"></progress>
+<label for="progress">Usable elements that I’ve used <small> 74 of 106 (69.8%)</small></label>
+<progress id="progress" value="74" max="106" style="--percentage: 69.8%"></progress>
 
 ## Full list
 
