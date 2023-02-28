@@ -6,6 +6,27 @@ tags: ['Software']
 ---
 
 <style>
+:root {
+	/* An extra gradient to make the elements look more 3D. */
+	--gradient-overlay-3d: linear-gradient(rgba(0,0,0,0.125), transparent 16.7%, rgba(255,255,255,0.125) 33.3%, transparent 50%, rgba(0,0,0,0.25));
+
+  /* Fills for the definition list items.
+	These are actually solid colour fills, because --gradient-overlay-3d is commented out in them.
+	But I’ve implemented them as gradients, in case I wanted to uncomment the var(--gradient-overlay-3d),
+  and so that I can have the “used” colour derived from the “unused-usable” made darker. */
+	--used-gradient:
+		/* var(--gradient-overlay-3d), */
+		linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+		linear-gradient(var(--colour1), var(--colour1));
+	--usable-unused-gradient:
+		/* var(--gradient-overlay-3d), */
+		linear-gradient(var(--colour1), var(--colour1));
+	--deprecated-gradient:
+		/* var(--gradient-overlay-3d), */
+		linear-gradient(var(--colour2), var(--colour2));
+	--experimental-gradient: var(--deprecated-gradient);
+}
+
 label {
 	display: flex;
 	justify-content: space-between;
@@ -30,8 +51,6 @@ meter,progress {
 	background: none;
 	background-color: white;
 	box-shadow: 0 0 0.5em -0.25em #333 inset;
-	/* An extra gradient to make the elements look more 3D. */
-	--gradient-overlay-3d: linear-gradient(rgba(0,0,0,0.125), transparent 16.7%, rgba(255,255,255,0.125) 33.3%, transparent 50%, rgba(0,0,0,0.25));
 }
 
 /* The linear gradients referring to var(--percentage) are what fill the bars to the required proportion.
@@ -58,6 +77,50 @@ progress {
 ::-moz-progress-bar {
 	opacity: 0;
 }
+
+dl {
+	padding-left: 0.5rem;
+}
+
+dt, dd {
+	/* This is purely so pseudo-elements have the same height as their parents. */
+	position: relative;
+}
+
+dd {
+	margin-left: 2rem;
+}
+
+dt::before, dd::before {
+	content: '';
+	position: absolute;
+	transform: translateX(-0.5rem);
+	width: 0.25rem;
+	height: calc(100% + 1em);
+	/* If a class has been set on <dt>, the yellow should be hidden by background-image.
+	So if yellow appears, a class is missing. */
+	background-color: yellow;
+}
+
+dd::before {
+	transform: translateX(-2.5rem);
+}
+
+dt.used::before, dt.used + dd::before {
+	background-image: var(--used-gradient);
+}
+
+dt.deprecated::before, dt.deprecated + dd::before {
+	background-image: var(--deprecated-gradient);
+}
+
+dt.experimental::before, dt.experimental + dd::before {
+	background-image: var(--experimental-gradient);
+}
+
+dt.usable-unused::before, dt.usable-unused + dd::before {
+	background-image: var(--usable-unused-gradient);
+}
 </style>
 
 # HTML elements and where I’ve used them
@@ -81,14 +144,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 
 <dl>
 
-<dt><code>&lt;a&gt;</code></dt>
+<dt class="used"><code>&lt;a&gt;</code></dt>
 <dd>
 	<p>
 		The element that puts the “hyper” into HyperText Markup Language, this is on pretty much every webpage I’ve ever made.
 	</p>
 </dd>
 
-<dt><code>&lt;abbr&gt;</code></dt>
+<dt class="used"><code>&lt;abbr&gt;</code></dt>
 <dd>
 	<p>
 		I generally prefer to write out abbreviations in the text, instead of doing <code>&lt;abbr title="abbreviation"&gt;</code>.
@@ -104,28 +167,28 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;acronym&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;acronym&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this. I guess I could have used it for the “velut” example above, if it weren’t deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;address&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;address&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
 	</p>
 </dd>
 
-<dt><code>&lt;applet&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;applet&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;area&gt;</code></dt>
+<dt class="used"><code>&lt;area&gt;</code></dt>
 <dd>
 	<p>
 		Years ago I made a graphic with clickable regions, using <code>&lt;area&gt;</code> and <code>&lt;map&gt;</code>.
@@ -133,28 +196,28 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;article&gt;</code></dt>
+<dt class="used"><code>&lt;article&gt;</code></dt>
 <dd>
 	<p>
 		I use this on <a href="https://www.duncanritchie.co.uk">my personal website</a>, because I need an element for grouping the heading and paragraphs within each section.
 	</p>
 </dd>
 
-<dt><code>&lt;aside&gt;</code></dt>
+<dt class="used"><code>&lt;aside&gt;</code></dt>
 <dd>
 	<p>
 		The “This article was written…” box at the top of my blog-posts is an <code>&lt;aside&gt;</code> element.
 	</p>
 </dd>
 
-<dt><code>&lt;audio&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;audio&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
 	</p>
 </dd>
 
-<dt><code>&lt;b&gt;</code></dt>
+<dt class="used"><code>&lt;b&gt;</code></dt>
 <dd>
 	<p>
 		It’s used for the example results in the labels on the form for the <a href="https://velut.co.uk/advanced">Advanced Search page on velut</a>.
@@ -162,28 +225,28 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;base&gt;</code></dt>
+<dt class="used"><code>&lt;base&gt;</code></dt>
 <dd>
 	<p>
 		Very useful whenever I’m displaying a mini-website on a subpath of www.DuncanRitchie.co.uk, such as <code>&lt;base href="/blog/" /&gt;</code>.
 	</p>
 </dd>
 
-<dt><code>&lt;bdi&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;bdi&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
 	</p>
 </dd>
 
-<dt><code>&lt;bdo&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;bdo&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
 	</p>
 </dd>
 
-<dt><code>&lt;bgsound&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;bgsound&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this.
@@ -191,35 +254,35 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;big&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;big&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;blink&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;blink&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;blockquote&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;blockquote&gt;</code></dt>
 <dd>
 	<p>
 		I was surprised to learn I’ve not used this, except in Markdown for documentation at my work.
 	</p>
 </dd>
 
-<dt><code>&lt;body&gt;</code></dt>
+<dt class="used"><code>&lt;body&gt;</code></dt>
 <dd>
 	<p>
 		Nobody will be surprised to hear I’ve used this, on every HTML page.
 	</p>
 </dd>
 
-<dt><code>&lt;br&gt;</code></dt>
+<dt class="used"><code>&lt;br&gt;</code></dt>
 <dd>
 	<p>
 		I use this twice in the header of velut: between “Duncan Ritchie’s” and “velut”, and in the Latin expansion of the acronym (between <q lang="la">Vocābulōrum Excellentium</q> and <q lang="la">Latīnōrum Ūtilēs Tabulae</q>).
@@ -228,63 +291,63 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;button&gt;</code></dt>
+<dt class="used"><code>&lt;button&gt;</code></dt>
 <dd>
 	<p>
 		Yep, I’ve definitely used this, just not on this blog (yet).
 	</p>
 </dd>
 
-<dt><code>&lt;canvas&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;canvas&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
 	</p>
 </dd>
 
-<dt><code>&lt;caption&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;caption&gt;</code></dt>
 <dd>
 	<p>
 		Despite running a website called Useful Tables of Excellent Latin Vocabulary, I’ve not made enough HTML tables to need any <code>&lt;caption&gt;</code> elements.
 	</p>
 </dd>
 
-<dt><code>&lt;center&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;center&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;cite&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;cite&gt;</code></dt>
 <dd>
 	<p>
 		This would go with <code>&lt;blockquote&gt;</code>, another element I’ve not used.
 	</p>
 </dd>
 
-<dt><code>&lt;code&gt;</code></dt>
+<dt class="used"><code>&lt;code&gt;</code></dt>
 <dd>
 	<p>
 		The code-snippets on this page are all within <code>&lt;code&gt;</code> tags.
 	</p>
 </dd>
 
-<dt><code>&lt;col&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;col&gt;</code></dt>
 <dd>
 	<p>
 		Another table element I’ve not used.
 	</p>
 </dd>
 
-<dt><code>&lt;colgroup&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;colgroup&gt;</code></dt>
 <dd>
 	<p>
 		Another table element I’ve not used.
 	</p>
 </dd>
 
-<dt><code>&lt;content&gt;</code> (Non-standard Deprecated)</dt>
+<dt class="deprecated"><code>&lt;content&gt;</code> (Non-standard Deprecated)</dt>
 <dd>
 	<p>
 		What even is this element?
@@ -294,14 +357,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;data&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;data&gt;</code></dt>
 <dd>
 	<p>
 		I’ve never used it, but I’m more likely to find a use for it than for some of the HTML elements in this list.
 	</p>
 </dd>
 
-<dt><code>&lt;datalist&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;datalist&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
@@ -309,7 +372,7 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;dd&gt;</code></dt>
+<dt class="used"><code>&lt;dd&gt;</code></dt>
 <dd>
 	<p>
 		I’m a big fan of description lists.
@@ -317,133 +380,133 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;del&gt;</code></dt>
+<dt class="used"><code>&lt;del&gt;</code></dt>
 <dd>
 	<p>
 		I’ve used this at work, for example for bits of documentation that are no longer current.
 	</p>
 </dd>
 
-<dt><code>&lt;details&gt;</code></dt>
+<dt class="used"><code>&lt;details&gt;</code></dt>
 <dd>
 	<p>
 		The “How to use” section of the Advanced Search page on velut is hidden in a <code>&lt;details&gt;</code> element, so you don’t see it until you open the <code>&lt;summary&gt;</code>.
 	</p>
 </dd>
 
-<dt><code>&lt;dfn&gt;</code></dt>
+<dt class="used"><code>&lt;dfn&gt;</code></dt>
 <dd>
 	<p>
 		I don’t use the definition element on my own Latin dictionary (maybe I should!), but I do use it on the Neo-Latin lexicon (<a href="https://www.duncanritchie.co.uk/latinitas-recens">Latinitas Recens</a>) that I created a mirror for, earlier this year.
 	</p>
 </dd>
 
-<dt><code>&lt;dialog&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;dialog&gt;</code></dt>
 <dd>
 	<p>
 		This is a newer element, and I’ve not used it yet.
 	</p>
 </dd>
 
-<dt><code>&lt;dir&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;dir&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;div&gt;</code></dt>
+<dt class="used"><code>&lt;div&gt;</code></dt>
 <dd>
 	<p>
 		It’s the generic block-content element; yes I’ve used it.
 	</p>
 </dd>
 
-<dt><code>&lt;dl&gt;</code></dt>
+<dt class="used"><code>&lt;dl&gt;</code></dt>
 <dd>
 	<p>
 		All this text is in a description list here.
 	</p>
 </dd>
 
-<dt><code>&lt;dt&gt;</code></dt>
+<dt class="used"><code>&lt;dt&gt;</code></dt>
 <dd>
 	<p>
 		And this text is under a description term.
 	</p>
 </dd>
 
-<dt><code>&lt;em&gt;</code></dt>
+<dt class="used"><code>&lt;em&gt;</code></dt>
 <dd>
 	<p>
 		Another element so common I <em>really</em> don’t want to give a particular example here.
 	</p>
 </dd>
 
-<dt><code>&lt;embed&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;embed&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
 	</p>
 </dd>
 
-<dt><code>&lt;fieldset&gt;</code></dt>
+<dt class="used"><code>&lt;fieldset&gt;</code></dt>
 <dd>
 	<p>
 		This is another element on the Advanced Search page of velut.
 	</p>
 </dd>
 
-<dt><code>&lt;figcaption&gt;</code></dt>
+<dt class="used"><code>&lt;figcaption&gt;</code></dt>
 <dd>
 	<p>
 		This is very useful for captioning figures, for example the pictures accompanying the sections on the www.DuncanRitchie.co.uk main website. 
 	</p>
 </dd>
 
-<dt><code>&lt;figure&gt;</code></dt>
+<dt class="used"><code>&lt;figure&gt;</code></dt>
 <dd>
 	<p>
 		Yes, I’ve used it.
 	</p>
 </dd>
 
-<dt><code>&lt;font&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;font&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;footer&gt;</code></dt>
+<dt class="used"><code>&lt;footer&gt;</code></dt>
 <dd>
 	<p>
 		This isn’t used on my personal website (www.DuncanRitchie.co.uk) per se, but it is used on the subsites off it (such as this blog). And it’s on velut.
 	</p>
 </dd>
 
-<dt><code>&lt;form&gt;</code></dt>
+<dt class="used"><code>&lt;form&gt;</code></dt>
 <dd>
 	<p>
 		Every page on velut has a <code>&lt;form&gt;</code> element for searching.
 	</p>
 </dd>
 
-<dt><code>&lt;frame&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;frame&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;frameset&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;frameset&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;h1&gt;</code></dt>
+<dt class="used"><code>&lt;h1&gt;</code></dt>
 <dd>
 	<p>
 		I used <code>&lt;h1&gt;</code> through to <code>&lt;h4&gt;</code>, but I don’t think I’ve ever used <code>&lt;h5&gt;</code>.
@@ -451,21 +514,21 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;head&gt;</code></dt>
+<dt class="used"><code>&lt;head&gt;</code></dt>
 <dd>
 	<p>
 		It’s in every HTML page.
 	</p>
 </dd>
 
-<dt><code>&lt;header&gt;</code></dt>
+<dt class="used"><code>&lt;header&gt;</code></dt>
 <dd>
 	<p>
 		I’m using this on velut (along with <code>&lt;footer&gt;</code>), and I intend to use it at work.
 	</p>
 </dd>
 
-<dt><code>&lt;hgroup&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;hgroup&gt;</code></dt>
 <dd>
 	<p>
 		Maybe I should be using this for the headers for the <a href="https://www.duncanritchie.co.uk/code#velut-projects">lists of my projects</a> on my website.
@@ -473,63 +536,63 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;hr&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;hr&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used horizontal rule elements.
 	</p>
 </dd>
 
-<dt><code>&lt;html&gt;</code></dt>
+<dt class="used"><code>&lt;html&gt;</code></dt>
 <dd>
 	<p>
 		Yep, I’ve used this.
 	</p>
 </dd>
 
-<dt><code>&lt;i&gt;</code></dt>
+<dt class="used"><code>&lt;i&gt;</code></dt>
 <dd>
 	<p>
 		I’ve used this a lot, including on this blog, for text in foreign languages that I want italicised.
 	</p>
 </dd>
 
-<dt><code>&lt;iframe&gt;</code></dt>
+<dt class="used"><code>&lt;iframe&gt;</code></dt>
 <dd>
 	<p>
 		I’ve used this at work in a prototype.
 	</p>
 </dd>
 
-<dt><code>&lt;image&gt;</code> (Non-standard Deprecated)</dt>
+<dt class="deprecated"><code>&lt;image&gt;</code> (Non-standard Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this: <code>&lt;img&gt;</code> has been the standard element for images pretty much for ever, as far as I’m concerned.
 	</p>
 </dd>
 
-<dt><code>&lt;img&gt;</code></dt>
+<dt class="used"><code>&lt;img&gt;</code></dt>
 <dd>
 	<p>
 		Yep, I’ve used this.
 	</p>
 </dd>
 
-<dt><code>&lt;input&gt;</code></dt>
+<dt class="used"><code>&lt;input&gt;</code></dt>
 <dd>
 	<p>
 		Yep, I’ve used this.
 	</p>
 </dd>
 
-<dt><code>&lt;ins&gt;</code></dt>
+<dt class="used"><code>&lt;ins&gt;</code></dt>
 <dd>
 	<p>
 		I’ve used this on markdown documents, such as my <a href="https://github.com/DuncanRitchie/velut/blob/main/plan.md">plan for re-architecting my Latin dictionary</a>.
 	</p>
 </dd>
 
-<dt><code>&lt;kbd&gt;</code></dt>
+<dt class="used"><code>&lt;kbd&gt;</code></dt>
 <dd>
 	<p>
 		It marks up the word “Ctrl” on my <a href="https://www.duncanritchie.co.uk/velut-dictionary-links/">Dictionary Links for velut</a> page.
@@ -537,98 +600,98 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;keygen&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;keygen&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;label&gt;</code></dt>
+<dt class="used"><code>&lt;label&gt;</code></dt>
 <dd>
 	<p>
 		I don’t use <code>&lt;label&gt;</code> on the main search form of velut (I don’t think it’s needed, even for accessibility), but it’s an important element for forms generally. I get a lot of use out of it.
 	</p>
 </dd>
 
-<dt><code>&lt;legend&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;legend&gt;</code></dt>
 <dd>
 	<p>
 		I’ve never used this (although I have used <code>&lt;<em>foot</em>er&gt;</code>).
 	</p>
 </dd>
 
-<dt><code>&lt;li&gt;</code></dt>
+<dt class="used"><code>&lt;li&gt;</code></dt>
 <dd>
 	<p>
 		The list item is a very common element I’ve used it in ordered and unordered lists, but not <code>&lt;menu&gt;</code>.
 	</p>
 </dd>
 
-<dt><code>&lt;link&gt;</code></dt>
+<dt class="used"><code>&lt;link&gt;</code></dt>
 <dd>
 	<p>
 		This is another tag that’s on pretty much all my webpages, because having CSS in .css files and not directly in the HTML is a good idea.
 	</p>
 </dd>
 
-<dt><code>&lt;main&gt;</code></dt>
+<dt class="used"><code>&lt;main&gt;</code></dt>
 <dd>
 	<p>
 		I don’t use <code>&lt;main&gt;</code> on the main pages of DuncanRitchie.co.uk (<a href="https://www.duncanritchie.co.uk">homepage</a>, <a href="https://www.duncanritchie.co.uk/code">my code</a>, <a href="https://www.duncanritchie.co.uk/aboutme">more about me</a>). But I do use it on a lot of my other pages, including all across this blog.
 	</p>
 </dd>
 
-<dt><code>&lt;map&gt;</code></dt>
+<dt class="used"><code>&lt;map&gt;</code></dt>
 <dd>
 	<p>
 		As noted above, I’ve used <code>&lt;map&gt;</code> and <code>&lt;area&gt;</code>, but it was several years ago.
 	</p>
 </dd>
 
-<dt><code>&lt;mark&gt;</code></dt>
+<dt class="used"><code>&lt;mark&gt;</code></dt>
 <dd>
 	<p>
 		The first time I used this was on my <a href="https://www.duncanritchie.co.uk/latinitas-recens">Latinitas Recens mirror</a>, for highlighting the word you searched for in the lexicon entries.
 	</p>
 </dd>
 
-<dt><code>&lt;marquee&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;marquee&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;menu&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;menu&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this. I prefer to use <code>&lt;ul&gt;</code> for navigation menus.
 	</p>
 </dd>
 
-<dt><code>&lt;menuitem&gt;</code> (Non-standard Deprecated)</dt>
+<dt class="deprecated"><code>&lt;menuitem&gt;</code> (Non-standard Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;meta&gt;</code></dt>
+<dt class="used"><code>&lt;meta&gt;</code></dt>
 <dd>
 	<p>
 		This is an element that there should be at least one of in every <code>&lt;head&gt;</code>.
 	</p>
 </dd>
 
-<dt><code>&lt;meter&gt;</code></dt>
+<dt class="used"><code>&lt;meter&gt;</code></dt>
 <dd>
 	<p>
 		So far the only time I’ve used this is for the graph at the top of this blogpost, showing the proportion of HTML elements that I would consider using!
 	</p>
 </dd>
 
-<dt><code>&lt;nav&gt;</code></dt>
+<dt class="used"><code>&lt;nav&gt;</code></dt>
 <dd>
 	<p>
 		I like to get a navigation-menu on pretty much every webpage I make.
@@ -636,28 +699,28 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;nobr&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;nobr&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;noembed&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;noembed&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;noframes&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;noframes&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;noscript&gt;</code></dt>
+<dt class="used"><code>&lt;noscript&gt;</code></dt>
 <dd>
 	<p>
 		A cunning use of <code>&lt;noscript&gt;</code> is in the page on velut that allows you to <a href="https://www.velut.co.uk/many">search for many Latin words at once</a>.
@@ -671,14 +734,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 &lt;/noscript&gt;</code></pre>
 </dd>
 
-<dt><code>&lt;object&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;object&gt;</code></dt>
 <dd>
 	<p>
 		I’ve never used this.
 	</p>
 </dd>
 
-<dt><code>&lt;ol&gt;</code></dt>
+<dt class="used"><code>&lt;ol&gt;</code></dt>
 <dd>
 	<p>
 		The good ol’ “list with explicit ordering” element.
@@ -686,21 +749,21 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;optgroup&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;optgroup&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not built dropdown inputs for forms that are complicated enough to need their options to be grouped, so I’ve never used <code>&lt;optgroup&gt;</code>.
 	</p>
 </dd>
 
-<dt><code>&lt;option&gt;</code></dt>
+<dt class="used"><code>&lt;option&gt;</code></dt>
 <dd>
 	<p>
 		I’ve used this on velut (for the types of rhyme you can search for) and at work.
 	</p>
 </dd>
 
-<dt><code>&lt;output&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;output&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
@@ -709,49 +772,49 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;p&gt;</code></dt>
+<dt class="used"><code>&lt;p&gt;</code></dt>
 <dd>
 	<p>
 		Yes, I write in paragraphs.
 	</p>
 </dd>
 
-<dt><code>&lt;param&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;param&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;picture&gt;</code></dt>
+<dt class="used"><code>&lt;picture&gt;</code></dt>
 <dd>
 	<p>
 		This is very useful if I want different sizes of an image to load for different sizes of screen — a smaller picture on mobile, larger on desktop, etc.
 	</p>
 </dd>
 
-<dt><code>&lt;plaintext&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;plaintext&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;portal&gt;</code> (Experimental)</dt>
+<dt class="experimental"><code>&lt;portal&gt;</code> (Experimental)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s experimental.
 	</p>
 </dd>
 
-<dt><code>&lt;pre&gt;</code></dt>
+<dt class="used"><code>&lt;pre&gt;</code></dt>
 <dd>
 	<p>
 		I’m using it on this page (and on other pages) for blocks of code.
 	</p>
 </dd>
 
-<dt><code>&lt;progress&gt;</code></dt>
+<dt class="used"><code>&lt;progress&gt;</code></dt>
 <dd>
 	<p>
 		There’s a <code>&lt;progress&gt;</code>-bar on the JavaScript (client–side—rendered) version of the “Look-up of many words” page on velut.
@@ -765,14 +828,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;q&gt;</code></dt>
+<dt class="used"><code>&lt;q&gt;</code></dt>
 <dd>
 	<p>
 		An upcoming blogpost includes <code>&lt;q&gt;</code> elements, because I’m quoting text.
 	</p>
 </dd>
 
-<dt><code>&lt;rb&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;rb&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used any of the “Ruby” elements for marking up the pronunciation of East Asian characters — I’ve never worked with Taiwanese writing (etc).
@@ -780,21 +843,21 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;rp&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;rp&gt;</code></dt>
 <dd>
 	<p>
 		Another Ruby element. Not deprecated, but I’ve still not used it.
 	</p>
 </dd>
 
-<dt><code>&lt;rt&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;rt&gt;</code></dt>
 <dd>
 	<p>
 		Another Ruby element I’ve not used.
 	</p>
 </dd>
 
-<dt><code>&lt;rtc&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;rtc&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		It’s a Ruby element and it’s deprecated.
@@ -802,7 +865,7 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;ruby&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;ruby&gt;</code></dt>
 <dd>
 	<p>
 		This is the element to surround any other Ruby elements and the East Asian characters they explain.
@@ -810,7 +873,7 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;s&gt;</code></dt>
+<dt class="used"><code>&lt;s&gt;</code></dt>
 <dd>
 	<p>
 		I’ve used <code>&lt;del&gt;</code> for text that was on a page because it was relevant when it was written, but is no longer current after an edit.
@@ -820,7 +883,7 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;samp&gt;</code></dt>
+<dt class="used"><code>&lt;samp&gt;</code></dt>
 <dd>
 	<p>
 		I’ve used this on my <a href="./vim">blogpost about Vim</a>.
@@ -828,14 +891,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;script&gt;</code></dt>
+<dt class="used"><code>&lt;script&gt;</code></dt>
 <dd>
 	<p>
 		Of course I’ve used this.
 	</p>
 </dd>
 
-<dt><code>&lt;section&gt;</code></dt>
+<dt class="used"><code>&lt;section&gt;</code></dt>
 <dd>
 	<p>
 		I’m very fond of this element.
@@ -843,21 +906,21 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;select&gt;</code></dt>
+<dt class="used"><code>&lt;select&gt;</code></dt>
 <dd>
 	<p>
 		It’s the dropdown-menu on the homepage of velut (and on all the word pages on velut too).
 	</p>
 </dd>
 
-<dt><code>&lt;shadow&gt;</code> (Non-standard Deprecated)</dt>
+<dt class="deprecated"><code>&lt;shadow&gt;</code> (Non-standard Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;slot&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;slot&gt;</code></dt>
 <dd>
 	<p>
 		I like the idea of Web Components.
@@ -873,21 +936,21 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</aside>
 </dd>
 
-<dt><code>&lt;small&gt;</code></dt>
+<dt class="used"><code>&lt;small&gt;</code></dt>
 <dd>
 	<p>
 		DuncanRitchie.co.uk has a <a href="https://www.duncanritchie.co.uk/404">404 page</a> that appears if the URL is mistyped. The words “404 error” in the heading are <code>&lt;small&gt;</code>, because it’s technical information that supplements the more layperson-friendly “Page not found” text.
 	</p>
 </dd>
 
-<dt><code>&lt;source&gt;</code></dt>
+<dt class="used"><code>&lt;source&gt;</code></dt>
 <dd>
 	<p>
 		I’ve used this inside <code>&lt;picture&gt;</code> elements to specify alternative sizes for images.
 	</p>
 </dd>
 
-<dt><code>&lt;spacer&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;spacer&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I didn’t know this element existed (or used to exist), until I wrote this blogpost.
@@ -895,28 +958,28 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;span&gt;</code></dt>
+<dt class="used"><code>&lt;span&gt;</code></dt>
 <dd>
 	<p>
 		Yes, I’ve used it frequently.
 	</p>
 </dd>
 
-<dt><code>&lt;strike&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;strike&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used it; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;strong&gt;</code></dt>
+<dt class="used"><code>&lt;strong&gt;</code></dt>
 <dd>
 	<p>
 		Why would you use <code>&lt;b&gt;</code> for emphasis when <code>&lt;strong&gt;</code> is <strong>so much better</strong>?!
 	</p>
 </dd>
 
-<dt><code>&lt;style&gt;</code></dt>
+<dt class="used"><code>&lt;style&gt;</code></dt>
 <dd>
 	<p>
 		This is useful when I don’t want to put some CSS in a file separate to the HTML.
@@ -929,7 +992,7 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;sub&gt;</code></dt>
+<dt class="used"><code>&lt;sub&gt;</code></dt>
 <dd>
 	<p>
 		Have I used this in some documentation at work?
@@ -939,14 +1002,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;summary&gt;</code></dt>
+<dt class="used"><code>&lt;summary&gt;</code></dt>
 <dd>
 	<p>
 			The “How to use” section of the Advanced Search page on velut is hidden in a <code>&lt;details&gt;</code> element, so you don’t see it until you open the <code>&lt;summary&gt;</code>.
 	</p>
 </dd>
 
-<dt><code>&lt;sup&gt;</code></dt>
+<dt class="used"><code>&lt;sup&gt;</code></dt>
 <dd>
 	<p>
 		As with <code>&lt;sub&gt;</code>, I might have never used it on personal web things.
@@ -957,49 +1020,49 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;table&gt;</code></dt>
+<dt class="used"><code>&lt;table&gt;</code></dt>
 <dd>
 	<p>
 		I don’t write HTML tables very often, but I have done so.
 	</p>
 </dd>
 
-<dt><code>&lt;tbody&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;tbody&gt;</code></dt>
 <dd>
 	<p>
 		I don’t think I’ve ever wrapped the non-header rows of a table in <code>&lt;tbody&gt;</code>.
 	</p>
 </dd>
 
-<dt><code>&lt;td&gt;</code></dt>
+<dt class="used"><code>&lt;td&gt;</code></dt>
 <dd>
 	<p>
 		Yep, on the rare occasion that I make a HTML table, that table has cells.
 	</p>
 </dd>
 
-<dt><code>&lt;template&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;template&gt;</code></dt>
 <dd>
 	<p>
 		I’ve never explicitly used a <code>&lt;template&gt;</code> element.
 	</p>
 </dd>
 
-<dt><code>&lt;textarea&gt;</code></dt>
+<dt class="used"><code>&lt;textarea&gt;</code></dt>
 <dd>
 	<p>
 		Yep, I’ve used it, both at work and on several things related to my Latin dictionary.
 	</p>
 </dd>
 
-<dt><code>&lt;tfoot&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;tfoot&gt;</code></dt>
 <dd>
 	<p>
 		No, I’ve never made a table with the bottom rows in a special element.
 	</p>
 </dd>
 
-<dt><code>&lt;th&gt;</code></dt>
+<dt class="used"><code>&lt;th&gt;</code></dt>
 <dd>
 	<p>
 		I only recently learnt that <code>&lt;td&gt;</code> should be replaced with <code>&lt;th&gt;</code> when inside <code>&lt;thead&gt;</code>.
@@ -1007,7 +1070,7 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;thead&gt;</code></dt>
+<dt class="used"><code>&lt;thead&gt;</code></dt>
 <dd>
 	<p>
 		I can’t find or remember where I’ve used a <code>&lt;thead&gt;</code> element, but I’m pretty sure I have.
@@ -1015,14 +1078,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;time&gt;</code></dt>
+<dt class="used"><code>&lt;time&gt;</code></dt>
 <dd>
 	<p>
 		I use it on the dates for <a href="https://www.duncanritchie.co.uk/code#velut-projects">code-projects</a> on my website, and for the dates of my posts on this blog.
 	</p>
 </dd>
 
-<dt><code>&lt;title&gt;</code></dt>
+<dt class="used"><code>&lt;title&gt;</code></dt>
 <dd>
 	<p>
 		Every webpage should have a title.
@@ -1030,14 +1093,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;tr&gt;</code></dt>
+<dt class="used"><code>&lt;tr&gt;</code></dt>
 <dd>
 	<p>
 		Yep, on the rare occasion that I make a HTML table, that table has rows.
 	</p>
 </dd>
 
-<dt><code>&lt;track&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;track&gt;</code></dt>
 <dd>
 	<p>
 		This would be for specifying subtitles for audio- or video-players.
@@ -1045,14 +1108,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;tt&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;tt&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve not used this; it’s deprecated.
 	</p>
 </dd>
 
-<dt><code>&lt;u&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;u&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
@@ -1068,35 +1131,35 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt><code>&lt;ul&gt;</code></dt>
+<dt class="used"><code>&lt;ul&gt;</code></dt>
 <dd>
 	<p>
 		I like to use <code>&lt;ul&gt;</code> inside <code>&lt;nav&gt;</code> for navigation-menus.
 	</p>
 </dd>
 
-<dt><code>&lt;var&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;var&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
 	</p>
 </dd>
 
-<dt><code>&lt;video&gt;</code></dt>
+<dt class="usable-unused"><code>&lt;video&gt;</code></dt>
 <dd>
 	<p>
 		I’ve not used this.
 	</p>
 </dd>
 
-<dt><code>&lt;wbr&gt;</code></dt>
+<dt class="used"><code>&lt;wbr&gt;</code></dt>
 <dd>
 	<p>
 		I used this on a <a href="./web-technologies-with-confusing-names">blogpost earlier this year</a>, because I had written some words with slashes between them and I wanted to allow line-breaks after the slashes.
 	</p>
 </dd>
 
-<dt><code>&lt;xmp&gt;</code> (Deprecated)</dt>
+<dt class="deprecated"><code>&lt;xmp&gt;</code> (Deprecated)</dt>
 <dd>
 	<p>
 		I’ve never used this; it’s deprecated.
