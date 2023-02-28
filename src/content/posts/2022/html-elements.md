@@ -635,7 +635,8 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 <dt class="used"><code>&lt;li&gt;</code></dt>
 <dd>
 	<p>
-		The list item is a very common element I’ve used it in ordered and unordered lists, but not <code>&lt;menu&gt;</code>.
+		The list item is a very common element.
+		I’ve used it in ordered and unordered lists, but not <code>&lt;menu&gt;</code>.
 	</p>
 </dd>
 
