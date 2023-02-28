@@ -36,7 +36,7 @@ All the photos accompanying the sections were taken by me, except the photo of m
 My favicon is the head of a fulmar, the North Atlantic seabird.
 The background of my Latin vocabulary website [velut](https://www.duncanritchie.co.uk/code.html#velut) and the avatars of my two GitHub accounts ([1](https://github.com/DuncanRitchie/) and [2](https://github.com/DuncanRitchie2/)) are derived from the same photo, which I took while at uni in Scotland.
 
-![My favicon with the fulmar](https://www.duncanritchie.co.uk/favicon-96x96.png)
+![My favicon with the fulmar](images/fulmar-icon.webp)
 
 ## Creating the site
 
