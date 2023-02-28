@@ -13,7 +13,7 @@ I created it in 2019 and redesigned it the following year.
 This article was adapted from the [readme file](https://github.com/DuncanRitchie/DuncanRitchie.github.io/#readme) for the site repository on GitHub.
 It explains the site’s current architecture and the history of the site.
 
-![Screenshot of my website, in desktop Firefox](https://raw.githubusercontent.com/DuncanRitchie/portfolio-screenshots/main/minified/new-desktop-withcaption-firefox-home__small.png)
+![Screenshot of my website, in desktop Firefox](images/new-desktop-withcaption-firefox-home__small.webp)
 
 ## Assets
 
@@ -57,7 +57,7 @@ This went on after I graduated from the bootcamp, secured an apprenticeship, wen
 Eventually the thought occurred to me (no earlier than September 2019) that a visitor should be able to print my site to paper; I’m not sure who would want to, but I [implemented the styles](https://github.com/DuncanRitchie/DuncanRitchie.github.io/commit/77a0880a44d0facc89b95c39c259f58b68b7b91a).
 And I had a brief flirt with using scroll-snapping, but found that the entire viewport yanking from section to section wasn’t the best user experience.
 
-![Screenshot of my site before I redesigned it, in desktop Firefox](https://raw.githubusercontent.com/DuncanRitchie/portfolio-screenshots/main/minified/old-desktop-photobackground-withtext-firefox-home__small.png)
+![Screenshot of my site before I redesigned it, in desktop Firefox](images/old-desktop-photobackground-withtext-firefox-home__small.webp)
 
 ## Why I redesigned my site
 
@@ -72,7 +72,7 @@ A bigger problem for the aesthetics was that Internet Explorer does not handle F
 Urgh.
 And yes, I know polyfills exist, but that’s boring.)
 
-![Screenshot of my old site on Internet Explorer](https://raw.githubusercontent.com/DuncanRitchie/portfolio-screenshots/main/minified/old-desktop-photobackground-withtext-internetexplorer-home__small.png)
+![Screenshot of my old site on Internet Explorer](images/old-desktop-photobackground-withtext-internetexplorer-home__small.webp)
 
 My site was using Bootstrap, which is a perfectly decent library, I’m not criticizing it.
 As a newbie, I appreciated being able to create an accessible, responsive, professional-looking navbar without much learning, and I liked having some model code showing me things like Aria roles and screenreader-only classes.
@@ -96,7 +96,7 @@ I was going to revamp the whole site.
 My process for designing the look of my Latin vocabulary site, back in May 2019, was to open Inkscape, set the page dimensions to the size of a phone, and use my photo of the flying fulmar for the background and decide on a colour-scheme based off it.
 The sky of the photo got replaced with a paler blue gradient, and text was overlayed, with the placement of the fulmar being adjusted away from the title text.
 
-![Screenshots of my Latin site and my portfolio redesign, on mobile](https://raw.githubusercontent.com/DuncanRitchie/portfolio-screenshots/main/minified/new-mobile-withcaption-firefox-home__small_withvelut.png)
+![Screenshots of my Latin site and my portfolio redesign, on mobile](images/new-mobile-withcaption-firefox-home__small_withvelut.webp)
 
 In a similar way, my redesign of www.DuncanRitchie.co.uk started with me choosing a photo of myself, importing it to Inkscape, then basing the colour scheme off it, with a gradient background to extend the colours from the photo.
 Some of the colours, for instance on headings, are similar to those used on my Latin site.
@@ -117,7 +117,7 @@ A CSS transition on `shape-outside` makes the text move more smoothly.
 On [code.html](https://www.duncanritchie.co.uk/code.html), my showcase of projects meant that I couldn’t have the diagonal layout: I want the showcase to take up the width of the screen, instead of being squashed into the right side.
 I’ve therefore made a more rectangular layout with narrower photos; the photos are less relevant to the page anyway.
 
-![Screenshot of my showcase of projects, on desktop Firefox](https://raw.githubusercontent.com/DuncanRitchie/portfolio-screenshots/main/minified/new-desktop-projectshowcase-firefox-javascript__small.png)
+![Screenshot of my showcase of projects, on desktop Firefox](images/new-desktop-projectshowcase-firefox-javascript__small.webp)
 
 I then applied the “rectangular” layout to the other two pages, and added a button in the navbar to toggle between the two layouts (rectangular/diagonal).
 Local Storage is used to remember which layout you want.
@@ -163,7 +163,7 @@ Some examples of how I’ve kept the site looking decent across browsers:
 
 Here is a screenshot without JavaScript:
 
-![Screenshot of the redesigned site in Internet Explorer, without JavaScript](https://raw.githubusercontent.com/DuncanRitchie/portfolio-screenshots/main/minified/new-desktop-withcaption-internetexplorer-home__small.png)
+![Screenshot of the redesigned site in Internet Explorer, without JavaScript](images/new-desktop-withcaption-internetexplorer-home__small.webp)
 
 ### Current state
 
