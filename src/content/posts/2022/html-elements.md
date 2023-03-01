@@ -78,6 +78,25 @@ progress {
 	opacity: 0;
 }
 
+button[data-elements-class] {
+	padding-left: 1em;
+}
+
+button[data-elements-class]::before {
+	content: '';
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	transform: translateX(-0.5em);
+	vertical-align: -0.1875em;
+	border: 1px solid var(--nav-text);
+	background-color: var(--colour2);
+}
+
+button[data-elements-class][aria-pressed="true"]::before {
+	background-color: var(--colour6);
+}
+
 dl {
 	padding-left: 0.5rem;
 }
@@ -140,7 +159,14 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 <label for="progress">Usable elements that I’ve used <small> 75 of 106 (70.8%)</small></label>
 <progress id="progress" value="75" max="106" style="--percentage: 70.8%"></progress>
 
-## Full list
+## Filters
+
+<button type="button" aria-pressed="true" data-elements-class="used">Show elements I’ve used</button>
+<button type="button" aria-pressed="true" data-elements-class="usable-unused">Show usable elements I’ve not used</button>
+<button type="button" aria-pressed="true" data-elements-class="deprecated">Show deprecated elements</button>
+<button type="button" aria-pressed="true" data-elements-class="experimental">Show experimental elements</button>
+
+## List
 
 <dl>
 
@@ -1183,3 +1209,27 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 </dd>
 
 </dl>
+
+<script>
+	const filteringButtons = document.querySelectorAll('button[data-elements-class]')
+	filteringButtons.forEach((button) => {
+		button.addEventListener('click', (event) => {
+			const target = event.target
+			const elementsClass = target.dataset.elementsClass
+			const elements = document.querySelectorAll(`dt.${elementsClass}, dt.${elementsClass} + dd`)
+
+			if (target.getAttribute('aria-pressed') === 'true') {
+				elements.forEach(element => {
+					element.style.display = 'none'
+				})
+				target.setAttribute('aria-pressed', 'false')
+			}
+			else {
+				elements.forEach(element => {
+					element.style.display = 'block'
+				})
+				target.setAttribute('aria-pressed', 'true')
+			}
+		})
+	})
+</script>
