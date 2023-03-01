@@ -82,19 +82,30 @@ button[data-elements-class] {
 	padding-left: 1em;
 }
 
-button[data-elements-class]::before {
-	content: '';
+button[data-elements-class] span {
 	display: inline-block;
 	width: 1em;
 	height: 1em;
 	transform: translateX(-0.5em);
 	vertical-align: -0.1875em;
-	border: 1px solid var(--nav-text);
-	background-color: var(--colour2);
+	filter: drop-shadow(0.5px 0.5px var(--nav-text)) drop-shadow(-0.5px -0.5px var(--nav-text)) drop-shadow(-0.5px 0.5px var(--nav-text)) drop-shadow(0.5px -0.5px var(--nav-text));
+	/* background-color: var(--colour2); */
 }
 
-button[data-elements-class][aria-pressed="true"]::before {
+button[data-elements-class] span::before {
+	content: '';
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	/* Cross shape from BennettFeely.com/clippy */
+	clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+}
+
+button[data-elements-class][aria-pressed="true"] span::before {
+	clip-path: unset;
 	background-color: var(--colour6);
+	/* Custon tick shape from BennettFeely.com/clippy */
+	clip-path: polygon(16% 51%, 0 69%, 32% 100%, 100% 20%, 80% 0%, 33% 66%);
 }
 
 dl {
@@ -125,19 +136,27 @@ dd::before {
 	transform: translateX(-2.5rem);
 }
 
-dt.used::before, dt.used + dd::before {
+dt.used::before,
+dt.used + dd::before,
+button[data-elements-class="used"] span::before {
 	background-image: var(--used-gradient);
 }
 
-dt.deprecated::before, dt.deprecated + dd::before {
+dt.deprecated::before,
+dt.deprecated + dd::before,
+button[data-elements-class="deprecated"] span::before {
 	background-image: var(--deprecated-gradient);
 }
 
-dt.experimental::before, dt.experimental + dd::before {
+dt.experimental::before,
+dt.experimental + dd::before,
+button[data-elements-class="experimental"] span::before {
 	background-image: var(--experimental-gradient);
 }
 
-dt.usable-unused::before, dt.usable-unused + dd::before {
+dt.usable-unused::before,
+dt.usable-unused + dd::before,
+button[data-elements-class="usable-unused"] span::before {
 	background-image: var(--usable-unused-gradient);
 }
 </style>
@@ -161,10 +180,12 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 
 ## Filters
 
-<button type="button" aria-pressed="true" data-elements-class="used">Show elements I’ve used</button>
-<button type="button" aria-pressed="true" data-elements-class="usable-unused">Show usable elements I’ve not used</button>
-<button type="button" aria-pressed="true" data-elements-class="deprecated">Show deprecated elements</button>
-<button type="button" aria-pressed="true" data-elements-class="experimental">Show experimental elements</button>
+<!-- The empty <span>s are for the tick/cross shapes. -->
+
+<button type="button" aria-pressed="true" data-elements-class="used"><span></span>Show elements I’ve used</button>
+<button type="button" aria-pressed="true" data-elements-class="usable-unused"><span></span>Show usable elements I’ve not used</button>
+<button type="button" aria-pressed="true" data-elements-class="deprecated"><span></span>Show deprecated elements</button>
+<button type="button" aria-pressed="true" data-elements-class="experimental"><span></span>Show experimental elements</button>
 
 ## List
 
@@ -319,7 +340,8 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 <dt class="used"><code>&lt;button&gt;</code></dt>
 <dd>
 	<p>
-		Yep, I’ve definitely used this, just not on this blog (yet).
+		Yep, I’ve definitely used this.
+		<ins>The first use of it on this blog is for the <a href="#filters">filters</a> on this list.</ins>
 	</p>
 </dd>
 
