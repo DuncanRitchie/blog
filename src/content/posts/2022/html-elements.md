@@ -286,8 +286,7 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 <dd>
 	<p>
 		I use this twice in the header of velut: between “Duncan Ritchie’s” and “velut”, and in the Latin expansion of the acronym (between <q lang="la">Vocābulōrum Excellentium</q> and <q lang="la">Latīnōrum Ūtilēs Tabulae</q>).
-		Perhaps it’s not the <em>most</em> semantic of uses of the <code>&lt;br&gt;</code> element, since it’s purely for the visual effect of having the phrases on separate lines.
-		But its a clean alternative to messing around with CSS and <code>&lt;span&gt;</code>s.
+		It’s a clean alternative to messing around with CSS and <code>&lt;span&gt;</code>s, which is what I would probably do if I wanted the text on one line at some screen-sizes and on two (or more) lines at others.
 	</p>
 </dd>
 
