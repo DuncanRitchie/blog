@@ -182,10 +182,10 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 
 <!-- The empty <span>s are for the tick/cross shapes. -->
 
-<button type="button" aria-pressed="true" data-elements-class="used"><span></span>Show elements I’ve used</button>
-<button type="button" aria-pressed="true" data-elements-class="usable-unused"><span></span>Show usable elements I’ve not used</button>
-<button type="button" aria-pressed="true" data-elements-class="deprecated"><span></span>Show deprecated elements</button>
-<button type="button" aria-pressed="true" data-elements-class="experimental"><span></span>Show experimental elements</button>
+<button type="button" aria-pressed="true" data-elements-class="used"><span></span>Elements I’ve used</button>
+<button type="button" aria-pressed="true" data-elements-class="usable-unused"><span></span>Usable elements I’ve not used</button>
+<button type="button" aria-pressed="true" data-elements-class="deprecated"><span></span>Deprecated elements</button>
+<button type="button" aria-pressed="true" data-elements-class="experimental"><span></span>Experimental elements</button>
 
 ## List
 
