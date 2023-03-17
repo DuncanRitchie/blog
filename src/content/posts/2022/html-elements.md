@@ -176,13 +176,13 @@ I will probably update this page (perhaps using <code>&lt;ins&gt;</code> element
 
 ## Counts
 
-Of 134 elements, 27 are deprecated and one is experimental. The other 106 I consider to be usable, if the right opportunity presents itself. Some elements are very esoteric and there is no need for a web developer to have used all of them. But I find it interesting to keep count; I’ve used 75.
+Of 134 elements, 27 are deprecated and one is experimental. The other 106 I consider to be usable, if the right opportunity presents itself. Some elements are very esoteric and there is no need for a web developer to have used all of them. But I find it interesting to keep count; I’ve used 77.
 
 <label for="meter">HTML elements that are neither deprecated nor experimental <small> 106 of 134 (79.1%)</small></label>
 <meter id="meter" min="0" value="106" max="134" style="--percentage: 79.1%"></progress>
 
-<label for="progress">Usable elements that I’ve used <small> 75 of 106 (70.8%)</small></label>
-<progress id="progress" value="75" max="106" style="--percentage: 70.8%"></progress>
+<label for="progress">Usable elements that I’ve used <small> 77 of 106 (72.6%)</small></label>
+<progress id="progress" value="77" max="106" style="--percentage: 72.6%"></progress>
 
 ## Filters
 
@@ -330,10 +330,11 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt class="usable-unused"><code>&lt;blockquote&gt;</code></dt>
+<dt class="used"><code>&lt;blockquote&gt;</code></dt>
 <dd>
 	<p>
-		I was surprised to learn I’ve not used this, except in Markdown for documentation at my work.
+		I’ve used this in Markdown for documentation at my work, where I accompanied with a pure HTML <code>&lt;cite&gt;</code>.
+		My most recent <a href="/blog/eurovision-2022-my-thoughts">Eurovision article</a> has it in pure HTML, but without <code>&lt;cite&gt;</code>.
 	</p>
 </dd>
 
@@ -381,10 +382,11 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</p>
 </dd>
 
-<dt class="usable-unused"><code>&lt;cite&gt;</code></dt>
+<dt class="used"><code>&lt;cite&gt;</code></dt>
 <dd>
 	<p>
-		This would go with <code>&lt;blockquote&gt;</code>, another element I’ve not used.
+		This can go with <code>&lt;blockquote&gt;</code>, to mark up the source of a quotation.
+		I have done so on occasion.
 	</p>
 </dd>
 
