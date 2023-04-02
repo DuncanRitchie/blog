@@ -21,8 +21,8 @@ const tagsWithPostCounts: [string, string, number][] = tags.map((tag) => {
 	).length
 	return [tag, slug, count]
 })
-
 ---
+
 <ul class="auto-grid">
 	{
 		tagsWithPostCounts.map(([tag, slug, count]) => (
