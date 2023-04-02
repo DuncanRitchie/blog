@@ -208,16 +208,28 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	<dt><code>&lt;abbr&gt;</code></dt>
 	<dd>
 		<p>
-			I generally prefer to write out abbreviations in the text, instead of doing <code>&lt;abbr title="abbreviation"&gt;</code>.
-			But the header of my Latin dictionary, <a href="https://www.velut.co.uk">velut</a>, does both, with one expansion of the abbreviation in English and one in Latin:
+			Here’s an example of this element: <abbr title="United Kingdom">UK</abbr>.
+			The code for that is <code>&lt;abbr title="United Kingdom"&gt;UK&lt;/abbr&gt;</code>.
+		</p>
+		<p>
+			On desktop, you can mouse-over the element to see the title.
+			On a mobile device, you can’t do that, so it’s not very useful.
+			So I generally prefer to write out abbreviations in the text, without a special element, as in “I live in the UK (United Kingdom).”
+		</p>
+		<p>
+			But the header of my Latin dictionary, <a href="https://www.velut.co.uk">velut</a>, has both approaches, with one expansion of the abbreviation in English and one in Latin:
 		<pre><code>&lt;p&gt;
-	&lt;abbr title="Useful Tables of Excellent Latin Vocabulary" lang="la"&gt;
+	&lt;abbr title="Useful Tables of Excellent Latin Vocabulary"&gt;
 		velut
 	&lt;/abbr&gt;
 &lt;/p&gt;
 &lt;p lang="la"&gt;
 	Vocābulōrum Excellentium Latīnōrum Ūtilēs Tabulae
 &lt;/p&gt;</code></pre>
+		</p>
+		<p>
+			(As an extra nicety, both expansions also appear in the text of the “About” page of velut.
+			Mobile-users who can’t read Latin can understand the abbreviation from there.)
 		</p>
 	</dd>
 </div>
