@@ -165,13 +165,13 @@ I will probably update this page (perhaps using <code>&lt;ins&gt;</code> element
 
 ## Counts
 
-Of 134 elements, 27 are deprecated and one is experimental. The other 106 I consider to be usable, if the right opportunity presents itself. Some elements are very esoteric and there is no need for a web developer to have used all of them. But I find it interesting to keep count; I’ve used 77.
+Of 134 elements, 27 are deprecated and one is experimental. The other 106 I consider to be usable, if the right opportunity presents itself. Some elements are very esoteric and there is no need for a web developer to have used all of them. But I find it interesting to keep count; I’ve used 78.
 
 <label for="meter">HTML elements that are neither deprecated nor experimental <small> 106 of 134 (79.1%)</small></label>
 <meter id="meter" min="0" value="106" max="134" style="--percentage: 79.1%"></progress>
 
-<label for="progress">Usable elements that I’ve used <small> 77 of 106 (72.6%)</small></label>
-<progress id="progress" value="77" max="106" style="--percentage: 72.6%"></progress>
+<label for="progress">Usable elements that I’ve used <small> 78 of 106 (73.6%)</small></label>
+<progress id="progress" value="78" max="106" style="--percentage: 73.6%"></progress>
 
 ## Filters
 
@@ -702,12 +702,15 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="used">
 	<dt><code>&lt;hgroup&gt;</code></dt>
 	<dd>
 		<p>
 			Maybe I should be using this for the headers for the <a href="https://www.duncanritchie.co.uk/code#velut-projects">lists of my projects</a> on my website.
 			I’m not at the moment.
+		</p>
+		<p>
+			<ins>Update: I’m now using it for that purpose!</ins>
 		</p>
 	</dd>
 </div>
