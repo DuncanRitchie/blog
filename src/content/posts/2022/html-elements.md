@@ -158,14 +158,18 @@ button[data-elements-class="usable-unused"] span::before {
 
 # HTML elements and where I’ve used them
 
-This is simply a catalogue of HTML elements and an example of somewhere I’ve used them, if I have ever used them. I got the full list of elements from the sidebar of [MDN’s documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+This is simply a catalogue of HTML elements and an example of somewhere I’ve used them, if I have ever used them.
+I got the full list of elements from the sidebar of [MDN’s documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
 If I’ve created an element using Markdown or some UI library that doesn’t involve me explicitly typing out the HTML tags, I don’t consider myself to have used it.
 
 I will probably update this page (perhaps using <code>&lt;ins&gt;</code> elements) if I use an element I haven’t used before.
 
 ## Counts
 
-Of 134 elements, 27 are deprecated and one is experimental. The other 106 I consider to be usable, if the right opportunity presents itself. Some elements are very esoteric and there is no need for a web developer to have used all of them. But I find it interesting to keep count; I’ve used 78.
+Of 134 elements, 27 are deprecated and one is experimental.
+The other 106 I consider to be usable, if the right opportunity presents itself.
+Some elements are very esoteric and there is no need for a web developer to have used all of them.
+But I find it interesting to keep count; I’ve used 78.
 
 <label for="meter">HTML elements that are neither deprecated nor experimental <small> 106 of 134 (79.1%)</small></label>
 <meter id="meter" min="0" value="106" max="134" style="--percentage: 79.1%"></progress>
@@ -238,7 +242,8 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	<dt><code>&lt;acronym&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
-			I’ve not used this. I guess I could have used it for the “velut” example above, if it weren’t deprecated.
+			I’ve not used this.
+			I guess I could have used it for the “velut” example above, if it weren’t deprecated.
 		</p>
 	</dd>
 </div>
@@ -615,7 +620,7 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	<dt><code>&lt;figcaption&gt;</code></dt>
 	<dd>
 		<p>
-			This is very useful for captioning figures, for example the pictures accompanying the sections on the www.DuncanRitchie.co.uk main website. 
+			This is very useful for captioning figures, for example the pictures accompanying the sections on the www.DuncanRitchie.co.uk main website.
 		</p>
 	</dd>
 </div>
@@ -642,7 +647,8 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	<dt><code>&lt;footer&gt;</code></dt>
 	<dd>
 		<p>
-			This isn’t used on my personal website (www.DuncanRitchie.co.uk) per se, but it is used on the subsites off it (such as this blog). And it’s on velut.
+			This isn’t used on my personal website (www.DuncanRitchie.co.uk) per se, but it is used on the subsites off it (such as this blog).
+			And it’s on velut.
 		</p>
 	</dd>
 </div>
@@ -810,7 +816,8 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	<dt><code>&lt;label&gt;</code></dt>
 	<dd>
 		<p>
-			I don’t use <code>&lt;label&gt;</code> on the main search form of velut (I don’t think it’s needed, even for accessibility), but it’s an important element for forms generally. I get a lot of use out of it.
+			I don’t use <code>&lt;label&gt;</code> on the main search form of velut (I don’t think it’s needed, even for accessibility), but it’s an important element for forms generally.
+			I get a lot of use out of it.
 		</p>
 	</dd>
 </div>
@@ -853,7 +860,8 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	<dt><code>&lt;main&gt;</code></dt>
 	<dd>
 		<p>
-			I don’t use <code>&lt;main&gt;</code> on the main pages of DuncanRitchie.co.uk (<a href="https://www.duncanritchie.co.uk">homepage</a>, <a href="https://www.duncanritchie.co.uk/code">my code</a>, <a href="https://www.duncanritchie.co.uk/aboutme">more about me</a>). But I do use it on a lot of my other pages, including all across this blog.
+			I don’t use <code>&lt;main&gt;</code> on the main pages of DuncanRitchie.co.uk (<a href="https://www.duncanritchie.co.uk">homepage</a>, <a href="https://www.duncanritchie.co.uk/code">my code</a>, <a href="https://www.duncanritchie.co.uk/aboutme">more about me</a>).
+			But I do use it on a lot of my other pages, including all across this blog.
 		</p>
 	</dd>
 </div>
@@ -889,7 +897,8 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	<dt><code>&lt;menu&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve not used this. I prefer to use <code>&lt;ul&gt;</code> for navigation menus.
+			I’ve not used this
+			I prefer to use <code>&lt;ul&gt;</code> for navigation menus.
 		</p>
 	</dd>
 </div>
@@ -1113,7 +1122,8 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	<dt><code>&lt;rp&gt;</code></dt>
 	<dd>
 		<p>
-			Another Ruby element. Not deprecated, but I’ve still not used it.
+			Another Ruby element.
+			Not deprecated, but I’ve still not used it.
 		</p>
 	</dd>
 </div>
@@ -1233,7 +1243,8 @@ Of 134 elements, 27 are deprecated and one is experimental. The other 106 I cons
 	<dt><code>&lt;small&gt;</code></dt>
 	<dd>
 		<p>
-			DuncanRitchie.co.uk has a <a href="https://www.duncanritchie.co.uk/404">404 page</a> that appears if the URL is mistyped. The words “404 error” in the heading are <code>&lt;small&gt;</code>, because it’s technical information that supplements the more layperson-friendly “Page not found” text.
+			DuncanRitchie.co.uk has a <a href="https://www.duncanritchie.co.uk/404">404 page</a> that appears if the URL is mistyped.
+			The words “404 error” in the heading are <code>&lt;small&gt;</code>, because it’s technical information that supplements the more layperson-friendly “Page not found” text.
 		</p>
 	</dd>
 </div>
