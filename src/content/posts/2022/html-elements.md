@@ -897,8 +897,14 @@ But I find it interesting to keep count; I’ve used 78.
 	<dt><code>&lt;menu&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve not used this
+			I’ve not used this.
 			I prefer to use <code>&lt;ul&gt;</code> for navigation menus.
+		</p>
+		<p>
+			<ins>
+				<a href="https://adrianroselli.com/2023/05/be-careful-using-menu.html#HTMLMenu">Adrian Roselli</a> agrees, saying that, because browsers treat <code>&lt;menu&gt;</code> the same as <code>&lt;ul&gt;</code>, you might as well consider <code>&lt;menu&gt;</code> deprecated.
+				(However, it isn’t <em>officially</em> deprecated like <code>&lt;menuitem&gt;</code> is.)
+			</ins>
 		</p>
 	</dd>
 </div>
