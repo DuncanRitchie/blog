@@ -50,9 +50,9 @@ const { tag, posts, previous, next } = Astro.props
 		<PreviousNextLinks
 			type="tag"
 			previous={previous}
-			previousUrl={'./' + slugifyText(previous)}
+			previousUrl={import.meta.env.BASE_URL + 'tags/' + slugifyText(previous)}
 			next={next}
-			nextUrl={'./' + slugifyText(next)}
+			nextUrl={import.meta.env.BASE_URL + 'tags/' + slugifyText(next)}
 		/>
 	</main>
 </BaseLayout>
