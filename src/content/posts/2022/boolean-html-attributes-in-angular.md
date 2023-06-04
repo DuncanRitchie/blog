@@ -5,6 +5,8 @@ draft: false
 tags: ['Software']
 ---
 
+_Edited in June 2023 to mention the empty string._
+
 # Boolean HTML attributes in Angular
 
 I’ve been learning [Angular](https://angular.io) and using it to make a website at work. I made a component that could work in two different modes, so I had a boolean (`true`/`false`) variable in the component to represent which mode the component was in. Some aspects of the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) then are changed according to the variable, such as some attributes that are themselves boolean.
@@ -17,9 +19,9 @@ To make an input (enabled by default), it’s `<input />`
 
 To make a disabled input, it’s `<input disabled />`
 
-This is the same as `<input disabled="true" />` and `<input disabled="disabled" />`
+This is the same as `<input disabled="true" />`, `<input disabled="disabled" />`.
 
-This is also the same as `<input disabled="false" />` because it is the presence of the `disabled` attribute that makes it disabled, not its value!
+This is also the same as `<input disabled="" />` and `<input disabled="false" />` because it is the presence of the `disabled` attribute that makes it disabled, not its value!
 
 (The [HTML spec](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes) says `"true"` and `"false"` are invalid values for boolean attributes, but browser behaviour is as I’ve described it.)
 
@@ -45,6 +47,8 @@ This is more verbose, but we get valid HTML of `<input disabled="disabled" />` o
 The [Angular documentation](https://angular.io/guide/binding-syntax#example-2-a-disabled-button) confirms that `<input [attr.disabled]="myVariable ? 'disabled' : null" />` is a valid way of doing it. So that’s how I did it.
 
 Is there a nicer Angular syntax?
+
+A colleague wrote the equivalent of `<input [attr.disabled]="myVariable ? '' : null" />`, with the empty string. This is valid, and shorter. It took me by surprise to see `''` used as a truthy value, because in JavaScript it’s falsy, but this is DOM attributes and it’s different.
 
 The docs also suggest `<input [disabled]="myVariable ? true : false">` — but I find this doesn’t work for my case, where the variable depends on URL parameters. When the component mounts, the variable is false (the default for a boolean) and then it is set to true (or false) when the URL gets read. Angular sees the initial false value and removes the `disabled` attribute to match that. But Angular doesn’t update the attribute when the variable becomes true, so the field is never disabled.
 
