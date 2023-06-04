@@ -199,7 +199,7 @@ But I find it interesting to keep count; I’ve used 78.
 
 <dl>
 
-<div class="used">
+<div class="used" id="a">
 	<dt><code>&lt;a&gt;</code></dt>
 	<dd>
 		<p>
@@ -208,7 +208,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="abbr">
 	<dt><code>&lt;abbr&gt;</code></dt>
 	<dd>
 		<p>
@@ -238,7 +238,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="acronym">
 	<dt><code>&lt;acronym&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -248,7 +248,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="address">
 	<dt><code>&lt;address&gt;</code></dt>
 	<dd>
 		<p>
@@ -257,7 +257,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="applet">
 	<dt><code>&lt;applet&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -266,7 +266,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="area">
 	<dt><code>&lt;area&gt;</code></dt>
 	<dd>
 		<p>
@@ -276,7 +276,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="article">
 	<dt><code>&lt;article&gt;</code></dt>
 	<dd>
 		<p>
@@ -285,7 +285,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="aside">
 	<dt><code>&lt;aside&gt;</code></dt>
 	<dd>
 		<p>
@@ -294,7 +294,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="audio">
 	<dt><code>&lt;audio&gt;</code></dt>
 	<dd>
 		<p>
@@ -303,7 +303,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="b">
 	<dt><code>&lt;b&gt;</code></dt>
 	<dd>
 		<p>
@@ -313,7 +313,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="base">
 	<dt><code>&lt;base&gt;</code></dt>
 	<dd>
 		<p>
@@ -322,7 +322,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="bdi">
 	<dt><code>&lt;bdi&gt;</code></dt>
 	<dd>
 		<p>
@@ -331,7 +331,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="bdo">
 	<dt><code>&lt;bdo&gt;</code></dt>
 	<dd>
 		<p>
@@ -340,7 +340,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="bgsound">
 	<dt><code>&lt;bgsound&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -350,7 +350,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="big">
 	<dt><code>&lt;big&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -359,7 +359,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="blink">
 	<dt><code>&lt;blink&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -368,7 +368,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="blockquote">
 	<dt><code>&lt;blockquote&gt;</code></dt>
 	<dd>
 		<p>
@@ -378,7 +378,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="body">
 	<dt><code>&lt;body&gt;</code></dt>
 	<dd>
 		<p>
@@ -387,7 +387,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="br">
 	<dt><code>&lt;br&gt;</code></dt>
 	<dd>
 		<p>
@@ -397,7 +397,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="button">
 	<dt><code>&lt;button&gt;</code></dt>
 	<dd>
 		<p>
@@ -407,7 +407,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="canvas">
 	<dt><code>&lt;canvas&gt;</code></dt>
 	<dd>
 		<p>
@@ -416,7 +416,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="caption">
 	<dt><code>&lt;caption&gt;</code></dt>
 	<dd>
 		<p>
@@ -425,7 +425,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="center">
 	<dt><code>&lt;center&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -434,7 +434,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="cite">
 	<dt><code>&lt;cite&gt;</code></dt>
 	<dd>
 		<p>
@@ -444,7 +444,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="code">
 	<dt><code>&lt;code&gt;</code></dt>
 	<dd>
 		<p>
@@ -453,7 +453,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="col">
 	<dt><code>&lt;col&gt;</code></dt>
 	<dd>
 		<p>
@@ -462,7 +462,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="colgroup">
 	<dt><code>&lt;colgroup&gt;</code></dt>
 	<dd>
 		<p>
@@ -471,7 +471,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="content">
 	<dt><code>&lt;content&gt;</code> (Non-standard Deprecated)</dt>
 	<dd>
 		<p>
@@ -483,7 +483,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="data">
 	<dt><code>&lt;data&gt;</code></dt>
 	<dd>
 		<p>
@@ -492,7 +492,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="datalist">
 	<dt><code>&lt;datalist&gt;</code></dt>
 	<dd>
 		<p>
@@ -502,7 +502,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="dd">
 	<dt><code>&lt;dd&gt;</code></dt>
 	<dd>
 		<p>
@@ -512,7 +512,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="del">
 	<dt><code>&lt;del&gt;</code></dt>
 	<dd>
 		<p>
@@ -521,7 +521,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="details">
 	<dt><code>&lt;details&gt;</code></dt>
 	<dd>
 		<p>
@@ -530,7 +530,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="dfn">
 	<dt><code>&lt;dfn&gt;</code></dt>
 	<dd>
 		<p>
@@ -539,7 +539,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="dialog">
 	<dt><code>&lt;dialog&gt;</code></dt>
 	<dd>
 		<p>
@@ -548,7 +548,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="dir">
 	<dt><code>&lt;dir&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -557,7 +557,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="div">
 	<dt><code>&lt;div&gt;</code></dt>
 	<dd>
 		<p>
@@ -566,7 +566,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="dl">
 	<dt><code>&lt;dl&gt;</code></dt>
 	<dd>
 		<p>
@@ -575,7 +575,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="dt">
 	<dt><code>&lt;dt&gt;</code></dt>
 	<dd>
 		<p>
@@ -584,7 +584,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="em">
 	<dt><code>&lt;em&gt;</code></dt>
 	<dd>
 		<p>
@@ -593,7 +593,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="embed">
 	<dt><code>&lt;embed&gt;</code></dt>
 	<dd>
 		<p>
@@ -602,7 +602,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="fieldset">
 	<dt><code>&lt;fieldset&gt;</code></dt>
 	<dd>
 		<p>
@@ -616,7 +616,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="figcaption">
 	<dt><code>&lt;figcaption&gt;</code></dt>
 	<dd>
 		<p>
@@ -625,7 +625,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="figure">
 	<dt><code>&lt;figure&gt;</code></dt>
 	<dd>
 		<p>
@@ -634,7 +634,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="font">
 	<dt><code>&lt;font&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -643,7 +643,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="footer">
 	<dt><code>&lt;footer&gt;</code></dt>
 	<dd>
 		<p>
@@ -653,7 +653,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="form">
 	<dt><code>&lt;form&gt;</code></dt>
 	<dd>
 		<p>
@@ -662,7 +662,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="frame">
 	<dt><code>&lt;frame&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -671,7 +671,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="frameset">
 	<dt><code>&lt;frameset&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -680,7 +680,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="h1">
 	<dt><code>&lt;h1&gt;</code></dt>
 	<dd>
 		<p>
@@ -690,7 +690,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="head">
 	<dt><code>&lt;head&gt;</code></dt>
 	<dd>
 		<p>
@@ -699,7 +699,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="header">
 	<dt><code>&lt;header&gt;</code></dt>
 	<dd>
 		<p>
@@ -708,7 +708,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="hgroup">
 	<dt><code>&lt;hgroup&gt;</code></dt>
 	<dd>
 		<p>
@@ -721,7 +721,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="hr">
 	<dt><code>&lt;hr&gt;</code></dt>
 	<dd>
 		<p>
@@ -730,7 +730,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="html">
 	<dt><code>&lt;html&gt;</code></dt>
 	<dd>
 		<p>
@@ -739,7 +739,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="i">
 	<dt><code>&lt;i&gt;</code></dt>
 	<dd>
 		<p>
@@ -748,7 +748,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="iframe">
 	<dt><code>&lt;iframe&gt;</code></dt>
 	<dd>
 		<p>
@@ -757,7 +757,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="image">
 	<dt><code>&lt;image&gt;</code> (Non-standard Deprecated)</dt>
 	<dd>
 		<p>
@@ -766,7 +766,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="img">
 	<dt><code>&lt;img&gt;</code></dt>
 	<dd>
 		<p>
@@ -775,7 +775,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="input">
 	<dt><code>&lt;input&gt;</code></dt>
 	<dd>
 		<p>
@@ -784,7 +784,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="ins">
 	<dt><code>&lt;ins&gt;</code></dt>
 	<dd>
 		<p>
@@ -793,7 +793,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="kbd">
 	<dt><code>&lt;kbd&gt;</code></dt>
 	<dd>
 		<p>
@@ -803,7 +803,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="keygen">
 	<dt><code>&lt;keygen&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -812,7 +812,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="label">
 	<dt><code>&lt;label&gt;</code></dt>
 	<dd>
 		<p>
@@ -822,7 +822,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="legend">
 	<dt><code>&lt;legend&gt;</code></dt>
 	<dd>
 		<p>
@@ -837,7 +837,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="li">
 	<dt><code>&lt;li&gt;</code></dt>
 	<dd>
 		<p>
@@ -847,7 +847,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="link">
 	<dt><code>&lt;link&gt;</code></dt>
 	<dd>
 		<p>
@@ -856,7 +856,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="main">
 	<dt><code>&lt;main&gt;</code></dt>
 	<dd>
 		<p>
@@ -866,7 +866,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="map">
 	<dt><code>&lt;map&gt;</code></dt>
 	<dd>
 		<p>
@@ -875,7 +875,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="mark">
 	<dt><code>&lt;mark&gt;</code></dt>
 	<dd>
 		<p>
@@ -884,7 +884,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="marquee">
 	<dt><code>&lt;marquee&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -893,7 +893,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="menu">
 	<dt><code>&lt;menu&gt;</code></dt>
 	<dd>
 		<p>
@@ -909,7 +909,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="menuitem">
 	<dt><code>&lt;menuitem&gt;</code> (Non-standard Deprecated)</dt>
 	<dd>
 		<p>
@@ -918,7 +918,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="meta">
 	<dt><code>&lt;meta&gt;</code></dt>
 	<dd>
 		<p>
@@ -927,7 +927,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="meter">
 	<dt><code>&lt;meter&gt;</code></dt>
 	<dd>
 		<p>
@@ -936,7 +936,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="nav">
 	<dt><code>&lt;nav&gt;</code></dt>
 	<dd>
 		<p>
@@ -946,7 +946,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="nobr">
 	<dt><code>&lt;nobr&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -955,7 +955,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="noembed">
 	<dt><code>&lt;noembed&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -964,7 +964,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="noframes">
 	<dt><code>&lt;noframes&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -973,7 +973,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="noscript">
 	<dt><code>&lt;noscript&gt;</code></dt>
 	<dd>
 		<p>
@@ -988,7 +988,7 @@ But I find it interesting to keep count; I’ve used 78.
     </dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="object">
 	<dt><code>&lt;object&gt;</code></dt>
 	<dd>
 		<p>
@@ -997,7 +997,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="ol">
 	<dt><code>&lt;ol&gt;</code></dt>
 	<dd>
 		<p>
@@ -1007,7 +1007,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="optgroup">
 	<dt><code>&lt;optgroup&gt;</code></dt>
 	<dd>
 		<p>
@@ -1016,7 +1016,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="option">
 	<dt><code>&lt;option&gt;</code></dt>
 	<dd>
 		<p>
@@ -1025,7 +1025,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="output">
 	<dt><code>&lt;output&gt;</code></dt>
 	<dd>
 		<p>
@@ -1036,7 +1036,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="p">
 	<dt><code>&lt;p&gt;</code></dt>
 	<dd>
 		<p>
@@ -1045,7 +1045,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="param">
 	<dt><code>&lt;param&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -1054,7 +1054,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="picture">
 	<dt><code>&lt;picture&gt;</code></dt>
 	<dd>
 		<p>
@@ -1063,7 +1063,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="plaintext">
 	<dt><code>&lt;plaintext&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -1072,7 +1072,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="experimental">
+<div class="experimental" id="portal">
 	<dt><code>&lt;portal&gt;</code> (Experimental)</dt>
 	<dd>
 		<p>
@@ -1081,7 +1081,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="pre">
 	<dt><code>&lt;pre&gt;</code></dt>
 	<dd>
 		<p>
@@ -1090,7 +1090,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="progress">
 	<dt><code>&lt;progress&gt;</code></dt>
 	<dd>
 		<p>
@@ -1105,7 +1105,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="q">
 	<dt><code>&lt;q&gt;</code></dt>
 	<dd>
 		<p>
@@ -1114,7 +1114,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="rb">
 	<dt><code>&lt;rb&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -1124,7 +1124,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="rp">
 	<dt><code>&lt;rp&gt;</code></dt>
 	<dd>
 		<p>
@@ -1134,7 +1134,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="rt">
 	<dt><code>&lt;rt&gt;</code></dt>
 	<dd>
 		<p>
@@ -1143,7 +1143,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="rtc">
 	<dt><code>&lt;rtc&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -1153,7 +1153,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="ruby">
 	<dt><code>&lt;ruby&gt;</code></dt>
 	<dd>
 		<p>
@@ -1163,7 +1163,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="s">
 	<dt><code>&lt;s&gt;</code></dt>
 	<dd>
 		<p>
@@ -1175,7 +1175,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="samp">
 	<dt><code>&lt;samp&gt;</code></dt>
 	<dd>
 		<p>
@@ -1185,7 +1185,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="script">
 	<dt><code>&lt;script&gt;</code></dt>
 	<dd>
 		<p>
@@ -1194,7 +1194,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="search">
 	<dt><code>&lt;search&gt;</code></dt>
 	<dd>
 		<p>
@@ -1210,7 +1210,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="section">
 	<dt><code>&lt;section&gt;</code></dt>
 	<dd>
 		<p>
@@ -1220,7 +1220,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="select">
 	<dt><code>&lt;select&gt;</code></dt>
 	<dd>
 		<p>
@@ -1229,7 +1229,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="shadow">
 	<dt><code>&lt;shadow&gt;</code> (Non-standard Deprecated)</dt>
 	<dd>
 		<p>
@@ -1238,7 +1238,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="slot">
 	<dt><code>&lt;slot&gt;</code></dt>
 	<dd>
 		<p>
@@ -1261,7 +1261,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="small">
 	<dt><code>&lt;small&gt;</code></dt>
 	<dd>
 		<p>
@@ -1271,7 +1271,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="source">
 	<dt><code>&lt;source&gt;</code></dt>
 	<dd>
 		<p>
@@ -1280,7 +1280,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="spacer">
 	<dt><code>&lt;spacer&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -1290,7 +1290,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="span">
 	<dt><code>&lt;span&gt;</code></dt>
 	<dd>
 		<p>
@@ -1299,7 +1299,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="strike">
 	<dt><code>&lt;strike&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -1308,7 +1308,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="strong">
 	<dt><code>&lt;strong&gt;</code></dt>
 	<dd>
 		<p>
@@ -1317,7 +1317,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="style">
 	<dt><code>&lt;style&gt;</code></dt>
 	<dd>
 		<p>
@@ -1331,7 +1331,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="sub">
 	<dt><code>&lt;sub&gt;</code></dt>
 	<dd>
 		<p>
@@ -1343,7 +1343,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="summary">
 	<dt><code>&lt;summary&gt;</code></dt>
 	<dd>
 		<p>
@@ -1352,7 +1352,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="sup">
 	<dt><code>&lt;sup&gt;</code></dt>
 	<dd>
 		<p>
@@ -1365,7 +1365,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="table">
 	<dt><code>&lt;table&gt;</code></dt>
 	<dd>
 		<p>
@@ -1374,7 +1374,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="tbody">
 	<dt><code>&lt;tbody&gt;</code></dt>
 	<dd>
 		<p>
@@ -1383,7 +1383,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="td">
 	<dt><code>&lt;td&gt;</code></dt>
 	<dd>
 		<p>
@@ -1392,7 +1392,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="template">
 	<dt><code>&lt;template&gt;</code></dt>
 	<dd>
 		<p>
@@ -1401,7 +1401,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="textarea">
 	<dt><code>&lt;textarea&gt;</code></dt>
 	<dd>
 		<p>
@@ -1410,7 +1410,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="tfoot">
 	<dt><code>&lt;tfoot&gt;</code></dt>
 	<dd>
 		<p>
@@ -1419,7 +1419,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="th">
 	<dt><code>&lt;th&gt;</code></dt>
 	<dd>
 		<p>
@@ -1429,7 +1429,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="thead">
 	<dt><code>&lt;thead&gt;</code></dt>
 	<dd>
 		<p>
@@ -1439,7 +1439,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="time">
 	<dt><code>&lt;time&gt;</code></dt>
 	<dd>
 		<p>
@@ -1448,7 +1448,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="title">
 	<dt><code>&lt;title&gt;</code></dt>
 	<dd>
 		<p>
@@ -1458,7 +1458,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="tr">
 	<dt><code>&lt;tr&gt;</code></dt>
 	<dd>
 		<p>
@@ -1467,7 +1467,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="track">
 	<dt><code>&lt;track&gt;</code></dt>
 	<dd>
 		<p>
@@ -1477,7 +1477,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="tt">
 	<dt><code>&lt;tt&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
@@ -1486,7 +1486,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="u">
 	<dt><code>&lt;u&gt;</code></dt>
 	<dd>
 		<p>
@@ -1503,7 +1503,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="ul">
 	<dt><code>&lt;ul&gt;</code></dt>
 	<dd>
 		<p>
@@ -1512,7 +1512,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="var">
 	<dt><code>&lt;var&gt;</code></dt>
 	<dd>
 		<p>
@@ -1521,7 +1521,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused">
+<div class="usable-unused" id="video">
 	<dt><code>&lt;video&gt;</code></dt>
 	<dd>
 		<p>
@@ -1530,7 +1530,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="used">
+<div class="used" id="wbr">
 	<dt><code>&lt;wbr&gt;</code></dt>
 	<dd>
 		<p>
@@ -1539,7 +1539,7 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="deprecated">
+<div class="deprecated" id="xmp">
 	<dt><code>&lt;xmp&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
