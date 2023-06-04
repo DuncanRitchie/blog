@@ -5,11 +5,15 @@ draft: false
 tags: ['Funny', 'Software']
 ---
 
+_Note: I added Nyxt after publishing this article._
+
 # Web technologies with confusing names
 
-Several things are named from four-letter words ending in “-st” or “-xt”. I don’t want there to be a next, because it’s starting to test my patience, so I just wish we’d give it a rest. I’m speaking in jest, of course. Or am I?
+Several things are named from four-letter words ending in “-st” or “-xt”. I don’t want there to be a next, because it’s starting to test my patience, so I just wish we’d give it a rest — we should have nixed it by now. I’m speaking in jest, of course. Or am I?
 
 <dl>
+<dt><a href="https://nyxt.atlas.engineer/">Nyxt</a></dt>
+<dd>a browser</dd>
 <dt><a href="https://nuxtjs.org/">Nuxt</a></dt>
 <dd>a Vue framework</dd>
 <dt><a href="https://nextjs.org/">Next</a></dt>
