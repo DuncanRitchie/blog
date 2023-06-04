@@ -166,16 +166,16 @@ I will probably update this page (perhaps using <code>&lt;ins&gt;</code> element
 
 ## Counts
 
-Of 134 elements, 27 are deprecated and one is experimental.
-The other 106 I consider to be usable, if the right opportunity presents itself.
+Of 135 elements, 27 are deprecated and one is experimental.
+The other 107 I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
 But I find it interesting to keep count; I’ve used 78.
 
-<label for="meter">HTML elements that are neither deprecated nor experimental <small> 106 of 134 (79.1%)</small></label>
-<meter id="meter" min="0" value="106" max="134" style="--percentage: 79.1%"></progress>
+<label for="meter">HTML elements that are neither deprecated nor experimental <small> 107 of 135 (79.3%)</small></label>
+<meter id="meter" min="0" value="107" max="135" style="--percentage: 79.3%"></progress>
 
-<label for="progress">Usable elements that I’ve used <small> 78 of 106 (73.6%)</small></label>
-<progress id="progress" value="78" max="106" style="--percentage: 73.6%"></progress>
+<label for="progress">Usable elements that I’ve used <small> 78 of 107 (72.9%)</small></label>
+<progress id="progress" value="78" max="107" style="--percentage: 72.9%"></progress>
 
 ## Filters
 
@@ -1190,6 +1190,22 @@ But I find it interesting to keep count; I’ve used 78.
 	<dd>
 		<p>
 			Of course I’ve used this.
+		</p>
+	</dd>
+</div>
+
+<div class="usable-unused">
+	<dt><code>&lt;search&gt;</code></dt>
+	<dd>
+		<p>
+			This tag was announced in <date datetime="2023-03-24">March 2023</date> and I therefore added it to this article.
+			It exists so that the Aria landmark role of <code>search</code> has a corresponding HTML tag, which means it is pretty much equivalent to <code>&lt;div role="search"&gt;</code>.
+		</p>
+		<p>
+			I’ve not used this element.
+			On velut, I use <code>&lt;form role="search"&gt;</code>, which gives me native HTML form behaviour and the correct Aria role in one element.
+			This is equivalent to wrapping <code>&lt;form&gt;</code> in <code>&lt;search&gt;</code>.
+			Swapping the <code>&lt;search&gt;</code> element in is an easy change to make, but there’s not a lot of benefit.
 		</p>
 	</dd>
 </div>
