@@ -3,9 +3,8 @@ date: 2022-08-22
 title: Boolean HTML attributes in Angular
 draft: false
 tags: ['Software']
+editHistory: [[2023-06-03, 'Mentioned empty string']]
 ---
-
-_Edited in June 2023 to mention the empty string._
 
 # Boolean HTML attributes in Angular
 

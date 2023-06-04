@@ -3,9 +3,8 @@ title: Web technologies with confusing names
 date: 2022-06-21
 draft: false
 tags: ['Funny', 'Software']
+editHistory: [[2023-06-04, 'Added Nyxt']]
 ---
-
-_Note: I added Nyxt after publishing this article._
 
 # Web technologies with confusing names
 
