@@ -35,6 +35,7 @@ There’s also a little bit of variation in the default port number, though most
 So I decided to make a list of the starting commands and URLs for the dev servers.
 
 Note that `npm start` is equivalent to `npm run start`.
+In Astro, it’s also equivalent to `npm run dev`.
 
 <div id="table-wrapper">
 <table>
