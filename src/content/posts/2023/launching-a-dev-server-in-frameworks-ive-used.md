@@ -65,7 +65,8 @@ npm run dev
 </td>
 <td>
 
-http://127.0.0.1:3000
+http://localhost:3000
+(but opens at http://127.0.0.1:3000)
 
 </td>
 </tr>
