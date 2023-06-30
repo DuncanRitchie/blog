@@ -15,7 +15,7 @@ tags: ['Software']
 		text-align: left;
 		position: sticky;
 		left: 0;
-		background-image: var(--background-gradient);
+		background-image: var(--page-background);
 		background-size: 100% 100vh;
 		background-attachment: fixed;
 		z-index: 1;
