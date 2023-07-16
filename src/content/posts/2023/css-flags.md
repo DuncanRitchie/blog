@@ -12,26 +12,34 @@ draft: false
   flex-grow: 0;
 }
 :root {
+  /* Variables controlled by the <form> elements */
   --animation-play-state: running;
-  --image-src: var(--pride-progress);
-  --flag-height: calc(var(--default-flag-height) * var(--flag-height-multiplier));
+  --image-src: var(--progress-flag);
   --flag-height-multiplier: 1;
-  --default-flag-height: min(15rem, calc(66.6667vw / (var(--flag-aspect-ratio))));
-  --strips-count: 60;
   --flag-aspect-ratio: 5 / 3;
+  --strips-count: 60;
+  --animation-displacement-factor: 0.3333;
+  --animation-wave-length: 1;
+  --animation-duration: 1s;
+
+  --flag-height: calc(var(--default-flag-height) * var(--flag-height-multiplier));
+  --default-flag-height: min(15rem, calc(66.6667vw / (var(--flag-aspect-ratio))));
   --canvas-height:
     clamp(
       var(--flag-height) + 6rem,
       100vh - 6rem,
       45rem
     );
-  --animation-duration: 1s;
-  --animation-displacement-factor: 0.3333;
   --animation-total-displacement: calc(
     var(--animation-displacement-factor) * var(--flag-height)
   );
-  --animation-wave-length: 1;
 
+  --animation-displacement: calc(
+    var(--animation-total-displacement) / var(--strips-count)
+  );
+  --animation-offset: calc(var(--animation-duration) / var(--strips-count));
+
+  /* Colour palette */
   --rainbow-pink: #ff5ca8 /* Wikimedia has #ff69b4 */;
   --rainbow-red: #e50000;
   --rainbow-orange: #f36700 /* Wikimedia has #e58d00 */;
@@ -61,13 +69,9 @@ draft: false
   --uk-blue: #012169 /* #0b267c is brighter*/;
   --uk-red: #c8102e /* #da151b is brighter */;
 
-  --animation-displacement: calc(
-    var(--animation-total-displacement) / var(--strips-count)
-  );
-  --animation-offset: calc(var(--animation-duration) / var(--strips-count));
-
-  --chevron-width: calc(1 / 7 * var(--flag-height));
-  --chevron-width-intersex: calc(1 / 10 * var(--flag-height));
+  /* Non-gradient variables used by some flags */
+  --chevron-width: calc(var(--flag-height) / 7);
+  --chevron-width-intersex: calc(var(--flag-height) / 10);
 
   /* Flags to be used in --image-src */
   /* As per Josh Comeau and @myfonj, I could also rewrite the gradients with double-position syntax:
@@ -79,7 +83,7 @@ draft: false
     );
   */
 
-  --eight-stripe-pride: linear-gradient(
+  --eight-stripe-rainbow-flag: linear-gradient(
     var(--rainbow-pink) 0%,
     var(--rainbow-pink) 12.5%,
     var(--rainbow-red) 0%,
@@ -98,7 +102,7 @@ draft: false
     var(--rainbow-purple) 100%
   );
 
-  --pride: linear-gradient(
+  --six-stripe-rainbow-flag: linear-gradient(
     var(--rainbow-red) 0%,
     var(--rainbow-red) 17%,
     var(--rainbow-orange) 0%,
@@ -113,7 +117,7 @@ draft: false
     var(--rainbow-purple) 100%
   );
 
-  --pride-progress:
+  --progress-flag:
     /* white chevron (triangle) for trans people */
     conic-gradient(
       from 225deg at calc(var(--flag-height) / 2 - 2 * var(--chevron-width)) 50%,
@@ -156,9 +160,9 @@ draft: false
       transparent 360deg
     ),
     /* rainbow stripes */
-    var(--pride);
+    var(--six-stripe-rainbow-flag);
 
-  --pride-progress-intersex:
+  --progress-intersex-flag:
     /* purple circle for intersex people */
     radial-gradient(
       circle at calc(var(--flag-height) / 4 - 0.75 * var(--chevron-width-intersex)) 50%,
@@ -218,9 +222,9 @@ draft: false
       transparent 360deg
     ),
     /* rainbow stripes */
-    var(--pride);
+    var(--six-stripe-rainbow-flag);
 
-  --bisexual: linear-gradient(
+  --bisexual-flag: linear-gradient(
     var(--bi-pink) 0%,
     var(--bi-pink) 40%,
     var(--bi-purple) 0%,
@@ -229,7 +233,7 @@ draft: false
     var(--bi-blue) 100%
   );
 
-  --trans: linear-gradient(
+  --trans-flag: linear-gradient(
     var(--trans-blue) 0%,
     var(--trans-blue) 20%,
     var(--trans-pink) 0%,
@@ -242,7 +246,7 @@ draft: false
     var(--trans-blue) 100%
   );
 
-  --intersex: radial-gradient(
+  --intersex-flag: radial-gradient(
     circle,
     var(--intersex-yellow) 0%, /* inside */
     var(--intersex-yellow) 23%,
@@ -251,11 +255,11 @@ draft: false
     var(--intersex-yellow) 0%,
     var(--intersex-yellow) 100% /* outside */
   );
-  --intersex-real: url("https://upload.wikimedia.org/wikipedia/commons/3/38/Intersex_Pride_Flag.svg");
-  --intersex-progress-real: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Intersex-inclusive_pride_flag.svg/1200px-Intersex-inclusive_pride_flag.svg.png?20220830232656");
-  /* --pride-progress-intersex: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Intersex-inclusive_pride_flag.svg/1200px-Intersex-inclusive_pride_flag.svg.png?20220830232656"); */
+  --intersex-real-flag: url("https://upload.wikimedia.org/wikipedia/commons/3/38/Intersex_Pride_Flag.svg");
+  --intersex-progress-real-flag: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Intersex-inclusive_pride_flag.svg/1200px-Intersex-inclusive_pride_flag.svg.png?20220830232656");
+  /* --progress-intersex-flag: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Intersex-inclusive_pride_flag.svg/1200px-Intersex-inclusive_pride_flag.svg.png?20220830232656"); */
 
-  --asexual: linear-gradient(
+  --asexual-flag: linear-gradient(
     var(--black) 0%,
     var(--black) 25%,
     var(--asexual-grey, grey) 0%,
@@ -266,7 +270,7 @@ draft: false
     var(--asexual-purple, purple) 100%
   );
 
-  --pansexual: linear-gradient(
+  --pansexual-flag: linear-gradient(
     var(--pan-pink) 0%,
     var(--pan-pink) 33.3333%,
     var(--pan-yellow) 0%,
@@ -275,7 +279,7 @@ draft: false
     var(--pan-blue) 100%
   );
 
-  --nonbinary: linear-gradient(
+  --nonbinary-flag: linear-gradient(
     var(--nonbinary-yellow) 0%,
     var(--nonbinary-yellow) 25%,
     var(--white) 0%,
@@ -286,7 +290,7 @@ draft: false
     var(--nonbinary-grey) 100%
   );
 
-  --scotland:
+  --scotland-flag:
     /* negative diagonal white stripe */
     linear-gradient(
       to bottom left,
@@ -310,9 +314,9 @@ draft: false
     /* blue field */
     linear-gradient(var(--uk-blue), var(--uk-blue));
 
-  --england: var(--england-stripes), linear-gradient(white, white);
+  --england-flag: var(--england-stripes-flagpart), linear-gradient(white, white);
 
-  --england-stripes: 
+  --england-stripes-flagpart: 
     /* horizontal red stripe */ linear-gradient(
       transparent 0%,
       transparent 40%,
@@ -333,24 +337,24 @@ draft: false
     );
 
   /* URL for original file: */
-  /* --uk-real: url("https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg"); */
+  /* --uk-real-flag: url("https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg"); */
   /* URL if I could interpolate strings in HTML: */
-  /* --uk-real: url(import.meta.env.BASE_URL + "/images/2023/uk-flag-from-wikimedia-commons.svg"); */
-  --uk-real: url("/blog/images/2023/uk-flag-from-wikimedia-commons.svg");
+  /* --uk-real-flag: url(import.meta.env.BASE_URL + "/images/2023/uk-flag-from-wikimedia-commons.svg"); */
+  --uk-real-flag: url("/blog/images/2023/uk-flag-from-wikimedia-commons.svg");
 
-  --uk-with-conic-diagonals:
-    var(--england-stripes),
-    var(--orthogonal-white-stripes-for-uk),
-    var(--uk-red-diagonals-conic),
-    var(--scotland);
+  --uk-with-conic-diagonals-flag:
+    var(--england-stripes-flagpart),
+    var(--orthogonal-white-stripes-for-uk-flagpart),
+    var(--uk-red-diagonals-conic-flagpart),
+    var(--scotland-flag);
 
-  --uk-with-linear-diagonals:
-    var(--england-stripes),
-    var(--orthogonal-white-stripes-for-uk),
-    var(--uk-red-diagonals-linear),
-    var(--scotland);
+  --uk-with-linear-diagonals-flag:
+    var(--england-stripes-flagpart),
+    var(--orthogonal-white-stripes-for-uk-flagpart),
+    var(--uk-red-diagonals-linear-flagpart),
+    var(--scotland-flag);
 
-  --orthogonal-white-stripes-for-uk: 
+  --orthogonal-white-stripes-for-uk-flagpart: 
   /* horizontal white stripe */
     linear-gradient(
       transparent 0%,
@@ -371,7 +375,7 @@ draft: false
       transparent 100%
     );
 
-  --uk-red-diagonals-conic: conic-gradient(
+  --uk-red-diagonals-conic-flagpart: conic-gradient(
     from 0deg,
     transparent 0deg,
     transparent 52.5deg,
@@ -392,7 +396,7 @@ draft: false
     transparent 0deg,
     transparent 360deg
   );
-  --uk-red-diagonals-linear:
+  --uk-red-diagonals-linear-flagpart:
     /* negative diagonal red stripe */
     linear-gradient(
       to bottom left,
@@ -437,8 +441,9 @@ draft: false
   justify-content: center;
   align-items: center;
   height: var(--canvas-height);
-  /* min-height: 24rem; */
-  background-image: radial-gradient(
+  background-image:
+     /* green ground and pale blue sky */
+    radial-gradient(
       ellipse at 50% 112.5%,
       #abf441 4%,
       #14b21b 12.5%,
@@ -640,22 +645,22 @@ form #extra-controls label output {
     <button type="button" id="pause-or-play" aria-pressed="true">Pause animation</button>
     <fieldset id="flag-fieldset">
       <legend>Flag</legend>
-      <label><input type="radio" name="flag" value="eight-stripe-pride" /> Eight-stripe rainbow </label>
-      <label><input type="radio" name="flag" value="pride" /> Six-stripe rainbow </label>
-      <label><input type="radio" name="flag" value="pride-progress" checked /> Progress pride </label>
-      <label><input type="radio" name="flag" value="pride-progress-intersex" /> Intersex progress pride </label>
-      <label><input type="radio" name="flag" value="bisexual" /> Bisexual </label>
-      <label><input type="radio" name="flag" value="trans" /> Transgender </label>
-      <label><input type="radio" name="flag" value="intersex" /> Intersex </label>
-      <!-- <label><input type="radio" name="flag" value="intersex-progress-real" /> Intersex (SVG) </label> -->
-      <label><input type="radio" name="flag" value="asexual" /> Asexual </label>
-      <label><input type="radio" name="flag" value="pansexual" /> Pansexual </label>
-      <label><input type="radio" name="flag" value="nonbinary" /> Nonbinary </label>
-      <label><input type="radio" name="flag" value="uk-with-linear-diagonals" /> UK (wrong) </label>
-      <label><input type="radio" name="flag" value="uk-with-conic-diagonals" /> UK (also wrong) </label>
-      <label><input type="radio" name="flag" value="uk-real" /> UK (SVG) </label>
-      <label><input type="radio" name="flag" value="scotland" /> Scotland </label>
-      <label><input type="radio" name="flag" value="england" /> England </label>
+      <label><input type="radio" name="flag" value="eight-stripe-rainbow-flag" /> Eight-stripe rainbow </label>
+      <label><input type="radio" name="flag" value="six-stripe-rainbow-flag" /> Six-stripe rainbow </label>
+      <label><input type="radio" name="flag" value="progress-flag" checked /> Progress pride </label>
+      <label><input type="radio" name="flag" value="progress-intersex-flag" /> Intersex progress pride </label>
+      <label><input type="radio" name="flag" value="bisexual-flag" /> Bisexual </label>
+      <label><input type="radio" name="flag" value="trans-flag" /> Transgender </label>
+      <label><input type="radio" name="flag" value="intersex-flag" /> Intersex </label>
+      <!-- <label><input type="radio" name="flag" value="intersex-progress-real-flag" /> Intersex (SVG) </label> -->
+      <label><input type="radio" name="flag" value="asexual-flag" /> Asexual </label>
+      <label><input type="radio" name="flag" value="pansexual-flag" /> Pansexual </label>
+      <label><input type="radio" name="flag" value="nonbinary-flag" /> Nonbinary </label>
+      <label><input type="radio" name="flag" value="uk-with-linear-diagonals-flag" /> UK (wrong) </label>
+      <label><input type="radio" name="flag" value="uk-with-conic-diagonals-flag" /> UK (also wrong) </label>
+      <label><input type="radio" name="flag" value="uk-real-flag" /> UK (SVG) </label>
+      <label><input type="radio" name="flag" value="scotland-flag" /> Scotland </label>
+      <label><input type="radio" name="flag" value="england-flag" /> England </label>
     </fieldset>
     <div id="extra-controls">
       <label>
