@@ -1,0 +1,903 @@
+---
+date: 2023-08-19
+title: CSS flags
+tags: ['Software']
+draft: false
+---
+
+<style>
+.strip:nth-child(n + 61) {
+  /* Hide superfluous strips that might be in the DOM. */
+  /* This gets overridden by JavaScript when input#strips-child-input is used to change the number of strips. */
+  flex-grow: 0;
+}
+:root {
+  --animation-play-state: running;
+  --image-src: var(--pride-progress);
+  --flag-height: calc(var(--default-flag-height) * var(--flag-height-multiplier));
+  --flag-height-multiplier: 1;
+  --default-flag-height: min(15rem, calc(66.6667vw / (var(--flag-aspect-ratio))));
+  --strips-count: 60;
+  --flag-aspect-ratio: 5 / 3;
+  --canvas-height:
+    clamp(
+      var(--flag-height) + 6rem,
+      100vh - 6rem,
+      45rem
+    );
+  --animation-duration: 1s;
+  --animation-displacement-factor: 0.3333;
+  --animation-total-displacement: calc(
+    var(--animation-displacement-factor) * var(--flag-height)
+  );
+  --animation-wave-length: 1;
+
+  --rainbow-pink: #ff5ca8 /* Wikimedia has #ff69b4 */;
+  --rainbow-red: #e50000;
+  --rainbow-orange: #f36700 /* Wikimedia has #e58d00 */;
+  --rainbow-yellow: #e5ee00;
+  --rainbow-green: #188102 /* Wikimedia has #028121 */;
+  --rainbow-turquoise: #00c0c0 /* Wikimedia has ##00c0c0 */;
+  --rainbow-blue: #0040ff /* Wikimedia has #004cff */;
+  --rainbow-purple: #6c07a5 /* Wikimedia has #770088 */;
+  --black: black;
+  --poc-brown: #603917;
+  --bi-pink: #d60270;
+  --bi-purple: #9b4f96;
+  --bi-blue: #0038a8;
+  --trans-blue: #5bcefa;
+  --trans-pink: #f5a9b8;
+  --white: white;
+  --intersex-purple: #7902aa;
+  --intersex-yellow: #ffd800;
+  --pan-pink: #ff218c;
+  --pan-yellow: #ffd800;
+  --pan-blue: #21b1ff;
+  --asexual-grey: #a3a3a3;
+  --asexual-purple: #800080;
+  --nonbinary-yellow: #fff433;
+  --nonbinary-purple: #9b59d0;
+  --nonbinary-grey: #2d2d2d;
+  --uk-blue: #012169 /* #0b267c is brighter*/;
+  --uk-red: #c8102e /* #da151b is brighter */;
+
+  --animation-displacement: calc(
+    var(--animation-total-displacement) / var(--strips-count)
+  );
+  --animation-offset: calc(var(--animation-duration) / var(--strips-count));
+
+  --chevron-width: calc(1 / 7 * var(--flag-height));
+  --chevron-width-intersex: calc(1 / 10 * var(--flag-height));
+
+  /* Flags to be used in --image-src */
+  /* As per Josh Comeau and @myfonj, I could also rewrite the gradients with double-position syntax:
+    linear-gradient(
+      to bottom,
+      hsl(331deg 100% 55%) 0%    33.3%,
+      hsl(50deg 100% 50%)  33.3% 66.7%,
+      hsl(200deg 100% 55%) 66.7% 100%
+    );
+  */
+
+  --eight-stripe-pride: linear-gradient(
+    var(--rainbow-pink) 0%,
+    var(--rainbow-pink) 12.5%,
+    var(--rainbow-red) 0%,
+    var(--rainbow-red) 25%,
+    var(--rainbow-orange) 0%,
+    var(--rainbow-orange) 37.5%,
+    var(--rainbow-yellow) 0%,
+    var(--rainbow-yellow) 50%,
+    var(--rainbow-green) 0%,
+    var(--rainbow-green) 62.5%,
+    var(--rainbow-turquoise) 0%,
+    var(--rainbow-turquoise) 75%,
+    var(--rainbow-blue) 0%,
+    var(--rainbow-blue) 87.5%,
+    var(--rainbow-purple) 0%,
+    var(--rainbow-purple) 100%
+  );
+
+  --pride: linear-gradient(
+    var(--rainbow-red) 0%,
+    var(--rainbow-red) 17%,
+    var(--rainbow-orange) 0%,
+    var(--rainbow-orange) 33%,
+    var(--rainbow-yellow) 0%,
+    var(--rainbow-yellow) 50%,
+    var(--rainbow-green) 0%,
+    var(--rainbow-green) 67%,
+    var(--rainbow-blue) 0%,
+    var(--rainbow-blue) 83%,
+    var(--rainbow-purple) 0%,
+    var(--rainbow-purple) 100%
+  );
+
+  --pride-progress:
+    /* white chevron (triangle) for trans people */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 - 2 * var(--chevron-width)) 50%,
+      var(--white) 0deg,
+      var(--white) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* pink chevron for trans people */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 - var(--chevron-width)) 50%,
+      var(--trans-pink) 0deg,
+      var(--trans-pink) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* blue chevron for trans people */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2) 50%,
+      var(--trans-blue) 0deg,
+      var(--trans-blue) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* brown chevron for LGBT+ people of colour */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 + var(--chevron-width)) 50%,
+      var(--poc-brown) 0deg,
+      var(--poc-brown) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* black chevron for HIV+ and black LGBT+ people */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 + 2 * var(--chevron-width))
+        50%,
+      var(--black) 0deg,
+      var(--black) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* rainbow stripes */
+    var(--pride);
+
+  --pride-progress-intersex:
+    /* purple circle for intersex people */
+    radial-gradient(
+      circle at calc(var(--flag-height) / 4 - 0.75 * var(--chevron-width-intersex)) 50%,
+      transparent 0%, /* inside */
+      transparent calc(0.1 * var(--flag-height)),
+      var(--intersex-purple) 0%,
+      var(--intersex-purple) calc(0.125 * var(--flag-height)),
+      transparent 0%,
+      transparent 100% /* outside */
+    ),
+    /* yellow chevron (triangle) for intersex people */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 - 0.5 * var(--chevron-width-intersex)) 50%,
+      var(--intersex-yellow) 0deg,
+      var(--intersex-yellow) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* white chevron for trans people */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 + 0.5 * var(--chevron-width-intersex)) 50%,
+      var(--white) 0deg,
+      var(--white) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* pink chevron for trans people */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 + 1.5 * var(--chevron-width-intersex)) 50%,
+      var(--trans-pink) 0deg,
+      var(--trans-pink) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* blue chevron for trans people */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 + 2.5 * var(--chevron-width-intersex)) 50%,
+      var(--trans-blue) 0deg,
+      var(--trans-blue) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* brown chevron for LGBT+ people of colour */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 + 3.5 * var(--chevron-width-intersex)),
+      var(--poc-brown) 0deg,
+      var(--poc-brown) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* black chevron for HIV+ and black LGBT+ people */
+    conic-gradient(
+      from 225deg at calc(var(--flag-height) / 2 + 4.5 * var(--chevron-width-intersex)),
+      var(--black) 0deg,
+      var(--black) 90deg,
+      transparent 0deg,
+      transparent 360deg
+    ),
+    /* rainbow stripes */
+    var(--pride);
+
+  --bisexual: linear-gradient(
+    var(--bi-pink) 0%,
+    var(--bi-pink) 40%,
+    var(--bi-purple) 0%,
+    var(--bi-purple) 60%,
+    var(--bi-blue) 0%,
+    var(--bi-blue) 100%
+  );
+
+  --trans: linear-gradient(
+    var(--trans-blue) 0%,
+    var(--trans-blue) 20%,
+    var(--trans-pink) 0%,
+    var(--trans-pink) 40%,
+    var(--white) 0%,
+    var(--white) 60%,
+    var(--trans-pink) 0%,
+    var(--trans-pink) 80%,
+    var(--trans-blue) 0%,
+    var(--trans-blue) 100%
+  );
+
+  --intersex: radial-gradient(
+    circle,
+    var(--intersex-yellow) 0%, /* inside */
+    var(--intersex-yellow) 23%,
+    var(--intersex-purple) 0%,
+    var(--intersex-purple) 31.6667%, /* theoretically, ring thickness should be 8.3333% or 50/600*/
+    var(--intersex-yellow) 0%,
+    var(--intersex-yellow) 100% /* outside */
+  );
+  --intersex-real: url("https://upload.wikimedia.org/wikipedia/commons/3/38/Intersex_Pride_Flag.svg");
+  --intersex-progress-real: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Intersex-inclusive_pride_flag.svg/1200px-Intersex-inclusive_pride_flag.svg.png?20220830232656");
+  /* --pride-progress-intersex: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Intersex-inclusive_pride_flag.svg/1200px-Intersex-inclusive_pride_flag.svg.png?20220830232656"); */
+
+  --asexual: linear-gradient(
+    var(--black) 0%,
+    var(--black) 25%,
+    var(--asexual-grey, grey) 0%,
+    var(--asexual-grey, grey) 50%,
+    var(--white) 0%,
+    var(--white) 75%,
+    var(--asexual-purple, purple) 0%,
+    var(--asexual-purple, purple) 100%
+  );
+
+  --pansexual: linear-gradient(
+    var(--pan-pink) 0%,
+    var(--pan-pink) 33.3333%,
+    var(--pan-yellow) 0%,
+    var(--pan-yellow) 66.6667%,
+    var(--pan-blue) 0%,
+    var(--pan-blue) 100%
+  );
+
+  --nonbinary: linear-gradient(
+    var(--nonbinary-yellow) 0%,
+    var(--nonbinary-yellow) 25%,
+    var(--white) 0%,
+    var(--white) 50%,
+    var(--nonbinary-purple) 0%,
+    var(--nonbinary-purple) 75%,
+    var(--nonbinary-grey) 0%,
+    var(--nonbinary-grey) 100%
+  );
+
+  --scotland:
+    /* negative diagonal white stripe */
+    linear-gradient(
+      to bottom left,
+      transparent 0%,
+      transparent 44.855%,
+      var(--white) 0%,
+      var(--white) 55.145%,
+      transparent 0%,
+      transparent 100%
+    ),
+    /* positive diagonal white stripe */
+    linear-gradient(
+      to bottom right,
+      transparent 0%,
+      transparent 44.855%,
+      var(--white) 0%,
+      var(--white) 55.145%,
+      transparent 0%,
+      transparent 100%
+    ),
+    /* blue field */
+    linear-gradient(var(--uk-blue), var(--uk-blue));
+
+  --england: var(--england-stripes), linear-gradient(white, white);
+
+  --england-stripes: 
+    /* horizontal red stripe */ linear-gradient(
+      transparent 0%,
+      transparent 40%,
+      var(--uk-red) 0%,
+      var(--uk-red) 60%,
+      transparent 0%,
+      transparent 100%
+    ),
+    /* vertical red stripe */
+    linear-gradient(
+      to right,
+      transparent 0%,
+      transparent calc(50% - 0.1 * var(--flag-height)),
+      var(--uk-red) 0%,
+      var(--uk-red) calc(50% + 0.1 * var(--flag-height)),
+      transparent 0%,
+      transparent 100%
+    );
+
+  /* URL for original file: */
+  /* --uk-real: url("https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg"); */
+  /* URL if I could interpolate strings in HTML: */
+  /* --uk-real: url(import.meta.env.BASE_URL + "/images/2023/uk-flag-from-wikimedia-commons.svg"); */
+  --uk-real: url("/blog/images/2023/uk-flag-from-wikimedia-commons.svg");
+
+  --uk-with-conic-diagonals:
+    var(--england-stripes),
+    var(--orthogonal-white-stripes-for-uk),
+    var(--uk-red-diagonals-conic),
+    var(--scotland);
+
+  --uk-with-linear-diagonals:
+    var(--england-stripes),
+    var(--orthogonal-white-stripes-for-uk),
+    var(--uk-red-diagonals-linear),
+    var(--scotland);
+
+  --orthogonal-white-stripes-for-uk: 
+  /* horizontal white stripe */
+    linear-gradient(
+      transparent 0%,
+      transparent 33.3333%,
+      var(--white) 0%,
+      var(--white) 66.6667%,
+      transparent 0%,
+      transparent 100%
+    ),
+    /* vertical white stripe */
+    linear-gradient(
+      to right,
+      transparent 0%,
+      transparent calc(50% - 0.1667 * var(--flag-height)),
+      var(--white) 0%,
+      var(--white) calc(50% + 0.1667 * var(--flag-height)),
+      transparent 0%,
+      transparent 100%
+    );
+
+  --uk-red-diagonals-conic: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 52.5deg,
+    var(--uk-red) 0deg,
+    var(--uk-red) 60deg,
+    transparent 0deg,
+    transparent 116.5deg,
+    var(--uk-red) 0deg,
+    var(--uk-red) 120deg,
+    transparent 0deg,
+    transparent 232.5deg,
+    var(--uk-red) 0deg,
+    var(--uk-red) 240deg,
+    transparent 0deg,
+    transparent 295deg,
+    var(--uk-red) 0deg,
+    var(--uk-red) 300deg,
+    transparent 0deg,
+    transparent 360deg
+  );
+  --uk-red-diagonals-linear:
+    /* negative diagonal red stripe */
+    linear-gradient(
+      to bottom left,
+      transparent 0%,
+      transparent 46.57%,
+      var(--uk-red) 0%,
+      var(--uk-red) 50%,
+      transparent 0%,
+      transparent 100%
+    ),
+    /* positive diagonal red stripe */
+    linear-gradient(
+      to bottom right,
+      transparent 0%,
+      transparent 46.57%,
+      var(--uk-red) 0%,
+      var(--uk-red) 50%,
+      transparent 0%,
+      transparent 100%
+    );
+}
+
+#figure-and-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: start;
+}
+
+#figure-and-form figure {
+  flex: 1 1 35rem;
+  width: unset;
+}
+
+#figure-and-form form {
+  flex: 1 1 10rem;
+  font-size: smaller;
+}
+
+.canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--canvas-height);
+  /* min-height: 24rem; */
+  background-image: radial-gradient(
+      ellipse at 50% 112.5%,
+      #abf441 4%,
+      #14b21b 12.5%,
+      transparent 0%,
+      transparent 100%
+    ),
+    linear-gradient(skyblue, azure);
+  background-size: 1200% 100%;
+  background-position: center;
+}
+
+.flagpole {
+  width: calc(0.25rem + var(--flag-height) / 20);
+  height: calc((var(--canvas-height) + var(--flag-height)) / 2);
+  background-image: linear-gradient(90deg, grey, darkgrey, grey);
+  transform: translateX(-0.25rem)
+    translateY(calc(50% - var(--flag-height) / 2 - 0.5rem));
+}
+
+/* Cap of flagpole */
+.flagpole::before {
+  content: '';
+  width: calc(100% + 0.25rem);
+  height: 1%;
+  background-image: radial-gradient(darkgrey, grey);
+  border-radius: 50%;
+  display: block;
+  transform: translateX(-0.125rem) translateY(-0.125rem);
+}
+
+/* Base of flagpole */
+.flagpole::after {
+  content: '';
+  width: 100%;
+  height: 1%;
+  background-image: linear-gradient(90deg, grey, darkgrey, grey);
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  top: 100%;
+  transform: translateY(-150%);
+}
+
+.flag {
+  height: var(--flag-height);
+  /* width: calc(var(--flag-height) * var(--flag-aspect-ratio)); */
+  aspect-ratio: var(--flag-aspect-ratio);
+  display: flex;
+}
+
+.strip {
+  background-image: var(--image-src);
+  background-size:
+    calc(var(--flag-height) * var(--flag-aspect-ratio))
+    var(--flag-height);
+  background-position:
+    calc(100% * var(--index) / max(1, var(--strips-count) - 1)) /* max() stops us dividing by zero */
+    50%;
+  flex-grow: 1;
+  height: 100%;
+}
+
+/* Adapted from Josh Comeau’s tutorial */
+@keyframes oscillate {
+  0% {
+    transform: translateY(
+      calc(var(--index) * var(--animation-displacement))
+    );
+  }
+  100% {
+    transform: translateY(
+      calc(var(--index) * var(--animation-displacement) * -1)
+    );
+  }
+}
+.strip {
+  animation: var(--animation, oscillate) var(--animation-duration) infinite;
+  animation-play-state: var(--animation-play-state);
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: backwards;
+  animation-delay: calc(
+    (var(--animation-offset) * var(--index) - var(--animation-duration) * 4.675) / var(--animation-wave-length)
+  );
+}
+
+form > * + * {
+  margin-top: 0.5rem;
+}
+form fieldset {
+  border: 3px solid var(--colour6);
+}
+form fieldset label {
+  display: inline-block;
+  padding-right: 0.5em;
+}
+form #extra-controls {
+  display: flex;
+  flex-direction: column;
+}
+form #extra-controls label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem 0.5rem;
+  justify-content: space-between;
+}
+form #extra-controls label span {
+  flex: 1 0 8rem;
+}
+form label input {
+  vertical-align: 0.125em;
+}
+form label input[type="range"] {
+  flex: 5 1 3rem;
+  /* transform: translateY(-0.1667em); */
+  width: 3rem;
+}
+form #extra-controls label output {
+  flex: 0 1 3rem;
+}
+</style>
+
+# CSS flags
+
+<div id="figure-and-form">
+
+  <figure>
+    <div class="canvas">
+      <div class="flagpole"></div>
+      <div class="flag">
+        <div class="strip" style="--index: 0;"></div>
+        <div class="strip" style="--index: 1;"></div>
+        <div class="strip" style="--index: 2;"></div>
+        <div class="strip" style="--index: 3;"></div>
+        <div class="strip" style="--index: 4;"></div>
+        <div class="strip" style="--index: 5;"></div>
+        <div class="strip" style="--index: 6;"></div>
+        <div class="strip" style="--index: 7;"></div>
+        <div class="strip" style="--index: 8;"></div>
+        <div class="strip" style="--index: 9;"></div>
+        <div class="strip" style="--index: 10;"></div>
+        <div class="strip" style="--index: 11;"></div>
+        <div class="strip" style="--index: 12;"></div>
+        <div class="strip" style="--index: 13;"></div>
+        <div class="strip" style="--index: 14;"></div>
+        <div class="strip" style="--index: 15;"></div>
+        <div class="strip" style="--index: 16;"></div>
+        <div class="strip" style="--index: 17;"></div>
+        <div class="strip" style="--index: 18;"></div>
+        <div class="strip" style="--index: 19;"></div>
+        <div class="strip" style="--index: 20;"></div>
+        <div class="strip" style="--index: 21;"></div>
+        <div class="strip" style="--index: 22;"></div>
+        <div class="strip" style="--index: 23;"></div>
+        <div class="strip" style="--index: 24;"></div>
+        <div class="strip" style="--index: 25;"></div>
+        <div class="strip" style="--index: 26;"></div>
+        <div class="strip" style="--index: 27;"></div>
+        <div class="strip" style="--index: 28;"></div>
+        <div class="strip" style="--index: 29;"></div>
+        <div class="strip" style="--index: 30;"></div>
+        <div class="strip" style="--index: 31;"></div>
+        <div class="strip" style="--index: 32;"></div>
+        <div class="strip" style="--index: 33;"></div>
+        <div class="strip" style="--index: 34;"></div>
+        <div class="strip" style="--index: 35;"></div>
+        <div class="strip" style="--index: 36;"></div>
+        <div class="strip" style="--index: 37;"></div>
+        <div class="strip" style="--index: 38;"></div>
+        <div class="strip" style="--index: 39;"></div>
+        <div class="strip" style="--index: 40;"></div>
+        <div class="strip" style="--index: 41;"></div>
+        <div class="strip" style="--index: 42;"></div>
+        <div class="strip" style="--index: 43;"></div>
+        <div class="strip" style="--index: 44;"></div>
+        <div class="strip" style="--index: 45;"></div>
+        <div class="strip" style="--index: 46;"></div>
+        <div class="strip" style="--index: 47;"></div>
+        <div class="strip" style="--index: 48;"></div>
+        <div class="strip" style="--index: 49;"></div>
+        <div class="strip" style="--index: 50;"></div>
+        <div class="strip" style="--index: 51;"></div>
+        <div class="strip" style="--index: 52;"></div>
+        <div class="strip" style="--index: 53;"></div>
+        <div class="strip" style="--index: 54;"></div>
+        <div class="strip" style="--index: 55;"></div>
+        <div class="strip" style="--index: 56;"></div>
+        <div class="strip" style="--index: 57;"></div>
+        <div class="strip" style="--index: 58;"></div>
+        <div class="strip" style="--index: 59;"></div>
+      </div>
+    </div>
+    <figcaption>
+      A flag animated using CSS
+    </figcaption>
+  </figure>
+
+  <form>
+    <button type="button" id="pause-or-play" aria-pressed="true">Pause animation</button>
+    <fieldset id="flag-fieldset">
+      <legend>Flag</legend>
+      <label><input type="radio" name="flag" value="eight-stripe-pride" /> Eight-stripe rainbow </label>
+      <label><input type="radio" name="flag" value="pride" /> Six-stripe rainbow </label>
+      <label><input type="radio" name="flag" value="pride-progress" checked /> Progress pride </label>
+      <label><input type="radio" name="flag" value="pride-progress-intersex" /> Intersex progress pride </label>
+      <label><input type="radio" name="flag" value="bisexual" /> Bisexual </label>
+      <label><input type="radio" name="flag" value="trans" /> Transgender </label>
+      <label><input type="radio" name="flag" value="intersex" /> Intersex </label>
+      <!-- <label><input type="radio" name="flag" value="intersex-progress-real" /> Intersex (SVG) </label> -->
+      <label><input type="radio" name="flag" value="asexual" /> Asexual </label>
+      <label><input type="radio" name="flag" value="pansexual" /> Pansexual </label>
+      <label><input type="radio" name="flag" value="nonbinary" /> Nonbinary </label>
+      <label><input type="radio" name="flag" value="uk-with-linear-diagonals" /> UK (wrong) </label>
+      <label><input type="radio" name="flag" value="uk-with-conic-diagonals" /> UK (also wrong) </label>
+      <label><input type="radio" name="flag" value="uk-real" /> UK (SVG) </label>
+      <label><input type="radio" name="flag" value="scotland" /> Scotland </label>
+      <label><input type="radio" name="flag" value="england" /> England </label>
+    </fieldset>
+    <div id="extra-controls">
+      <label>
+        <span>Flag size</span>
+        <input type="range" id="flag-size-input" min="0.05" step="0.01" value="1" max="1" />
+        <output id="flag-size-output" for="flag-size-input">(1)</output>
+      </label>
+      <label>
+        <span>Flag aspect ratio</span>
+        <input type="range" id="flag-aspect-ratio-input" min="1" step="0.01" value="1.6667" max="2" />
+        <output id="flag-aspect-ratio-output" for="flag-aspect-ratio-input">(1.67)</output>
+      </label>
+      <label>
+        <span>Number of strips</span>
+        <input type="range" id="strips-count-input" min="1" step="1" value="60" max="60" />
+        <output id="strips-count-output" for="strips-count-input">(60)</output>
+      </label>
+      <label>
+        <span>Wave amplitude</span>
+        <input type="range" id="wave-amplitude-input" min="0" step="0.01" value="0.33" max="1" />
+        <output id="wave-amplitude-output" for="wave-amplitude-input">(33%)</output>
+      </label>
+      <label>
+        <span>Wave length</span>
+        <input type="range" id="wave-length-input" min="0.1" step="0.1" value="1" max="5" />
+        <output id="wave-length-output" for="wave-length-input">(100%)</output>
+      </label>
+      <label>
+        <span>Wave period</span>
+        <input type="range" id="wave-period-input" min="0.1" step="0.1" value="1" max="10" />
+        <output id="wave-period-output" for="wave-period-input">(1s)</output>
+      </label>
+    </div>
+  </form>
+</div>
+
+## How I made this
+
+I was inspired by [Josh Comeau’s article on animating flags](https://www.joshwcomeau.com/animation/pride-flags/).
+His technique was only for flags made of horizontal stripes, but I figured I could make it work for more complicated designs.
+
+Comeau and I have used LGBT+ flags, both to illustrate the CSS techniques and to show support for Pride.
+
+### Waving animation
+
+Josh Comeau divided the flag into vertical strips and moved the strips up and down with a CSS animation.
+Each strip moves at different times to create the over-all wave.
+
+The left side is tethered to an invisible flagpole.
+The distance each strip moves is calculated from its index (its position in the sequence from left to right), so the left-most strip doesn’t move at all and the right-most strip is the one that moves the farthest.
+
+I have copied Comeau’s animation code, with minor differences:
+
+- I added an `animation-play-state` property to toggle between playing and paused.
+- Comeau has versions where the flag is and isn’t tethered to a flagpole.
+- What he calls “billow”, I call “wave amplitude” (describing the whole flag) or “displacement” (describing a strip), because I’m a nerd.
+
+Also, Comeau doesn’t let the number of strips go below 3, but I allow you to go down to 1.
+The effect is that if there’s only one strip, there’s no movement at all, since the left-most strip is always against the flagpole.
+You simply see the flag as a static rectangle.
+
+### Gradients
+
+I have drawn a flagpole (and ground, and sky) to give the flag some visual context.
+But the main difference between Comeau’s flag animations and mine is that my flags don’t have to be horizontal stripes.
+
+In Comeau’s version, each strip was filled with a vertical linear gradient, with hard stops between colours to give the flag proper stripes.
+This works perfectly for flags that consist only of horizontal stripes; his three examples were the Philadelphia eight-stripe rainbow, the transgender flag, and the pansexual flag.
+
+But I was wondering whether I could make it work for any flag that can be made out of CSS gradients, or indeed any rectangular flag.
+So I put the same `background-image` property on each strip, but I use the `background-size` and `background-position` properties to make each strip into the correct segment of the flag.
+The image itself is composed of at least one gradient (depending on the flag), with linear, radial, and conical gradients overlaid in front of each other to produce the flag’s design.
+
+This technique of overlaying gradients means that the flag can now have stripes in different directions (as in a cross), or chevrons (as in the progressive pride flag), or circles (as in the intersex flag).
+
+### UK flag
+
+I can almost do the entire UK flag, but the diagonal red stripes are impossible to recreate purely with gradients.
+Those stripes are supposed to be of constant width (of 4% of the horizontal width of the flag), and offset so that they’re each on the anti-clockwise side of the white diagonal stripes that they lie on front of.
+
+The best I can do is either to use two linear gradients, which makes the widths of the stripes constant but makes the offsets of two of the four red diagonals wrong; or use one conical gradient, which makes the offset okay but the stripes wedge-shaped.
+Another problem with the conical gradient is that, in the absense of trigonometric functions, I can create the gradient for one aspect ratio only (5:3 or 1.67).
+(Trigonometry is coming to CSS, but not yet widely supported.)
+
+To get around these limitations, I can use the `background-image` property with the URL of an image file, instead of gradients.
+So I found an SVG version of the flag on Wikimedia Commons and made it one of my flag options too.
+
+(I then found its aspect ratio wouldn’t change from 5:3, so I set `preserveAspectRatio="none"` on its `<svg>` element.)
+
+It’s kinda cheating to call it a CSS flag.
+But it’s an option. 🇬🇧
+
+### Controls
+
+Josh Comeau had controls on his flag demos, such as for the design of flag (rainbow or trans), the number of strips (or segments) to divide the flag into, and the amplitude of the wave (the amount of billow).
+
+CSS variables (custom properties) make these factors easy to manage.
+
+I added more controls to really show off the CSS variables.
+Adapting flags to look decent in different aspect ratios was a little extra challenge.
+
+## Pixel gaps
+
+If you’re seeing thin gaps between strips, try adjusting the size or aspect ratio of the flag, or the number of strips.
+Or switch to a Chromium browser (such as Opera or Chrome), since Chromium seems to render the strips better than Firefox or Safari.
+(It’s a rounding error.)
+
+Similarly, the ring on the intersex-inclusive progress flag changes thickness when the flag’s aspect ratio changes, unless you’re in Chromium.
+This is another rounding error.
+
+## Flag choice
+
+I’ve picked several LGBT+ flags, to show off different gradients and combinations thereof.
+(And also to celebrate Pride, of course!
+I published this on the day of my city’s Pride 2023 events.)
+
+I also have the flags of England, Scotland, and the UK, since the latter flag is made up of the other two flags (plus Northern Ireland’s diagonal stripes).
+Unfortunately I couldn’t get those diagonal stripes correct.
+
+Colours are mostly taken from files on Wikimedia Commons, but I have not copied all of the colours and measurements exactly.
+I tweaked some of the rainbow colours, for example.
+
+But anyway, happy Pride! It’s always a good time to elevate queer voices, celebrate our achievements, and defend our rights to live as our gender and to love who we love. 🏳️‍🌈
+
+## Flag design credits
+
+<dl>
+<dt>Eight-stripe rainbow flag</dt><dd>Gilbert Baker, 1978</dd>
+<dt>Bisexual flag</dt><dd>Michael Page, 1998</dd>
+<dt>Transgender flag</dt><dd>Monica Helms, 1999</dd>
+<dt>Asexual flag</dt><dd>Asexual Visibility and Education Network, 2010</dd>
+<dt>Pansexual flag</dt><dd>Tumblr blog PansexualFlag, 2010</dd>
+<dt>Intersex flag</dt><dd>Morgan Carpenter, 2013</dd>
+<dt>Nonbinary flag</dt><dd>Kye Rowan, 2014</dd>
+<dt>Progressive pride flag</dt><dd>Daniel Quasar, 2018</dd>
+<dt>Intersex-inclusive progressive pride flag</dt><dd>Valentino Vecchietti, 2021</dd>
+</dl>
+
+<script>
+  const root = document.querySelector(':root');
+  const pauseOrPlayButton = document.getElementById('pause-or-play');
+  const flagOptions = document.querySelectorAll('#flag-fieldset input');
+  const flagSizeInput = document.getElementById('flag-size-input');
+  const flagSizeOutput = document.getElementById('flag-size-output');
+  const flagAspectRatioInput = document.getElementById('flag-aspect-ratio-input');
+  const flagAspectRatioOutput = document.getElementById('flag-aspect-ratio-output');
+  const stripsCountInput = document.getElementById('strips-count-input');
+  const stripsCountOutput = document.getElementById('strips-count-output');
+  const waveAmplitudeInput = document.getElementById('wave-amplitude-input');
+  const waveAmplitudeOutput = document.getElementById('wave-amplitude-output');
+  const waveLengthInput = document.getElementById('wave-length-input');
+  const waveLengthOutput = document.getElementById('wave-length-output');
+  const wavePeriodInput = document.getElementById('wave-period-input');
+  const wavePeriodOutput = document.getElementById('wave-period-output');
+  const strips = document.querySelectorAll('.strip');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+  prefersReducedMotion.matches ? pauseAnimation() : playAnimation();
+
+  function initialiseFlag() {
+    const initiallyCheckedInput = document.querySelector('#flag-fieldset input:checked')
+    root.style.setProperty('--image-src', `var(--${initiallyCheckedInput.value})`);
+    setFlagSize();
+    setFlagAspectRatio();
+    setStripsCount();
+    setWaveAmplitude();
+    setWaveLength();
+    setWavePeriod();
+  }
+
+  initialiseFlag();
+
+  function pauseAnimation() {
+      root.style.setProperty('--animation-play-state', 'paused');
+      pauseOrPlayButton.setAttribute('aria-pressed', 'false')
+      pauseOrPlayButton.textContent = 'Play animation';
+  }
+  function playAnimation() {
+      root.style.setProperty('--animation-play-state', 'running');
+      pauseOrPlayButton.setAttribute('aria-pressed', 'true')
+      pauseOrPlayButton.textContent = 'Pause animation';
+  }
+
+  pauseOrPlayButton.addEventListener('click', (event) => {
+    if (pauseOrPlayButton.getAttribute('aria-pressed') === 'true') {
+      pauseAnimation();
+    }
+    else {
+      playAnimation();
+    }
+  })
+
+  flagOptions.forEach((option) => {
+    option.addEventListener('click', (event) => {
+      root.style.setProperty('--image-src', `var(--${option.value})`);
+    })
+  })
+
+  function setFlagSize() {
+    const newFlagHeightMultiplier = flagSizeInput.value;
+    root.style.setProperty('--flag-height-multiplier', newFlagHeightMultiplier);
+    flagSizeOutput.textContent = `(${Math.round(newFlagHeightMultiplier * 100)}%)`;
+  }
+
+  function setFlagAspectRatio() {
+    const newFlagAspectRatio = flagAspectRatioInput.value;
+    root.style.setProperty('--flag-aspect-ratio', newFlagAspectRatio);
+    flagAspectRatioOutput.textContent = `(${newFlagAspectRatio})`;
+  }
+
+  function setStripsCount() {
+    const newStripsCount = stripsCountInput.value;
+    root.style.setProperty('--strips-count', newStripsCount);
+    strips.forEach((strip, index) => {
+      strip.style.setProperty('flex-grow', index < newStripsCount ? 1 : 0);
+    })
+    stripsCountOutput.textContent = `(${newStripsCount})`;
+  }
+
+  function setWaveAmplitude() {
+    const newAnimationDisplacementFactor = waveAmplitudeInput.value;
+    root.style.setProperty('--animation-displacement-factor', newAnimationDisplacementFactor);
+    waveAmplitudeOutput.textContent = `(${Math.round(newAnimationDisplacementFactor * 100)}%)`;
+  }
+
+  function setWaveLength() {
+    const newWaveLength = waveLengthInput.value;
+    root.style.setProperty('--animation-wave-length', newWaveLength);
+    console.log({newWaveLength});
+    waveLengthOutput.textContent = `(${Math.round(newWaveLength * 100)}%)`;
+  }
+
+  function setWavePeriod() {
+    const newAnimationDuration = wavePeriodInput.value + "s";
+    root.style.setProperty('--animation-duration', newAnimationDuration);
+    wavePeriodOutput.textContent = `(${newAnimationDuration})`;
+  }
+
+  flagSizeInput.addEventListener('input', (event) => { setFlagSize(); })
+  flagAspectRatioInput.addEventListener('input', (event) => { setFlagAspectRatio(); })
+  stripsCountInput.addEventListener('input', (event) => { setStripsCount(); })
+  waveAmplitudeInput.addEventListener('input', (event) => { setWaveAmplitude(); })
+  waveLengthInput.addEventListener('input', (event) => { setWaveLength(); })
+  wavePeriodInput.addEventListener('input', (event) => { setWavePeriod(); })
+</script>
