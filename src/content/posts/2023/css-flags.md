@@ -12,9 +12,9 @@ draft: false
   flex-grow: 0;
 }
 :root {
-  /* Variables controlled by the <form> elements */
+  /* Variables controlled by the <form> children: */
   --animation-play-state: running;
-  --image-src: var(--progress-flag);
+  --flag-variant: var(--progress-flag);
   --flag-height-multiplier: 1;
   --flag-aspect-ratio: 5 / 3;
   --strips-count: 60;
@@ -22,24 +22,23 @@ draft: false
   --animation-wave-length: 1;
   --animation-duration: 1s;
 
-  --flag-height: calc(var(--default-flag-height) * var(--flag-height-multiplier));
-  --default-flag-height: min(15rem, calc(66.6667vw / (var(--flag-aspect-ratio))));
+  /* Numeric variables not directly set by <form> children: */
+  --flag-height: calc(var(--flag-height-multiplier) * min(15rem, (66.6667vw / var(--flag-aspect-ratio))));
   --canvas-height:
     clamp(
       var(--flag-height) + 6rem,
       100vh - 6rem,
       45rem
     );
-  --animation-total-displacement: calc(
-    var(--animation-displacement-factor) * var(--flag-height)
+  --animation-strip-displacement: calc(
+    var(--animation-displacement-factor) * var(--flag-height) / var(--strips-count)
   );
 
-  --animation-displacement: calc(
-    var(--animation-total-displacement) / var(--strips-count)
-  );
-  --animation-offset: calc(var(--animation-duration) / var(--strips-count));
+  /* Non-gradient variables used by some flags: */
+  --chevron-width: calc(var(--flag-height) / 7);
+  --chevron-width-intersex: calc(var(--flag-height) / 10);
 
-  /* Colour palette */
+  /* Colour palette: */
   --rainbow-pink: #ff5ca8 /* Wikimedia has #ff69b4 */;
   --rainbow-red: #e50000;
   --rainbow-orange: #f36700 /* Wikimedia has #e58d00 */;
@@ -69,11 +68,7 @@ draft: false
   --uk-blue: #012169 /* #0b267c is brighter*/;
   --uk-red: #c8102e /* #da151b is brighter */;
 
-  /* Non-gradient variables used by some flags */
-  --chevron-width: calc(var(--flag-height) / 7);
-  --chevron-width-intersex: calc(var(--flag-height) / 10);
-
-  /* Flags to be used in --image-src */
+  /* Flags to be used in --flag-variant: */
   /* As per Josh Comeau and @myfonj, I could also rewrite the gradients with double-position syntax:
     linear-gradient(
       to bottom,
@@ -316,6 +311,25 @@ draft: false
 
   --england-flag: var(--england-stripes-flagpart), linear-gradient(white, white);
 
+  /* URL for original file: */
+  /* --uk-real-flag: url("https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg"); */
+  /* URL if I could interpolate strings in HTML: */
+  /* --uk-real-flag: url(import.meta.env.BASE_URL + "/images/2023/uk-flag-from-wikimedia-commons.svg"); */
+  --uk-real-flag: url("/blog/images/2023/uk-flag-from-wikimedia-commons.svg");
+
+  --uk-with-conic-diagonals-flag:
+    var(--england-stripes-flagpart),
+    var(--orthogonal-white-stripes-for-uk-flagpart),
+    var(--uk-red-diagonals-conic-flagpart),
+    var(--scotland-flag);
+
+  --uk-with-linear-diagonals-flag:
+    var(--england-stripes-flagpart),
+    var(--orthogonal-white-stripes-for-uk-flagpart),
+    var(--uk-red-diagonals-linear-flagpart),
+    var(--scotland-flag);
+
+  /* Gradients shared between flags without being complete flags themselves: */
   --england-stripes-flagpart: 
     /* horizontal red stripe */ linear-gradient(
       transparent 0%,
@@ -335,24 +349,6 @@ draft: false
       transparent 0%,
       transparent 100%
     );
-
-  /* URL for original file: */
-  /* --uk-real-flag: url("https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg"); */
-  /* URL if I could interpolate strings in HTML: */
-  /* --uk-real-flag: url(import.meta.env.BASE_URL + "/images/2023/uk-flag-from-wikimedia-commons.svg"); */
-  --uk-real-flag: url("/blog/images/2023/uk-flag-from-wikimedia-commons.svg");
-
-  --uk-with-conic-diagonals-flag:
-    var(--england-stripes-flagpart),
-    var(--orthogonal-white-stripes-for-uk-flagpart),
-    var(--uk-red-diagonals-conic-flagpart),
-    var(--scotland-flag);
-
-  --uk-with-linear-diagonals-flag:
-    var(--england-stripes-flagpart),
-    var(--orthogonal-white-stripes-for-uk-flagpart),
-    var(--uk-red-diagonals-linear-flagpart),
-    var(--scotland-flag);
 
   --orthogonal-white-stripes-for-uk-flagpart: 
   /* horizontal white stripe */
@@ -495,12 +491,12 @@ draft: false
 }
 
 .strip {
-  background-image: var(--image-src);
+  background-image: var(--flag-variant);
   background-size:
     calc(var(--flag-height) * var(--flag-aspect-ratio))
     var(--flag-height);
   background-position:
-    calc(100% * var(--index) / max(1, var(--strips-count) - 1)) /* max() stops us dividing by zero */
+    calc(100% * var(--strip-index) / max(1, var(--strips-count) - 1)) /* max() stops us dividing by zero */
     50%;
   flex-grow: 1;
   height: 100%;
@@ -510,23 +506,23 @@ draft: false
 @keyframes oscillate {
   0% {
     transform: translateY(
-      calc(var(--index) * var(--animation-displacement))
+      calc(var(--strip-index) * var(--animation-strip-displacement))
     );
   }
   100% {
     transform: translateY(
-      calc(var(--index) * var(--animation-displacement) * -1)
+      calc(var(--strip-index) * var(--animation-strip-displacement) * -1)
     );
   }
 }
 .strip {
-  animation: var(--animation, oscillate) var(--animation-duration) infinite;
+  animation: oscillate var(--animation-duration) infinite;
   animation-play-state: var(--animation-play-state);
   animation-direction: alternate;
   animation-timing-function: ease-in-out;
   animation-fill-mode: backwards;
   animation-delay: calc(
-    (var(--animation-offset) * var(--index) - var(--animation-duration) * 4.675) / var(--animation-wave-length)
+    (var(--animation-duration) * var(--strip-index) / var(--strips-count) - var(--animation-duration)) / var(--animation-wave-length)
   );
 }
 
@@ -558,7 +554,6 @@ form label input {
 }
 form label input[type="range"] {
   flex: 5 1 3rem;
-  /* transform: translateY(-0.1667em); */
   width: 3rem;
 }
 form #extra-controls label output {
@@ -574,66 +569,66 @@ form #extra-controls label output {
     <div class="canvas">
       <div class="flagpole"></div>
       <div class="flag">
-        <div class="strip" style="--index: 0;"></div>
-        <div class="strip" style="--index: 1;"></div>
-        <div class="strip" style="--index: 2;"></div>
-        <div class="strip" style="--index: 3;"></div>
-        <div class="strip" style="--index: 4;"></div>
-        <div class="strip" style="--index: 5;"></div>
-        <div class="strip" style="--index: 6;"></div>
-        <div class="strip" style="--index: 7;"></div>
-        <div class="strip" style="--index: 8;"></div>
-        <div class="strip" style="--index: 9;"></div>
-        <div class="strip" style="--index: 10;"></div>
-        <div class="strip" style="--index: 11;"></div>
-        <div class="strip" style="--index: 12;"></div>
-        <div class="strip" style="--index: 13;"></div>
-        <div class="strip" style="--index: 14;"></div>
-        <div class="strip" style="--index: 15;"></div>
-        <div class="strip" style="--index: 16;"></div>
-        <div class="strip" style="--index: 17;"></div>
-        <div class="strip" style="--index: 18;"></div>
-        <div class="strip" style="--index: 19;"></div>
-        <div class="strip" style="--index: 20;"></div>
-        <div class="strip" style="--index: 21;"></div>
-        <div class="strip" style="--index: 22;"></div>
-        <div class="strip" style="--index: 23;"></div>
-        <div class="strip" style="--index: 24;"></div>
-        <div class="strip" style="--index: 25;"></div>
-        <div class="strip" style="--index: 26;"></div>
-        <div class="strip" style="--index: 27;"></div>
-        <div class="strip" style="--index: 28;"></div>
-        <div class="strip" style="--index: 29;"></div>
-        <div class="strip" style="--index: 30;"></div>
-        <div class="strip" style="--index: 31;"></div>
-        <div class="strip" style="--index: 32;"></div>
-        <div class="strip" style="--index: 33;"></div>
-        <div class="strip" style="--index: 34;"></div>
-        <div class="strip" style="--index: 35;"></div>
-        <div class="strip" style="--index: 36;"></div>
-        <div class="strip" style="--index: 37;"></div>
-        <div class="strip" style="--index: 38;"></div>
-        <div class="strip" style="--index: 39;"></div>
-        <div class="strip" style="--index: 40;"></div>
-        <div class="strip" style="--index: 41;"></div>
-        <div class="strip" style="--index: 42;"></div>
-        <div class="strip" style="--index: 43;"></div>
-        <div class="strip" style="--index: 44;"></div>
-        <div class="strip" style="--index: 45;"></div>
-        <div class="strip" style="--index: 46;"></div>
-        <div class="strip" style="--index: 47;"></div>
-        <div class="strip" style="--index: 48;"></div>
-        <div class="strip" style="--index: 49;"></div>
-        <div class="strip" style="--index: 50;"></div>
-        <div class="strip" style="--index: 51;"></div>
-        <div class="strip" style="--index: 52;"></div>
-        <div class="strip" style="--index: 53;"></div>
-        <div class="strip" style="--index: 54;"></div>
-        <div class="strip" style="--index: 55;"></div>
-        <div class="strip" style="--index: 56;"></div>
-        <div class="strip" style="--index: 57;"></div>
-        <div class="strip" style="--index: 58;"></div>
-        <div class="strip" style="--index: 59;"></div>
+        <div class="strip" style="--strip-index: 0;"></div>
+        <div class="strip" style="--strip-index: 1;"></div>
+        <div class="strip" style="--strip-index: 2;"></div>
+        <div class="strip" style="--strip-index: 3;"></div>
+        <div class="strip" style="--strip-index: 4;"></div>
+        <div class="strip" style="--strip-index: 5;"></div>
+        <div class="strip" style="--strip-index: 6;"></div>
+        <div class="strip" style="--strip-index: 7;"></div>
+        <div class="strip" style="--strip-index: 8;"></div>
+        <div class="strip" style="--strip-index: 9;"></div>
+        <div class="strip" style="--strip-index: 10;"></div>
+        <div class="strip" style="--strip-index: 11;"></div>
+        <div class="strip" style="--strip-index: 12;"></div>
+        <div class="strip" style="--strip-index: 13;"></div>
+        <div class="strip" style="--strip-index: 14;"></div>
+        <div class="strip" style="--strip-index: 15;"></div>
+        <div class="strip" style="--strip-index: 16;"></div>
+        <div class="strip" style="--strip-index: 17;"></div>
+        <div class="strip" style="--strip-index: 18;"></div>
+        <div class="strip" style="--strip-index: 19;"></div>
+        <div class="strip" style="--strip-index: 20;"></div>
+        <div class="strip" style="--strip-index: 21;"></div>
+        <div class="strip" style="--strip-index: 22;"></div>
+        <div class="strip" style="--strip-index: 23;"></div>
+        <div class="strip" style="--strip-index: 24;"></div>
+        <div class="strip" style="--strip-index: 25;"></div>
+        <div class="strip" style="--strip-index: 26;"></div>
+        <div class="strip" style="--strip-index: 27;"></div>
+        <div class="strip" style="--strip-index: 28;"></div>
+        <div class="strip" style="--strip-index: 29;"></div>
+        <div class="strip" style="--strip-index: 30;"></div>
+        <div class="strip" style="--strip-index: 31;"></div>
+        <div class="strip" style="--strip-index: 32;"></div>
+        <div class="strip" style="--strip-index: 33;"></div>
+        <div class="strip" style="--strip-index: 34;"></div>
+        <div class="strip" style="--strip-index: 35;"></div>
+        <div class="strip" style="--strip-index: 36;"></div>
+        <div class="strip" style="--strip-index: 37;"></div>
+        <div class="strip" style="--strip-index: 38;"></div>
+        <div class="strip" style="--strip-index: 39;"></div>
+        <div class="strip" style="--strip-index: 40;"></div>
+        <div class="strip" style="--strip-index: 41;"></div>
+        <div class="strip" style="--strip-index: 42;"></div>
+        <div class="strip" style="--strip-index: 43;"></div>
+        <div class="strip" style="--strip-index: 44;"></div>
+        <div class="strip" style="--strip-index: 45;"></div>
+        <div class="strip" style="--strip-index: 46;"></div>
+        <div class="strip" style="--strip-index: 47;"></div>
+        <div class="strip" style="--strip-index: 48;"></div>
+        <div class="strip" style="--strip-index: 49;"></div>
+        <div class="strip" style="--strip-index: 50;"></div>
+        <div class="strip" style="--strip-index: 51;"></div>
+        <div class="strip" style="--strip-index: 52;"></div>
+        <div class="strip" style="--strip-index: 53;"></div>
+        <div class="strip" style="--strip-index: 54;"></div>
+        <div class="strip" style="--strip-index: 55;"></div>
+        <div class="strip" style="--strip-index: 56;"></div>
+        <div class="strip" style="--strip-index: 57;"></div>
+        <div class="strip" style="--strip-index: 58;"></div>
+        <div class="strip" style="--strip-index: 59;"></div>
       </div>
     </div>
     <figcaption>
@@ -834,7 +829,7 @@ But anyway, happy Pride! It’s always a good time to elevate queer voices, cele
 
   function initialiseFlag() {
     const initiallyCheckedInput = document.querySelector('#flag-fieldset input:checked')
-    root.style.setProperty('--image-src', `var(--${initiallyCheckedInput.value})`);
+    root.style.setProperty('--flag-variant', `var(--${initiallyCheckedInput.value})`);
     setFlagSize();
     setFlagAspectRatio();
     setStripsCount();
@@ -867,7 +862,7 @@ But anyway, happy Pride! It’s always a good time to elevate queer voices, cele
 
   flagOptions.forEach((option) => {
     option.addEventListener('click', (event) => {
-      root.style.setProperty('--image-src', `var(--${option.value})`);
+      root.style.setProperty('--flag-variant', `var(--${option.value})`);
     })
   })
 
