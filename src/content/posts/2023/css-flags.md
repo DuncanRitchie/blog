@@ -794,6 +794,18 @@ But anyway, happy Pride! It’s always a good time to elevate queer voices, cele
 <dt>Intersex-inclusive progressive pride flag</dt><dd>Valentino Vecchietti, 2021</dd>
 </dl>
 
+## Blooper
+
+<figure>
+  <img
+    width="360"
+    style="aspect-ratio: 442 / 406"
+    src="/blog/images/2023/progress-flag-broken.png"
+    alt="Intersex-inclusive progress flag divided into six vertical strips, of which the last five are reversed"
+  />
+  <figcaption>Flag with strips in wrong order</figcaption>
+</figure>
+
 <script>
   const root = document.querySelector(':root');
   const pauseOrPlayButton = document.getElementById('pause-or-play');
