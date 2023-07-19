@@ -808,38 +808,9 @@ But anyway, happy Pride! It’s always a good time to elevate queer voices, cele
 
 <script>
   const root = document.querySelector(':root');
+
+  // For the pause/play button
   const pauseOrPlayButton = document.getElementById('pause-or-play');
-  const flagOptions = document.querySelectorAll('#flag-fieldset input');
-  const flagSizeInput = document.getElementById('flag-size-input');
-  const flagSizeOutput = document.getElementById('flag-size-output');
-  const flagAspectRatioInput = document.getElementById('flag-aspect-ratio-input');
-  const flagAspectRatioOutput = document.getElementById('flag-aspect-ratio-output');
-  const stripsCountInput = document.getElementById('strips-count-input');
-  const stripsCountOutput = document.getElementById('strips-count-output');
-  const waveAmplitudeInput = document.getElementById('wave-amplitude-input');
-  const waveAmplitudeOutput = document.getElementById('wave-amplitude-output');
-  const waveLengthInput = document.getElementById('wave-length-input');
-  const waveLengthOutput = document.getElementById('wave-length-output');
-  const wavePeriodInput = document.getElementById('wave-period-input');
-  const wavePeriodOutput = document.getElementById('wave-period-output');
-  const strips = document.querySelectorAll('.strip');
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-
-  prefersReducedMotion.matches ? pauseAnimation() : playAnimation();
-
-  function initialiseFlag() {
-    const initiallyCheckedInput = document.querySelector('#flag-fieldset input:checked')
-    root.style.setProperty('--flag-variant', `var(--${initiallyCheckedInput.value})`);
-    setFlagSize();
-    setFlagAspectRatio();
-    setStripsCount();
-    setWaveAmplitude();
-    setWaveLength();
-    setWavePeriod();
-  }
-
-  initialiseFlag();
-
   function pauseAnimation() {
       root.style.setProperty('--animation-play-state', 'paused');
       pauseOrPlayButton.setAttribute('aria-pressed', 'false')
@@ -850,7 +821,6 @@ But anyway, happy Pride! It’s always a good time to elevate queer voices, cele
       pauseOrPlayButton.setAttribute('aria-pressed', 'true')
       pauseOrPlayButton.textContent = 'Pause animation';
   }
-
   pauseOrPlayButton.addEventListener('click', (event) => {
     if (pauseOrPlayButton.getAttribute('aria-pressed') === 'true') {
       pauseAnimation();
@@ -860,24 +830,38 @@ But anyway, happy Pride! It’s always a good time to elevate queer voices, cele
     }
   })
 
+  // For the flag variant options
+  const flagOptions = document.querySelectorAll('#flag-fieldset input');
   flagOptions.forEach((option) => {
     option.addEventListener('click', (event) => {
       root.style.setProperty('--flag-variant', `var(--${option.value})`);
     })
   })
 
+  // For the flag size controller
+  const flagSizeInput = document.getElementById('flag-size-input');
+  const flagSizeOutput = document.getElementById('flag-size-output');
   function setFlagSize() {
     const newFlagHeightMultiplier = flagSizeInput.value;
     root.style.setProperty('--flag-height-multiplier', newFlagHeightMultiplier);
     flagSizeOutput.textContent = `(${Math.round(newFlagHeightMultiplier * 100)}%)`;
   }
+  flagSizeInput.addEventListener('input', (event) => { setFlagSize(); })
 
+  // For the flag aspect-ratio controller
+  const flagAspectRatioInput = document.getElementById('flag-aspect-ratio-input');
+  const flagAspectRatioOutput = document.getElementById('flag-aspect-ratio-output');
   function setFlagAspectRatio() {
     const newFlagAspectRatio = flagAspectRatioInput.value;
     root.style.setProperty('--flag-aspect-ratio', newFlagAspectRatio);
     flagAspectRatioOutput.textContent = `(${newFlagAspectRatio})`;
   }
+  flagAspectRatioInput.addEventListener('input', (event) => { setFlagAspectRatio(); })
 
+  // For the strips-count controller
+  const stripsCountInput = document.getElementById('strips-count-input');
+  const stripsCountOutput = document.getElementById('strips-count-output');
+  const strips = document.querySelectorAll('.strip');
   function setStripsCount() {
     const newStripsCount = stripsCountInput.value;
     root.style.setProperty('--strips-count', newStripsCount);
@@ -886,30 +870,52 @@ But anyway, happy Pride! It’s always a good time to elevate queer voices, cele
     })
     stripsCountOutput.textContent = `(${newStripsCount})`;
   }
+  stripsCountInput.addEventListener('input', (event) => { setStripsCount(); })
 
+  // For the wave amplitude controller
+  const waveAmplitudeInput = document.getElementById('wave-amplitude-input');
+  const waveAmplitudeOutput = document.getElementById('wave-amplitude-output');
   function setWaveAmplitude() {
     const newAnimationDisplacementFactor = waveAmplitudeInput.value;
     root.style.setProperty('--animation-displacement-factor', newAnimationDisplacementFactor);
     waveAmplitudeOutput.textContent = `(${Math.round(newAnimationDisplacementFactor * 100)}%)`;
   }
+  waveAmplitudeInput.addEventListener('input', (event) => { setWaveAmplitude(); })
 
+  // For the wave length controller
+  const waveLengthInput = document.getElementById('wave-length-input');
+  const waveLengthOutput = document.getElementById('wave-length-output');
   function setWaveLength() {
     const newWaveLength = waveLengthInput.value;
     root.style.setProperty('--animation-wave-length', newWaveLength);
-    console.log({newWaveLength});
     waveLengthOutput.textContent = `(${Math.round(newWaveLength * 100)}%)`;
   }
+  waveLengthInput.addEventListener('input', (event) => { setWaveLength(); })
 
+  // For the wave period controller
+  const wavePeriodInput = document.getElementById('wave-period-input');
+  const wavePeriodOutput = document.getElementById('wave-period-output');
   function setWavePeriod() {
     const newAnimationDuration = wavePeriodInput.value + "s";
     root.style.setProperty('--animation-duration', newAnimationDuration);
     wavePeriodOutput.textContent = `(${newAnimationDuration})`;
   }
-
-  flagSizeInput.addEventListener('input', (event) => { setFlagSize(); })
-  flagAspectRatioInput.addEventListener('input', (event) => { setFlagAspectRatio(); })
-  stripsCountInput.addEventListener('input', (event) => { setStripsCount(); })
-  waveAmplitudeInput.addEventListener('input', (event) => { setWaveAmplitude(); })
-  waveLengthInput.addEventListener('input', (event) => { setWaveLength(); })
   wavePeriodInput.addEventListener('input', (event) => { setWavePeriod(); })
+
+  // Initialisation — call all the functions
+  function initialiseFlag() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    prefersReducedMotion.matches ? pauseAnimation() : playAnimation();
+
+    const initiallyCheckedInput = document.querySelector('#flag-fieldset input:checked')
+    root.style.setProperty('--flag-variant', `var(--${initiallyCheckedInput.value})`);
+
+    setFlagSize();
+    setFlagAspectRatio();
+    setStripsCount();
+    setWaveAmplitude();
+    setWaveLength();
+    setWavePeriod();
+  }
+  initialiseFlag();
 </script>
