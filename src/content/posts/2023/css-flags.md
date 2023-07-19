@@ -531,6 +531,7 @@ form > * + * {
 }
 form fieldset {
   border: 3px solid var(--colour6);
+  padding: 0.5rem;
 }
 form fieldset label {
   display: inline-block;
@@ -545,6 +546,7 @@ form #extra-controls label {
   flex-wrap: wrap;
   gap: 0.125rem 0.5rem;
   justify-content: space-between;
+  line-height: 0.925lh;
 }
 form #extra-controls label span {
   flex: 1 0 8rem;
@@ -555,6 +557,7 @@ form label input {
 form label input[type="range"] {
   flex: 5 1 3rem;
   width: 3rem;
+  margin: 0;
 }
 form #extra-controls label output {
   flex: 0 1 3rem;
