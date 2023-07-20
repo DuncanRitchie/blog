@@ -500,6 +500,15 @@ draft: false
     50%;
   flex-grow: 1;
   height: 100%;
+  /* All the animation* declarations were adapted from Josh Comeau’s tutorial */
+  animation: oscillate var(--animation-duration) infinite;
+  animation-play-state: var(--animation-play-state);
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: backwards;
+  animation-delay: calc(
+    (var(--animation-duration) * var(--strip-index) / var(--strips-count) - var(--animation-duration)) / var(--animation-wave-length)
+  );
 }
 
 /* Adapted from Josh Comeau’s tutorial */
@@ -514,16 +523,6 @@ draft: false
       calc(var(--strip-index) * var(--animation-strip-displacement) * -1)
     );
   }
-}
-.strip {
-  animation: oscillate var(--animation-duration) infinite;
-  animation-play-state: var(--animation-play-state);
-  animation-direction: alternate;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: backwards;
-  animation-delay: calc(
-    (var(--animation-duration) * var(--strip-index) / var(--strips-count) - var(--animation-duration)) / var(--animation-wave-length)
-  );
 }
 
 form > * + * {
