@@ -508,6 +508,7 @@ draft: false
   animation-fill-mode: backwards;
   animation-delay: calc(
     (var(--animation-duration) * var(--strip-index) / var(--strips-count) - var(--animation-duration)) / var(--animation-wave-length)
+     - (0.75 * var(--animation-duration))
   );
 }
 
