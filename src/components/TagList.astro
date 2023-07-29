@@ -12,7 +12,9 @@ const tagsSet: Set<string> = allPostsSorted.reduce((set, current) => {
 	return set
 }, new Set(''))
 
-const tags = [...tagsSet].sort()
+const tags = [...tagsSet].sort((a, b) =>
+	a.toLowerCase() > b.toLowerCase() ? 1 : -1,
+)
 
 const tagsWithPostCounts: [string, string, number][] = tags.map((tag) => {
 	const slug = slugifyText(tag)
