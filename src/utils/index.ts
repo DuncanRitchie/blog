@@ -1,6 +1,15 @@
 import { CollectionEntry, getCollection } from 'astro:content'
 
 /**
+ * Replace HTML characters with their escaped equivalents.
+ * So < becomes &gt; for example.
+ */
+const escapeHtml = (text: string) => {
+	// Other characters may need to be added here.
+	return text.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+}
+
+/**
  * Draft posts should have `draft:true` in frontmatter and “.draft.md” ending the filename.
  * This function logs if a post has one of those criteria but not the other.
  */
@@ -76,6 +85,7 @@ const sortPosts = (posts: CollectionEntry<'posts'>[]) => {
 }
 
 export {
+	escapeHtml,
 	logIfPostsHaveAmbiguousDraftStatus,
 	slugifyPost,
 	slugifyText,

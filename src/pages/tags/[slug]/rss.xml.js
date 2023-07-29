@@ -3,13 +3,8 @@ import sanitizeHtml from 'sanitize-html'
 import MarkdownIt from 'markdown-it/lib'
 const parser = new MarkdownIt()
 
-import { slugifyPost, sortPosts } from '../../../utils/'
+import { escapeHtml, slugifyPost, sortPosts } from '../../../utils/'
 import { getStaticPaths as getPathsForTags } from '../../tags/[slug].astro'
-
-function escapeHtml(text) {
-	// Other characters may need to be added here.
-	return text.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-}
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {

@@ -4,13 +4,7 @@ import sanitizeHtml from 'sanitize-html'
 import MarkdownIt from 'markdown-it/lib'
 const parser = new MarkdownIt()
 
-import { sortPosts } from '../utils/'
-import { slugifyPost } from '../utils/'
-
-function escapeHtml(text) {
-	// Other characters may need to be added here.
-	return text.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-}
+import { escapeHtml, slugifyPost, sortPosts } from '../utils/'
 
 export async function get(context) {
 	const posts = await getCollection('posts')
