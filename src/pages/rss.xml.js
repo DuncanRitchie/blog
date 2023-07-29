@@ -17,7 +17,7 @@ export async function get(context) {
 	const postsSorted = sortPosts(posts)
 
 	return rss({
-		title: 'Duncan Ritchie’s Blog',
+		title: 'Duncan Ritchie’s blog',
 		description:
 			'Assorted notes that may or may not relate to web development, but that I thought should be recorded somewhere.',
 		site: context.site,
