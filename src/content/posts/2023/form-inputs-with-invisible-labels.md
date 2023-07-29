@@ -2,7 +2,7 @@
 title: Form inputs with invisible labels
 date: 2023-02-28
 draft: false
-tags: ['Software']
+tags: ['Software', 'velut']
 ---
 
 # Form inputs with invisible labels

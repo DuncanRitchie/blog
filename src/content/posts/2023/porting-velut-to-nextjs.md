@@ -2,7 +2,7 @@
 title: How I ported my Latin dictionary to Next.js
 date: 2023-01-28
 draft: false
-tags: ['Software']
+tags: ['Software', 'velut']
 ---
 
 # How I ported my Latin diction&shy;ary to Next.js
