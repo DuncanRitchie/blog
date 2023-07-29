@@ -37,7 +37,36 @@ export async function getStaticPaths() {
 }
 
 const { tag, posts, previous, next } = Astro.props
+const rssUrl =
+	import.meta.env.BASE_URL + 'tags/' + slugifyText(tag) + '/rss.xml'
 ---
+
+<style>
+	.rss {
+		margin-top: 2rem;
+	}
+	/* Any click event on the <span> triggers the <a> link,
+		because the link has a pseudo-element that covers the span.
+		This means the RSS icon does not need to be inside the <a>
+		element, as long as it’s inside the span. */
+	.rss p span {
+		position: relative;
+	}
+	.rss p span a::before {
+		content: '';
+		position: absolute;
+		display: block;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+	.rss p span img {
+		height: 1em;
+		aspect-ratio: 1 / 1;
+		vertical-align: -0.2em;
+	}
+</style>
 
 <BaseLayout
 	title={`Posts tagged as “${tag}” — Duncan Ritchie’s blog`}
@@ -47,6 +76,19 @@ const { tag, posts, previous, next } = Astro.props
 	<main>
 		<h1>Posts tagged as “{tag}”</h1>
 		<PostList posts={posts} />
+		<aside class="rss">
+			<p>
+				<span>
+					<img
+						src={import.meta.env.BASE_URL + 'images/rss-icon.svg'}
+						alt=""
+						width="16"
+						aria-hidden="true"
+					/>
+					<a href={rssUrl}>RSS feed for the tag “{tag}”</a>
+				</span>
+			</p>
+		</aside>
 		<PreviousNextLinks
 			type="tag"
 			previous={previous}
