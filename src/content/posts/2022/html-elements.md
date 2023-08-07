@@ -3,6 +3,7 @@ date: 2022-12-20
 title: HTML elements and where I’ve used them
 draft: false
 tags: ['Software']
+editHistory: [[2023-08-07, 'Said I’ve used <hr>']]
 ---
 
 <style>
@@ -174,8 +175,8 @@ But I find it interesting to keep count; I’ve used 78.
 <label for="meter">HTML elements that are neither deprecated nor experimental <small> 107 of 135 (79.3%)</small></label>
 <meter id="meter" min="0" value="107" max="135" style="--percentage: 79.3%"></progress>
 
-<label for="progress">Usable elements that I’ve used <small> 78 of 107 (72.9%)</small></label>
-<progress id="progress" value="78" max="107" style="--percentage: 72.9%"></progress>
+<label for="progress">Usable elements that I’ve used <small> 79 of 107 (73.8%)</small></label>
+<progress id="progress" value="79" max="107" style="--percentage: 73.8%"></progress>
 
 ## Filters
 
@@ -721,11 +722,11 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused" id="hr">
+<div class="used" id="hr">
 	<dt><code>&lt;hr&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve not used horizontal rule elements.
+			I’ve not used horizontal rule elements on webpages, but I made some email templates for work that used them.
 		</p>
 	</dd>
 </div>
