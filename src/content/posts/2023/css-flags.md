@@ -67,6 +67,9 @@ draft: false
   --nonbinary-grey: #2d2d2d;
   --uk-blue: #012169 /* #0b267c is brighter*/;
   --uk-red: #c8102e /* #da151b is brighter */;
+  --uk-yellow: #ffff00 /* for St David’s flag */;
+  --ireland-green: #169b62;
+  --ireland-orange: #ff883e;
 
   /* Flags to be used in --flag-variant: */
   /* As per Josh Comeau and @myfonj, I could also rewrite the gradients with double-position syntax:
@@ -328,6 +331,37 @@ draft: false
     var(--orthogonal-white-stripes-for-uk-flagpart),
     var(--uk-red-diagonals-linear-flagpart),
     var(--scotland-flag);
+  
+  --st-david-flag:
+    /* horizontal yellow stripe */
+    linear-gradient(
+      transparent 0%,
+      transparent 40%,
+      var(--uk-yellow) 0%,
+      var(--uk-yellow) 60%,
+      transparent 0%,
+      transparent 100%
+    ),
+    /* vertical yellow stripe & black field */
+    linear-gradient(
+      to right,
+      var(--black) 0%,
+      var(--black) calc(50% - 0.1 * var(--flag-height)),
+      var(--uk-yellow) 0%,
+      var(--uk-yellow) calc(50% + 0.1 * var(--flag-height)),
+      var(--black) 0%,
+      var(--black) 100%
+    );
+
+  --ireland-flag: linear-gradient(
+      to right,
+      var(--ireland-green) 0%,
+      var(--ireland-green) 33.3333%,
+      var(--white) 0%,
+      var(--white) 66.6667%,
+      var(--ireland-orange) 0%,
+      var(--ireland-orange) 100%
+    );
 
   /* Gradients shared between flags without being complete flags themselves: */
   --england-stripes-flagpart: 
@@ -659,6 +693,8 @@ form #extra-controls label output {
       <label><input type="radio" name="flag" value="uk-real-flag" /> UK (SVG) </label>
       <label><input type="radio" name="flag" value="scotland-flag" /> Scotland </label>
       <label><input type="radio" name="flag" value="england-flag" /> England </label>
+      <label><input type="radio" name="flag" value="st-david-flag" /> Wales (St David) </label>
+      <label><input type="radio" name="flag" value="ireland-flag" /> Ireland </label>
     </fieldset>
     <div id="extra-controls">
       <label>
@@ -769,6 +805,11 @@ Or switch to a Chromium browser (such as Opera or Chrome), since Chromium seems 
 Similarly, the ring on the intersex-inclusive progress flag changes thickness when the flag’s aspect ratio changes, unless you’re in Chromium.
 This is another rounding error.
 
+And for the Irish flag, if the number of strips is a multiple of three, all strips should be a solid colour.
+Chromium does this nicely; Firefox and Safari aren’t perfect.
+That’s actually the only reason I included a flag with vertical stripes.
+(Although I really like the shades of green and orange.)
+
 ## Flag choice
 
 I’ve picked several LGBT+ flags, to show off different gradients and combinations thereof.
@@ -777,6 +818,10 @@ I published this on the day of my city’s Pride 2023 events.)
 
 I also have the flags of England, Scotland, and the UK, since the latter flag is made up of the other two flags (plus Northern Ireland’s diagonal stripes).
 Unfortunately I couldn’t get those diagonal stripes correct.
+
+And Ireland’s in here so I could see some plain vertical stripes.
+Then I added Wales as well, or rather St David’s flag.
+I&nbsp;would have done the official flag, but the dragon doesn’t lend itself to gradients.
 
 Colours are mostly taken from files on Wikimedia Commons, but I have not copied all of the colours and measurements exactly.
 I tweaked some of the rainbow colours, for example.
