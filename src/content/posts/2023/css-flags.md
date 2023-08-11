@@ -674,6 +674,7 @@ form #extra-controls label output {
   </figure>
 
   <form>
+    <noscript>Please enable JavaScript if you want to use these controls.</noscript>
     <button type="button" id="pause-or-play" aria-pressed="true">Pause animation</button>
     <fieldset id="flag-fieldset">
       <legend>Flag</legend>
