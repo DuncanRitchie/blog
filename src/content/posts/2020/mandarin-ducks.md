@@ -18,7 +18,7 @@ With the exception of a visit to the Martin Mere wetland reserve in Lancashire i
 My dog was more interested in squirrels, though.
 
 <figure>
-<img width="400" style="aspect-ratio: 3/2;" alt="A male and female mandarin duck swimming" src="images/two-mandarins-swimming.webp"/>
+<img width="400" style="aspect-ratio: 3/2;" alt="A male and female mandarin duck swimming" src="images/2020/two-mandarins-swimming.webp"/>
 <figcaption>Mandarin ducks</figcaption>
 </figure>
 

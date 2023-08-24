@@ -18,7 +18,7 @@ tags: ['Annual review']
 ## Work
 
 <figure>
-<img width="300" style="aspect-ratio: 210/297;" alt="My certificate" src="images/apprenticeship-certificate.webp"/>
+<img width="300" style="aspect-ratio: 210/297;" alt="My certificate" src="images/2021/apprenticeship-certificate.webp"/>
 <figcaption>My apprenticeship certificate</figcaption>
 </figure>
 
