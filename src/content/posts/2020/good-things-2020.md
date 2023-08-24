@@ -34,7 +34,7 @@ I passed an exam in project management in software development.
 
 My employment contract got renewed until June 2022.
 
-On the job, I did most of the work of re-structuring a software application, making it three times faster and about 20 times less energy-intensive. Because I’m now the one developer on the project (which is a program to detect mistakes in Word documents), I have also been responsible for several new features, maintainance issues, and bug fixes.
+On the job, I did most of the work of re-structuring a software application, making it three times faster and about 20 times less energy-intensive. Because I’m now the one developer on the project (which is a program to detect mistakes in Word documents), I have also been responsible for several new features, maintenance issues, and bug fixes.
 
 As coursework for my apprenticeship, I wrote a 10,000-word treatise about my work on the document-reviewing program. This is longer than my university dissertation, but I still want to add to it.
 

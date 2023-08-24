@@ -7,7 +7,7 @@ tags: ['Software']
 
 # Vim
 
-I’ve been editing files on a Linux server, using the command-line program Vim. It’s not the most intuitive pieces of software, so I wrote this note to myself.
+I’ve been editing files on a Linux server, using the command-line program Vim. It’s not the most intuitive piece of software, so I wrote this note to myself.
 
 I’ve learnt some things about Vim. There’s a “command mode” which you need to be in to quit, and an “insert mode” which you need to be in to edit the file.
 To go to insert mode from command mode, type <kbd>i</kbd>, and to go the other way press <kbd>Esc</kbd> until the word <samp>INSERT</samp> disappears from the bottom of the terminal.
