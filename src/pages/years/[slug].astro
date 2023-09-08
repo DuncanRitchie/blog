@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { sortPosts } from '../../utils/'
 import PostList from '../../components/PostList.astro'
@@ -48,9 +48,9 @@ const { year, posts, previous, next } = Astro.props
 		<PreviousNextLinks
 			type="year"
 			previous={previous}
-			previousUrl={import.meta.env.BASE_URL + 'years/' + previous}
+			previousUrl={import.meta.env.BASE_URL + '/years/' + previous}
 			next={next}
-			nextUrl={import.meta.env.BASE_URL + 'years/' + next}
+			nextUrl={import.meta.env.BASE_URL + '/years/' + next}
 		/>
 	</main>
 </BaseLayout>

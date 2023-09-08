@@ -36,7 +36,7 @@ const makeDateSimple = (date: string) =>
 		This article was written on
 		<time datetime={dateIso}>
 			{dateReadableWithoutYear}
-			<a href={import.meta.env.BASE_URL + 'years/' + year}> {year}</a>
+			<a href={import.meta.env.BASE_URL + '/years/' + year}> {year}</a>
 		</time>
 		by Duncan Ritchie.
 	</p>
@@ -65,7 +65,7 @@ const makeDateSimple = (date: string) =>
 				<ul class="tags">
 					{tags.map((tag) => (
 						<li>
-							<a href={import.meta.env.BASE_URL + 'tags/' + slugifyText(tag)}>
+							<a href={import.meta.env.BASE_URL + '/tags/' + slugifyText(tag)}>
 								{tag}
 							</a>
 						</li>

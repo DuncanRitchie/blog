@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { slugifyText, sortPosts } from '../../utils/'
 import PostList from '../../components/PostList.astro'
@@ -38,7 +38,7 @@ export async function getStaticPaths() {
 
 const { tag, posts, previous, next } = Astro.props
 const rssUrl =
-	import.meta.env.BASE_URL + 'tags/' + slugifyText(tag) + '/rss.xml'
+	import.meta.env.BASE_URL + '/tags/' + slugifyText(tag) + '/rss.xml'
 ---
 
 <style>
@@ -80,7 +80,7 @@ const rssUrl =
 			<p>
 				<span>
 					<img
-						src={import.meta.env.BASE_URL + 'images/rss-icon.svg'}
+						src={import.meta.env.BASE_URL + '/images/rss-icon.svg'}
 						alt=""
 						width="16"
 						aria-hidden="true"
@@ -92,9 +92,9 @@ const rssUrl =
 		<PreviousNextLinks
 			type="tag"
 			previous={previous}
-			previousUrl={import.meta.env.BASE_URL + 'tags/' + slugifyText(previous)}
+			previousUrl={import.meta.env.BASE_URL + '/tags/' + slugifyText(previous)}
 			next={next}
-			nextUrl={import.meta.env.BASE_URL + 'tags/' + slugifyText(next)}
+			nextUrl={import.meta.env.BASE_URL + '/tags/' + slugifyText(next)}
 		/>
 	</main>
 </BaseLayout>
