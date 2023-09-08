@@ -41,7 +41,13 @@ const makeDateSimple = (date: string) =>
 		by Duncan Ritchie.
 	</p>
 
-	{draft && <strong>It is a draft.</strong>}
+	{
+		draft && (
+			<p>
+				<strong>It is a draft.</strong>
+			</p>
+		)
+	}
 
 	{
 		editHistory?.length && (
