@@ -3,6 +3,7 @@ title: Launching a dev server in frameworks I’ve used
 draft: false
 date: 2023-05-30
 tags: ['Software']
+editHistory: [[2023-09-08, 'Added Astro 3.0']]
 ---
 
 <style>
@@ -56,7 +57,7 @@ http://localhost:4200
 </tr>
 
 <tr>
-<th>Astro</th><td>
+<th>Astro 2.0</th><td>
 
 ```
 npm start
@@ -71,6 +72,24 @@ http://localhost:3000
 
 </td>
 </tr>
+
+<tr>
+<th>Astro 3.0</th><td>
+
+```
+npm start
+npm run dev
+```
+
+</td>
+<td>
+
+http://localhost:4321
+(like a countdown for a rocket launch 🚀)
+
+</td>
+</tr>
+
 <tr>
 <th>Create React App</th><td>
 
