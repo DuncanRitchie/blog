@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 	return getPathsForTags()
 }
 
-export async function get(context) {
+export async function GET(context) {
 	const { posts, tag } = context.props
 	const postsSorted = sortPosts(posts)
 
