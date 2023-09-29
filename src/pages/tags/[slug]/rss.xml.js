@@ -4,7 +4,7 @@ import MarkdownIt from 'markdown-it/lib'
 const parser = new MarkdownIt()
 
 import { escapeHtml, slugifyPost, sortPosts } from '../../../utils/'
-import { getStaticPaths as getPathsForTags } from '../../tags/[slug].astro'
+import { getStaticPaths as getPathsForTags } from '../[slug].astro'
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
