@@ -6,7 +6,7 @@ const parser = new MarkdownIt()
 
 import { escapeHtml, slugifyPost, sortPosts } from '../utils/'
 
-export async function get(context) {
+export async function GET(context) {
 	const posts = await getCollection('posts')
 	const postsSorted = sortPosts(posts)
 
