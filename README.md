@@ -8,7 +8,7 @@ I previously made my blog with [Eleventy](https://www.11ty.dev). When I tried [A
 
 ## RSS
 
-I love that Astro has [official support for RSS](https://docs.astro.build/en/guides/rss/). You can [subscribe to my blog](https://www.duncanritchie.co.uk/blog/rss.xml) if you like.
+I love that Astro has [official support for RSS](https://docs.astro.build/en/guides/rss/). You can [subscribe to my blog](https://www.duncanritchie.co.uk/blog/rss.xml) if you like. There are also feeds for each tag I use on articles.
 
 The RSS feed is formatted through an adaption of [Matt Webb’s XSL stylesheet](https://github.com/genmon/aboutfeeds/blob/main/tools/pretty-feed-v3.xsl).
 
@@ -23,7 +23,8 @@ Also, they have `draft: true` in their front matter. This automatically makes As
 | Command                | Action                                           |
 | :--------------------- | :----------------------------------------------- |
 | `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
+| `npm start`            | Starts local dev server at `localhost:4321`      |
+| `npm run dev`          | Same as `npm start`                              |
 | `npm run build`        | Build your production site to `./dist/`          |
 | `npm run preview`      | Preview your build locally, before deploying     |
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
