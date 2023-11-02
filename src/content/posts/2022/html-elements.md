@@ -3,7 +3,19 @@ date: 2022-12-20
 title: HTML elements and where I’ve used them
 draft: false
 tags: ['Software']
-editHistory: [[2023-08-07, 'Said I’ve used <hr>']]
+editHistory: [
+	[2023-02-10, 'Said I’ve used <th>'],
+	[2023-02-28, 'Said I’ve used <th> & <slot>'],
+	[2023-02-28, 'Colour-coding in list'],
+	[2023-03-01, 'Buttons for toggling visibility of list-items'],
+	[2023-03-07, 'Said I’ve used <blockquote> & <cite>'],
+	[2023-04-02, 'Improved description of <abbr>'],
+	[2023-05-19, 'Said I’ve used <hgroup>'],
+	[2023-06-03, 'Explained that <menu> is tantamount to deprecated'],
+	[2023-06-04, 'Added <search>'],
+	[2023-08-07, 'Said I’ve used <hr>'],
+	[2023-11-02, 'Said I’ve used <tbody> & <output>'],
+]
 ---
 
 <style>
@@ -170,13 +182,13 @@ I will probably update this page (perhaps using <code>&lt;ins&gt;</code> element
 Of 135 elements, 27 are deprecated and one is experimental.
 The other 107 I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
-But I find it interesting to keep count; I’ve used 78.
+But I find it interesting to keep count; I’ve used 81.
 
 <label for="meter">HTML elements that are neither deprecated nor experimental <small> 107 of 135 (79.3%)</small></label>
 <meter id="meter" min="0" value="107" max="135" style="--percentage: 79.3%"></progress>
 
-<label for="progress">Usable elements that I’ve used <small> 79 of 107 (73.8%)</small></label>
-<progress id="progress" value="79" max="107" style="--percentage: 73.8%"></progress>
+<label for="progress">Usable elements that I’ve used <small> 81 of 107 (75.7%)</small></label>
+<progress id="progress" value="81" max="107" style="--percentage: 75.7%"></progress>
 
 ## Filters
 
@@ -1026,13 +1038,12 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused" id="output">
+<div class="used" id="output">
 	<dt><code>&lt;output&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve not used this.
-			I think it’s meant for simple bits of text within <code>&lt;form&gt;</code> elements, where the text changes according to the value of an input before the form is submitted.
-			But I’ve never made a form like that.
+			The first time I made a form with this element was for my <a href="css-flags">CSS flags</a> article, which was published after I wrote this list.
+			I have sliders for controlling the flag animation and I display the value of each slider in an <code>&lt;output&gt;</code> element beside it.
 		</p>
 	</dd>
 </div>
@@ -1375,11 +1386,11 @@ But I find it interesting to keep count; I’ve used 78.
 	</dd>
 </div>
 
-<div class="usable-unused" id="tbody">
+<div class="used" id="tbody">
 	<dt><code>&lt;tbody&gt;</code></dt>
 	<dd>
 		<p>
-			I don’t think I’ve ever wrapped the non-header rows of a table in <code>&lt;tbody&gt;</code>.
+			I’ve used this at work to wrap the non-header rows of a table.
 		</p>
 	</dd>
 </div>
