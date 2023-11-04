@@ -15,6 +15,7 @@ editHistory: [
 	[2023-06-04, 'Added <search>'],
 	[2023-08-07, 'Said I’ve used <hr>'],
 	[2023-11-02, 'Said I’ve used <tbody> & <output>'],
+	[2023-11-04, 'Added <math> & <svg>'],
 ]
 ---
 
@@ -172,7 +173,9 @@ button[data-elements-class="usable-unused"] span::before {
 # HTML elements and where I’ve used them
 
 This is simply a catalogue of HTML elements and an example of somewhere I’ve used them, if I have ever used them.
-I got the full list of elements from the sidebar of [MDN’s documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+
+I got the full list of elements from the sidebar of [MDN’s documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element), then added <code>&lt;math&gt;</code> and <code>&lt;svg&gt;</code> (which are part of MathML and SVG respectively but can be used to embed those formats in HTML).
+
 If I’ve created an element using Markdown or some UI library that doesn’t involve me explicitly typing out the HTML tags, I don’t consider myself to have used it.
 
 I will probably update this page (perhaps using <code>&lt;ins&gt;</code> elements) if I use an element I haven’t used before.
@@ -906,6 +909,15 @@ But I find it interesting to keep count; I’ve used 81.
 	</dd>
 </div>
 
+<div class="usable-unused" id="math">
+	<dt><code>&lt;math&gt;</code></dt>
+	<dd>
+		<p>
+			I’ve never used any MathML elements (<a href="https://developer.mozilla.org/en-US/docs/Web/MathML/Element/math">MDN lists several</a>), but if I were marking up complicated maths expressions in HTML, then I would.
+		</p>
+	</dd>
+</div>
+
 <div class="usable-unused" id="menu">
 	<dt><code>&lt;menu&gt;</code></dt>
 	<dd>
@@ -1373,6 +1385,19 @@ But I find it interesting to keep count; I’ve used 81.
 			Or did I use Unicode ordinal characters — “O(n²)” — instead?
 			(I don’t know why I would have done that.)
 			I’ll count <code>&lt;sup&gt;</code> among the elements I’ve used.
+		</p>
+	</dd>
+</div>
+
+<div class="used" id="svg">
+	<dt><code>&lt;svg&gt;</code></dt>
+	<dd>
+		<p>
+			I’m pretty sure that I have used inline SVG in a HTML document, even if it was just in a prototype for work.
+			But I’m more likely to have separate SVG files.
+		</p>
+		<p>
+			As with MathML, SVG has its own tags — here’s the <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg">MDN documentation for <code>&lt;svg&gt;</code></a>.
 		</p>
 	</dd>
 </div>
