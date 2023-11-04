@@ -27,7 +27,7 @@ editHistory: [
   /* Fills for the definition list items.
 	These are actually solid colour fills, because --gradient-overlay-3d is commented out in them.
 	But I’ve implemented them as gradients, in case I wanted to uncomment the var(--gradient-overlay-3d),
-  and so that I can have the “used” colour derived from the “unused-usable” made darker. */
+  and so that I can have the “used” colour derived from the “usable-unused” made darker. */
 	--used-gradient:
 		/* var(--gradient-overlay-3d), */
 		linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
@@ -53,7 +53,7 @@ label small {
 	margin: 0.3333em 0 0;
 }
 
-/* <meter> & <progress> elements contain pseudo-elements that are difficult to style consistently across browers.
+/* <meter> & <progress> elements contain pseudo-elements that are difficult to style consistently across browsers.
 Instead, I’ve decided to hide as much as I can, and use a linear gradient to fill the bars to the required proportion.
 Firefox still shows a green pseudo-element for the bar, which is a bit irritating but I haven’t been able to fix it. */
 
