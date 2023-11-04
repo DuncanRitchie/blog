@@ -16,6 +16,7 @@ editHistory: [
 	[2023-08-07, 'Said I’ve used <hr>'],
 	[2023-11-02, 'Said I’ve used <tbody> & <output>'],
 	[2023-11-04, 'Added <math> & <svg>'],
+	[2023-11-04, 'Used <data> & said I’ve used it'],
 ]
 ---
 
@@ -185,7 +186,7 @@ I will probably update this page (perhaps using <code>&lt;ins&gt;</code> element
 Of <data value="total">137</data> elements, <data value="deprecated">27</data> are deprecated and <data value="experimental">1</data> is experimental.
 The other <data value="usable">109</data> I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
-But I find it interesting to keep count; I’ve used <data value="used">82</data>.
+But I find it interesting to keep count; I’ve used <data value="used">83</data>.
 
 <label for="meter">
 	HTML elements that are neither deprecated nor experimental
@@ -205,16 +206,16 @@ But I find it interesting to keep count; I’ve used <data value="used">82</data
 <label for="progress">
 	Usable elements that I’ve used
 	<small>
-		<data value="used">82</data>
+		<data value="used">83</data>
 		of
 		<data value="usable">109</data>
-		(<data value="used-percent-of-usable">75.2</data>%)
+		(<data value="used-percent-of-usable">76.1</data>%)
 	</small>
 </label>
 <progress id="progress"	min="0"
-	value="82" max="109"
+	value="83" max="109"
 	data-value="used" data-max="usable"
-	style="--percentage: 75.2%"
+	style="--percentage: 76.1%"
 ></progress>
 
 ## Filters
@@ -523,11 +524,28 @@ But I find it interesting to keep count; I’ve used <data value="used">82</data
 	</dd>
 </div>
 
-<div class="usable-unused" id="data">
+<div class="used" id="data">
 	<dt><code>&lt;data&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve never used it, but I’m more likely to find a use for it than for some of the HTML elements in this list.
+			I’m using it on this page!
+			The statistics at the top of this page are wrapped in <code>&lt;data&gt;</code> tags that have <code>value</code> attributes that serve as keys.
+			Then I have JavaScript that checks that the visible text matches the appropriate value for the <code>value</code> attribute.
+			This helps me keep the numbers in sync with the list of tags.
+		</p>
+		<p>
+			For example, <code>&lt;data value="deprecated"&gt;<data value="deprecated">27</data>&lt;/data&gt;</code> gets checked against a JavaScript variable called <code>deprecated</code>, which is the number of deprecated HTML tags in this list.
+			You’ll get a message in your browser’s console if this isn’t <data value="deprecated">27</data>.
+		</p>
+		<p>
+			(Is it weird that I’m using <code>value</code> attributes to specify keys for getting values, rather than the values themselves?
+			Probably.
+			But it works well enough, and seems to fit within the purpose of the <code>&lt;data&gt;</code> tag.)
+		</p>
+		<p>
+			Of course, if I were using React or some other front-end library for rendering this page, I wouldn’t need to check the numbers like this and update them manually.
+			But I like that I have a vanilla-JS solution here.
+			And I <em>could</em> use JavaScript to set the text to the correct values, but I like that the content of this page is the same regardless of whether you have scripting enabled in your browser.
 		</p>
 	</dd>
 </div>
