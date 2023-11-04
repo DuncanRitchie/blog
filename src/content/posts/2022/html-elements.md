@@ -182,16 +182,40 @@ I will probably update this page (perhaps using <code>&lt;ins&gt;</code> element
 
 ## Counts
 
-Of 135 elements, 27 are deprecated and one is experimental.
-The other 107 I consider to be usable, if the right opportunity presents itself.
+Of <data value="total">137</data> elements, <data value="deprecated">27</data> are deprecated and <data value="experimental">1</data> is experimental.
+The other <data value="usable">109</data> I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
-But I find it interesting to keep count; I’ve used 81.
+But I find it interesting to keep count; I’ve used <data value="used">82</data>.
 
-<label for="meter">HTML elements that are neither deprecated nor experimental <small> 107 of 135 (79.3%)</small></label>
-<meter id="meter" min="0" value="107" max="135" style="--percentage: 79.3%"></progress>
+<label for="meter">
+	HTML elements that are neither deprecated nor experimental
+	<small>
+		<data value="usable">109</data>
+		of
+		<data value="total">137</data>
+		(<data value="usable-percent-of-total">79.6</data>%)
+	</small>
+</label>
+<meter id="meter"	min="0"
+	value="109" max="137"
+	data-value="usable" data-max="total"
+	style="--percentage: 79.6%"
+></meter>
 
-<label for="progress">Usable elements that I’ve used <small> 81 of 107 (75.7%)</small></label>
-<progress id="progress" value="81" max="107" style="--percentage: 75.7%"></progress>
+<label for="progress">
+	Usable elements that I’ve used
+	<small>
+		<data value="used">82</data>
+		of
+		<data value="usable">109</data>
+		(<data value="used-percent-of-usable">75.2</data>%)
+	</small>
+</label>
+<progress id="progress"	min="0"
+	value="82" max="109"
+	data-value="used" data-max="usable"
+	style="--percentage: 75.2%"
+></progress>
 
 ## Filters
 
@@ -1588,6 +1612,7 @@ But I find it interesting to keep count; I’ve used 81.
 </dl>
 
 <script>
+	// Attach event listeners to the filtering buttons.
 	const filteringButtons = document.querySelectorAll('button[data-elements-class]')
 	filteringButtons.forEach((button) => {
 		button.addEventListener('click', (event) => {
@@ -1609,4 +1634,87 @@ But I find it interesting to keep count; I’ve used 81.
 			}
 		})
 	})
+
+	// Converts to percentage (without the % sign) with 1 decimal place.
+	// Eg, 0.123 -> 12.3
+	function getRoundedPercentage(number) {
+		return Math.round(number * 10 * 100) / 10
+	}
+
+	// Each <data> element on this page exists to associate a bit of text with its expected value via a key, eg <data value="total">137</data>
+	// The `checkTotals` function checks that the expected value of `total` (etc) matches the text content of the <data> element, and logs to the console if there’s a mistake.
+	// Similarly, `data-value` and `data-max` values are used on the <meter> and <progress> elements to specify keys for the `value` and `max` attributes.
+	// The function also checks that these attributes have the expected values.
+	function checkTotals() {
+		const list = document.querySelector('dl')
+		const usedElements = list.querySelectorAll(`div.used`)
+		const usableUnusedElements = list.querySelectorAll(`div.usable-unused`)
+		const deprecatedElements = list.querySelectorAll(`div.deprecated`)
+		const experimentalElements = list.querySelectorAll(`div.experimental`)
+		const allElements = list.children
+
+		if (allElements.length !== usedElements.length + usableUnusedElements.length + deprecatedElements.length + experimentalElements.length) {
+			console.warn(`<dl> has ${allElements.length} children, which is not equal to the sum of the counts of used, usable-unused, deprecated, experimental elements.`)
+		}
+
+		const expectedValues = {
+			'total': allElements.length,
+			'used': usedElements.length,
+			'usable-unused': usableUnusedElements.length,
+			'deprecated': deprecatedElements.length,
+			'experimental': experimentalElements.length,
+			'usable': usedElements.length + usableUnusedElements.length,
+			'usable-percent-of-total':
+				getRoundedPercentage(
+					(usedElements.length + usableUnusedElements.length)
+					/ allElements.length
+				),
+			'used-percent-of-usable':
+				getRoundedPercentage(
+					usedElements.length
+					/ (usedElements.length + usableUnusedElements.length)
+				),
+		}
+
+		const textElementsContainingValues = document.querySelectorAll('data')
+
+		textElementsContainingValues.forEach(textElement => {
+			const valueKey = textElement.getAttribute('value')
+			const valueExpected = expectedValues[valueKey]
+			if (valueExpected === undefined) {
+				console.warn(`Value attribute of ${valueKey} not recognised`)
+			}
+			else {
+				const valueDisplayed = textElement.textContent
+				if (valueDisplayed != valueExpected) {
+					console.warn(`Text content is ${valueDisplayed} for ${valueKey} but should be ${valueExpected}`)
+				}
+			}
+		})
+
+		const meterAndProgress = document.querySelectorAll('meter, progress')
+
+		meterAndProgress.forEach(element => {
+			const valueKey = element.getAttribute('data-value')
+			const valueExpected = expectedValues[valueKey]
+			const valueDisplayed = element.getAttribute('value')
+			if (valueDisplayed != valueExpected) {
+				console.warn(`Value is ${valueDisplayed} for ${element.tagName} but should be ${valueExpected}`)
+			}
+
+			const maxKey = element.getAttribute('data-max')
+			const maxExpected = expectedValues[maxKey]
+			const maxDisplayed = element.getAttribute('max')
+			if (maxDisplayed != maxExpected) {
+				console.warn(`Max is ${maxDisplayed} for ${element.tagName} but should be ${maxExpected}`)
+			}
+
+			const percentageExpected = getRoundedPercentage(valueExpected / maxExpected) + '%'
+			const percentageDisplayed = element.style.getPropertyValue('--percentage')
+			if (percentageDisplayed !== percentageExpected) {
+				console.warn(`--percentage is ${percentageDisplayed} for ${element.tagName} but should be ${percentageExpected}`)
+			}
+		})
+	}
+	checkTotals();
 </script>
