@@ -27,6 +27,6 @@ export async function GET(context) {
 			content: sanitizeHtml(parser.render(post.body)),
 		})),
 		customData: `<language>en-gb</language>`,
-		stylesheet: import.meta.env.BASE_URL + 'rss-styles.xsl',
+		stylesheet: import.meta.env.BASE_URL + '/rss-styles.xsl',
 	})
 }
