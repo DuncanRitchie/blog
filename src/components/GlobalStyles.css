@@ -7,8 +7,19 @@ aside {
 aside:target {
 	background: linear-gradient(135deg, var(--colour5), transparent);
 }
+/* Divs whose children are figures only */
+div:has(> figure):not(:has(> :not(figure))) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
 figure {
-	border: 3px solid var(--colour6);
+	/* If a figure is adjacent to another figure, the outlines will overlap so there’s no double line. */
+	--outline-width: 3px;
+	outline: var(--outline-width) solid var(--colour6);
+	outline-offset: calc(var(--outline-width) / -2);
+	border: calc(var(--outline-width) / 2) solid transparent;
 	width: fit-content;
 	max-width: 100%;
 	float: center;

@@ -21,10 +21,6 @@ tags: ['Annual review']
 			margin: 0 0 0 1rem;
 		}
 	}
-
-	figure + figure {
-		margin-top: -3px;
-	}
 </style>
 
 # Good things happening to me in 2023

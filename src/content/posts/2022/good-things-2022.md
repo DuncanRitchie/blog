@@ -45,7 +45,7 @@ In April I had a couple of weeks in the Scottish Highlands with my parents. We v
 	}
 </style>
 
-<figure id="ravens-figure" style="margin-top: -3px;">
+<figure id="ravens-figure">
 <div style="display: flex; flex-wrap: wrap;">
 <img alt="Raven flying over the sea; it has a diamond-shaped tail" width="450" style="aspect-ratio: 3/2;" src="./images/2022/raven-flying.webp" />
 <img alt="Raven on a cliff; much of its torso is hidden behind the grass" width="450" style="aspect-ratio: 3/2;" src="./images/2022/raven-on-cliff.webp" />

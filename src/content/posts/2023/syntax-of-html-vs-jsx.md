@@ -11,6 +11,7 @@ tags: ['Software']
 		grid-template-columns: repeat(var(--col-count, 2), 1fr);
 		gap: 0.5rem;
 		border: none;
+		outline: none;
 		text-align: left;
 	}
 	figure pre::before {
