@@ -561,7 +561,7 @@ draft: false
 }
 
 form > * + * {
-  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 form fieldset {
   border: 3px solid var(--colour6);
