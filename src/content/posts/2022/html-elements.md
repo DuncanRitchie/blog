@@ -17,6 +17,7 @@ editHistory: [
 	[2023-11-02, 'Said I’ve used <tbody> & <output>'],
 	[2023-11-04, 'Added <math> & <svg>'],
 	[2023-11-04, 'Used <data> & said I’ve used it'],
+	[2024-08-22, 'I’ve used <fieldset> and <legend>'],
 ]
 ---
 
@@ -206,16 +207,16 @@ But I find it interesting to keep count; I’ve used <data value="used">83</data
 <label for="progress">
 	Usable elements that I’ve used
 	<small>
-		<data value="used">83</data>
+		<data value="used">84</data>
 		of
 		<data value="usable">109</data>
-		(<data value="used-percent-of-usable">76.1</data>%)
+		(<data value="used-percent-of-usable">77.1</data>%)
 	</small>
 </label>
 <progress id="progress"	min="0"
-	value="83" max="109"
+	value="84" max="109"
 	data-value="used" data-max="usable"
-	style="--percentage: 76.1%"
+	style="--percentage: 77.1%"
 ></progress>
 
 ## Filters
@@ -664,12 +665,8 @@ But I find it interesting to keep count; I’ve used <data value="used">83</data
 	<dt><code>&lt;fieldset&gt;</code></dt>
 	<dd>
 		<p>
-			This was another element on the Advanced Search page of velut.
-			However, a <code>&lt;fieldset&gt;</code> is supposed to contain a <code>&lt;legend&gt;</code>, but I didn’t want a <code>&lt;legend&gt;</code>, so I changed each <code>&lt;fieldset&gt;</code> to a <code>&lt;div&gt;</code>.
-		</p>
-		<p>
-			So I’m no longer using <code>&lt;fieldset&gt;</code> anywhere, and when I was using it I was misusing it.
-			But once I’ve used an element, I don’t change it back to being marked as unused in this list.
+			My first use of <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> on this blog was when I made <a href="blog/css-flags">flags with CSS</a>.
+			The fieldset wraps a set of radio buttons that change the flag design.
 		</p>
 	</dd>
 </div>
@@ -880,17 +877,11 @@ But I find it interesting to keep count; I’ve used <data value="used">83</data
 	</dd>
 </div>
 
-<div class="usable-unused" id="legend">
+<div class="used" id="legend">
 	<dt><code>&lt;legend&gt;</code></dt>
 	<dd>
 		<p>
-			As I mentioned above, there should always be a <code>&lt;legend&gt;</code> in any <code>&lt;fieldset&gt;</code>.
-			I have used <code>&lt;fieldset&gt;</code> on my Latin website, but the <code>&lt;legend&gt;</code> seemed superfluous so I never added it.
-			I then changed the <code>&lt;fieldset&gt;</code> for a <code>&lt;div&gt;</code> because that seemed more reasonable, even though I was grouping radio-buttons in a form!
-		</p>
-		<p>
-			Less bizarrely, I once convinced a colleague to use <code>&lt;fieldset&gt;</code> with <code>&lt;legend&gt;</code> on a form he was adding a section to.
-			But I still haven’t used <code>&lt;legend&gt;</code> myself.
+			As I mentioned above, I used this and <code>&lt;fieldset&gt;</code> in my <a href="blog/css-flags">CSS flags</a> article.
 		</p>
 	</dd>
 </div>
