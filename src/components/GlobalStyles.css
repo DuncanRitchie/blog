@@ -65,7 +65,11 @@ pre samp {
 .auto-grid {
 	/* Autosizing grid columns CSS is adapted from https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/#aa-the-article-list */
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+	--min-column-width: 12rem;
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(min(var(--min-column-width), 100%), 1fr)
+	);
 	gap: calc(1rem + 1.25vw);
 	margin-top: 1.75rem;
 }
@@ -73,4 +77,21 @@ pre samp {
 ul.auto-grid {
 	list-style: none;
 	padding-left: 0;
+}
+ol.auto-grid {
+	padding-left: 0;
+	list-style-position: inside;
+}
+
+/* Allow elements such as figures to float left or right, if the viewport is wide enough. */
+@media (min-width: 48rem) {
+	.float-left {
+		float: left;
+		margin: 0 1rem 0 0;
+	}
+
+	.float-right {
+		float: right;
+		margin: 0 0 0 1rem;
+	}
 }
