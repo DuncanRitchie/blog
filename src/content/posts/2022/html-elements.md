@@ -18,6 +18,7 @@ editHistory: [
 	[2023-11-04, 'Added <math> & <svg>'],
 	[2023-11-04, 'Used <data> & said I’ve used it'],
 	[2024-08-22, 'I’ve used <fieldset> and <legend>'],
+	[2024-08-30, 'I’ve used <marquee> although it’s deprecated'],
 ]
 ---
 
@@ -937,7 +938,9 @@ But I find it interesting to keep count; I’ve used <data value="used">83</data
 	<dt><code>&lt;marquee&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
-			I’ve never used this; it’s deprecated.
+			<ins>
+				I used this on my <a href="./looping-panorama-effect#commentary">article about animating panoramas</a>, as a bit of a joke.
+			</ins>
 		</p>
 	</dd>
 </div>
