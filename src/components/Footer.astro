@@ -8,14 +8,6 @@ const { showBlogHomeLink } = Astro.props
 
 <footer>
 	<ul>
-		<li>
-			<a
-				href="https://www.duncanritchie.co.uk/"
-				title="Home — Duncan Ritchie’s portfolio"
-			>
-				By Duncan Ritchie
-			</a>
-		</li>
 		{
 			showBlogHomeLink && (
 				<li>
@@ -31,6 +23,14 @@ const { showBlogHomeLink } = Astro.props
 		<li>
 			<a href="https://github.com/DuncanRitchie/blog" title="Code on GitHub">
 				See the code
+			</a>
+		</li>
+		<li>
+			<a
+				href="https://www.duncanritchie.co.uk/"
+				title="Home — Duncan Ritchie’s portfolio"
+			>
+				By Duncan Ritchie
 			</a>
 		</li>
 	</ul>
