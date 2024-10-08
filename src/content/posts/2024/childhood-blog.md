@@ -3,6 +3,7 @@ date: 2024-08-29
 title: My Childhood Blog — now resurrected!
 draft: false
 tags: ['Software']
+editHistory: [[2024-10-08, Link to post about source-code]]
 ---
 
 <style>
@@ -245,6 +246,7 @@ import typescriptAsString from '../lib/lib?raw'
 Oddly enough, my `?raw` trick doesn’t work on .astro files, which define Astro components and pages.
 More investigation is required if I’m going to show those parts of the code.
 I could simply copy and paste all my Astro code into text files and import those into the source-code page, but then they wouldn’t update automatically when I edit the code.
+<ins>Update: I [wrote a script](./displaying-own-source-code) to do this.</ins>
 
 Anyway, here’s an example of code for an Astro component, displayed in a `<details>` element like how I do it on the source-code page.
 The component itself is for displaying code in a `details` element, and is what I use on the source-code page.
