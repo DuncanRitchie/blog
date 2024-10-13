@@ -19,6 +19,7 @@ editHistory: [
 	[2023-11-04, 'Used <data> & said I’ve used it'],
 	[2024-08-22, 'I’ve used <fieldset> and <legend>'],
 	[2024-08-30, 'I’ve used <marquee> although it’s deprecated'],
+	[2024-10-13, 'I’ve used <col> & <colgroup>'],
 ]
 ---
 
@@ -188,7 +189,7 @@ I will probably update this page (perhaps using <code>&lt;ins&gt;</code> element
 Of <data value="total">137</data> elements, <data value="deprecated">27</data> are deprecated and <data value="experimental">1</data> is experimental.
 The other <data value="usable">109</data> I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
-But I find it interesting to keep count; I’ve used <data value="used">83</data>.
+But I find it interesting to keep count; I’ve used <data value="used">86</data>.
 
 <label for="meter">
 	HTML elements that are neither deprecated nor experimental
@@ -208,16 +209,16 @@ But I find it interesting to keep count; I’ve used <data value="used">83</data
 <label for="progress">
 	Usable elements that I’ve used
 	<small>
-		<data value="used">84</data>
+		<data value="used">86</data>
 		of
 		<data value="usable">109</data>
-		(<data value="used-percent-of-usable">77.1</data>%)
+		(<data value="used-percent-of-usable">78.9</data>%)
 	</small>
 </label>
 <progress id="progress"	min="0"
-	value="84" max="109"
+	value="86" max="109"
 	data-value="used" data-max="usable"
-	style="--percentage: 77.1%"
+	style="--percentage: 78.9%"
 ></progress>
 
 ## Filters
@@ -496,20 +497,27 @@ But I find it interesting to keep count; I’ve used <data value="used">83</data
 	</dd>
 </div>
 
-<div class="usable-unused" id="col">
+<div class="used" id="col">
 	<dt><code>&lt;col&gt;</code></dt>
 	<dd>
 		<p>
-			Another table element I’ve not used.
+			I use this on velut, though it’s inside a component that is not yet publicly visible (as of the time of this edit).
+			Here’s a whole <a href="./col-elements-on-verb-tables">article about it</a>.
 		</p>
 	</dd>
 </div>
 
-<div class="usable-unused" id="colgroup">
+<div class="used" id="colgroup">
 	<dt><code>&lt;colgroup&gt;</code></dt>
 	<dd>
 		<p>
-			Another table element I’ve not used.
+			<a href="#col"><code>&lt;col&gt;</code></a> elements need to be wrapped in <code>&lt;colgroup&gt;</code> for valid HTML.
+			That’s the context I’ve used it in.
+		</p>
+		<p>
+			(Apart from making HTML valid, the point of <code>&lt;colgroup&gt;</code> is for formatting a set of table columns, rather than a particular column.
+			And it can have a <code>colspan</code> attribute instead of <code>&lt;col&gt;</code></a> children, if individual columns don’t need to be targeted.
+			I haven’t yet wanted to do that.)
 		</p>
 	</dd>
 </div>
