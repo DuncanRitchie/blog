@@ -20,6 +20,7 @@ editHistory: [
 	[2024-08-22, 'I’ve used <fieldset> and <legend>'],
 	[2024-08-30, 'I’ve used <marquee> although it’s deprecated'],
 	[2024-10-13, 'I’ve used <col> & <colgroup>'],
+	[2024-10-13, 'More detail on <address>, <th>, <var>'],
 ]
 ---
 
@@ -296,7 +297,12 @@ But I find it interesting to keep count; I’ve used <data value="used">86</data
 	<dt><code>&lt;address&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve not used this.
+			I’ve not used this, but it’s the tag I’m the most surprised that I haven’t used.
+			Somehow I’ve not needed an element to wrap contact information, such as an email address or social media links (or indeed a street address).
+		</p>
+		<p>
+			My <a href="https://github.com/DuncanRitchie/DuncanRitchie">GitHub profile readme</a> ends with some contact information, including my city, LinkedIn profile, and personal website.
+			I tried wrapping it in <code>&lt;address&gt;</code> just for the sake of it, but GitHub stripped out the tag when it rendered the file.
 		</p>
 	</dd>
 </div>
@@ -516,8 +522,9 @@ But I find it interesting to keep count; I’ve used <data value="used">86</data
 		</p>
 		<p>
 			(Apart from making HTML valid, the point of <code>&lt;colgroup&gt;</code> is for formatting a set of table columns, rather than a particular column.
-			And it can have a <code>colspan</code> attribute instead of <code>&lt;col&gt;</code></a> children, if individual columns don’t need to be targeted.
-			I haven’t yet wanted to do that.)
+			And it can have a <code>span</code> attribute instead of <code>&lt;col&gt;</code> children, if individual columns don’t need to be targeted.
+			The <code>&lt;col&gt;</code> element can also have the <code>span</code> attribute, if its parent <code>&lt;colgroup&gt;</code> doesn’t.
+			I haven’t yet wanted to do any of that.)
 		</p>
 	</dd>
 </div>
@@ -1504,7 +1511,7 @@ But I find it interesting to keep count; I’ve used <data value="used">86</data
 	<dt><code>&lt;th&gt;</code></dt>
 	<dd>
 		<p>
-			I only recently learnt that <code>&lt;td&gt;</code> should be replaced with <code>&lt;th&gt;</code> when inside <code>&lt;thead&gt;</code>.
+			I only recently learnt that <code>&lt;td&gt;</code> should be replaced with <code>&lt;th&gt;</code> when inside <code>&lt;thead&gt;</code> (or when it’s otherwise a header cell).
 			But I have now used it, and written CSS targeting it.
 		</p>
 	</dd>
@@ -1597,7 +1604,9 @@ But I find it interesting to keep count; I’ve used <data value="used">86</data
 	<dt><code>&lt;var&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve not used this.
+			This is the element for <em>algebraic</em> variables.
+			I’ve not used it.
+			For variables in computer code, I would use <a href="#code"><code>&lt;code&gt;</code></a>.
 		</p>
 	</dd>
 </div>
