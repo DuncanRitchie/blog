@@ -1,7 +1,7 @@
 ---
 date: 2024-11-05
 title: US voters — flip a coin!
-draft: true
+draft: false
 tags: []
 ---
 
