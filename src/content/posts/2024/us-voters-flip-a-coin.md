@@ -336,9 +336,12 @@ The nice thing here is you can play as many times as you want, without (re-)rele
 <p>Harris probably wouldn’t call Puerto Rico a “floating island of garbage”.</p>
 <p>
 	Harris’s running-mate Tim Walz seems to have been a principled and caring teacher.
-	He even helped found his school’s first Gay-Straight Aliance, in the 1990s.
+	He even helped found his school’s first Gay-Straight Alliance, in the 1990s.
 </p>
 <p>She seems to be interested in tackling climate change.</p>
+<p>The Democrats took the Covid-19 pandemic more seriously than the Republicans did.</p>
+<p>Economists largely favour her plan over Trump’s.</p>
+<p>Major newspapers have endorsed her, and the editorial teams of the Los Angeles Times and Washington Post also voted to endorse her.</p>
 <p>Very importantly, she’s not Trump.</p>
 
 </div>
@@ -363,7 +366,7 @@ The nice thing here is you can play as many times as you want, without (re-)rele
 <p>His plan for enabling more Americans to own a house involves deporting millions of people deemed too foreign.</p>
 <p>His running-mate JD Vance deliberately called legal residents “illegal aliens”, and says he intends to continue abusing language (and immigrants) in this way.</p>
 <p>He still claims to have won the 2020 election!</p>
-<p>Trump intends to put Robert F Kennedy in positions of high power.</p>
+<p>Trump intends to put Robert F Kennedy in positions of high power, such as in health agencies. He’s a vaccine skeptic.</p>
 <p>Tax-cuts for the very rich!</p>
 <p>Mar-a-Lago seems like an odd place for keeping boxes of state secrets.</p>
 <p>Endorsed by Kid Rock. I don’t know who that is. Apparently a rapper.</p>
@@ -373,6 +376,14 @@ The nice thing here is you can play as many times as you want, without (re-)rele
 	Trump fans threatened to hang him for that.
 </p>
 <p>The Trump campaign (via “comedian” Tony Hinchcliffe) called Puerto Rico a “floating island of garbage”.</p>
+<p>Attacks on transgender rights have been a major feature of Republican politics across the USA.</p>
+<p>I expect the Republicans to be even more pro-Israel and anti-Palestine than Joe Biden. Gaza and the West Bank may be fully subsumed into Israel.</p>
+<p>Trump’s handling of the Covid-19 pandemic was so cavalier, he caught it himself.</p>
+<p>Expect abortion to be a lot harder to access.</p>
+<p>Tax breaks and reduced regulations on fossil fuel corporations will accelerate global warming.</p>
+<p>Trump would install judges friendly to himself and other criminals.</p>
+<p>Newspapers may not report on his misdeeds for fear of retaliation. Jeff Bezos has already prevented the Washington Post from endorsing Harris. Likewise the Los Angeles Times with its owner Patrick Soon-Shiong.</p>
+<p>My friends in the USA call him a fascist. People who have worked with him call him a fascist. Experts in fascism call him a fascist.</p>
 
 </div>
 
