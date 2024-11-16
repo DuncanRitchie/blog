@@ -3,6 +3,7 @@ date: 2024-11-05
 title: US voters — flip a coin!
 draft: false
 tags: []
+editHistory: [[2024-11-16, Added more reasons]]
 ---
 
 <style>
@@ -11,10 +12,8 @@ tags: []
 		--pi: 3.14159265358979;
 		--coin-diameter: min(20rem, 50vw);
 		--coin-thickness: calc(var(--coin-diameter) / 40);
-		/* --coin-spokes-count: 48; This should be the number of children of #coin-spokes */
 		--coin-edge-count: 48; /* This should be the number of children of #coin-edge */
 		--coin-edge-face-length: calc(var(--coin-diameter) * var(--pi) / var(--coin-edge-count));
-		/* --coin-spokes-background: repeating-linear-gradient(darkblue 0%, darkred calc(0.25 * var(--coin-diameter)), darkblue calc(0.5 * var(--coin-diameter))); */
 		--coin-edge-background: repeating-linear-gradient(darkblue 0%, darkred calc(0.25 * var(--coin-edge-face-length)), darkblue calc(0.5 * var(--coin-edge-face-length)));
 		--animation-start-delay: -0.4s;
 	}
@@ -81,29 +80,6 @@ tags: []
 		rotate: y 180deg;
 		translate: 0 0 calc(var(--coin-thickness) / -2);
 	}
-	/* #coin-spokes {
-		display: none;
-	}
-	#coin-spokes div {
-		width: var(--coin-thickness);
-		height: var(--coin-diameter);
-		position: absolute;
-		top: 0;
-		left: 50%;
-		transform: translateX(-50%) rotateY(90deg) rotateX(calc(90deg + var(--index) * 360deg / var(--coin-spokes-count)));
-	}
-	#coin-spokes div::before {
-		content: '';
-		position: absolute;
-		display: block;
-		width: var(--coin-thickness);
-		height: var(--coin-spokes-length);
-		height: 100%;
-		background: var(--coin-spokes-background);
-		background-size: 100% 200%;
-		background-position-y: calc(var(--coin-diameter) * var(--index) / var(--coin-spokes-count));
-		backface-visibility: visible;
-	} */
 	#coin-edge div {
 		width: var(--coin-thickness);
 		height: var(--coin-diameter);
@@ -154,10 +130,6 @@ tags: []
 	}
 
 	@media (min-width: 48rem) {
-		/* #page-container {
-			display: flex;
-			gap: 1rem;
-		} */
 		#coin-container {
 			shape-outside: circle(calc(50% + 2rem));
 	 		float: left;
@@ -188,76 +160,10 @@ The nice thing here is you can play as many times as you want, without (re-)rele
 
 <div id="page-container">
 
-<!-- <fieldset>
-	<legend>Coin state</legend>
-	<label>
-		<input type="radio" name="coin-state" value="spinning" />
-		Spinning
-	</label>
-	<label>
-		<input type="radio" name="coin-state" value="harris" />
-		Kamala Harris
-	</label>
-	<label>
-		<input type="radio" name="coin-state" value="trump" />
-		Donald Trump
-	</label>
-</fieldset> -->
-
 <div id="coin-container">
 	<div id="coin">
 		<img src="/blog/images/2024/harris.webp" alt="Kamala Harris" />
 		<img src="/blog/images/2024/trump.webp" alt="Donald Trump" />
-		<!-- <div id="coin-spokes">
-			<div style="--index: 0;"></div>
-			<div style="--index: 1;"></div>
-			<div style="--index: 2;"></div>
-			<div style="--index: 3;"></div>
-			<div style="--index: 4;"></div>
-			<div style="--index: 5;"></div>
-			<div style="--index: 6;"></div>
-			<div style="--index: 7;"></div>
-			<div style="--index: 8;"></div>
-			<div style="--index: 9;"></div>
-			<div style="--index: 10;"></div>
-			<div style="--index: 11;"></div>
-			<div style="--index: 12;"></div>
-			<div style="--index: 13;"></div>
-			<div style="--index: 14;"></div>
-			<div style="--index: 15;"></div>
-			<div style="--index: 16;"></div>
-			<div style="--index: 17;"></div>
-			<div style="--index: 18;"></div>
-			<div style="--index: 19;"></div>
-			<div style="--index: 20;"></div>
-			<div style="--index: 21;"></div>
-			<div style="--index: 22;"></div>
-			<div style="--index: 23;"></div>
-			<div style="--index: 24;"></div>
-			<div style="--index: 25;"></div>
-			<div style="--index: 26;"></div>
-			<div style="--index: 27;"></div>
-			<div style="--index: 28;"></div>
-			<div style="--index: 29;"></div>
-			<div style="--index: 30;"></div>
-			<div style="--index: 31;"></div>
-			<div style="--index: 32;"></div>
-			<div style="--index: 33;"></div>
-			<div style="--index: 34;"></div>
-			<div style="--index: 35;"></div>
-			<div style="--index: 36;"></div>
-			<div style="--index: 37;"></div>
-			<div style="--index: 38;"></div>
-			<div style="--index: 39;"></div>
-			<div style="--index: 40;"></div>
-			<div style="--index: 41;"></div>
-			<div style="--index: 42;"></div>
-			<div style="--index: 43;"></div>
-			<div style="--index: 44;"></div>
-			<div style="--index: 45;"></div>
-			<div style="--index: 46;"></div>
-			<div style="--index: 47;"></div>
-		</div> -->
 		<div id="coin-edge">
 			<div style="--index: 0;"></div>
 			<div style="--index: 1;"></div>
@@ -404,10 +310,6 @@ Sources:
 <script>
 	const body = document.querySelector('body')
 	const coin = document.querySelector('#coin')
-	// const coinStateRadios = [...document.querySelectorAll('input[name="coin-state"]')]
-	// coinStateRadios.map(element => element.addEventListener('change', (e) => {
-	// 	body.className = e.target.value;
-	// }))
 
 	const harrisParas = [...document.querySelectorAll('.text.harris p')]
 	const trumpParas = [...document.querySelectorAll('.text.trump p')]
@@ -415,7 +317,6 @@ Sources:
 	function hideParasExceptOneAtRandom(winner) {
 		const paras = winner === 'harris' ? harrisParas : trumpParas;
 		const randomIndex = Math.floor(Math.random() * paras.length);
-		// console.log({winner, paras, randomIndex})
 		paras.forEach(para => para.setAttribute('hidden', ''));
 		paras[randomIndex].removeAttribute('hidden');
 	}
