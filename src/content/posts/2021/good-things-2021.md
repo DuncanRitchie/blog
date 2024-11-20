@@ -3,21 +3,25 @@ date: 2021-12-31
 title: Good things happening to me in 2021
 draft: false
 tags: ['Annual review']
+editHistory: [[2024-11-20, Northumberland photos]]
 ---
 
 # Good things happening to me in 2021
 
 <style>
     @media screen and (min-width: 600px) {
-        figure {
+        figure.float-left {
             float: left; margin-right: 1rem; margin-bottom: 1.5rem;
         }
+    }
+    div figure {
+        margin-inline: unset;
     }
 </style>
 
 ## Work
 
-<figure>
+<figure class="float-left">
 <img width="300" style="aspect-ratio: 210/297;" alt="My certificate" src="images/2021/apprenticeship-certificate.webp"/>
 <figcaption>My apprenticeship certificate</figcaption>
 </figure>
@@ -37,3 +41,41 @@ On my [personal website](https://www.duncanritchie.co.uk), users can toggle betw
 ## Holiday
 
 My parents, my dog, and I had a holiday in Northumberland. We went on several walks; visited a few castles, churches, museums, and ruins; ate a lot of food; and saw some birds (including curlew, wigeon, golden plover, and pink-footed goose). Places included Bamburgh, Lindisfarne, Craster, Cragside Estate, and Vercovicium.
+
+<div style="justify-content: center">
+<figure class="full-width">
+<img width="960" style="aspect-ratio: 4/3;" alt="Beach under blue sky with a dog running and a distant island" src="images/2021/dog-on-warkworth-beach.webp"/>
+<figcaption>Warkworth Beach</figcaption>
+</figure>
+
+<figure>
+<img width="480" style="aspect-ratio: 4/3;" alt="Castle atop a hill on a sunny day" src="images/2021/warkworth-castle.webp"/>
+<figcaption>Warkworth Castle</figcaption>
+</figure>
+
+<figure>
+<img width="480" style="aspect-ratio: 4/3;" alt="Female kestrel in a recess in a castle wall" src="images/2021/warkworth-kestrel.webp"/>
+<figcaption>Kestrel at Warkworth Castle</figcaption>
+</figure>
+
+<figure>
+<img width="960" style="aspect-ratio: 4/3;" alt="Vivid red sunset over grass and puddles by the sea" src="images/2021/dunstanburgh-sunset.webp"/>
+<figcaption>Between Craster and Dunstanburgh Castle</figcaption>
+</figure>
+
+<figure>
+<img width="345" style="aspect-ratio: 3/4;" alt="Castle on a hill with sea and boats in front" src="images/2021/lindisfarne.webp"/>
+<figcaption>Lindisfarne</figcaption>
+</figure>
+
+<figure>
+<img width="612" style="aspect-ratio: 4/3;" alt="Remains of walls of a Roman fort behind an information-board and a dog" src="images/2021/vercovicium.webp"/>
+<figcaption>Vercovicium</figcaption>
+</figure>
+
+<figure>
+<img width="960" style="aspect-ratio: 4/3;" alt="Sunrise behind a silhouetted castle and reflected in water on a sandy beach" src="images/2021/bamburgh-beach.webp"/>
+<figcaption>Bamburgh Beach with Bamburgh Castle</figcaption>
+</figure>
+
+</div>
