@@ -1,6 +1,5 @@
 import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
-import sanitizeHtml from 'sanitize-html'
 import MarkdownIt from 'markdown-it/lib'
 const parser = new MarkdownIt()
 
@@ -19,8 +18,8 @@ export async function GET(context) {
 			title: escapeHtml(post.data.title),
 			pubDate: new Date(post.data.date),
 			link: `/blog/${slugifyPost(post)}/`,
-			// Render the post’s body to HTML, then encode it
-			content: sanitizeHtml(parser.render(post.body)),
+			// Render the post’s body to HTML
+			content: parser.render(post.body),
 		})),
 		customData: `<language>en-gb</language>`,
 		stylesheet: import.meta.env.BASE_URL + '/rss-styles.xsl',
