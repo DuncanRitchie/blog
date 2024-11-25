@@ -10,7 +10,7 @@ tags: [Software, velut]
     font-style: normal;
   }
 
-  #comparison {
+  .overflow {
     overflow-x: auto;
   }
 
@@ -233,7 +233,7 @@ My [prior article](./col-elements-on-verb-tables) explains why it’s multiple t
 
 (You may need to scroll right to see all the code.)
 
-<div id="comparison">
+<div id="comparison" class="overflow">
 <table>
 <thead>
 <tr><th>With class-names</th><th>With custom attributes</th></tr>
@@ -432,48 +432,50 @@ It has highlighting styles on hover, just for the sake of it.
 I have omitted most of the rows, for brevity.
 (You’d need 19 non-header rows just for the indicatives, subjunctives, and imperatives.)
 
-<table class="with-highlight">
-  <thead>
-    <tr>
-      <td></td>
-      <th>first singular</th>
-      <th>second singular</th>
-      <th>third singular</th>
-      <th>first plural</th>
-      <th>second plural</th>
-      <th>third plural</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>indicative active present</th>
-      <td lang="la">amō</td>
-      <td lang="la">amās</td>
-      <td lang="la">amat</td>
-      <td lang="la">amāmus</td>
-      <td lang="la">amātis</td>
-      <td lang="la">amant</td>
-    </tr>
-    <tr>
-      <th>indicative active imperfect</th>
-      <td lang="la">amābam</td>
-      <td lang="la">amābās</td>
-      <td lang="la">amābat</td>
-      <td lang="la">amābāmus</td>
-      <td lang="la">amābātis</td>
-      <td lang="la">amābant</td>
-    </tr>
-    <tr>
-      <th>indicative active future</th>
-      <td lang="la">amābō</td>
-      <td lang="la">amābis</td>
-      <td lang="la">amābit</td>
-      <td lang="la">amābimus</td>
-      <td lang="la">amābitis</td>
-      <td lang="la">amābunt</td>
-    </tr>
-  </tbody>
-</table>
+<div class="overflow">
+  <table class="with-highlight">
+    <thead>
+      <tr>
+        <td></td>
+        <th>first singular</th>
+        <th>second singular</th>
+        <th>third singular</th>
+        <th>first plural</th>
+        <th>second plural</th>
+        <th>third plural</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>indicative active present</th>
+        <td lang="la">amō</td>
+        <td lang="la">amās</td>
+        <td lang="la">amat</td>
+        <td lang="la">amāmus</td>
+        <td lang="la">amātis</td>
+        <td lang="la">amant</td>
+      </tr>
+      <tr>
+        <th>indicative active imperfect</th>
+        <td lang="la">amābam</td>
+        <td lang="la">amābās</td>
+        <td lang="la">amābat</td>
+        <td lang="la">amābāmus</td>
+        <td lang="la">amābātis</td>
+        <td lang="la">amābant</td>
+      </tr>
+      <tr>
+        <th>indicative active future</th>
+        <td lang="la">amābō</td>
+        <td lang="la">amābis</td>
+        <td lang="la">amābit</td>
+        <td lang="la">amābimus</td>
+        <td lang="la">amābitis</td>
+        <td lang="la">amābunt</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Anything more complicated is going to cause problems for screen-readers, however it’s marked up.
 So I haven’t tried.
