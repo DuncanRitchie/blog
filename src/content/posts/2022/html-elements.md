@@ -21,6 +21,7 @@ editHistory: [
 	[2024-08-30, 'I’ve used <marquee> although it’s deprecated'],
 	[2024-10-13, 'I’ve used <col> & <colgroup>'],
 	[2024-10-13, 'More detail on <address>, <th>, <var>'],
+	[2024-11-26, 'I’ve used <tfoot>'],
 ]
 ---
 
@@ -190,7 +191,7 @@ I will probably update this page (perhaps using <code>&lt;ins&gt;</code> element
 Of <data value="total">137</data> elements, <data value="deprecated">27</data> are deprecated and <data value="experimental">1</data> is experimental.
 The other <data value="usable">109</data> I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
-But I find it interesting to keep count; I’ve used <data value="used">86</data>.
+But I find it interesting to keep count; I’ve used <data value="used">87</data>.
 
 <label for="meter">
 	HTML elements that are neither deprecated nor experimental
@@ -210,16 +211,16 @@ But I find it interesting to keep count; I’ve used <data value="used">86</data
 <label for="progress">
 	Usable elements that I’ve used
 	<small>
-		<data value="used">86</data>
+		<data value="used">87</data>
 		of
 		<data value="usable">109</data>
-		(<data value="used-percent-of-usable">78.9</data>%)
+		(<data value="used-percent-of-usable">79.8</data>%)
 	</small>
 </label>
 <progress id="progress"	min="0"
-	value="86" max="109"
+	value="87" max="109"
 	data-value="used" data-max="usable"
-	style="--percentage: 78.9%"
+	style="--percentage: 79.8%"
 ></progress>
 
 ## Filters
@@ -1498,11 +1499,14 @@ But I find it interesting to keep count; I’ve used <data value="used">86</data
 	</dd>
 </div>
 
-<div class="usable-unused" id="tfoot">
+<div class="used" id="tfoot">
 	<dt><code>&lt;tfoot&gt;</code></dt>
 	<dd>
-		<p>
-			No, I’ve never made a table with the bottom rows in a special element.
+		<p class="del">
+			<del datetime="2024-11-26">No, I’ve never made a table with the bottom rows in a special element. At time of posting this article.</del>
+		</p>
+		<p class="ins">
+			<ins datetime="2024-11-26">Update: In 2024 I <a href="./childhood-blog">republished my Childhood Blog</a>, and made a <a href="https://www.duncanritchie.co.uk/childhood-blog/word-counts">table of word-counts</a>. That table has <code>&lt;tfoot&gt;</code> displaying the total number of words in that blog (44,139 at time of writing).</ins>
 		</p>
 	</dd>
 </div>
