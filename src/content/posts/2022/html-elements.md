@@ -22,6 +22,7 @@ editHistory: [
 	[2024-10-13, 'I’ve used <col> & <colgroup>'],
 	[2024-10-13, 'More detail on <address>, <th>, <var>'],
 	[2024-11-26, 'I’ve used <tfoot>'],
+	[2024-11-27, 'Elements fade in/out nicely (in Chrome at least)'],
 ]
 ---
 
@@ -134,6 +135,42 @@ button[data-elements-class][aria-pressed="true"] span::before {
 	clip-path: polygon(16% 51%, 0 69%, 32% 100%, 100% 20%, 80% 0%, 33% 66%);
 }
 
+dl div.hidden {
+	display: none;
+}
+
+/* Code for transitioning to/from `display:none` adapted from https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions#transitioning_display_and_content-visibility */
+@media (prefers-reduced-motion: no-preference) {
+	@supports (interpolate-size: allow-keywords) {
+		:root {
+			interpolate-size: allow-keywords;
+		}
+
+		dl div {
+			transition:
+				display 0.5s allow-discrete,
+				height 0.5s ease,
+				opacity 0.5s ease;
+			display: block;
+			height: auto;
+			opacity: 1;
+		}
+
+		@starting-style {
+  		dl div {
+				height: 0;
+				opacity: 0;
+  		}
+		}
+
+		dl div.hidden {
+			display: none;
+			height: 0;
+			opacity: 0;
+		}
+	}
+}
+
 dl div {
 	padding-left: 1rem;
 	/* This is purely so pseudo-elements have the same height as their parents. */
@@ -142,6 +179,13 @@ dl div {
 
 dd {
 	margin-left: 2rem;
+}
+
+/* Changing the 1rem margin-bottom to padding makes the transition on the parent div’s height smoother,
+because the padding is treated as part of the height of the div but margin wouldn’t be. */
+dd p:last-child {
+	margin-bottom: 0;
+	padding-bottom: 1rem;
 }
 
 dl div::before {
