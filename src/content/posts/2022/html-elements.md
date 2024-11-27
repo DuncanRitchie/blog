@@ -1699,13 +1699,13 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 
 			if (target.getAttribute('aria-pressed') === 'true') {
 				elements.forEach(element => {
-					element.style.display = 'none'
+					element.classList.add('hidden')
 				})
 				target.setAttribute('aria-pressed', 'false')
 			}
 			else {
 				elements.forEach(element => {
-					element.style.display = 'block'
+					element.classList.remove('hidden')
 				})
 				target.setAttribute('aria-pressed', 'true')
 			}
