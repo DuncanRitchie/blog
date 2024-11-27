@@ -23,6 +23,7 @@ editHistory: [
 	[2024-10-13, 'More detail on <address>, <th>, <var>'],
 	[2024-11-26, 'I’ve used <tfoot>'],
 	[2024-11-27, 'Elements fade in/out nicely (in Chrome at least)'],
+	[2024-11-27, 'Updated much of the text'],
 ]
 ---
 
@@ -228,7 +229,7 @@ I got the full list of elements from the sidebar of [MDN’s documentation](http
 
 If I’ve created an element using Markdown or some UI library that doesn’t involve me explicitly typing out the HTML tags, I don’t consider myself to have used it.
 
-I will probably update this page (perhaps using <code>&lt;ins&gt;</code> elements) if I use an element I haven’t used before.
+Since publishing this page, I’ve updated it several times when I’ve used elements that were new to me.
 
 ## Counts
 
@@ -497,7 +498,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dd>
 		<p>
 			Yep, I’ve definitely used this.
-			<ins>The first use of it on this blog is for the <a href="#filters">filters</a> on this list.</ins>
+			The first use of it on this blog is for the <a href="#filters">filters</a> on this list.
 		</p>
 	</dd>
 </div>
@@ -516,6 +517,10 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dd>
 		<p>
 			Despite running a website called Useful Tables of Excellent Latin Vocabulary, I’ve not made enough HTML tables to need any <code>&lt;caption&gt;</code> elements.
+			This is now the only table-related element I’ve not used.
+		</p>
+		<p>
+			Alternatives (that I’ve used) to this element include describing the table in the adjacent body text, and wrapping the table in <code>&lt;details&gt;</code> with <code>&lt;summary&gt;</code> providing the caption.
 		</p>
 	</dd>
 </div>
@@ -552,7 +557,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;col&gt;</code></dt>
 	<dd>
 		<p>
-			I use this on velut, though it’s inside a component that is not yet publicly visible (as of the time of this edit).
+			I use this on velut.
 			Here’s a whole <a href="./col-elements-on-verb-tables">article about it</a>.
 		</p>
 	</dd>
@@ -797,11 +802,14 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 </div>
 
 <div class="used" id="h1">
-	<dt><code>&lt;h1&gt;</code></dt>
+	<dt><code>&lt;h1&gt;</code> – <code>&lt;h6&gt;</code></dt>
 	<dd>
 		<p>
-			I used <code>&lt;h1&gt;</code> through to <code>&lt;h4&gt;</code>, but I don’t think I’ve ever used <code>&lt;h5&gt;</code>.
-			And of course I wouldn’t use <code>&lt;h6&gt;</code> without <code>&lt;h5&gt;</code> above it.
+			I had used <code>&lt;h1&gt;</code> through to <code>&lt;h4&gt;</code> before I posted this article.
+		</p>
+		<p>
+			When <a href="./childhood-blog">I resurrected my Childhood Blog</a>, all articles needed to be in one HTML file, including any headings for the articles and inside the articles.
+			This led to me using all six heading-levels (representing respectively the page title, year, month, date/title of an article, subheading inside an article, and subheading under that).
 		</p>
 	</dd>
 </div>
@@ -819,7 +827,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;header&gt;</code></dt>
 	<dd>
 		<p>
-			I’m using this on velut (along with <code>&lt;footer&gt;</code>), and I intend to use it at work.
+			I’m using this on velut (along with <code>&lt;footer&gt;</code>), and I used it at work after publishing this article.
 		</p>
 	</dd>
 </div>
@@ -828,11 +836,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;hgroup&gt;</code></dt>
 	<dd>
 		<p>
-			Maybe I should be using this for the headers for the <a href="https://www.duncanritchie.co.uk/code#velut-projects">lists of my projects</a> on my website.
-			I’m not at the moment.
-		</p>
-		<p>
-			<ins>Update: I’m now using it for that purpose!</ins>
+			After writing this article, I decided I should be using this for the headers for the <a href="https://www.duncanritchie.co.uk/code#velut-projects">lists of my projects</a> on my website.
 		</p>
 	</dd>
 </div>
@@ -841,7 +845,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;hr&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve not used horizontal rule elements on webpages, but I made some email templates for work that used them.
+			I’ve not used horizontal rule elements on webpages (except in one article on my Childhood Blog), but I made some email templates for work that used them.
 		</p>
 	</dd>
 </div>
@@ -932,8 +936,12 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;label&gt;</code></dt>
 	<dd>
 		<p>
-			I don’t use <code>&lt;label&gt;</code> on the main search form of velut (I don’t think it’s needed, even for accessibility), but it’s an important element for forms generally.
-			I get a lot of use out of it.
+			Labelling form inputs is very much a good idea.
+			I get a lot of use out of <code>&lt;label&gt;</code>.
+		</p>
+		<p>
+			The element can be useful even if you don’t want it visibly displayed.
+			I have an <a href="./form-inputs-with-invisible-labels">article about the main search form of velut</a> which relates to that.
 		</p>
 	</dd>
 </div>
@@ -998,9 +1006,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;marquee&gt;</code> (Deprecated)</dt>
 	<dd>
 		<p>
-			<ins>
-				I used this on my <a href="./looping-panorama-effect#commentary">article about animating panoramas</a>, as a bit of a joke.
-			</ins>
+			I used this on my <a href="./looping-panorama-effect#commentary">article about animating panoramas</a>, as a bit of a joke.
 		</p>
 	</dd>
 </div>
@@ -1022,10 +1028,8 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 			I prefer to use <code>&lt;ul&gt;</code> for navigation menus.
 		</p>
 		<p>
-			<ins>
-				<a href="https://adrianroselli.com/2023/05/be-careful-using-menu.html#HTMLMenu">Adrian Roselli</a> agrees, saying that, because browsers treat <code>&lt;menu&gt;</code> the same as <code>&lt;ul&gt;</code>, you might as well consider <code>&lt;menu&gt;</code> deprecated.
-				(However, it isn’t <em>officially</em> deprecated like <code>&lt;menuitem&gt;</code> is.)
-			</ins>
+			<a href="https://adrianroselli.com/2023/05/be-careful-using-menu.html#HTMLMenu">Adrian Roselli</a> agrees, saying that, because browsers treat <code>&lt;menu&gt;</code> the same as <code>&lt;ul&gt;</code>, you might as well consider <code>&lt;menu&gt;</code> deprecated.
+			(However, it isn’t <em>officially</em> deprecated like <code>&lt;menuitem&gt;</code> is.)
 		</p>
 	</dd>
 </div>
@@ -1229,7 +1233,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;q&gt;</code></dt>
 	<dd>
 		<p>
-			An upcoming blogpost includes <code>&lt;q&gt;</code> elements, because I’m quoting text.
+			Several of my blogposts (posted after this article) include <code>&lt;q&gt;</code> elements, because I’m quoting text.
 		</p>
 	</dd>
 </div>
@@ -1442,7 +1446,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dd>
 		<p>
 			This is useful when I don’t want to put some CSS in a file separate to the HTML.
-			For example, I use them in <del>Eleventy</del> <ins>Astro</ins> when making this blog.
+			For example, I use them in Astro (and previously in Eleventy) when making this blog.
 			So I’m using <code>&lt;style&gt;</code> elements here.
 		</p>
 		<p>
@@ -1502,7 +1506,8 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;table&gt;</code></dt>
 	<dd>
 		<p>
-			I don’t write HTML tables very often, but I have done so.
+			At the time of writing this article, I wasn’t making HTML tables very often, but I had done so.
+			I have since added a load of tables to my Latin website.
 		</p>
 	</dd>
 </div>
@@ -1513,6 +1518,9 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 		<p>
 			I’ve used this at work to wrap the non-header rows of a table.
 		</p>
+		<p>
+			More recently, I’ve used it (and <code>&lt;thead&gt;</code> etc) on velut.
+		</p>
 	</dd>
 </div>
 
@@ -1520,7 +1528,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;td&gt;</code></dt>
 	<dd>
 		<p>
-			Yep, on the rare occasion that I make a HTML table, that table has cells.
+			Yep, on the occasion that I make a HTML table, that table has cells.
 		</p>
 	</dd>
 </div>
@@ -1546,11 +1554,9 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 <div class="used" id="tfoot">
 	<dt><code>&lt;tfoot&gt;</code></dt>
 	<dd>
-		<p class="del">
-			<del datetime="2024-11-26">No, I’ve never made a table with the bottom rows in a special element. At time of posting this article.</del>
-		</p>
-		<p class="ins">
-			<ins datetime="2024-11-26">Update: In 2024 I <a href="./childhood-blog">republished my Childhood Blog</a>, and made a <a href="https://www.duncanritchie.co.uk/childhood-blog/word-counts">table of word-counts</a>. That table has <code>&lt;tfoot&gt;</code> displaying the total number of words in that blog (44,139 at time of writing).</ins>
+		<p>
+			At time of posting this article, I had never made a table with the bottom rows in a special element.
+			But in 2024 I <a href="./childhood-blog">republished my Childhood Blog</a>, and made a <a href="https://www.duncanritchie.co.uk/childhood-blog/word-counts">table of word-counts</a>. That table has <code>&lt;tfoot&gt;</code> displaying the total number of words in that blog (44,139 at time of writing).
 		</p>
 	</dd>
 </div>
@@ -1559,7 +1565,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;th&gt;</code></dt>
 	<dd>
 		<p>
-			I only recently learnt that <code>&lt;td&gt;</code> should be replaced with <code>&lt;th&gt;</code> when inside <code>&lt;thead&gt;</code> (or when it’s otherwise a header cell).
+			I only recently (in 2022) learnt that <code>&lt;td&gt;</code> should be replaced with <code>&lt;th&gt;</code> when inside <code>&lt;thead&gt;</code> (or when it’s otherwise a header cell).
 			But I have now used it, and written CSS targeting it.
 		</p>
 	</dd>
@@ -1569,8 +1575,11 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;thead&gt;</code></dt>
 	<dd>
 		<p>
-			I can’t find or remember where I’ve used a <code>&lt;thead&gt;</code> element, but I’m pretty sure I have.
+			I can’t find or remember where I’ve used a <code>&lt;thead&gt;</code> element (at least before making this list), but I’m pretty sure I have.
 			I’m counting it.
+		</p>
+		<p>
+			It’s now used a lot on velut, so I have to count it.
 		</p>
 	</dd>
 </div>
@@ -1598,7 +1607,7 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	<dt><code>&lt;tr&gt;</code></dt>
 	<dd>
 		<p>
-			Yep, on the rare occasion that I make a HTML table, that table has rows.
+			Yep, on the occasion that I make a HTML table, that table has rows.
 		</p>
 	</dd>
 </div>
