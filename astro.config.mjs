@@ -12,4 +12,5 @@ export default defineConfig({
 		},
 	},
 	integrations: [mdx()],
+	trailingSlash: 'never',
 })
