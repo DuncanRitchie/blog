@@ -25,15 +25,17 @@ export async function getStaticPaths() {
 			)),
 	)
 
-	return [...tags].sort().map((tag, index, tags) => ({
-		params: { slug: slugifyText(tag) },
-		props: {
-			tag,
-			posts: tagsWithPosts[tag],
-			previous: tags[index - 1],
-			next: tags[index + 1],
-		},
-	}))
+	return [...tags]
+		.sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1))
+		.map((tag, index, tags) => ({
+			params: { slug: slugifyText(tag) },
+			props: {
+				tag,
+				posts: tagsWithPosts[tag],
+				previous: tags[index - 1],
+				next: tags[index + 1],
+			},
+		}))
 }
 
 const { tag, posts, previous, next } = Astro.props
