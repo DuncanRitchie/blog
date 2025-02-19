@@ -1,0 +1,15 @@
+---
+import SearchFormAndResults from '../components/SearchFormAndResults.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+	title="Search — Duncan Ritchie’s blog"
+	description="Search results"
+	showBlogHomeLinkInFooter={true}
+>
+	<main>
+		<h1>Search my blog</h1>
+		<SearchFormAndResults />
+	</main>
+</BaseLayout>

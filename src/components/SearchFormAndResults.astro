@@ -1,0 +1,168 @@
+---
+// Adapted from https://trost.codes/posts/adding-simple-search-to-an-astro-blog/#adding-the-component
+import '@pagefind/default-ui/css/ui.css'
+// import { join } from "node:path";
+
+interface Props {
+	id?: string
+	className?: string
+}
+
+const { id, className } = Astro.props as Props
+
+const bundlePath = import.meta.env.BASE_URL + '/pagefind/'
+const divProps = {
+	...(id ? { id } : {}),
+	...(className ? { class: className } : {}),
+}
+---
+
+<style>
+	:root {
+		--pagefind-ui-scale: 1.125
+			/* I want to set this to calc(1rem / 16px) but I can’t. */;
+		--pagefind-ui-primary: unset;
+		--pagefind-ui-text: var(--body-text);
+		--pagefind-ui-background: white;
+		--pagefind-ui-border: var(--section-border, var(--section-border-opaque));
+		--pagefind-ui-tag: #eeeeee;
+		--pagefind-ui-border-width: 2px;
+		--pagefind-ui-border-radius: 0.25rem;
+		--pagefind-ui-image-border-radius: 0;
+		--pagefind-ui-image-box-ratio: 4 / 3;
+		--pagefind-ui-font: unset;
+	}
+	/* CSS for individual elements is set via JavaScript.
+	Declarations don’t seem to work in the <style> element, except for <style> elements added through JavaScript. */
+	:root .pagefind-ui__result-link {
+		--pagefind-ui-text: unset;
+	}
+</style>
+
+<div {...divProps} data-pagefind-ui data-bundle-path={bundlePath}></div>
+
+<script>
+	import { PagefindUI } from '@pagefind/default-ui'
+
+	window.addEventListener('DOMContentLoaded', () => {
+		const allSelector = '[data-pagefind-ui]'
+		// Not sure why there would be more than one instance of the Pagefind UI.
+		for (const el of document.querySelectorAll(allSelector)) {
+			const elSelector = [
+				...(el.id ? [`#${el.id}`] : []),
+				...[...el.classList.values()].map((c) => `.${c}`),
+				allSelector,
+			].join('')
+			const bundlePath = el.getAttribute('data-bundle-path')
+			new PagefindUI({
+				bundlePath,
+				debounceTimeoutMs: 200,
+				element: elSelector,
+				excerptLength: 30,
+				pageSize: 10,
+				resetStyles: false,
+				showImages: true,
+				showSubResults: true,
+			})
+
+			const input = el.querySelector<HTMLInputElement>(`input[type="text"]`)
+
+			// Some Pagerank styling cannot be overridden in the <style> element,
+			// but can be overridden with JavaScript here.
+			function applyCustomStyles() {
+				// clearButton & input exist throughout the lifetime of the component.
+				// We can therefore target them immediately.
+				const clearButton = document.querySelector(
+					`button.pagefind-ui__search-clear`,
+				)
+				if (clearButton) {
+					clearButton.setAttribute(
+						'style',
+						'padding-inline: 0.5em; font-size: unset;',
+					)
+				}
+				if (input) {
+					input.setAttribute(
+						'style',
+						'font-family: Monaco, Consolas, monospace; font-weight: unset; border-width: 1px;',
+					)
+				}
+
+				// By appending a <style> element to the DOM, we can override more of Pagerank’s default styles.
+				// We only add the <style> element if it doesn’t already exist.
+				if (!document.getElementById('new-style')) {
+					const newStyle = document.createElement('style')
+					newStyle.setAttribute('id', 'new-style')
+					// Note the !important on every declaration!
+					newStyle.innerHTML = `
+						p.pagefind-ui__message {
+							font-size: 1rem !important;
+						}
+						p.pagefind-ui__result-title {
+							margin-bottom: 0.125rem !important;
+						}
+						.pagefind-ui__result-link:link:not(:hover) {
+							--pagefind-ui-text: var(--unvisited-text) !important;
+							text-decoration: revert !important;
+						}
+						.pagefind-ui__result-link:visited:not(:hover) {
+							--pagefind-ui-text: var(--visited-text) !important;
+						}
+						.pagefind-ui__result-link:hover {
+							--pagefind-ui-text: var(--colour6) !important;
+						  text-decoration: none !important;
+						}
+						.pagefind-ui__result-link:active {
+							--pagefind-ui-text: var(--active-text) !important;
+						}
+						.pagefind-ui__result-excerpt {
+							margin-bottom: 0.5rem !important;
+							font-size: 1rem !important!;
+						}
+						.pagefind-ui__button {
+							border-width: 1px !important;
+							font-size: 1rem !important;
+						}
+					`
+					document.querySelector('body')?.appendChild(newStyle)
+				}
+				//// Annoyingly I can’t style the message specifically. This doesn’t work:
+				// const messageP = document.querySelector('p.pagefind-ui__message')
+				// if (messageP) {
+				// 	messageP.setAttribute('style', 'font-size: 1rem;')
+				// }
+
+				//// Annoyingly I can’t style the result links specifically. this doesn’t work:
+				// const links = document.querySelectorAll('a.pagefind-ui__result-link')
+				// for (const a of links) {
+				// 	a.setAttribute('style', '--pagefind-ui-text: unset;')
+				// }
+			}
+
+			// Does the current URL have query params?
+			const url = new URL(window.location.href)
+			const params = new URLSearchParams(url.search)
+			const query = params.get('q')
+
+			// If query exists on page load.
+			if (query && input) {
+				input.value = query
+				input.dispatchEvent(new Event('input', { bubbles: true }))
+			}
+
+			// Change URL when the input changes.
+			input?.addEventListener('input', (e) => {
+				const input = e.target as HTMLInputElement
+				const url = new URL(window.location.href)
+				const params = new URLSearchParams(url.search)
+				params.set('q', input.value)
+				window.history.replaceState({}, '', `${url.pathname}?${params}`)
+
+				window.setTimeout(applyCustomStyles, 100)
+			})
+
+			// CSS is easier to customise here than in the <style> element!
+			applyCustomStyles()
+		}
+	})
+</script>

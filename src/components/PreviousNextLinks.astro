@@ -10,7 +10,7 @@ export interface Props {
 const { type, previous, previousUrl, next, nextUrl } = Astro.props
 ---
 
-<div class="previous-next-links">
+<div class="previous-next-links" data-pagefind-ignore>
 	{
 		previous && (
 			<p class="previous">
