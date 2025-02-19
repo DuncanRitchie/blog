@@ -24,7 +24,7 @@ editHistory: [
 	[2024-11-26, 'I’ve used <tfoot>'],
 	[2024-11-27, 'Elements fade in/out nicely (in Chrome at least)'],
 	[2024-11-27, 'Updated much of the text'],
-	[2025-02-19, 'I’ve used <address>']
+	[2025-02-19, 'I’ve used <address> & <search>']
 ]
 ---
 
@@ -239,7 +239,7 @@ Since publishing this page, I’ve updated it several times when I’ve used ele
 Of <data value="total">137</data> elements, <data value="deprecated">27</data> are deprecated and <data value="experimental">1</data> is experimental.
 The other <data value="usable">109</data> I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
-But I find it interesting to keep count; I’ve used <data value="used">88</data>.
+But I find it interesting to keep count; I’ve used <data value="used">89</data>.
 
 <label for="meter">
 	HTML elements that are neither deprecated nor experimental
@@ -259,16 +259,16 @@ But I find it interesting to keep count; I’ve used <data value="used">88</data
 <label for="progress">
 	Usable elements that I’ve used
 	<small>
-		<data value="used">88</data>
+		<data value="used">89</data>
 		of
 		<data value="usable">109</data>
-		(<data value="used-percent-of-usable">80.7</data>%)
+		(<data value="used-percent-of-usable">81.7</data>%)
 	</small>
 </label>
 <progress id="progress"	min="0"
-	value="88" max="109"
+	value="89" max="109"
 	data-value="used" data-max="usable"
-	style="--percentage: 80.7%"
+	style="--percentage: 81.7%"
 ></progress>
 
 ## Filters
@@ -1321,7 +1321,7 @@ But I find it interesting to keep count; I’ve used <data value="used">88</data
 	</dd>
 </div>
 
-<div class="usable-unused" id="search">
+<div class="used" id="search">
 	<dt><code>&lt;search&gt;</code></dt>
 	<dd>
 		<p>
@@ -1329,10 +1329,15 @@ But I find it interesting to keep count; I’ve used <data value="used">88</data
 			It exists so that the Aria landmark role of <code>search</code> has a corresponding HTML tag, which means it is pretty much equivalent to <code>&lt;div role="search"&gt;</code>.
 		</p>
 		<p>
-			I’ve not used this element.
+			My first time using this element was after I added a search feature to this blog, which you can see on the <a href="./">homepage</a>.
+			The actual <a href="search">search-page</a> uses <a href="https://pagefind.app">Pagefind</a>, a dependency that supplies both the search-bar and the search-results together (both wrapped in a <code>&lt;form role="search"&gt;</code> element).
+			But for the homepage, I made a simple form that merely passes the input onto the search-page, and this simple form uses <code>&lt;form&gt;</code> wrapped in <code>&lt;search&gt;</code>.
+		</p>
+		<p>
 			On velut, I use <code>&lt;form role="search"&gt;</code>, which gives me native HTML form behaviour and the correct Aria role in one element.
 			This is equivalent to wrapping <code>&lt;form&gt;</code> in <code>&lt;search&gt;</code>.
-			Swapping the <code>&lt;search&gt;</code> element in is an easy change to make, but there’s not a lot of benefit.
+			Swapping between the two approaches is an easy change to make, but there’s not a lot of benefit.
+			It doesn’t really matter which of the two you do.
 		</p>
 	</dd>
 </div>
