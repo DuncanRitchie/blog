@@ -5,6 +5,7 @@ import PostList from '../components/PostList.astro'
 import { logIfPostsHaveAmbiguousDraftStatus } from '../utils'
 import TagList from '../components/TagList.astro'
 import YearList from '../components/YearList.astro'
+import SearchFormBasic from '../components/SearchFormBasic.astro'
 
 const allPosts = await getCollection('posts')
 logIfPostsHaveAmbiguousDraftStatus()
@@ -57,6 +58,8 @@ logIfPostsHaveAmbiguousDraftStatus()
 			Assorted notes that may or may not relate to web development, but that I
 			felt should be recorded somewhere…
 		</p>
+		<h2>Search the blog</h2>
+		<SearchFormBasic />
 		<h2>All articles</h2>
 		<PostList posts={allPosts} />
 		<h2>Articles by tag</h2>
