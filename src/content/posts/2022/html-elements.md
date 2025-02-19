@@ -24,6 +24,7 @@ editHistory: [
 	[2024-11-26, 'I’ve used <tfoot>'],
 	[2024-11-27, 'Elements fade in/out nicely (in Chrome at least)'],
 	[2024-11-27, 'Updated much of the text'],
+	[2025-02-19, 'I’ve used <address>']
 ]
 ---
 
@@ -238,7 +239,7 @@ Since publishing this page, I’ve updated it several times when I’ve used ele
 Of <data value="total">137</data> elements, <data value="deprecated">27</data> are deprecated and <data value="experimental">1</data> is experimental.
 The other <data value="usable">109</data> I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
-But I find it interesting to keep count; I’ve used <data value="used">87</data>.
+But I find it interesting to keep count; I’ve used <data value="used">88</data>.
 
 <label for="meter">
 	HTML elements that are neither deprecated nor experimental
@@ -258,16 +259,16 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 <label for="progress">
 	Usable elements that I’ve used
 	<small>
-		<data value="used">87</data>
+		<data value="used">88</data>
 		of
 		<data value="usable">109</data>
-		(<data value="used-percent-of-usable">79.8</data>%)
+		(<data value="used-percent-of-usable">80.7</data>%)
 	</small>
 </label>
 <progress id="progress"	min="0"
-	value="87" max="109"
+	value="88" max="109"
 	data-value="used" data-max="usable"
-	style="--percentage: 79.8%"
+	style="--percentage: 80.7%"
 ></progress>
 
 ## Filters
@@ -341,12 +342,12 @@ But I find it interesting to keep count; I’ve used <data value="used">87</data
 	</dd>
 </div>
 
-<div class="usable-unused" id="address">
+<div class="used" id="address">
 	<dt><code>&lt;address&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve not used this, but it’s the tag I’m the most surprised that I haven’t used.
-			Somehow I’ve not needed an element to wrap contact information, such as an email address or social media links (or indeed a street address).
+			This is a block element for wrapping contact information, such as an email address or social media links (or indeed a street address).
+			My personal website’s navbar contains links to my <a href="https://github.com/DuncanRitchie">GitHub</a> and <a href="https://www.linkedin.com/in/duncan-ritchie-uk/">LinkedIn</a> profiles, and these are now wrapped in an <code>&lt;address&gt;</code> element.
 		</p>
 		<p>
 			My <a href="https://github.com/DuncanRitchie/DuncanRitchie">GitHub profile readme</a> ends with some contact information, including my city, LinkedIn profile, and personal website.
