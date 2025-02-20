@@ -27,9 +27,10 @@ const slugifyPost = (blogpost: CollectionEntry<'posts'>) => {
 		return ''
 	}
 
-	const slugWithoutDraftSuffix = blogpost.data.draft
-		? blogpost.filePath.replace(/\.md(x?)$/, '').replace(/\.draft$/, '')
-		: blogpost.filePath.replace(/\.md(x?)$/, '')
+	// Delete .md, .mdx, .draft.md, .draft.mdx from the end of the filepath.
+	const slugWithoutDraftSuffix = blogpost.filePath
+		.replace(/\.md(x?)$/, '')
+		.replace(/\.draft$/, '')
 
 	// Delete slashes and anything before them.
 	const slug = slugWithoutDraftSuffix.replace(/.+\//, '')
