@@ -37,13 +37,10 @@ export async function getStaticPaths() {
 	}))
 }
 
-const isMdx = Boolean(!post.rendered?.html)
-const MdContent = isMdx ? null : post.rendered.html
-const MdxContent = isMdx ? (await render(post)).Content : Fragment
-
-if (!MdContent && !MdxContent) {
-	console.error('No Content rendered!', post)
-}
+// Non-MDX content can be accessed through post.rendered.html
+// but that doesn’t work for MDX.
+// Astro’s `render` function works for both, so we can just use that.
+const Content = (await render(post)).Content
 ---
 
 <BaseLayout
@@ -54,7 +51,7 @@ if (!MdContent && !MdxContent) {
 	<PostIntro data={post.data} />
 
 	<main>
-		{isMdx ? <MdxContent /> : <Fragment set:html={MdContent} />}
+		<Content />
 	</main>
 
 	<PreviousNextLinks
