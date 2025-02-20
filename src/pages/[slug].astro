@@ -16,7 +16,7 @@ export interface Props {
 }
 
 // I don’t know why Astro doesn’t recognise `post` as a property of `Astro.props`, but it is!
-const { post, compiledContent } = Astro.props as any
+const { post } = Astro.props as any
 
 const posts = await getCollection('posts')
 const postsSorted = sortPosts(posts)
