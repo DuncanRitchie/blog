@@ -1,4 +1,4 @@
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry } from 'astro:content'
 
 /**
  * Replace HTML characters with their escaped equivalents.
@@ -11,9 +11,8 @@ const escapeHtml = (text: string) => {
 
 /**
  * Returns the slug (URL fragment) for the given blogpost.
- * This function exists because `blogpost.slug` includes the subfolder
- * (eg “2020/”), and ends with “draft” if the post is a draft, but
- * blogpost URLs should not include the subfolder or “draft” suffix.
+ * Eg it the filepath is "src/content/posts/2020/mandarin-ducks.md",
+ * the slug will be "mandarin-ducks".
  */
 const slugifyPost = (blogpost: CollectionEntry<'posts'>) => {
 	if (!blogpost) {

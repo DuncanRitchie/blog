@@ -4,11 +4,16 @@ import { glob } from 'astro/loaders'
 /**
  * Draft posts should have `draft:true` in frontmatter and “.draft.md” ending the filename.
  * This function logs if a post has one of those criteria but not the other.
+ * If either criterion is met, the collection loader will treat the post as a draft.
  */
-const isDraftStatusAmbiguous = (blogpost: any): boolean => {
+const isDraft = (blogpost: any): boolean => {
 	const hasDraftFrontmatter = blogpost.data.draft
-	const isExcludedFromGit = blogpost.filePath?.endsWith('.draft.md')
-	if (hasDraftFrontmatter === isExcludedFromGit) {
+	const isExcludedFromGit = blogpost.filePath?.includes('.draft')
+
+	if (hasDraftFrontmatter && isExcludedFromGit) {
+		return true
+	}
+	if (!hasDraftFrontmatter && !isExcludedFromGit) {
 		return false
 	}
 	if (hasDraftFrontmatter) {
@@ -20,6 +25,7 @@ const isDraftStatusAmbiguous = (blogpost: any): boolean => {
 			'Marked as draft in filename but not frontmatter: ' + blogpost.id,
 		)
 	}
+	// A post with ambiguous draft status is treated as a draft.
 	return true
 }
 
@@ -37,10 +43,23 @@ const postsCollection = defineCollection({
 			await baseLoader.load.call(this, loaderParams)
 
 			const items = [...store.entries()].map(([_, value]) => value)
-			for (const item of items) {
-				// This func has a side-effect of logging if the draft status is ambiguous.
-				isDraftStatusAmbiguous(item)
-			}
+
+			const mappedItems = items.map((item) => {
+				if (isDraft(item)) {
+					return {
+						...item,
+						data: {
+							...item.data,
+							draft: true,
+						},
+					}
+				}
+				return item
+			})
+			store.clear()
+			mappedItems.forEach((item) => {
+				store.set({ ...item })
+			})
 		},
 	},
 	schema: z.object({
