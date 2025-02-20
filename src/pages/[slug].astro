@@ -37,7 +37,7 @@ export async function getStaticPaths() {
 	}))
 }
 
-const { Content } = await post.render()
+const Content = post.rendered.html
 ---
 
 <BaseLayout
@@ -48,7 +48,7 @@ const { Content } = await post.render()
 	<PostIntro data={post.data} />
 
 	<main>
-		<Content />
+		<Fragment set:html={Content} />
 	</main>
 
 	<PreviousNextLinks

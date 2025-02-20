@@ -2,13 +2,11 @@
 import { getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PostList from '../components/PostList.astro'
-import { logIfPostsHaveAmbiguousDraftStatus } from '../utils'
 import TagList from '../components/TagList.astro'
 import YearList from '../components/YearList.astro'
 import SearchFormBasic from '../components/SearchFormBasic.astro'
 
 const allPosts = await getCollection('posts')
-logIfPostsHaveAmbiguousDraftStatus()
 ---
 
 <style>
