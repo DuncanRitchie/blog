@@ -37,7 +37,7 @@ const postsCollection = defineCollection({
 		load: async (loaderParams) => {
 			const { store } = loaderParams
 			const baseLoader = glob({
-				pattern: '**/*.md',
+				pattern: '**/*.{md,mdx}',
 				base: './src/content',
 			})
 			await baseLoader.load.call(this, loaderParams)

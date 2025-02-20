@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection, render } from 'astro:content'
 
 import PreviousNextLinks from '../components/PreviousNextLinks.astro'
 import PostIntro from '../components/PostIntro.astro'
@@ -16,7 +16,7 @@ export interface Props {
 }
 
 // I don’t know why Astro doesn’t recognise `post` as a property of `Astro.props`, but it is!
-const { post } = Astro.props as any
+const { post, compiledContent } = Astro.props as any
 
 const posts = await getCollection('posts')
 const postsSorted = sortPosts(posts)
@@ -37,7 +37,13 @@ export async function getStaticPaths() {
 	}))
 }
 
-const Content = post.rendered.html
+const isMdx = Boolean(!post.rendered?.html)
+const MdContent = isMdx ? null : post.rendered.html
+const MdxContent = isMdx ? (await render(post)).Content : Fragment
+
+if (!MdContent && !MdxContent) {
+	console.error('No Content rendered!', post)
+}
 ---
 
 <BaseLayout
@@ -48,7 +54,7 @@ const Content = post.rendered.html
 	<PostIntro data={post.data} />
 
 	<main>
-		<Fragment set:html={Content} />
+		{isMdx ? <MdxContent /> : <Fragment set:html={MdContent} />}
 	</main>
 
 	<PreviousNextLinks
