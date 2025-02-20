@@ -1,7 +1,6 @@
 ---
 // Adapted from https://trost.codes/posts/adding-simple-search-to-an-astro-blog/#adding-the-component
 import '@pagefind/default-ui/css/ui.css'
-// import { join } from "node:path";
 
 interface Props {
 	id?: string
@@ -40,6 +39,12 @@ const divProps = {
 </style>
 
 <div {...divProps} data-pagefind-ui data-bundle-path={bundlePath}></div>
+
+<noscript>
+	<p>
+		Please enable JavaScript in your browser for the search feature to work.
+	</p>
+</noscript>
 
 <script>
 	import { PagefindUI } from '@pagefind/default-ui'
