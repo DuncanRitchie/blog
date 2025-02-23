@@ -2,18 +2,7 @@
 // Adapted from https://trost.codes/posts/adding-simple-search-to-an-astro-blog/#adding-the-component
 import '@pagefind/default-ui/css/ui.css'
 
-interface Props {
-	id?: string
-	className?: string
-}
-
-const { id, className } = Astro.props as Props
-
 const bundlePath = import.meta.env.BASE_URL + '/pagefind/'
-const divProps = {
-	...(id ? { id } : {}),
-	...(className ? { class: className } : {}),
-}
 ---
 
 <style>
@@ -38,7 +27,7 @@ const divProps = {
 	}
 </style>
 
-<div {...divProps} data-pagefind-ui data-bundle-path={bundlePath}></div>
+<div data-pagefind-ui data-bundle-path={bundlePath}></div>
 
 <noscript>
 	<p>
@@ -50,19 +39,16 @@ const divProps = {
 	import { PagefindUI } from '@pagefind/default-ui'
 
 	window.addEventListener('DOMContentLoaded', () => {
-		const allSelector = '[data-pagefind-ui]'
-		// Not sure why there would be more than one instance of the Pagefind UI.
-		for (const el of document.querySelectorAll(allSelector)) {
-			const elSelector = [
-				...(el.id ? [`#${el.id}`] : []),
-				...[...el.classList.values()].map((c) => `.${c}`),
-				allSelector,
-			].join('')
-			const bundlePath = el.getAttribute('data-bundle-path')
+		const selector = '[data-pagefind-ui]'
+		const pagefindUI = document.querySelector(selector)
+		// If I ever add a second instance of the Pagefind UI, they would need to be differentiated via `id` attributes (or similar) and the `if`-block would change into `forEach`.
+		// But as there’s only one UI on the page, I can simply use `selector` to find it.
+		if (pagefindUI) {
+			const bundlePath = pagefindUI.getAttribute('data-bundle-path')
 			new PagefindUI({
 				bundlePath,
 				debounceTimeoutMs: 200,
-				element: elSelector,
+				element: selector,
 				excerptLength: 30,
 				pageSize: 10,
 				resetStyles: false,
@@ -70,7 +56,8 @@ const divProps = {
 				showSubResults: true,
 			})
 
-			const input = el.querySelector<HTMLInputElement>(`input[type="text"]`)
+			const input =
+				pagefindUI.querySelector<HTMLInputElement>(`input[type="text"]`)
 
 			// Some Pagerank styling cannot be overridden in the <style> element,
 			// but can be overridden with JavaScript here.
