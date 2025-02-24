@@ -1,0 +1,380 @@
+---
+date: 2025-02-24
+title: Adding search to my Astro blog
+draft: false
+tags: [Software]
+---
+
+import SearchFormBasic from '../../../components/SearchFormBasic.astro'
+
+# Adding search to my Astro blog
+
+This blog now has its own search facility.
+There’s a basic searchbar, which you can see below.
+But there’s also a full page of search results, which has its own searchbar and is what the basic searchbar redirects to when you click the “Search!” button.
+In this article I explain how I achieved this.
+
+<SearchFormBasic />
+
+## Preamble
+
+My blog is made with [Astro](https://astro.build/), and (before publication of this article) has 46 posts.
+You can already [browse by year](./years) or [browse by tag](./tags), or peruse the [full list of articles](./) on the homepage, but I figured it would be cool to be able to search for an exact word as well.
+
+So when I saw web developer Alex Trost had published an [article on combining Pagefind with Astro](https://trost.codes/posts/adding-simple-search-to-an-astro-blog/), I thought I’d give it a try.
+
+Pagefind is a JavaScript library that creates its own index of your site’s content (at build time) and provides a user-interface with a searchbar and list of results that populate as you type (at run time, client-side).
+Because the results are derived from the index, searches are very quick to execute.
+
+Pagefind also offers an API for more programmatic handling of results, but the default UI is good enough for me.
+
+## Installing dependencies
+
+In my blog, I needed to install both Pagefind itself and the Astro plugin for Pagefind.
+
+```sh
+npm install pagefind astro-pagefind
+```
+
+And the plugin needs to be referenced in the Astro config file.
+
+```js
+import { defineConfig } from 'astro/config'
+import pagefind from 'astro-pagefind'
+
+export default defineConfig({
+	...,
+	integrations: [..., pagefind()],
+})
+```
+<cite>[Code for astro.config.mjs](https://github.com/DuncanRitchie/blog/blob/main/astro.config.mjs)</cite>
+
+Pagefind creates its index at build time (inside /dist which is the folder all the static files are output to), so I ran a build before launching the development server.
+
+```sh
+npm run build
+npm run dev
+```
+
+Then it was time to start making the search-page.
+
+## Search-page
+
+Files inside the /pages folder are what define the pages of the website.
+I wanted a new page at DuncanRitchie.co.uk/blog/search.
+
+So I created a /pages/search.astro file, which turned out to be very simple.
+Here’s the entire code for it.
+
+```astro
+---
+import SearchFormAndResults from '../components/SearchFormAndResults.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+	title="Search — Duncan Ritchie’s blog"
+	description="Search results"
+	showBlogHomeLinkInFooter={true}
+>
+	<main>
+		<h1>Search my blog</h1>
+		<SearchFormAndResults />
+	</main>
+</BaseLayout>
+```
+<cite>[Code for search.astro](https://github.com/DuncanRitchie/blog/blob/main/src/pages/search.astro)</cite>
+
+<figure class="float-left" style="max-width: 240px">
+<img
+	src="./images/2025/horse.webp"
+	alt="A light grey horse appearing to be nibbling on a fencepost"
+	width="240"
+	style="aspect-ratio: 3 / 4;"
+/>
+<figcaption>When I’m in the blog development field, I’m surrounded by posts.</figcaption>
+</figure>
+
+## Component using Pagefind
+
+You’ll notice all the search functionality is inside a new component `<SearchFormAndResults />`.
+Alex Trost named his component `<SearchField />` — maybe because [he likes horses](https://frontend.horse/) and horses live in fields? — but I chose a more cumbersome moniker.
+Pagefind provides both the form and the results wrapped together in one, and I knew I’d be creating a stand-alone searchbar later, so my naming is different.
+
+My component is a bit more complicated than my search.astro file.
+
+Here’s the server-side TypeScript and HTML for the page.
+Trost passes his own `id` and `class` attributes into the `<div>` via Astro props, but I don’t need that.
+
+```astro
+---
+import '@pagefind/default-ui/css/ui.css'
+
+const bundlePath = import.meta.env.BASE_URL + '/pagefind/'
+---
+
+<div data-pagefind-ui data-bundle-path={bundlePath}></div>
+```
+<cite>[Code for SearchFormAndResults.astro](https://github.com/DuncanRitchie/blog/blob/main/src/components/SearchFormAndResults.astro)</cite>
+
+The `data-pagefind-ui` and `data-bundle-path` attributes are read by the JavaScript when the Pagefind UI is instantiated.
+
+Much of the client-side JavaScript is similar to [how Trost did it](https://trost.codes/posts/adding-simple-search-to-an-astro-blog/#adding-the-component), and I’ve already linked to all the code, so I’m not going to go through it all here.
+
+In particular, he added code for reading the `q` query parameter from the URL on page-load and feeding that into Pagefind, and he added code for updating the URL (including the browser history) when the input changes.
+
+So here is what the client-side JavaScript, that instantiates the Pagefind UI in the element with the `data-pagefind-ui` attribute, basically looks like.
+
+```html
+<script>
+	import { PagefindUI } from '@pagefind/default-ui'
+
+	window.addEventListener('DOMContentLoaded', () => {
+		const selector = '[data-pagefind-ui]'
+		const pagefindUI = document.querySelector(selector)
+		if (pagefindUI) {
+			new PagefindUI({
+				bundlePath: pagefindUI.getAttribute('data-bundle-path'),
+				debounceTimeoutMs: 200,
+				element: selector,
+				excerptLength: 30,
+				pageSize: 10,
+				resetStyles: false,
+				showImages: true,
+				showSubResults: true,
+			})
+
+			const input =
+				pagefindUI.querySelector<HTMLInputElement>(`input[type="text"]`)
+
+			function applyCustomStyles() {...}
+
+			// Code goes here for entering the URL’s `q` query parameter (if it has one on page load) into the searchbar as an event that Pagefind can react to.
+
+			input?.addEventListener('input', (e) => {
+				// Code goes here for setting the `q` param in the URL to the new value of the input, and modifying the browser history accordingly.
+
+				window.setTimeout(applyCustomStyles, 100)
+			})
+
+			applyCustomStyles()
+		}
+	})
+</script>
+```
+
+### CSS for the Pagefind UI
+
+There’s a function called `applyCustomStyles` in that code.
+I added it because the Pagefind UI was surprisingly difficult to style with my own CSS.
+
+If Pagefind’s CSS file is imported (`import '@pagefind/default-ui/css/ui.css'`), you get the UI all styled for you.
+
+This wasn’t bad, but I wanted the fonts and colours to match the rest of my blog.
+The text was very small and sans-serif, for example, and entirely dark grey, even on the hyperlinks.
+
+There’s a `resetStyles` boolean in the Pagefind config, so I disabled that.
+Next, I wrote my own `<style>` element with styles: Pagefind uses CSS variables that I can control here.
+I then wrote the `applyCustomStyles` function because some of my styles _still_ weren’t coming through.
+
+What does the function do?
+Well, the Pagefind searchbar and a button to clear the input exist throughout the lifetime of the component, so I can set a `style` attribute on them.
+Other elements are created and destroyed as the user types into the input, so I can’t just set a `style` attribute and leave it.
+
+What I ended up doing in the JavaScript is create a second `<style>` element, with whatever CSS weren’t being applied by my previous code, and append that to the DOM.
+Every declaration in this has an `!important` keyword on it, which is what was finally sufficient to make the styles apply.
+
+```js
+function applyCustomStyles() {
+	const clearButton = document.querySelector(
+		`button.pagefind-ui__search-clear`,
+	)
+	if (clearButton) {
+		clearButton.setAttribute(
+			'style',
+			'padding-inline: 0.5em; font-size: unset;',
+		)
+	}
+	// The <input> element can likewise have the `style` attribute set here.
+
+	// By appending a <style> element to the DOM, we can override more of Pagerank’s default styles.
+	// We only add the <style> element if it doesn’t already exist.
+	if (!document.getElementById('new-style')) {
+		const newStyle = document.createElement('style')
+		newStyle.setAttribute('id', 'new-style')
+		newStyle.innerHTML = `
+			p.pagefind-ui__message {
+				font-size: 1rem !important;
+			}
+			p.pagefind-ui__result-title {
+				margin-bottom: 0.125rem !important;
+			}
+			.pagefind-ui__result-link:link:not(:hover) {
+				--pagefind-ui-text: var(--unvisited-text) !important;
+				text-decoration: revert !important;
+			}
+			… etc
+		`
+		document.querySelector('body')?.appendChild(newStyle)
+	}
+}
+```
+
+Why are the styles so hard to override?
+I don't know, but eventually I got it looking how I want.
+
+<details>
+<summary>Screenshots of the evolution of the styles</summary>
+When I first saw the UI appear on the page, it looked like this:
+
+<figure>
+<img
+	src="./images/2025/searchpage-with-default-pagefind-css.webp"
+	alt="Searchpage UI with small sans-serif text"
+	width="1000"
+	style="aspect-ratio: 1440 / 813;"
+/>
+<figcaption>UI with Pagefind’s CSS, including the reset</figcaption>
+</figure>
+
+Then I disabled Pagefind’s `resetStyles` feature in the config…
+
+<figure>
+<img
+	src="./images/2025/searchpage-with-pagefind-css-without-reset.webp"
+	alt="Searchpage UI with nearly all the same styles as before"
+	width="1000"
+	style="aspect-ratio: 1440 / 813;"
+/>
+<figcaption>UI with Pagefind’s CSS, without Pagefind’s reset</figcaption>
+</figure>
+
+… then I wrote my own `<style>` element with styles…
+
+<figure>
+<img
+	src="./images/2025/searchpage-with-style-element.webp"
+	alt="Searchpage UI with mostly the same styles as before, but with a larger, serif font"
+	width="1000"
+	style="aspect-ratio: 1440 / 813;"
+/>
+<figcaption>UI with Pagefind’s CSS and a normal <code>&lt;style&gt;</code> element</figcaption>
+</figure>
+
+… then I wrote the `applyCustomStyles` function…
+
+<figure>
+<img
+	src="./images/2025/searchpage-with-two-style-elements.webp"
+	alt="Searchpage UI with mostly the same styles as before, but links are coloured and the input is in a monospace font"
+	width="1000"
+	style="aspect-ratio: 1440 / 813;"
+/>
+<figcaption>UI with Pagefind’s CSS, a normal <code>&lt;style&gt;</code> element, and a <code>&lt;style&gt;</code> element added by JavaScript</figcaption>
+</figure>
+
+</details>
+
+And that completes the search-page.
+
+## Stand-alone searchbar
+
+Because the search-page reads the query string in the URL when the Pagefind component is mounted, I could create a standard HTML form that passes its data onto that page when the form is submitted.
+This component could then be included in any page on my blog.
+
+```astro
+---
+const searchPath = import.meta.env.BASE_URL + '/search'
+---
+
+<search>
+	<form action={searchPath}>
+		<label for="search-input" class="screenreader-only">
+			Term to search for:</label
+		>
+		<input
+			id="search-input"
+			name="q"
+			title="Term to search for"
+			enterkeyhint="search"
+		/>
+		<button type="submit">Search!</button>
+	</form>
+</search>
+```
+<cite>[Code for SearchFormBasic.astro](https://github.com/DuncanRitchie/blog/blob/main/src/components/SearchFormBasic.astro)</cite>
+
+On this occasion, sighted visitors probably don’t need to see a label explaining what the field is: it’s obvious enough.
+But I still think a `<label>` element is nice for people with visual impairments.
+I have an article explaining [my use of `<label>` elements](./form-inputs-with-invisible-labels) in scenarios like this.
+
+As for the `<search>` element encasing the form, this is actually my first time using that tag.
+(And I duly added it to the [list of HTML tags I’ve used](./html-elements#search).)
+It indicates to assistive technology that this is where the searching functionality is.
+The older, but equally acceptable, way of doing that is to put a `role="search"` attribute on the `<form>` element (or on a wrapper `<div>`).
+
+I also added a `<noscript>` element.
+If a browser doesn’t have JavaScript enabled, it’s polite to warn the user that the search won’t work.
+(The form will redirect to /blog/search?q=whatever correctly, but then that page will fail to show search results.)
+
+```html
+	<noscript>
+		<p><em>Searching requires JavaScript.</em></p>
+	</noscript>
+```
+
+Similarly I added a `<noscript>` element to the `<SearchFormAndResults>` component.
+
+I’m pretty satisfied with that.
+
+## Server-side rendering?
+
+Pagefind relies on client-side JavaScript, or at least its UI does.
+A server-side–rendered search solution could be interesting.
+Apparently it’s possible to use [Pagefind with SSR in Astro](https://github.com/shishkin/astro-pagefind/issues/54), using the API and not the default UI, but I haven’t tried yet.
+
+## Slightly odd results
+
+<figure class="float-right">
+<img
+	src="./images/2025/two-penguins.webp"
+	alt="Two Humboldt penguins standing on the edge of their pond"
+	width="330"
+	style="aspect-ratio: 3 / 4;"
+/>
+<figcaption>Genuine penguins</figcaption>
+</figure>
+
+Some of the results from Pagefind are unexpected.
+For example, a [search for “cobra”](./search?q=cobra) returned URLs with “.co.uk”, a [search for “penguin”](./search?q=penguin) returned a mention of PE (Physical Education), and a [search for “dolphin”](./search?q=dolphin) returned 28 results that happened to contain the word “do”.
+I have never written about cobras or penguins or dolphins on this blog (at least, not until this paragraph), and I’m not sure why Pagefind treats longer words as equivalent to very short words.
+
+[Searching for “Coldplay”](./search?q=Coldplay) gives the right result, however, despite the name also beginning with “co” like “cobra”.
+So yeah, if you search for a word that has matches, Pagefind finds them, but if your search doesn’t actually have any matches, Pagefind might abbreviate your query and look for that.
+
+Publishing this article will mean that this article appears in the search results for “cobra/penguin/dolphin”, and the sillier results will not.
+But you can still experiment with [other words](./search?q=supercalifragilisticexpialidocious).
+
+## Conclusion
+
+Pagefind was easy to integrate with my blog, and fairly easy to customise.
+
+I’d have liked it to be easier to control how much of the UI’s default CSS was used — I like the layout, but want my own font choices to come through.
+
+I am impressed by Pagefind’s speed at refreshing results as you type.
+It makes for a great user experience.
+
+Overall, I like it and I’d consider using it on other static sites — I might even have it index all the content on DuncanRitchie.co.uk, not just this blog.
+(Or maybe I’d try a dependency with similar functionality.)
+So if you’re looking to add search to a static site, take a page out of my book and you might find this is your library.
+
+<style>{`
+	pre + cite {
+		text-align: right;
+		font-size: smaller;
+		display: block;
+		max-width: fit-content;
+		margin: -1rem 0 1rem auto;
+		border: 2px solid var(--colour6);
+		padding: 0.25rem 0.5rem;
+	}`}</style>

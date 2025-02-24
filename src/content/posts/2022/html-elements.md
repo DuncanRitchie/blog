@@ -1330,7 +1330,7 @@ But I find it interesting to keep count; I’ve used <data value="used">89</data
 		</p>
 		<p>
 			My first time using this element was after I added a search feature to this blog, which you can see on the <a href="./">homepage</a>.
-			The actual <a href="search">search-page</a> uses <a href="https://pagefind.app">Pagefind</a>, a dependency that supplies both the search-bar and the search-results together (both wrapped in a <code>&lt;form role="search"&gt;</code> element).
+			The actual <a href="search">search-page</a> uses <a href="https://pagefind.app">Pagefind</a>, a dependency that supplies both the searchbar and the search-results together (both wrapped in a <code>&lt;form role="search"&gt;</code> element).
 			But for the homepage, I made a simple form that merely passes the input onto the search-page, and this simple form uses <code>&lt;form&gt;</code> wrapped in <code>&lt;search&gt;</code>.
 		</p>
 		<p>
