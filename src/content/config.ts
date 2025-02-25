@@ -44,17 +44,22 @@ const postsCollection = defineCollection({
 
 			const items = [...store.entries()].map(([_, value]) => value)
 
+			// Add the tag "Short" if the article is short enough
+			// and mark the article as a draft if it’s a draft.
 			const mappedItems = items.map((item) => {
-				if (isDraft(item)) {
-					return {
-						...item,
-						data: {
-							...item.data,
-							draft: true,
-						},
-					}
+				const tags = item.data.tags as string[]
+				// Number of characters in the rendered HTML is a decent proxy for article length.
+				if ((item.rendered?.html?.length ?? Infinity) < 1150) {
+					tags.push('Short')
 				}
-				return item
+				return {
+					...item,
+					data: {
+						...item.data,
+						draft: isDraft(item),
+						tags: tags,
+					},
+				}
 			})
 			store.clear()
 			mappedItems.forEach((item) => {
