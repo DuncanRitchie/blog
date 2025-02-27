@@ -41,6 +41,8 @@ export async function getStaticPaths() {
 // but that doesn’t work for MDX.
 // Astro’s `render` function works for both, so we can just use that.
 const Content = (await render(post)).Content
+
+const viewTransitionNameH1 = slugifyPost(post)
 ---
 
 <BaseLayout
@@ -48,7 +50,7 @@ const Content = (await render(post)).Content
 	description={`Blogpost by Duncan Ritchie entitled “${title}”`}
 	showBlogHomeLinkInFooter={true}
 >
-	<PostIntro data={post.data} />
+	<PostIntro post={post} />
 
 	<main>
 		<Content />
@@ -62,3 +64,6 @@ const Content = (await render(post)).Content
 		nextUrl={import.meta.env.BASE_URL + '/' + slugifyPost(next)}
 	/>
 </BaseLayout>
+
+<!-- viewTransitionNameH1 var is used in GlobalStyles -->
+<style define:vars={{ viewTransitionNameH1 }}></style>

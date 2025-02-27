@@ -29,7 +29,12 @@ const tagsWithPostCounts: [string, string, number][] = tags.map((tag) => {
 	{
 		tagsWithPostCounts.map(([tag, slug, count]) => (
 			<li>
-				<a href={import.meta.env.BASE_URL + '/tags/' + slug}>{tag}</a>
+				<a
+					href={import.meta.env.BASE_URL + '/tags/' + slug}
+					style={{ viewTransitionName: slug }}
+				>
+					{tag}
+				</a>
 				<>
 					({count} {count === 1 ? ' article' : ' articles'})
 				</>

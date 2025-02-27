@@ -24,7 +24,12 @@ const yearsWithPostCounts: [number, number][] = years.map((year) => {
 	{
 		yearsWithPostCounts.map(([year, count]) => (
 			<li>
-				<a href={import.meta.env.BASE_URL + '/years/' + year}>{year}</a>
+				<a
+					href={import.meta.env.BASE_URL + '/years/' + year}
+					style={{ viewTransitionName: `year-${year}` }}
+				>
+					{year}
+				</a>
 				<>
 					({count} {count === 1 ? ' article' : ' articles'})
 				</>

@@ -11,7 +11,7 @@ const escapeHtml = (text: string) => {
 
 /**
  * Returns the slug (URL fragment) for the given blogpost.
- * Eg it the filepath is "src/content/posts/2020/mandarin-ducks.md",
+ * Eg if the filepath is "src/content/posts/2020/mandarin-ducks.md",
  * the slug will be "mandarin-ducks".
  */
 const slugifyPost = (blogpost: CollectionEntry<'posts'>) => {

@@ -1,16 +1,12 @@
 ---
-import { slugifyText } from '../utils/'
+import type { CollectionEntry } from 'astro:content'
+import { slugifyText, slugifyPost } from '../utils/'
 
 export interface Props {
-	data: {
-		date: string
-		draft: boolean
-		tags: string[]
-		editHistory?: string[][]
-	}
+	post: CollectionEntry<'posts'>
 }
 
-const { date: dateAsString, draft, tags, editHistory } = Astro.props.data
+const { date: dateAsString, draft, tags, editHistory } = Astro.props.post.data
 const date = new Date(dateAsString)
 const year = date.getFullYear()
 const dateIso = date.toISOString().slice(0, 10)
@@ -22,21 +18,30 @@ const dateReadable = date.toLocaleDateString('en-gb', {
 })
 const dateReadableWithoutYear = dateReadable.slice(0, -4)
 
-const makeDateSimple = (date: string) =>
-	new Date(date).toLocaleDateString('en-gb', {
+const makeDateSimple = (date: Date) =>
+	date.toLocaleDateString('en-gb', {
 		weekday: undefined,
 		year: 'numeric',
 		month: 'long',
 		day: undefined,
 	})
+
+const slug = slugifyPost(Astro.props.post)
 ---
 
 <aside>
 	<p>
 		This article was written on
 		<time datetime={dateIso}>
-			{dateReadableWithoutYear}
-			<a href={import.meta.env.BASE_URL + '/years/' + year}> {year}</a>
+			<span style={{ viewTransitionName: `date-${slug}` }}
+				>{dateReadableWithoutYear}</span
+			>
+			<a
+				href={import.meta.env.BASE_URL + '/years/' + year}
+				style={{ viewTransitionName: `year-${year}` }}
+			>
+				{year}</a
+			>
 		</time>
 		by Duncan Ritchie.
 	</p>
@@ -44,7 +49,13 @@ const makeDateSimple = (date: string) =>
 	{
 		draft && (
 			<p>
-				<strong>It is a draft.</strong>
+				<strong
+					style={{
+						viewTransitionName: `draft-${slug}`,
+					}}
+				>
+					It is a draft.
+				</strong>
 			</p>
 		)
 	}
@@ -54,9 +65,9 @@ const makeDateSimple = (date: string) =>
 			<details class="edits-details">
 				<summary>It has been edited since it was published.</summary>
 				<ul class="edits">
-					{editHistory.map(([date, description]) => (
+					{editHistory.map(([editDate, description]) => (
 						<li>
-							{makeDateSimple(date)}: {description}
+							{makeDateSimple(editDate)}: {description}
 						</li>
 					))}
 				</ul>
@@ -66,18 +77,21 @@ const makeDateSimple = (date: string) =>
 
 	{
 		tags.length > 0 && (
-			<>
+			<div style="view-transition-name: tag-heading;">
 				<p class="tags-intro">It is tagged as:</p>
 				<ul class="tags">
 					{tags.map((tag) => (
 						<li>
-							<a href={import.meta.env.BASE_URL + '/tags/' + slugifyText(tag)}>
+							<a
+								href={import.meta.env.BASE_URL + '/tags/' + slugifyText(tag)}
+								style={{ viewTransitionName: slugifyText(tag) }}
+							>
 								{tag}
 							</a>
 						</li>
 					))}
 				</ul>
-			</>
+			</div>
 		)
 	}
 </aside>
@@ -116,5 +130,11 @@ const makeDateSimple = (date: string) =>
 	}
 	.tags li {
 		display: inline-block;
+	}
+
+	<style > @media not (prefers-reduced-motion: reduce) {
+		aside {
+			view-transition-name: post-intro;
+		}
 	}
 </style>

@@ -95,3 +95,17 @@ ol.auto-grid {
 		margin: 0 0 0 1rem;
 	}
 }
+
+@media not (prefers-reduced-motion: reduce) {
+	@view-transition {
+		navigation: auto;
+	}
+	/* H1 headings transition into each other when navigating between pages.
+	On some pages (eg blogposts) the H1 transition is overridden, with a new value for the CSS variable. */
+	:root {
+		--viewTransitionNameH1: 'h1';
+	}
+	h1 {
+		view-transition-name: var(--viewTransitionNameH1);
+	}
+}

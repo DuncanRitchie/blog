@@ -76,9 +76,13 @@ const rssUrl =
 	showBlogHomeLinkInFooter={true}
 >
 	<main>
-		<h1>Posts tagged as “{tag}”</h1>
+		<h1 style="viewTransitionName: tag-heading;">
+			Posts tagged as “<span style={{ viewTransitionName: slugifyText(tag) }}
+				>{tag}</span
+			>”
+		</h1>
 		<PostList posts={posts} />
-		<aside class="rss">
+		<aside class="rss" style="view-transition-name: rss;">
 			<p>
 				<span>
 					<img
@@ -87,6 +91,7 @@ const rssUrl =
 						width="16"
 						aria-hidden="true"
 					/>
+					{' '}
 					<a href={rssUrl}>RSS feed for the tag “{tag}”</a>
 				</span>
 			</p>

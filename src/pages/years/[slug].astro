@@ -43,7 +43,11 @@ const { year, posts, previous, next } = Astro.props
 	showBlogHomeLinkInFooter={true}
 >
 	<main>
-		<h1>Posts from {year}</h1>
+		<h1>
+			Posts from <span style={{ viewTransitionName: `year-${year}` }}
+				>{year}</span
+			>
+		</h1>
 		<PostList posts={posts} />
 		<PreviousNextLinks
 			type="year"
