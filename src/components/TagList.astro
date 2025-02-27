@@ -29,12 +29,10 @@ const tagsWithPostCounts: [string, string, number][] = tags.map((tag) => {
 	{
 		tagsWithPostCounts.map(([tag, slug, count]) => (
 			<li>
-				<a
-					href={addLinkBase('tags', slug)}
-					style={{ viewTransitionName: slug }}
-				>
-					{tag}
-				</a>
+				{/* Prettier likes to add whitespace before the </a> closing tag, but that’s wrong here! */}
+				{/* prettier-ignore */}
+				<a href={addLinkBase('tags', slug)} style={{ viewTransitionName: slug }}>
+					{tag}</a>
 				<>
 					({count} {count === 1 ? ' article' : ' articles'})
 				</>

@@ -24,12 +24,10 @@ const yearsWithPostCounts: [number, number][] = years.map((year) => {
 	{
 		yearsWithPostCounts.map(([year, count]) => (
 			<li>
-				<a
-					href={addLinkBase('years', year)}
-					style={{ viewTransitionName: `year-${year}` }}
-				>
-					{year}
-				</a>
+				{/* Prettier likes to add whitespace before the </a> closing tag, but that’s wrong here! */}
+				{/* prettier-ignore */}
+				<a href={addLinkBase('years', year)} style={{ viewTransitionName: `year-${year}` }}>
+					{year}</a>
 				<>
 					({count} {count === 1 ? ' article' : ' articles'})
 				</>
