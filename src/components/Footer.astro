@@ -3,9 +3,10 @@ import { addLinkBase } from '../utils'
 
 export interface Props {
 	showBlogHomeLink: boolean
+	showRssLink: boolean
 }
 
-const { showBlogHomeLink } = Astro.props
+const { showBlogHomeLink, showRssLink } = Astro.props
 ---
 
 <footer style="view-transition-name: footer;">
@@ -19,9 +20,15 @@ const { showBlogHomeLink } = Astro.props
 				</li>
 			)
 		}
-		<li>
-			<a href={addLinkBase('rss.xml')} title="rss.xml">RSS</a>
-		</li>
+		{
+			showRssLink && (
+				<li>
+					<a href={addLinkBase('rss')} title="RSS feeds">
+						RSS
+					</a>
+				</li>
+			)
+		}
 		<li>
 			<a href="https://github.com/DuncanRitchie/blog" title="Code on GitHub">
 				See the code

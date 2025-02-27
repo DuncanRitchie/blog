@@ -1,0 +1,56 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { addLinkBase, slugifyText } from '../utils'
+
+const allPosts = await getCollection('posts')
+
+const tagsSet: Set<string> = allPosts.reduce((set, current) => {
+	set.delete('')
+	current.data.tags.forEach((tag) => set.add(tag))
+	return set
+}, new Set(''))
+
+const tags = [...tagsSet].sort((a, b) =>
+	a.toLowerCase() > b.toLowerCase() ? 1 : -1,
+)
+---
+
+<BaseLayout
+	title="RSS — Duncan Ritchie’s blog"
+	description="RSS fields"
+	showBlogHomeLinkInFooter={true}
+	showRssLinkInFooter={false}
+>
+	<main>
+		<h1>RSS feeds for my blog</h1>
+		<img
+			src={addLinkBase('images/rss-icon.svg')}
+			alt="RSS logo"
+			width="160"
+			class="float-right"
+		/>
+		<p>If you like, you can subscribe to all articles or to specific tags.</p>
+		<ul>
+			<li>
+				<a href={addLinkBase('rss.xml')} title="rss.xml">All posts</a>
+			</li>
+			{
+				tags.map((tag) => (
+					<li>
+						<a href={addLinkBase('tags', slugifyText(tag), 'rss.xml')}>
+							Posts tagged “{tag}”
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</main>
+</BaseLayout>
+
+<style>
+	li {
+		margin-bottom: 0.5rem;
+	}
+</style>

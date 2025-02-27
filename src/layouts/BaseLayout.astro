@@ -6,9 +6,11 @@ export interface Props {
 	title: string
 	description: string
 	showBlogHomeLinkInFooter: boolean
+	showRssLinkInFooter: boolean
 }
 
-const { title, description, showBlogHomeLinkInFooter } = Astro.props
+const { title, description, showBlogHomeLinkInFooter, showRssLinkInFooter } =
+	Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
@@ -65,6 +67,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 	<body>
 		<slot />
 
-		<Footer showBlogHomeLink={showBlogHomeLinkInFooter} />
+		<Footer
+			showBlogHomeLink={showBlogHomeLinkInFooter}
+			showRssLink={showRssLinkInFooter}
+		/>
 	</body>
 </html>
