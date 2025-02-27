@@ -1,4 +1,6 @@
 ---
+import { addLinkBase } from '../utils'
+
 export interface Props {
 	showBlogHomeLink: boolean
 }
@@ -11,14 +13,14 @@ const { showBlogHomeLink } = Astro.props
 		{
 			showBlogHomeLink && (
 				<li>
-					<a href={import.meta.env.BASE_URL} title="Duncan Ritchie’s blog">
+					<a href={addLinkBase()} title="Duncan Ritchie’s blog">
 						Blog home
 					</a>
 				</li>
 			)
 		}
 		<li>
-			<a href={import.meta.env.BASE_URL + '/rss.xml'} title="rss.xml">RSS</a>
+			<a href={addLinkBase('rss.xml')} title="rss.xml">RSS</a>
 		</li>
 		<li>
 			<a href="https://github.com/DuncanRitchie/blog" title="Code on GitHub">

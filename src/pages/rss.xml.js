@@ -4,7 +4,7 @@ import { experimental_AstroContainer as AstroContainer } from 'astro/container'
 import { loadRenderers } from 'astro:container'
 import { getCollection, render } from 'astro:content'
 
-import { escapeHtml, slugifyPost, sortPosts } from '../utils/'
+import { addLinkBase, escapeHtml, slugifyPost, sortPosts } from '../utils/'
 
 // Code adapted for MDX from https://blog.damato.design/posts/astro-rss-mdx/
 
@@ -20,7 +20,7 @@ export async function GET(context) {
 	for (const post of postsSorted) {
 		const { Content } = await render(post)
 		const content = await container.renderToString(Content)
-		const link = import.meta.env.BASE_URL + '/' + slugifyPost(post)
+		const link = addLinkBase(slugifyPost(post))
 		items.push({
 			...post.data,
 			link,
@@ -37,6 +37,6 @@ export async function GET(context) {
 		site: context.site,
 		items,
 		customData: `<language>en-gb</language>`,
-		stylesheet: import.meta.env.BASE_URL + '/rss-styles.xsl',
+		stylesheet: addLinkBase('rss-styles.xsl'),
 	})
 }

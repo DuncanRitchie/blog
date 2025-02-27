@@ -3,7 +3,12 @@ import sanitizeHtml from 'sanitize-html'
 import MarkdownIt from 'markdown-it/lib'
 const parser = new MarkdownIt()
 
-import { escapeHtml, slugifyPost, sortPosts } from '../../../utils/'
+import {
+	addLinkBase,
+	escapeHtml,
+	slugifyPost,
+	sortPosts,
+} from '../../../utils/'
 import { getStaticPaths as getPathsForTags } from '../[slug].astro'
 
 // Generate a new path for every collection entry
@@ -27,6 +32,6 @@ export async function GET(context) {
 			content: sanitizeHtml(parser.render(post.body)),
 		})),
 		customData: `<language>en-gb</language>`,
-		stylesheet: import.meta.env.BASE_URL + '/rss-styles.xsl',
+		stylesheet: addLinkBase('rss-styles.xsl'),
 	})
 }

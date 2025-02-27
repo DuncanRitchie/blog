@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
-import { sortPosts } from '../utils'
+import { addLinkBase, sortPosts } from '../utils'
 
 const allPosts = await getCollection('posts')
 
@@ -25,7 +25,7 @@ const yearsWithPostCounts: [number, number][] = years.map((year) => {
 		yearsWithPostCounts.map(([year, count]) => (
 			<li>
 				<a
-					href={import.meta.env.BASE_URL + '/years/' + year}
+					href={addLinkBase('years', year)}
 					style={{ viewTransitionName: `year-${year}` }}
 				>
 					{year}

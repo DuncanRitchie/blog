@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { slugifyText, slugifyPost } from '../utils/'
+import { addLinkBase, slugifyText, slugifyPost } from '../utils/'
 
 export interface Props {
 	post: CollectionEntry<'posts'>
@@ -37,7 +37,7 @@ const slug = slugifyPost(Astro.props.post)
 				>{dateReadableWithoutYear}</span
 			>
 			<a
-				href={import.meta.env.BASE_URL + '/years/' + year}
+				href={addLinkBase('years', year)}
 				style={{ viewTransitionName: `year-${year}` }}
 			>
 				{year}</a
@@ -83,7 +83,7 @@ const slug = slugifyPost(Astro.props.post)
 					{tags.map((tag) => (
 						<li>
 							<a
-								href={import.meta.env.BASE_URL + '/tags/' + slugifyText(tag)}
+								href={addLinkBase('tags', slugifyText(tag))}
 								style={{ viewTransitionName: slugifyText(tag) }}
 							>
 								{tag}

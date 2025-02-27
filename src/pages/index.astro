@@ -5,6 +5,7 @@ import PostList from '../components/PostList.astro'
 import TagList from '../components/TagList.astro'
 import YearList from '../components/YearList.astro'
 import SearchFormBasic from '../components/SearchFormBasic.astro'
+import { addLinkBase } from '../utils'
 
 const allPosts = await getCollection('posts')
 ---
@@ -45,7 +46,7 @@ const allPosts = await getCollection('posts')
 >
 	<main>
 		<img
-			src={import.meta.env.BASE_URL + '/images/duncan-headshot.webp'}
+			src={addLinkBase('images/duncan-headshot.webp')}
 			alt="Duncan smiling"
 			width="320"
 			height="320"

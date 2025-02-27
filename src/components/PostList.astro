@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { slugifyPost, sortPosts } from '../utils'
+import { addLinkBase, slugifyPost, sortPosts } from '../utils'
 
 export interface Props {
 	posts: CollectionEntry<'posts'>[]
@@ -42,10 +42,7 @@ const allPostsSorted = sortPosts(posts)
 						)}
 					</dt>
 					<dd>
-						<a
-							href={import.meta.env.BASE_URL + '/' + slug}
-							style={{ viewTransitionName: slug }}
-						>
+						<a href={addLinkBase(slug)} style={{ viewTransitionName: slug }}>
 							{post.data.title}
 						</a>
 					</dd>

@@ -1,8 +1,10 @@
 ---
+import { addLinkBase } from '../utils'
+
 // SearchFormAndResults uses Pagefind, which gives us both the form and the results combined.
 // SearchFormBasic is simply a searchbar that redirects to the Pagefind page.
 
-const searchPath = import.meta.env.BASE_URL + '/search'
+const searchPath = addLinkBase('search')
 
 // This component happens to be my first use of the <search> tag.
 ---

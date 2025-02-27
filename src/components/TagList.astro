@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
-import { slugifyText, sortPosts } from '../utils'
+import { addLinkBase, slugifyText, sortPosts } from '../utils'
 
 const allPosts = await getCollection('posts')
 
@@ -30,7 +30,7 @@ const tagsWithPostCounts: [string, string, number][] = tags.map((tag) => {
 		tagsWithPostCounts.map(([tag, slug, count]) => (
 			<li>
 				<a
-					href={import.meta.env.BASE_URL + '/tags/' + slug}
+					href={addLinkBase('tags', slug)}
 					style={{ viewTransitionName: slug }}
 				>
 					{tag}

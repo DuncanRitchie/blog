@@ -4,7 +4,7 @@ import { getCollection, render } from 'astro:content'
 import PreviousNextLinks from '../components/PreviousNextLinks.astro'
 import PostIntro from '../components/PostIntro.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
-import { slugifyPost, sortPosts } from '../utils'
+import { addLinkBase, slugifyPost, sortPosts } from '../utils'
 
 export interface Props {
 	data: {
@@ -59,9 +59,9 @@ const viewTransitionNameH1 = slugifyPost(post)
 	<PreviousNextLinks
 		type="post"
 		previous={previous?.data?.title}
-		previousUrl={import.meta.env.BASE_URL + '/' + slugifyPost(previous)}
+		previousUrl={addLinkBase(slugifyPost(previous))}
 		next={next?.data?.title}
-		nextUrl={import.meta.env.BASE_URL + '/' + slugifyPost(next)}
+		nextUrl={addLinkBase(slugifyPost(next))}
 	/>
 </BaseLayout>
 

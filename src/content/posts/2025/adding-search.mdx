@@ -6,6 +6,7 @@ tags: [Software]
 ---
 
 import SearchFormBasic from '../../../components/SearchFormBasic.astro'
+import {addLinkBase} from '../../../utils'
 
 # Adding search to my Astro blog
 
@@ -19,7 +20,7 @@ In this article I explain how I achieved this.
 ## Preamble
 
 My blog is made with [Astro](https://astro.build/), and (before publication of this article) has 46 posts.
-You can already [browse by year](./years) or [browse by tag](./tags), or peruse the [full list of articles](./) on the homepage, but I figured it would be cool to be able to search for an exact word as well.
+You can already <a href={addLinkBase('years')}>browse by year</a> or <a href={addLinkBase('tags')}>browse by tag</a>, or peruse the <a href={addLinkBase()}>full list of articles</a> on the homepage, but I figured it would be cool to be able to search for an exact word as well.
 
 So when I saw web developer Alex Trost had published an [article on combining Pagefind with Astro](https://trost.codes/posts/adding-simple-search-to-an-astro-blog/), I thought I’d give it a try.
 

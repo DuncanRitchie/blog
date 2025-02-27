@@ -1,6 +1,22 @@
 import { type CollectionEntry } from 'astro:content'
 
 /**
+ * For use in hrefs — constructs a URL as a string from the base URL and `urlFragments`.
+ * Eg addLinkBase('years', 2020) => "/blog/years/2020"
+ * If no parameter is passed, returns the base URL.
+ * Adapted from my Childhood Blog.
+ */
+function addLinkBase(...urlFragments: (string | number)[]): string {
+	const base = import.meta.env.BASE_URL
+	let concatenated = base
+	for (let i = 0; i < urlFragments.length; i++) {
+		concatenated = concatenated + '/' + urlFragments[i]
+	}
+	const cleaned = concatenated.replace(/\/+/g, '/') // Collapse any consecutive slashes into one slash.
+	return cleaned
+}
+
+/**
  * Replace HTML characters with their escaped equivalents.
  * So < becomes &gt; for example.
  */
@@ -58,4 +74,4 @@ const sortPosts = (posts: CollectionEntry<'posts'>[]) => {
 	return posts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1))
 }
 
-export { escapeHtml, slugifyPost, slugifyText, sortPosts }
+export { addLinkBase, escapeHtml, slugifyPost, slugifyText, sortPosts }
