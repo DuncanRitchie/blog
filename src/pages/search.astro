@@ -10,7 +10,9 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 	showRssLinkInFooter={true}
 >
 	<main>
-		<h1 style="view-transition-name: search-heading;">Search my blog</h1>
+		<h1 data-has-view-transition style="view-transition-name: search-heading;">
+			Search my blog
+		</h1>
 		<SearchFormAndResults />
 	</main>
 </BaseLayout>

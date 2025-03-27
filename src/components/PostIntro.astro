@@ -29,15 +29,18 @@ const makeDateSimple = (date: Date) =>
 const slug = slugifyPost(Astro.props.post)
 ---
 
-<aside>
+<aside data-has-view-transition style="view-transition-name: post-intro">
 	<p>
 		This article was written on
 		<time datetime={dateIso}>
-			<span style={{ viewTransitionName: `date-${slug}` }}
+			<span
+				data-has-view-transition
+				style={{ viewTransitionName: `date-${slug}` }}
 				>{dateReadableWithoutYear}</span
 			>
 			<a
 				href={addLinkBase('years', year)}
+				data-has-view-transition
 				style={{ viewTransitionName: `year-${year}` }}
 			>
 				{year}</a
@@ -50,6 +53,7 @@ const slug = slugifyPost(Astro.props.post)
 		draft && (
 			<p>
 				<strong
+					data-has-view-transition
 					style={{
 						viewTransitionName: `draft-${slug}`,
 					}}
@@ -77,13 +81,14 @@ const slug = slugifyPost(Astro.props.post)
 
 	{
 		tags.length > 0 && (
-			<div style="view-transition-name: tag-heading;">
+			<div data-has-view-transition style="view-transition-name: tag-heading;">
 				<p class="tags-intro">It is tagged as:</p>
 				<ul class="tags">
 					{tags.map((tag) => (
 						<li>
 							<a
 								href={addLinkBase('tags', slugifyText(tag))}
+								data-has-view-transition
 								style={{ viewTransitionName: slugifyText(tag) }}
 							>
 								{tag}
@@ -130,11 +135,5 @@ const slug = slugifyPost(Astro.props.post)
 	}
 	.tags li {
 		display: inline-block;
-	}
-
-	<style > @media not (prefers-reduced-motion: reduce) {
-		aside {
-			view-transition-name: post-intro;
-		}
 	}
 </style>

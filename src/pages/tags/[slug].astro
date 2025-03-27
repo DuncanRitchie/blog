@@ -76,13 +76,18 @@ const rssUrl = addLinkBase('tags', slugifyText(tag), 'rss.xml')
 	showRssLinkInFooter={true}
 >
 	<main>
-		<h1 style="viewTransitionName: tag-heading;">
-			Posts tagged as “<span style={{ viewTransitionName: slugifyText(tag) }}
-				>{tag}</span
+		<h1 data-has-view-transition style="view-transition-name: tag-heading;">
+			Posts tagged as “<span
+				data-has-view-transition
+				style={{ viewTransitionName: slugifyText(tag) }}>{tag}</span
 			>”
 		</h1>
 		<PostList posts={posts} />
-		<aside class="rss" style="view-transition-name: rss;">
+		<aside
+			class="rss"
+			data-has-view-transition
+			style="view-transition-name: rss;"
+		>
 			<p>
 				<span>
 					<img

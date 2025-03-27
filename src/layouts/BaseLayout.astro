@@ -1,6 +1,7 @@
 ---
 import '../components/GlobalStyles.css'
 import Footer from '../components/Footer.astro'
+import ViewTransitionsInViewport from '../components/ViewTransitionsInViewport.astro'
 
 export interface Props {
 	title: string
@@ -71,5 +72,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 			showBlogHomeLink={showBlogHomeLinkInFooter}
 			showRssLink={showRssLinkInFooter}
 		/>
+
+		<ViewTransitionsInViewport />
 	</body>
 </html>

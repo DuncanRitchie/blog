@@ -20,6 +20,7 @@ const allPostsSorted = sortPosts(posts)
 					<dt>
 						<time
 							datetime={post.data.date.toISOString().slice(0, 10)}
+							data-has-view-transition
 							style={{ viewTransitionName: `date-${slug}` }}
 						>
 							{post.data.date.toLocaleDateString('en-gb', {
@@ -32,6 +33,7 @@ const allPostsSorted = sortPosts(posts)
 						{post.data.draft && (
 							<span
 								class="draft-marker"
+								data-has-view-transition
 								style={{
 									viewTransitionName: `draft-${slug}`,
 								}}
@@ -42,7 +44,11 @@ const allPostsSorted = sortPosts(posts)
 						)}
 					</dt>
 					<dd>
-						<a href={addLinkBase(slug)} style={{ viewTransitionName: slug }}>
+						<a
+							href={addLinkBase(slug)}
+							data-has-view-transition
+							style={{ viewTransitionName: slug }}
+						>
 							{post.data.title}
 						</a>
 					</dd>

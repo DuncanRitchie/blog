@@ -9,7 +9,7 @@ export interface Props {
 const { showBlogHomeLink, showRssLink } = Astro.props
 ---
 
-<footer style="view-transition-name: footer;">
+<footer data-has-view-transition style="view-transition-name: footer">
 	<ul>
 		{
 			showBlogHomeLink && (

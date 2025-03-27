@@ -1,0 +1,44 @@
+---
+// This script ensures that view transitions are only applied to elements in the viewport.
+// Otherwise elements would fly into or out of the viewport on navigation between pages, which looks bad.
+// The script works best when elements have attributes like this:
+// <img data-has-view-transition style="view-transition-name: example;" />
+// When the element leaves the viewport, the script will change it to this:
+// <img data-has-view-transition data-view-transition-name="example" style="view-transition-name: none;" />
+---
+
+<script>
+	if ('startViewTransition' in document) {
+		// Transition elements here are metals like scandium and titanium in the periodic table’s d-block.
+		// Just kidding, it’s the DOM elements that this script may affect the view transitions of.
+		const transitionElements = document.querySelectorAll(
+			'[data-has-view-transition]',
+		)
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					const element = entry.target as HTMLElement
+					const viewTransitionName =
+						element.dataset['viewTransitionName'] ||
+						element.style['view-transition-name']
+					if (viewTransitionName) {
+						element.dataset['viewTransitionName'] = viewTransitionName
+						// When the element enters the viewport, add the view transition name to the CSS.
+						// When the element leaves, remove the name.
+						if (entry.isIntersecting) {
+							element.style.viewTransitionName = viewTransitionName
+						} else {
+							element.style.viewTransitionName = 'none'
+						}
+					}
+				})
+			},
+			{ threshold: 0 },
+		)
+
+		transitionElements.forEach((element) => {
+			observer.observe(element)
+		})
+	}
+</script>

@@ -45,8 +45,9 @@ const { year, posts, previous, next } = Astro.props
 >
 	<main>
 		<h1>
-			Posts from <span style={{ viewTransitionName: `year-${year}` }}
-				>{year}</span
+			Posts from <span
+				data-has-view-transition
+				style={{ viewTransitionName: `year-${year}` }}>{year}</span
 			>
 		</h1>
 		<PostList posts={posts} />
