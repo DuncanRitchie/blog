@@ -1,0 +1,117 @@
+---
+import { addLinkBase } from '../utils'
+
+export interface Props {
+	showBannerIfNotDay: boolean
+}
+const { showBannerIfNotDay } = Astro.props
+
+const isItCssNakedDay = (() => {
+	// CSS Naked Day should run for the entire day of April 9th, in every timezone
+	// from Kiribati (+14:00) to Baker/Howland Islands (-12:00).
+	const currentTime = new Date()
+	const currentYear = currentTime.getFullYear()
+	const startCssNakedDay = new Date(`${currentYear}-04-09 00:00:00 UTC+14:00`)
+	const endCssNakedDay = new Date(`${currentYear}-04-10 00:00:00 UTC-12:00`)
+
+	return startCssNakedDay < currentTime && currentTime < endCssNakedDay
+})()
+
+// On CSS Naked Day, the banner is displayed atop every page.
+// On other days, the banner is shown inside the CSS Naked Day article (where showBannerIfNotDay === true).
+// So the page for that article has two instances of the component.
+// To prevent the second instance from rendering anything, we exclusive-or the booleans:
+// it will render if it’s CSS Naked Day, or if the flag is true, but not if both are true.
+const showBanner = showBannerIfNotDay !== isItCssNakedDay
+---
+
+{
+	showBanner && (
+		<aside>
+			<p>
+				It’s {isItCssNakedDay ? '' : 'not'}{' '}
+				<a href={addLinkBase('css-naked-day')}>CSS Naked Day</a>!
+				<button
+					id="css-naked-toggle"
+					aria-pressed={isItCssNakedDay ? 'true' : 'false'}
+				>
+					{isItCssNakedDay ? 'Put the CSS on' : 'Take the CSS off'}
+				</button>
+			</p>
+		</aside>
+	)
+}
+
+<style>
+	aside {
+		position: relative;
+		margin-bottom: 0;
+		border: none;
+		width: calc(100% - 2rem);
+		font-size: 1.0625em;
+		text-align: center;
+		padding-block: 1rem;
+		background: linear-gradient(#fff9d2cc, #fff178cc, #fff06acc, #f7d064cc);
+	}
+	aside p {
+		margin-block: 0;
+	}
+	aside:is(main aside) {
+		margin-inline: 0;
+	}
+</style>
+
+<script>
+	let stylesheetLinks = document.querySelectorAll('link[rel="stylesheet"]')
+	let styleTags = document.querySelectorAll('style')
+	let styledElements = document.querySelectorAll('[style]')
+
+	let toggleButton = document.querySelector('#css-naked-toggle')
+
+	function takeCssOff() {
+		stylesheetLinks.forEach((stylesheet) => {
+			stylesheet.remove()
+		})
+		styleTags.forEach((style) => style.remove())
+		styledElements.forEach((element) => {
+			const style = element.getAttribute('style') ?? ''
+			element.setAttribute('css-naked-style', style)
+			element.setAttribute('style', '')
+		})
+	}
+	function putCssOn() {
+		const head = document.querySelector('head')
+		if (!head) {
+			return
+		}
+		stylesheetLinks.forEach((link) => {
+			head.appendChild(link)
+		})
+		styleTags.forEach((style) => head.appendChild(style))
+		styledElements.forEach((element) => {
+			const style = element.getAttribute('css-naked-style') ?? ''
+			element.setAttribute('style', style)
+			element.setAttribute('css-naked-style', '')
+		})
+	}
+	function toggleCss(event: Event) {
+		const target = event.target as HTMLButtonElement
+		const isCurrentlyNaked = target.getAttribute('aria-pressed') === 'true'
+
+		if (isCurrentlyNaked) {
+			putCssOn()
+			target.setAttribute('aria-pressed', 'false')
+			target.innerText = 'Take the CSS off'
+		} else {
+			takeCssOff()
+			target.setAttribute('aria-pressed', 'true')
+			target.innerText = 'Put the CSS on'
+		}
+	}
+
+	toggleButton?.addEventListener('click', toggleCss)
+
+	if (toggleButton?.getAttribute('aria-pressed') === 'true') {
+		takeCssOff()
+	}
+</script>
