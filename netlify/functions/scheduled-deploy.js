@@ -1,18 +1,31 @@
-const fetch = require('node-fetch')
+// const fetch = require('node-fetch')
+const axios = require('axios')
+
 import { schedule } from '@netlify/functions'
 
 const BUILD_HOOK =
 	'https://api.netlify.com/build_hooks/67efb7134e320d83088ee000'
 
 // From https://www.netlify.com/blog/how-to-schedule-deploys-with-netlify/
+// Axios-specific code adapted from https://stackoverflow.com/a/57091538
 const postToBuildHook = async () => {
 	console.log('Calling build hook at ', new Date())
-	await fetch(BUILD_HOOK, { method: 'POST' }).then((response) => {
-		console.log('Build hook response:', response.json())
-	})
-	return {
-		statusCode: 200,
-	}
+	await axios
+		.post(BUILD_HOOK)
+		.then((response) => {
+			console.log('Build hook response:', response.json())
+			return {
+				statusCode: 200,
+			}
+		})
+		.catch((err) => {
+			return {
+				statusCode: err.statusCode || 500,
+				body: JSON.stringify({
+					error: err.message,
+				}),
+			}
+		})
 }
 
 // Trigger a build at 10am & 12pm (and some other times) on the 6th, 8th, & 10th of April every year.
