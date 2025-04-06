@@ -20,6 +20,6 @@ const postToBuildHook = async () => {
 // CSS Naked Day runs from 10am 8th April to 12pm 10th April each year (UTC timezone).
 // The cron schedule here will create twice as many builds as we need (10am & 12pm on both days),
 // but at least it will cover the correct times.
-const handler = schedule('0 10,12,21,22,23 6,8,10 4 *', postToBuildHook)
+const handler = schedule('0,30,45 10,12,21,22,23 6,8,10 4 *', postToBuildHook)
 
 export { handler }
