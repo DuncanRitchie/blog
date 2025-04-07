@@ -1,5 +1,4 @@
 const axios = require('axios')
-
 import { schedule } from '@netlify/functions'
 
 const BUILD_HOOK =

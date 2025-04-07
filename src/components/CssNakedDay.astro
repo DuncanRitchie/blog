@@ -29,6 +29,12 @@ const showBanner = showBannerIfNotDay !== isItCssNakedDay
 	showBanner && (
 		<aside>
 			<p>
+				<img
+					src="./images/2025/css-naked-day.webp"
+					alt="Clip-art of a red sign for prohibition of a purple T-shirt marked CSS"
+					width="56"
+					class="float-left"
+				/>
 				It’s {isItCssNakedDay ? '' : 'not'}{' '}
 				<a href={addLinkBase('css-naked-day')}>CSS Naked Day</a>!
 				<button
@@ -58,6 +64,17 @@ const showBanner = showBannerIfNotDay !== isItCssNakedDay
 	}
 	aside:is(main aside) {
 		margin-inline: 0;
+	}
+	aside img {
+		aspect-ratio: 1 / 1;
+		shape-outside: circle(50%);
+		vertical-align: middle;
+	}
+	@media (min-width: 48rem) {
+		aside img {
+			margin-block: -0.9375rem;
+			width: 4rem;
+		}
 	}
 </style>
 
