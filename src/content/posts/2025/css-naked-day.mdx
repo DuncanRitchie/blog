@@ -1,0 +1,174 @@
+---
+date: 2025-04-07 22:30:00
+title: CSS Naked Day
+draft: false
+tags: [Software]
+---
+
+import CssNakedDay from '../../../components/CssNakedDay.astro'
+
+# CSS Naked Day
+
+April 9th is <a href="https://css-naked-day.org">CSS Naked Day</a>, where participating websites strip off their custom visual styles and leave their content’s appearance to the browser defaults.
+The point is to check that a site (for example, my blog) is easy to use, even if it’s uglier to look at!
+
+On CSS Naked Day, a banner will appear at the top of every page of this blog, informing you what day it is, linking to this article, and including a button to switch between the nakedness and the CSS.
+
+(If today is not that day, you’ll see the banner below, on this page.)
+
+{/* I did try to export a `isItCssNakedDay` boolean from /utils, and use it here to conditionally show/hide the banner.
+But the variable always came through as falsy, even when I set it to true.
+It was as if you can’t import a boolean variable in MDX, but no errors were thrown.
+My workaround was to give the component itself logic not to show itself if it’s CSS Naked Day and `showBannerIfNotDay` is true. */}
+<CssNakedDay showBannerIfNotDay={true}/>
+
+## Time-span
+
+I said the day was April 9th.
+CSS Naked Day actually runs for the duration of that date across all timezones.
+So it starts when it’s midnight on April 9th for Kiribati (fourteen hours ahead of Greenwich Mean Time) and finishes when it’s at midnight on April 10th for the Baker and Howland Islands (twelve hours behind GMT).
+It’s not just CSS Naked Day, it’s CSS Naked Fifty Hours!
+
+## Removing the CSS
+
+Writing the code to denude a webpage was straight-forward:
+- delete all `<link rel="stylesheet">` elements (which apply external CSS files to the page),
+- delete all `<style>` elements (which apply CSS to the page), and 
+- delete all `style` attributes (which apply CSS to individual elements).
+
+To re-clothe the page, we re-insert the elements and attributes.
+The elements can all go in the `<head>`; we don’t need to remember their position in the DOM as long as their order relative to each other is maintained.
+For the `style` attribute, I actually save its value (if an element has one) in a custom `css-naked-style` attribute on the element, to make re-applying the `style` attribute easier.
+
+## Astro component
+
+I put the JavaScript code for removing/adding the CSS in the same component as my CSS Naked Day banner.
+Since it’s client-side scripting, it has access to the entire DOM, so it will work as expected.
+
+The function to remove the CSS runs automatically if the site was built on CSS Naked Day.
+
+Here’s the [code for my Astro component](https://github.com/DuncanRitchie/blog/blob/main/src/components/CssNakedDay.astro).
+
+## Cron job
+
+This blog is a static site, meaning it’s built in advance of anyone trying to visit it.
+So the blog needs to be built on CSS Naked Day in order to make it naked.
+And then it needs to be built after the day, to return the styles to usual.
+
+Builds are triggered whenever I push changes to the blog’s GitHub repository.
+The hosting provider I use, Netlify, automatically redeploys.
+This is great when I’ve written an article or changed the blog’s source-code and want it to take effect immediately.
+But for something time-specific, I needed a cron job (ie, a script to run on a given schedule).
+
+I consulted [Netlify’s documentation for scheduled functions](https://www.netlify.com/blog/how-to-schedule-deploys-with-netlify/), and added a scheduled-deploy.js script.
+Here’s what that script ended up as:
+
+```js
+const axios = require('axios')
+import { schedule } from '@netlify/functions'
+
+const BUILD_HOOK =
+	'https://api.netlify.com/build_hooks/67efb7134e320d83088ee000'
+
+const postToBuildHook = async () => {
+	console.log('Calling build hook at ', new Date())
+	return await axios
+		.post(BUILD_HOOK)
+		.then((response) => {
+			console.log('Build hook response:', response.json())
+			return {
+				statusCode: 200,
+			}
+		})
+		.catch((err) => {
+			return {
+				statusCode: err.statusCode || 500,
+				body: JSON.stringify({
+					error: err.message,
+				}),
+			}
+		})
+}
+
+const handler = schedule('0 10,12 8,10 4 *', postToBuildHook)
+
+export { handler }
+```
+
+As you can see, Netlify provides a URL that will trigger a build when a `POST` request is made to it.
+I am using the Axios library to make that request, and I’ve got some basic logging and error-handling.
+This is wrapped in a function that is passed to Netlify Scheduled Functions along with the cron schedule `0 10,12 8,10 4 *`.
+
+The schedule means Netlify will execute the function at `0` minutes past `10` o’clock and `12` o’clock (UTC) on the `8`th and `10`th days of the `4`th month (ie, April).
+(The final part of the schedule represents the day of the week, and this is an asterisk here because I don’t want to specify that — I want the cron job to run on whatever days the 8th and 10th of April are.)
+
+This does mean it will run twice as often as I strictly need it too — I only need it at 10am on April 8th and 12pm on April 10th, but the cron job will run at both times on both days.
+I don’t particularly mind that.
+
+Netlify’s documentation says that the JavaScript bundler for scheduled functions needs to be specified as `esbuild` in a netlify.toml file.
+When I was creating the cron job, I didn’t have such a file, and I wondered if I needed it.
+Then I got the error-message <samp>The requested module '@astrojs/markdown-remark' does not provide an export named 'syntaxHighlightDefaults'</samp> which suggested the bundling was failing, so I duly created the Toml file.
+
+```toml
+[functions]
+  node_bundler = "esbuild"
+```
+
+_Then_ the error-message became <samp>"TypeError: fetch3 is not a function"</samp>, which I attempted to fix by updating the Node.js version used by Netlify for this blog.
+I was on version 18, but I’ve moved it to 20.7.
+That didn’t help get the cron job to run, but at least it’s using a less old-fashioned JavaScript runtime.
+
+In a fit of inspiration brought on by [a StackOverflow answer](https://stackoverflow.com/a/57091538), I changed the HTTP request library.
+The documentation had recommended node-fetch, but I switched to Axios.
+
+Then it seemed to be running without errors!
+
+<pre><samp>Apr 6, 10:45:05 PM: 4ba6958a INFO   Calling build hook at  2025-04-06T21:45:06.399Z
+Apr 6, 10:45:06 PM: 4ba6958a Duration: 188.70 ms	Memory Usage: 88 MB	Init Duration: 291.38 ms	</samp></pre>
+
+(If you’re curious about the time of the logs, it’s because I was running the cron job at 15-minute intervals for the sake of testing.)
+
+I don’t know why the node-fetch library was problematic, but I’m now confident the blog will be naked when it’s meant to be.
+
+## Clip-art
+
+<img
+	src="./images/2025/css-naked-day.webp"
+	alt="Clip-art of a red sign for prohibition of a purple T-shirt marked CSS"
+	width="300"
+	style="aspect-ratio: 1 / 1;"
+	class="float-right"
+	id="logo-big"
+/>
+
+For extra fun, this article, and CSS Naked Day, I made an unofficial logo.
+I took a [public-domain drawing of a T-shirt](https://openclipart.org/detail/86767/tshirt-blue) and coloured it purple like the CSS logo, then drew a circular red prohibition sign over it.
+
+## Evaluating the day
+
+Some of my articles are explicitly about CSS, such as for my my <a href="./css-flags">CSS flags</a> and <a href="./looping-panorama-effect">panorama animations</a>.
+I wouldn’t expect those articles to make much sense on CSS Naked Day!
+The text should still be legible, but the visual effects will be gone.
+
+Slightly more interestingly, this blog uses borders to help separate sections such as the footer at the end of each page and the panel of metadata at the start of each post.
+Without CSS, there are no borders, so the sections aren’t so clearly distinct.
+I think this is the main “flaw” of the site on CSS Naked Day, but I don’t actually mind.
+The site’s not that difficult to understand, and the sections are marked up with appropriate HTML (eg <code>&lt;aside&gt;</code> and <code>&lt;footer&gt;</code> elements).
+
+Maybe that’s a weakness of the day, that semantic HTML elements don’t (by default) look different to a plain old <code>&lt;div&gt;</code>, so good HTML can look the same as bad.
+I don’t really think that CSS Naked Day is a very good way of quality-testing a website… and I certainly wouldn’t roll it out to a professional website in production.
+
+But it can make developers think more about the front-end and how features can be coded up with different combinations of HTML/CSS/JavaScript, and what the trade-offs can be there.
+It can be nice to marvel at how web technologies have advanced in the 28 years since CSS was first released.
+Most importantly, CSS Naked Day is just kinda fun!
+
+<style>{`@media (min-width: 48rem) {
+		#logo-big {
+			--radius: 180px;
+			--y-shift: -3rem;
+			--gap: 1rem;
+			width: calc(var(--radius) * 2);
+			shape-outside: circle(calc(var(--radius) + var(--gap)) at calc(var(--radius) + var(--gap)) calc(var(--radius) + var(--y-shift)));
+			margin-top: var(--y-shift);
+		}
+	}`}</style>
