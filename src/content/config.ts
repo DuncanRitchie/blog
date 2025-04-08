@@ -49,7 +49,10 @@ const postsCollection = defineCollection({
 			const mappedItems = items.map((item) => {
 				const tags = item.data.tags as string[]
 				// Number of characters in the rendered HTML is a decent proxy for article length.
-				if ((item.rendered?.html?.length ?? Infinity) < 1150) {
+				if (
+					(item.rendered?.html?.length ?? Infinity) < 1150 &&
+					!tags.includes('Short')
+				) {
 					tags.push('Short')
 				}
 				return {
