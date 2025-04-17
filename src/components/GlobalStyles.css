@@ -62,6 +62,34 @@ pre samp {
 	font-style: italic;
 }
 
+blockquote::before {
+	content: '“';
+	position: absolute;
+	font-size: 4em;
+	font-style: normal;
+	opacity: 50%;
+	color: var(--nav-text);
+	margin-top: -0.5em;
+	margin-left: -0.25em;
+}
+blockquote {
+	margin-top: 1.25em;
+	margin-left: 1em;
+	padding-block: 0.25em;
+	padding-inline: 0.5em;
+	border: 3px solid #00000040;
+}
+blockquote::after {
+	content: '”';
+	position: absolute;
+	font-size: 4em;
+	font-style: normal;
+	opacity: 50%;
+	color: var(--nav-text);
+	margin-top: -0.4375em;
+	margin-left: -0.125em;
+}
+
 .auto-grid {
 	/* Autosizing grid columns CSS is adapted from https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/#aa-the-article-list */
 	display: grid;
