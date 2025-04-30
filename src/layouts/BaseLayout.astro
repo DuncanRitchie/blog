@@ -14,7 +14,8 @@ export interface Props {
 const { title, description, showBlogHomeLinkInFooter, showRssLinkInFooter } =
 	Astro.props
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString()
+// Eg "http://localhost:4321/blog/mandarin-ducks" or "https://www.duncanritchie.co.uk/blog/mandarin-ducks"
+const canonicalURL = Astro.url.href
 ---
 
 <!DOCTYPE html>
