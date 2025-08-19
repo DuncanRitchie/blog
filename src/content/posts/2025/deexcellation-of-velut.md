@@ -3,6 +3,7 @@ date: 2025-08-16T22:22:22Z
 title: The de-Excellation of velut
 draft: false
 tags: ['Software', 'velut']
+editHistory: [[2025-08-19, Link to completed plan]]
 ---
 
 # The de-Excellation of velut
@@ -135,6 +136,7 @@ I would update the databases from there.
 This might sound very odd, but the development instance of the site had been connecting to the production database.)
 
 You can look in the Git history for [how the plan looked when I first wrote it](https://github.com/DuncanRitchie/velut/blob/7ff4ca03fde8e714e3ba9f296228b4c32dd09d07/plan.md) in <time datetime="2022-07-23">July 2022</time> and [how it looked when I was writing this article](https://github.com/DuncanRitchie/velut/blob/36d5eeb167d7e990a6dee8e0d138484a2239c2d4/plan.md) <time datetime="2025-07-20 21:01">three years later</time>.
+<ins>Update: Here’s the [plan after it was completely fulfilled](https://github.com/DuncanRitchie/velut/blob/de30de8f402966d3bc4dff994fefca1bad77f0f9/plan.md).</ins>
 
 ## Generating `words` data
 
@@ -848,8 +850,11 @@ So I’ve stopped my scripts generating/importing data for the `summary` MongoDB
 (Nonetheless, I haven’t deleted the collection and webpage yet.)
 
 And now you’re reading my blog article about de-Excellation.
-I will have published it before completing the remaining steps on the [plan for de-Excellation](https://github.com/DuncanRitchie/velut/blob/main/plan.md).
+I will have published it before completing the remaining steps on the plan for de-Excellation.
 If I’ve deleted that plan, it means I’ve finished the de-Excellation!
+
+<ins>Update: I have indeed finished the de-Excellation and deleted the plan.
+Here’s [how the plan looked when it was all ticked off](https://github.com/DuncanRitchie/velut/blob/de30de8f402966d3bc4dff994fefca1bad77f0f9/plan.md).</ins>
 
 ## Diagram of architecture
 
