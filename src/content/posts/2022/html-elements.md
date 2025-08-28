@@ -24,7 +24,8 @@ editHistory: [
 	[2024-11-26, 'I’ve used <tfoot>'],
 	[2024-11-27, 'Elements fade in/out nicely (in Chrome at least)'],
 	[2024-11-27, 'Updated much of the text'],
-	[2025-02-19, 'I’ve used <address> & <search>']
+	[2025-02-19, 'I’ve used <address> & <search>'],
+	[2025-08-28, 'I’ve used <audio>']
 ]
 ---
 
@@ -239,7 +240,7 @@ Since publishing this page, I’ve updated it several times when I’ve used ele
 Of <data value="total">137</data> elements, <data value="deprecated">27</data> are deprecated and <data value="experimental">1</data> is experimental.
 The other <data value="usable">109</data> I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
-But I find it interesting to keep count; I’ve used <data value="used">89</data>.
+But I find it interesting to keep count; I’ve used <data value="used">90</data>.
 
 <label for="meter">
 	HTML elements that are neither deprecated nor experimental
@@ -259,16 +260,16 @@ But I find it interesting to keep count; I’ve used <data value="used">89</data
 <label for="progress">
 	Usable elements that I’ve used
 	<small>
-		<data value="used">89</data>
+		<data value="used">90</data>
 		of
 		<data value="usable">109</data>
-		(<data value="used-percent-of-usable">81.7</data>%)
+		(<data value="used-percent-of-usable">82.6</data>%)
 	</small>
 </label>
 <progress id="progress"	min="0"
-	value="89" max="109"
+	value="90" max="109"
 	data-value="used" data-max="usable"
-	style="--percentage: 81.7%"
+	style="--percentage: 82.6%"
 ></progress>
 
 ## Filters
@@ -393,11 +394,29 @@ But I find it interesting to keep count; I’ve used <data value="used">89</data
 	</dd>
 </div>
 
-<div class="usable-unused" id="audio">
+<div class="used" id="audio">
 	<dt><code>&lt;audio&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve not used this.
+			In August 2025, I wrote a quiz for friends with several snippets of songs for identification.
+			To make it easy for myself to deliver the quiz with my phone, I made a webpage that contained all the songs, as <code>&lt;audio&gt;</code> elements, alongside the question number and other details.
+			Here’s an example question:
+		</p>
+		<blockquote>
+			<p>
+				This song was at Number Seven on the 27th of August, 2006; <em>what is the title and artist?</em>
+			</p>
+			<p>
+				<audio controls src="images/2025/snow-patrol-chasing-cars-7s.mp3" style="display: block;"></audio>
+			</p>
+		</blockquote>
+		<details>
+			<summary>Answer</summary>
+			<p><a href="https://www.youtube.com/watch?v=GemKqzILV4w">“Chasing Cars” by Snow Patrol</a></p>
+		</details>
+		<p>
+			The actual quiz had longer snippets, and I didn’t repeat “What is the title and artist?” every time.
+			As you might have guessed, I delivered the quiz on August 27th; all of the songs in my quiz had been in the UK singles chart on an August 27th.
 		</p>
 	</dd>
 </div>
