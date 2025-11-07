@@ -111,7 +111,11 @@ ol.auto-grid {
 	list-style-position: inside;
 }
 
-/* Allow elements such as figures to float left or right, if the viewport is wide enough. */
+/* Allow elements such as figures to float left or right, if the viewport is wide enough. On narrower-viewpoints, centre the element. */
+.float-left,
+.float-right {
+	margin-inline: auto;
+}
 @media (min-width: 48rem) {
 	.float-left {
 		float: left;
