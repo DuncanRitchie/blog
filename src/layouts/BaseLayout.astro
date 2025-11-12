@@ -19,7 +19,16 @@ const { title, description, showBlogHomeLinkInFooter, showRssLinkInFooter } =
 // Eg "http://localhost:4321/blog/mandarin-ducks" or "https://www.duncanritchie.co.uk/blog/mandarin-ducks"
 const canonicalURL = Astro.url.href
 // For Open Graph images, which are simply screenshots saved to the /public/og folder.
+// In production, the `selfieUrl` function is buggy:
+// it expects images to be at https://www.duncanritchie.co.uk/og/blog/*.png
+// so the /og and the base URL need to be swapped.
+// The function also gets wrong the URL for the screenshot for the homepage (/og/index.png).
 const screenshotURL = selfieUrl(Astro)
+	.href.replace(
+		`/og${import.meta.env.BASE_URL}`,
+		`${import.meta.env.BASE_URL}/og`,
+	)
+	.replace('/og.png', '/og/index.png')
 ---
 
 <!DOCTYPE html>
@@ -30,7 +39,7 @@ const screenshotURL = selfieUrl(Astro)
 		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
-		<meta property="og:image" content={screenshotURL.href} />
+		<meta property="og:image" content={screenshotURL} />
 
 		<title>{title}</title>
 
