@@ -2,36 +2,79 @@
 import { getCollection } from 'astro:content'
 import { addLinkBase, sortPosts } from '../utils'
 
+import type { CollectionEntry } from 'astro:content'
+
+// Two lists of years are created & put in the Dom:
+// a list for Open Graph images (which will not include drafts in post counts),
+// and a list for normal views (ie, when not taking screenshots for Open Graph).
+// This is very hacky but the astro-selfie library (which is responsible for the
+// Open Graph images) does not set an environment variable during its screenshotting,
+// only a class on the <body> element, so I think I have to put both lists
+// in the Dom and use CSS `display: none` on the irrelevant one!
+// The <TagList> component behaves similarly.
+
 const allPosts = await getCollection('posts')
+const allPostsForOpenGraph = allPosts.filter((post) => !post.data.draft)
 
-const allPostsSorted = sortPosts(allPosts)
+function getYearsWithPostCounts(postsList: CollectionEntry<'posts'>[]) {
+	const allPostsSorted = sortPosts(postsList)
 
-const yearsSet: Set<number> = new Set(
-	allPostsSorted.map((post) => new Date(post.data.date).getFullYear()),
-)
+	const yearsSet: Set<number> = new Set(
+		allPostsSorted.map((post) => new Date(post.data.date).getFullYear()),
+	)
 
-const years = [...yearsSet].sort().reverse()
+	const years = [...yearsSet].sort().reverse()
 
-const yearsWithPostCounts: [number, number][] = years.map((year) => {
-	const count = allPostsSorted.filter(
-		(post) => year === new Date(post.data.date).getFullYear(),
-	).length
-	return [year, count]
-})
+	const yearsWithPostCounts: [number, number][] = years.map((year) => {
+		const count = allPostsSorted.filter(
+			(post) => year === new Date(post.data.date).getFullYear(),
+		).length
+		return [year, count]
+	})
+
+	return yearsWithPostCounts
+}
+
+const yearsWithPostCounts: Record<string, [number, number][]> = {
+	notForOpenGraph: getYearsWithPostCounts(allPosts),
+}
+
+// DEV === true when I’m running a development instance and when astro-selfie is creating its screenshots.
+// In production, DEV === false.
+// Therefore, we should only think about the Open Graph images when DEV === true.
+// We do not need to generate a specific list for the Open Graph image if !DEV.
+if (import.meta.env.DEV) {
+	yearsWithPostCounts.forOpenGraph =
+		getYearsWithPostCounts(allPostsForOpenGraph)
+}
 ---
 
-<ul class="auto-grid">
-	{
-		yearsWithPostCounts.map(([year, count]) => (
-			<li>
-				{/* Prettier likes to add whitespace before the </a> closing tag, but that’s wrong here! */}
-				{/* prettier-ignore */}
-				<a href={addLinkBase('years', year)} data-has-view-transition style={{ viewTransitionName: `year-${year}` }}>
+{
+	Object.keys(yearsWithPostCounts).map((key) => (
+		<ul class={`year-list auto-grid ${key}`}>
+			{yearsWithPostCounts[key].map(([year, count]) => (
+				<li>
+					{/* Prettier likes to add whitespace before the </a> closing tag, but that’s wrong here! */}
+					{/* prettier-ignore */}
+					<a href={addLinkBase('years', year)} data-has-view-transition style={{ viewTransitionName: `year-${year}` }}>
 					{year}</a>
-				<>
-					({count} {count === 1 ? ' article' : ' articles'})
-				</>
-			</li>
-		))
+					<>
+						({count} {count === 1 ? ' article' : ' articles'})
+					</>
+				</li>
+			))}
+		</ul>
+	))
+}
+
+<style>
+	/* Hide one list depending on whether we’re in the middle of Open Graph screenshotting or not.
+	This is useful in development.
+	In production, there is no .forOpenGraph element in the Dom. */
+	body[data-astro-selfie] .year-list.notForOpenGraph {
+		display: none;
 	}
-</ul>
+	body:not([data-astro-selfie]) .year-list.forOpenGraph {
+		display: none;
+	}
+</style>

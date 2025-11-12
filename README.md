@@ -18,6 +18,26 @@ Draft posts have filenames ending with <samp>.draft.md</samp>, which allows me t
 
 Also, they have `draft: true` in their front matter. This automatically makes Astro exclude them from production, even if I were to allow them in Git.
 
+## Open Graph images
+
+Social media platforms like to show an “Open Graph” image for links to things like blogs, by looking in in the `<head>` of the webpage for a `<meta property="og:image" content={YOUR_IMAGE_URL_HERE} />` tag.
+I wanted this to be a screenshot for every page, nothing too weird.
+The [screenshotting library that I’m using](https://github.com/vadimdemedes/astro-selfie) is `astro-selfie`, and it runs automatically for every page in the blog, every time I do a build locally.
+The screenshots get saved to the /public/og folder and can easily be referenced in the `<meta>` tags.
+
+This means that when I publish or update an article, I need to run `npm run build` and commit any new/changed Open Graph images to Git.
+When I push to GitHub, Netlify will run `npm run build` for production, but this does not mean running `astro-selfie` again (I’ve disabled the library for production because the images will have already been created).
+
+Irritatingly, because `astro-selfie` works locally, it sees all pages as I see them in development.
+Which means it takes screenshots of all my draft posts, and I have to take care not to commit them to Git.
+
+Worse, on lists of posts (and on lists of tags and years), draft posts were included.
+I have stopped this happening, but my solution is hackier than I would really like.
+Fortunately, I did not need to insert any extra Dom elements in production, only in development mode.
+
+I could probably create my own version of `astro-selfie`, or submit a pull request to it allowing draft posts to be excluded (Astro already excludes drafts from production anyway!).
+But the library has been so easy to use (drafts and the need for local builds notwithstanding) and how I handle drafts is (maybe) a little unusual.
+
 ## View transitions
 
 If your browser supports view transitions and doesn’t prefer reduced motion, you’ll see view transitions on the blog when navigating between pages.

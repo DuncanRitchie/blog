@@ -1,42 +1,83 @@
 ---
 import { getCollection } from 'astro:content'
 import { addLinkBase, slugifyText, sortPosts } from '../utils'
+import type { CollectionEntry } from 'astro:content'
+
+// Two lists of tags are created & put in the Dom:
+// a list for Open Graph images (which will not include drafts in post counts),
+// and a list for normal views (ie, when not taking screenshots for Open Graph).
+// This is very hacky but the astro-selfie library (which is responsible for the
+// Open Graph images) does not set an environment variable during its screenshotting,
+// only a class on the <body> element, so I think I have to put both lists
+// in the Dom and use CSS `display: none` on the irrelevant one!
+// The <YearList> component behaves similarly.
 
 const allPosts = await getCollection('posts')
+const allPostsForOpenGraph = allPosts.filter((post) => !post.data.draft)
 
-const allPostsSorted = sortPosts(allPosts)
+function getTagsWithPostCounts(postsList: CollectionEntry<'posts'>[]) {
+	const allPostsSorted = sortPosts(postsList)
 
-const tagsSet: Set<string> = allPostsSorted.reduce((set, current) => {
-	set.delete('')
-	current.data.tags.forEach((tag) => set.add(tag))
-	return set
-}, new Set(''))
+	const tagsSet: Set<string> = allPostsSorted.reduce((set, current) => {
+		set.delete('')
+		current.data.tags.forEach((tag) => set.add(tag))
+		return set
+	}, new Set(''))
 
-const tags = [...tagsSet].sort((a, b) =>
-	a.toLowerCase() > b.toLowerCase() ? 1 : -1,
-)
+	const tags = [...tagsSet].sort((a, b) =>
+		a.toLowerCase() > b.toLowerCase() ? 1 : -1,
+	)
 
-const tagsWithPostCounts: [string, string, number][] = tags.map((tag) => {
-	const slug = slugifyText(tag)
-	const count = allPostsSorted.filter((post) =>
-		post.data.tags.includes(tag),
-	).length
-	return [tag, slug, count]
-})
+	const tagsWithPostCounts: [string, string, number][] = tags.map((tag) => {
+		const slug = slugifyText(tag)
+		const count = allPostsSorted.filter((post) =>
+			post.data.tags.includes(tag),
+		).length
+		return [tag, slug, count]
+	})
+
+	return tagsWithPostCounts
+}
+
+const tagsWithPostCounts: Record<string, [string, string, number][]> = {
+	notForOpenGraph: getTagsWithPostCounts(allPosts),
+}
+
+// DEV === true when I’m running a development instance and when astro-selfie is creating its screenshots.
+// In production, DEV === false.
+// Therefore, we should only think about the Open Graph images when DEV === true.
+// We do not need to generate a specific list for the Open Graph image if !DEV.
+if (import.meta.env.DEV) {
+	tagsWithPostCounts.forOpenGraph = getTagsWithPostCounts(allPostsForOpenGraph)
+}
 ---
 
-<ul class="auto-grid">
-	{
-		tagsWithPostCounts.map(([tag, slug, count]) => (
-			<li>
-				{/* Prettier likes to add whitespace before the </a> closing tag, but that’s wrong here! */}
-				{/* prettier-ignore */}
-				<a href={addLinkBase('tags', slug)} data-has-view-transition style={{ viewTransitionName: slug }}>
+{
+	Object.keys(tagsWithPostCounts).map((key) => (
+		<ul class={`tag-list auto-grid ${key}`}>
+			{tagsWithPostCounts[key].map(([tag, slug, count]) => (
+				<li>
+					{/* Prettier likes to add whitespace before the </a> closing tag, but that’s wrong here! */}
+					{/* prettier-ignore */}
+					<a href={addLinkBase('tags', slug)} data-has-view-transition style={{ viewTransitionName: slug }}>
 					{tag}</a>
-				<>
-					({count} {count === 1 ? ' article' : ' articles'})
-				</>
-			</li>
-		))
+					<>
+						({count} {count === 1 ? ' article' : ' articles'})
+					</>
+				</li>
+			))}
+		</ul>
+	))
+}
+
+<style>
+	/* Hide one list depending on whether we’re in the middle of Open Graph screenshotting or not.
+	This is useful in development.
+	In production, there is no .forOpenGraph element in the Dom. */
+	body[data-astro-selfie] .tag-list.notForOpenGraph {
+		display: none;
 	}
-</ul>
+	body:not([data-astro-selfie]) .tag-list.forOpenGraph {
+		display: none;
+	}
+</style>

@@ -4,6 +4,8 @@ import Footer from '../components/Footer.astro'
 import ViewTransitionsInViewport from '../components/ViewTransitionsInViewport.astro'
 import CssNakedDay from '../components/CssNakedDay.astro'
 
+import { selfieUrl } from 'astro-selfie'
+
 export interface Props {
 	title: string
 	description: string
@@ -16,6 +18,8 @@ const { title, description, showBlogHomeLinkInFooter, showRssLinkInFooter } =
 
 // Eg "http://localhost:4321/blog/mandarin-ducks" or "https://www.duncanritchie.co.uk/blog/mandarin-ducks"
 const canonicalURL = Astro.url.href
+// For Open Graph images, which are simply screenshots saved to the /public/og folder.
+const screenshotURL = selfieUrl(Astro)
 ---
 
 <!DOCTYPE html>
@@ -26,6 +30,7 @@ const canonicalURL = Astro.url.href
 		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<meta property="og:image" content={screenshotURL.href} />
 
 		<title>{title}</title>
 

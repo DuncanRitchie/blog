@@ -11,7 +11,7 @@ const { posts } = Astro.props
 const allPostsSorted = sortPosts(posts)
 ---
 
-<dl class="auto-grid">
+<dl class="post-list auto-grid">
 	{
 		allPostsSorted.map((post) => {
 			const slug = slugifyPost(post)
@@ -74,5 +74,10 @@ const allPostsSorted = sortPosts(posts)
 		padding-inline: 0.25em;
 		margin-inline-start: 0.25em;
 		vertical-align: 0.125em;
+	}
+
+	/* Draft posts should not appear in list when astro-selfie is taking screenshots for Open Graph images */
+	body[data-astro-selfie] .post-list > div:has(.draft-marker) {
+		display: none;
 	}
 </style>

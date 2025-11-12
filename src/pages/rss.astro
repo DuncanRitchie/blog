@@ -4,7 +4,12 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { addLinkBase, slugifyText } from '../utils'
 
-const allPosts = await getCollection('posts')
+// Draft articles do not exist in production, but the screenshots for Open Graph images get taken in development mode.
+// If I create a draft article with a tag that has not been used before, I don’t want the screenshot for this /rss page
+// to show a link to an RSS feed for that tag, since neither the tag nor the RSS feed would exist in production.
+const allPosts = (await getCollection('posts')).filter(
+	(post) => !post.data.draft,
+)
 
 const tagsSet: Set<string> = allPosts.reduce((set, current) => {
 	set.delete('')
