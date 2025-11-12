@@ -33,7 +33,7 @@ export async function GET(context) {
 	return rss({
 		title: 'Duncan Ritchie’s blog',
 		description:
-			'Assorted notes that may or may not relate to web development, but that I thought should be recorded somewhere.',
+			'Assorted notes about software development and other matters that I find interesting.',
 		site: context.site,
 		items,
 		customData: `<language>en-gb</language>`,
