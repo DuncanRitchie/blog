@@ -1,0 +1,225 @@
+---
+date: 2025-12-31 23:59:59
+title: Good things happening to me in 2025
+draft: false
+tags: ['Annual review']
+---
+
+import SearchFormBasic from '../../../components/SearchFormBasic.astro'
+
+# Good things happening to me in 2025
+
+This has been a really good year for me, despite my continued unemployment.
+I started [volunteering for an autism group](#social-events) in my city, I completed my years-long effort to [re-architect my Latin dictionary](#velut), I achieved a [certification in modern manufacturing](#3d-printing-course), and I made a lot of [upgrades to this blog](#this-blog).
+Read on for more details!
+
+## Personal coding
+
+### This blog
+
+My blog now has its own [search](./search) feature!
+It uses a JavaScript library called [Pagefind](https://pagefind.app) and I found a [tutorial from Alex Trost](https://trost.codes/posts/adding-simple-search-to-an-astro-blog/) to show me how to integrate it.
+Then I added my own CSS and made a mini search-bar on the blog’s homepage that takes you to the full page of results.
+Here’s [my full write-up of it](./adding-search).
+
+<SearchFormBasic />
+
+What’s more, this blog now supports Markdown Extended, which is how I got the search-bar to appear in this post.
+
+I’ve also added [view transitions](./adding-view-transitions), a [page listing the blog’s RSS feeds](./rss), and a [“Short”](./tags/short) tag that automatically applies to my shortest articles.
+My blog now does [CSS Naked Day](./css-naked-day).
+And I made my first charts with the graphing library Plotly, for an [article of graphs relating to velut](./graphs-of-lemma-and-word-counts).
+
+In November, I installed Open Graph images into the blog — this means that when you link to an article from social media, a screenshot of the article appears with the link.
+Then I posted links to several of my articles about software to [Linkedin](https://www.linkedin.com/in/duncan-ritchie-uk/recent-activity/all/).
+Three senior developers that I’ve worked with were kind enough to write recommendations of me for my Linkedin profile — thanks guys!
+
+In 2026, I might improve how the Open Graph thing works, since it’s not the most automated solution and there’s a risk I’ll post an article without generating the image for it.
+But it was cool to see the screenshots show up on Linkedin.
+
+### velut
+
+I’ve finished moving [velut](https://www.velut.co.uk) (my Latin dictionary) to a new architecture!
+This enables (or indeed, requires) me to generate inflected forms programmatically.
+For 31 months, the list of dictionary headwords (lemmata) in velut did not change, but the inflected forms have gradually changed from the ones I had added manually to the new generated ones.
+
+In fact, there have been more than two million inflected forms getting generated, and I’ve been reviewing them manually before publishing them to the live website.
+This took about 22 months, concluding in May this year.
+
+All the data for velut are coming from a Json file of lemmata and some JavaScript scripts.
+The dictionary has gone from being on Excel file in its entirety, to not using Excel at all.
+
+For full details, see my article on the [“de-Excellation” of velut](./deexcellation-of-velut).
+Alongside that, I have a post with [graphs relating to the dictionary](./graphs-of-lemma-and-word-counts).
+
+#### Hosting
+
+I’ve also been playing around with how the velut website is hosted.
+It’s now running on Digital Ocean, behind Cloudflare for bot-detection and caching.
+(Tip: when caching a Next.js app in Cloudflare, exclude “_next” routes.)
+
+Previously, velut was running on Fly.io, first without Cloudflare, then with it.
+Fly.io offered a good service, but Digital Ocean’s servers are supposedly carbon-neutral (as are Cloudflare’s).
+I already had an instance running on Digital Ocean, so I was confident that the switch wouldn’t hurt the website’s uptime.
+
+## Social events
+
+I joined a [social group of autistic adults](./autistic-social-groups) in Chester (named Aspire), and became a founding member of their governing committee — I’m the tech officer.
+This has helped their activities run more smoothly and takes strain off the group’s leader, who can now delegate tasks to myself and others.
+
+### Days out
+
+This year, I had several days out with friends, including a walk around Crosby Marine Lake and three visits to Chester Zoo.
+(Plus another trip to the zoo, by myself.)
+I really did not anticipate going to the zoo four times in five months, but I amazingly had the opportunity with the help of Aspire.
+Out of 74 exhibits on the official map, I’ve seen nearly all of them this year!
+
+Unfortunately I missed out on seeing cheetahs, since the two elderly cheetahs at the zoo both died in June, but apart from that, I have done really well at exploring the place!
+
+<div>
+<figure>
+<img
+	src="./images/2025/crosby-marine-lake.webp"
+	alt="Lake with sand dunes in front and a town behind it, with a crow flying"
+	width="640"
+	style="aspect-ratio: 4 / 3;"
+/>
+<figcaption>Crosby Marine Lake</figcaption>
+</figure>
+<figure>
+<img
+	src="./images/2025/stonechat-at-crosby.webp"
+	alt="Female stonechat atop a bush against blue sky"
+	width="360"
+	style="aspect-ratio: 3 / 4;"
+/>
+<figcaption>Stonechat</figcaption>
+</figure>
+</div>
+
+<div>
+<figure>
+<img
+	src="./images/2025/juvenile-komodo-dragon.webp"
+	alt="Head and forelegs of a lizard climbing up a tree"
+	width="323"
+	style="aspect-ratio: 1 / 1;"
+/>
+<figcaption>Two-year-old Komodo dragon</figcaption>
+</figure>
+<figure>
+<img
+	src="./images/2025/kirks-dikdik.jpg"
+	alt="Small brown antelope emerging from its hut"
+	width="433"
+	style="aspect-ratio: 4 / 3;"
+/>
+<figcaption>Kirk’s dik-dik</figcaption>
+</figure>
+<figure>
+<img
+	src="./images/2025/squirrel-in-bin.webp"
+	alt="Litter bin for non-recyclables with an opportunistic grey squirrel inside it"
+	width="242"
+	style="aspect-ratio: 3 / 4;"
+/>
+<figcaption>Waste management</figcaption>
+</figure>
+</div>
+
+<div>
+<figure>
+<img
+	src="./images/2025/okapi.jpg"
+	alt="Head and neck of an okapi behind crossed railings"
+	width="220"
+	style="aspect-ratio: 3 / 4;"
+/>
+<figcaption>Okapi</figcaption>
+</figure>
+<figure>
+<img
+	src="./images/2025/bornean-rock-frog.webp"
+	alt="Underside of a small blue frog as it climbs the glass of its exhibit"
+	width="389"
+	style="aspect-ratio: 4 / 3;"
+/>
+<figcaption>Bornean rock frog</figcaption>
+</figure>
+<figure>
+<img
+	src="./images/2025/colombian-black-spider-monkeys.webp"
+	alt="Black monkey coming outside with a baby on her back"
+	width="389"
+	style="aspect-ratio: 4 / 3;"
+/>
+<figcaption>Colombian black spider monkeys</figcaption>
+</figure>
+<figure>
+<img
+	src="./images/2025/humboldt-penguins-swimming.webp"
+	alt="Three penguins swimming underwater, watched by a family of humans"
+	width="500"
+	style="aspect-ratio: 4 / 3;"
+/>
+<figcaption>Humboldt penguins</figcaption>
+</figure>
+<figure>
+<img
+	src="./images/2025/rhinoceros-hornbill.webp"
+	alt="Large black bird with a thick yellow beak and horn"
+	width="500"
+	style="aspect-ratio: 4 / 3;"
+/>
+<figcaption>Rhinoceros hornbill</figcaption>
+</figure>
+</div>
+
+## 3D-printing course
+
+<div class="float-right" style="width: 420px;">
+<figure>
+<img
+	src="./images/2025/3d-printed-lamp-case.jpg"
+	alt="Black body of a lamp in a black plastic sheath, with a hole over the power-button"
+	width="420"
+	style="aspect-ratio: 4 / 3;"
+/>
+<figcaption>My lamp in its 3D-printed case</figcaption>
+</figure>
+<figure>
+<img
+	src="./images/2025/3d-printed-domino.jpg"
+	alt="Black plastic domino with no pits on one half and six pits on the other"
+	width="420"
+	style="aspect-ratio: 5 / 3;"
+/>
+<figcaption>Domino, woo-hoo!</figcaption>
+</figure>
+</div>
+
+I did a [course in modern manufacturing](./3d-printing) and now have my own 3D printer.
+(The Government is cool sometimes, since they paid for it!)
+
+I’ve printed a few things on it, often my own designs.
+
+I have a reading-lamp whose base is not flat but convex (so the lamp would fall over easily) and whose power-button is unindented on another side of the lamp (so it was hard to find in the dark) — but these problems were solved when I made a case that wraps around the lamp’s body, featuring a chamfered hole that guides my finger toward the power-button.
+
+And when a friend lamented that she’d lost a domino out of a set, I supplied a replica for the missing piece.
+
+I also designed and printed a trophy for the monthly quiz that I help put on for Aspire, and five ornaments that I used as team mascots at the [Christmas episode](./autistic-social-groups#:~:text=we%20held%20a-,Christmas%20quiz,-%2C%20again%20written%20and) of that quiz.
+
+## Conclusion
+
+So I’ve developed technical skills on the 3D-printing course.
+I’m improving my soft skills (verbal communication, self-confidence, etc) as the tech officer and quiz compère at Aspire.
+And (what I haven’t mentioned) I’m getting help with my job-hunting and interview technique with a work coach that I meet frequently.
+
+In January I was looking forward to completing the velut migration.
+I’ve ended up achieving that, and so much more!
+Paid employment is still eluding me, but hopefully I’m on track for that to change in the new year!
+
+<style>{`
+	div > figure {
+		margin: 0;
+	}`}</style>
