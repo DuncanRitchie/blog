@@ -58,7 +58,9 @@ pre samp {
 	background: none;
 }
 
-*:not(:lang(en)):not(li *) {
+/* Non-English text should usually be in italics. */
+/* :where() has zero specificity so is easy to override. */
+:where(:not(:lang(en)):not(li *)) {
 	font-style: italic;
 }
 
@@ -74,7 +76,7 @@ blockquote::before {
 }
 blockquote {
 	margin-top: 1.25em;
-	margin-left: 1em;
+	margin-inline: 1em;
 	padding-block: 0.25em;
 	padding-inline: 0.5em;
 	border: 3px solid #00000040;
