@@ -1,4 +1,7 @@
 import { type CollectionEntry } from 'astro:content'
+import sanitizeHtml from 'sanitize-html'
+import MarkdownIt from 'markdown-it'
+const parser = new MarkdownIt({ html: true, breaks: true, linkify: true })
 
 /**
  * For use in hrefs — constructs a URL as a string from the base URL and `urlFragments`.
@@ -23,6 +26,40 @@ function addLinkBase(...urlFragments: (string | number)[]): string {
 const escapeHtml = (text: string) => {
 	// Other characters may need to be added here.
 	return text.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+}
+
+/**
+ * Replaces relative links in a HTML string with the absolute equivalent
+ * @param html HTML string that might contain `src` or `href` attributes
+ * @param pagePath The string to insert between the base URL and the relative link — eg "slug" in "/blog/slug#section".
+ * @returns
+ */
+const absoluteLinksInHtml = (html: string, pagePath: string) => {
+	// addLinkBase adds the site’s base to the start of `pagePath`
+	// The replace function then adds that to the start of any `src`
+	// or `href` HTML attribute that begins with a slash or octothorpe.
+	const newHtml = html.replace(
+		/(?<=src="|href=")(?=[#\/])/g,
+		addLinkBase(pagePath),
+	)
+	return newHtml
+}
+
+/**
+ * Generats the `items` field for rss.xml.js files.
+ * @param posts Array of posts as collection entries
+ * @returns The `items` field for the RSS feed
+ */
+const rssItems = (posts: CollectionEntry<'posts'>[]) => {
+	return posts.map((post) => ({
+		title: escapeHtml(post.data.title),
+		pubDate: new Date(post.data.date),
+		link: `/blog/${slugifyPost(post)}/`,
+		// Render the post’s body to HTML, make links absolute, then encode it
+		content: sanitizeHtml(
+			absoluteLinksInHtml(parser.render(post.body), slugifyPost(post)),
+		),
+	}))
 }
 
 /**
@@ -74,4 +111,11 @@ const sortPosts = (posts: CollectionEntry<'posts'>[]) => {
 	return posts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1))
 }
 
-export { addLinkBase, escapeHtml, slugifyPost, slugifyText, sortPosts }
+export {
+	addLinkBase,
+	escapeHtml,
+	rssItems,
+	slugifyPost,
+	slugifyText,
+	sortPosts,
+}
