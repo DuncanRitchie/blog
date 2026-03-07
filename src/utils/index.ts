@@ -29,19 +29,20 @@ const escapeHtml = (text: string) => {
 }
 
 /**
- * Replaces relative links in a HTML string with the absolute equivalent
+ * Replaces relative links in a HTML string with the absolute equivalent beginning with /blog
  * @param html HTML string that might contain `src` or `href` attributes
  * @param pagePath The string to insert between the base URL and the relative link — eg "slug" in "/blog/slug#section".
  * @returns
  */
 const absoluteLinksInHtml = (html: string, pagePath: string) => {
-	// addLinkBase adds the site’s base to the start of `pagePath`
-	// The replace function then adds that to the start of any `src`
-	// or `href` HTML attribute that begins with a slash or octothorpe.
-	const newHtml = html.replace(
-		/(?<=src="|href=")(?=[#\/])/g,
-		addLinkBase(pagePath),
-	)
+	const newHtml = html
+		// Handle image `src` attributes (etc) beginning with ./
+		.replace(/(?<=src="|href=")\.(?=\/)/g, addLinkBase())
+		// Handle URLs relative to the current page.
+		// addLinkBase adds the site’s base to the start of `pagePath`
+		// The replace function then adds that to the start of any `src`
+		// or `href` HTML attribute that begins with a slash or octothorpe.
+		.replace(/(?<=src="|href=")(?=#)/g, addLinkBase(pagePath))
 	return newHtml
 }
 
