@@ -5,6 +5,7 @@ import PreviousNextLinks from '../components/PreviousNextLinks.astro'
 import PostIntro from '../components/PostIntro.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { addLinkBase, slugifyPost, sortPosts } from '../utils'
+import TableOfContents from '../components/TableOfContents.astro'
 
 export interface Props {
 	data: {
@@ -40,7 +41,7 @@ export async function getStaticPaths() {
 // Non-MDX content can be accessed through post.rendered.html
 // but that doesn’t work for MDX.
 // Astro’s `render` function works for both, so we can just use that.
-const Content = (await render(post)).Content
+const { Content, headings } = await render(post)
 
 const viewTransitionNameH1 = slugifyPost(post)
 ---
@@ -52,6 +53,7 @@ const viewTransitionNameH1 = slugifyPost(post)
 	showRssLinkInFooter={true}
 >
 	<PostIntro post={post} />
+	<TableOfContents headings={headings} />
 
 	<main>
 		<Content />

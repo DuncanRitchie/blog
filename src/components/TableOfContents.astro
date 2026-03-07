@@ -1,0 +1,84 @@
+---
+// Types are adapted from https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3
+import type { MarkdownHeading } from 'astro'
+
+type Props = {
+	headings: MarkdownHeading[]
+}
+type HeadingWithSubheadings = MarkdownHeading & {
+	subheadings: HeadingWithSubheadings[]
+}
+
+const { headings } = Astro.props
+
+function getSubheadings(
+	heading: MarkdownHeading | undefined,
+	headings: MarkdownHeading[],
+) {
+	if (!heading) {
+		console.error('Invalid heading:', heading)
+		return []
+	}
+	const depth = heading.depth
+	const laterHeadings = headings.slice(
+		1 + headings.findIndex((h) => h === heading),
+	)
+	const subheadings = laterHeadings.some((h) => h.depth <= depth)
+		? laterHeadings.slice(
+				0,
+				laterHeadings.findIndex((h) => h.depth <= depth),
+		  )
+		: [...laterHeadings]
+	const processedSubheadings = subheadings
+		.filter((h) => h.depth === depth + 1)
+		.map((h): HeadingWithSubheadings => {
+			return { ...h, subheadings: getSubheadings(h, subheadings) }
+		})
+	return processedSubheadings
+}
+
+const firstHeading = headings.find((h) => h.depth === 1)
+const headingsObject = {
+	...firstHeading,
+	subheadings: getSubheadings(firstHeading, headings),
+}
+---
+
+<nav id="table-of-contents" aria-label="Table of Contents">
+	<!-- I could tidy this up by writing a recursive component. -->
+	<ol>
+		{
+			headingsObject.subheadings?.map((heading2) => (
+				<li>
+					<a href={'#' + heading2.slug}>{heading2.text}</a>
+					{heading2.subheadings ? (
+						<ol>
+							{heading2.subheadings.map((heading3) => (
+								<li>
+									<a href={'#' + heading3.slug}>{heading3.text}</a>
+									{heading3.subheadings ? (
+										<ol>
+											{heading3.subheadings.map((heading4) => (
+												<li>
+													<a href={'#' + heading4.slug}>{heading4.text}</a>
+													{/* {heading4.subheadings ? <ol></ol> : null} */}
+												</li>
+											))}
+										</ol>
+									) : null}
+								</li>
+							))}
+						</ol>
+					) : null}
+				</li>
+			))
+		}
+	</ol>
+</nav>
+
+<!-- To do: CSS! -->
+<style>
+	nav {
+		display: none;
+	}
+</style>
