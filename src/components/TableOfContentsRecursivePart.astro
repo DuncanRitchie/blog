@@ -10,10 +10,10 @@ const { headings, depth } = Astro.props
 
 <ul data-depth={depth}>
 	{
-		headings?.map((heading) => (
+		headings.map((heading) => (
 			<li>
 				<a href={'#' + heading.slug}>{heading.text}</a>
-				{heading.subheadings ? (
+				{heading.subheadings?.length ? (
 					// Astro.self is how to refer to the current component in Astro for recursion.
 					<Astro.self headings={heading.subheadings} depth={heading.depth} />
 				) : null}

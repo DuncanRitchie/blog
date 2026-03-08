@@ -13,32 +13,49 @@ export type HeadingWithSubheadings = MarkdownHeading & {
 const { headings } = Astro.props
 
 // Creates an array of headings with arrays of subheadings nested within, recursively.
+// `headings` is the full array of headings from Astro, at first.
+// When the function calls itself, the parameter will be a slice of the array, not the full array.
 function getSubheadings(
 	heading: MarkdownHeading | undefined,
 	headings: MarkdownHeading[],
 ) {
+	// If there’s no depth-1 heading to start at, there can be no subheadings of it.
 	if (!heading) {
 		console.error('Invalid heading:', heading)
 		return []
 	}
+	// A heading’s subheadings cannot be earlier than the heading, nor can they include that heading,
+	// so we narrow the headings down to a slice starting immediately after the current heading.
+	// So if the headings in a document are 2,1,2,3,4,3,4,2, and we’re getting the subheadings for the second depth-2 heading,
+	// the array gets sliced to 3,4,3,4,2.
 	const depth = heading.depth
 	const laterHeadings = headings.slice(
 		1 + headings.findIndex((h) => h === heading),
 	)
-	const subheadings = laterHeadings.some((h) => h.depth <= depth)
+	// If we’re still looking at headings that are not deeper than the current heading,
+	// we need to narrow the headings down to a slice stopping at the first heading that
+	// is not a subheading (because it’s of depth equal or less than the current heading).
+	// The example array from the previous comment would be sliced to 3,4,3,4 here.
+	const descendants = laterHeadings.some((h) => h.depth <= depth)
 		? laterHeadings.slice(
 				0,
 				laterHeadings.findIndex((h) => h.depth <= depth),
 		  )
 		: [...laterHeadings]
-	const processedSubheadings = subheadings
+	// The children of a heading all have a depth of one more than it.
+	// They become the subheadings, but the recursive function is also called on each of them.
+	// So each subheading is paired with the child subheadings that may exist for it,
+	// and each child subheading may have children of its own, etc.
+	const childSubheadings = descendants
 		.filter((h) => h.depth === depth + 1)
 		.map((h): HeadingWithSubheadings => {
-			return { ...h, subheadings: getSubheadings(h, subheadings) }
+			return { ...h, subheadings: getSubheadings(h, descendants) }
 		})
-	return processedSubheadings
+	return childSubheadings
 }
 
+// Find the first heading, and nest all its subheadings into it.
+// The `getSubheadings` function is recursive, so subheadings will receive their own subheadings, etc.
 const firstHeading = headings.find((h) => h.depth === 1)
 const headingsObject = {
 	...firstHeading,
