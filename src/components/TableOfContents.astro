@@ -47,6 +47,10 @@ const headingsObject = {
 <details>
 	<summary>Contents</summary>
 	<nav id="table-of-contents" aria-label="Table of Contents">
+		<p class="heading1-wrapper">
+			<a href={'#' + headingsObject.slug}>{headingsObject.text}</a>
+		</p>
+
 		<!-- I could tidy this up by writing a recursive component. -->
 		<ul>
 			{
@@ -91,14 +95,19 @@ const headingsObject = {
 	summary {
 		padding-top: 0.75rem;
 	}
+	.heading1-wrapper {
+		margin-top: 0.25rem;
+		margin-bottom: 0;
+		font-style: italic;
+	}
 	nav ul {
 		list-style-type: '⮡   ';
 		/* Some other possible arrows: ↳➥⮩⮱⤷ */
 	}
 	nav > ul {
-		margin-top: 0.5rem;
-		margin-bottom: 0;
+		margin-top: 0;
 		padding-left: 1rem;
+		margin-bottom: 0.125rem;
 	}
 	nav ul li::marker {
 		color: var(--colour6);
