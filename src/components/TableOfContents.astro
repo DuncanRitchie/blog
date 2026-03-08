@@ -1,16 +1,18 @@
 ---
 // Types are adapted from https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3
 import type { MarkdownHeading } from 'astro'
+import TableOfContentsRecursivePart from './TableOfContentsRecursivePart.astro'
 
 type Props = {
 	headings: MarkdownHeading[]
 }
-type HeadingWithSubheadings = MarkdownHeading & {
+export type HeadingWithSubheadings = MarkdownHeading & {
 	subheadings: HeadingWithSubheadings[]
 }
 
 const { headings } = Astro.props
 
+// Creates an array of headings with arrays of subheadings nested within, recursively.
 function getSubheadings(
 	heading: MarkdownHeading | undefined,
 	headings: MarkdownHeading[],
@@ -51,35 +53,10 @@ const headingsObject = {
 			<a href={'#' + headingsObject.slug}>{headingsObject.text}</a>
 		</p>
 
-		<!-- I could tidy this up by writing a recursive component. -->
-		<ul>
-			{
-				headingsObject.subheadings?.map((heading2) => (
-					<li>
-						<a href={'#' + heading2.slug}>{heading2.text}</a>
-						{heading2.subheadings ? (
-							<ul>
-								{heading2.subheadings.map((heading3) => (
-									<li>
-										<a href={'#' + heading3.slug}>{heading3.text}</a>
-										{heading3.subheadings ? (
-											<ul>
-												{heading3.subheadings.map((heading4) => (
-													<li>
-														<a href={'#' + heading4.slug}>{heading4.text}</a>
-														{/* {heading4.subheadings ? <ul></ul> : null} */}
-													</li>
-												))}
-											</ul>
-										) : null}
-									</li>
-								))}
-							</ul>
-						) : null}
-					</li>
-				))
-			}
-		</ul>
+		<TableOfContentsRecursivePart
+			headings={headingsObject.subheadings}
+			depth={headingsObject.depth}
+		/>
 	</nav>
 </details>
 
@@ -99,18 +76,6 @@ const headingsObject = {
 		margin-top: 0.25rem;
 		margin-bottom: 0;
 		font-style: italic;
-	}
-	nav ul {
-		list-style-type: '⮡   ';
-		/* Some other possible arrows: ↳➥⮩⮱⤷ */
-	}
-	nav > ul {
-		margin-top: 0;
-		padding-left: 1rem;
-		margin-bottom: 0.125rem;
-	}
-	nav ul li::marker {
-		color: var(--colour6);
 	}
 	@media (min-width: 80ch) {
 		details {

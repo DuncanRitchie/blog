@@ -1,0 +1,38 @@
+---
+import type { HeadingWithSubheadings } from './TableOfContents.astro'
+
+type Props = {
+	headings: HeadingWithSubheadings[]
+	depth: number | undefined
+}
+const { headings, depth } = Astro.props
+---
+
+<ul data-depth={depth}>
+	{
+		headings?.map((heading) => (
+			<li>
+				<a href={'#' + heading.slug}>{heading.text}</a>
+				{heading.subheadings ? (
+					// Astro.self is how to refer to the current component in Astro for recursion.
+					<Astro.self headings={heading.subheadings} depth={heading.depth} />
+				) : null}
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	ul {
+		list-style-type: '⮡   ';
+		/* Some other possible arrows: ↳➥⮩⮱⤷ */
+	}
+	ul[data-depth='1'] {
+		margin-top: 0;
+		padding-left: 1rem;
+		margin-bottom: 0.125rem;
+	}
+	ul li::marker {
+		color: var(--colour6);
+	}
+</style>
