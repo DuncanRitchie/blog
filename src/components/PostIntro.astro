@@ -1,9 +1,13 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import type { MarkdownHeading } from 'astro'
+
+import TableOfContents from '../components/TableOfContents.astro'
 import { addLinkBase, slugifyText, slugifyPost } from '../utils/'
 
 export interface Props {
 	post: CollectionEntry<'posts'>
+	headings: MarkdownHeading[]
 }
 
 const { date: dateAsString, draft, tags, editHistory } = Astro.props.post.data
@@ -27,85 +31,97 @@ const makeDateSimple = (date: Date) =>
 	})
 
 const slug = slugifyPost(Astro.props.post)
+const { headings } = Astro.props
 ---
 
 <aside data-has-view-transition style="view-transition-name: post-intro">
-	<p>
-		This article was written on
-		<time datetime={dateIso}>
-			<span
-				data-has-view-transition
-				style={{ viewTransitionName: `date-${slug}` }}
-				>{dateReadableWithoutYear}</span
-			>
-			<a
-				href={addLinkBase('years', year)}
-				data-has-view-transition
-				style={{ viewTransitionName: `year-${year}` }}
-			>
-				{year}</a
-			>
-		</time>
-		by Duncan Ritchie.
-	</p>
-
-	{
-		draft && (
-			<p>
-				<strong
+	<div class="intro-not-toc">
+		<p>
+			This article was written on
+			<time datetime={dateIso}>
+				<span
 					data-has-view-transition
-					style={{
-						viewTransitionName: `draft-${slug}`,
-					}}
+					style={{ viewTransitionName: `date-${slug}` }}
+					>{dateReadableWithoutYear}</span
 				>
-					It is a draft.
-				</strong>
-			</p>
-		)
-	}
+				<a
+					href={addLinkBase('years', year)}
+					data-has-view-transition
+					style={{ viewTransitionName: `year-${year}` }}
+				>
+					{year}</a
+				>
+			</time>
+			by&nbsp;Duncan Ritchie.
+		</p>
 
-	{
-		editHistory?.length && (
-			<details class="edits-details">
-				<summary>It has been edited since it was published.</summary>
-				<ul class="edits">
-					{editHistory.map(([editDate, description]) => (
-						<li>
-							{makeDateSimple(editDate)}: {description}
-						</li>
-					))}
-				</ul>
-			</details>
-		)
-	}
+		{
+			draft && (
+				<p>
+					<strong
+						data-has-view-transition
+						style={{
+							viewTransitionName: `draft-${slug}`,
+						}}
+					>
+						It is a draft.
+					</strong>
+				</p>
+			)
+		}
 
-	{
-		tags.length > 0 && (
-			<div data-has-view-transition style="view-transition-name: tag-heading;">
-				<p class="tags-intro">It is tagged as:</p>
-				<ul class="tags">
-					{tags.map((tag) => (
-						<li>
-							<a
-								href={addLinkBase('tags', slugifyText(tag))}
-								data-has-view-transition
-								style={{ viewTransitionName: slugifyText(tag) }}
-							>
-								{tag}
-							</a>
-						</li>
-					))}
-				</ul>
-			</div>
-		)
-	}
+		{
+			editHistory?.length && (
+				<details class="edits-details">
+					<summary>It has been edited since it was published.</summary>
+					<ul class="edits">
+						{editHistory.map(([editDate, description]) => (
+							<li>
+								{makeDateSimple(editDate)}: {description}
+							</li>
+						))}
+					</ul>
+				</details>
+			)
+		}
+
+		{
+			tags.length > 0 && (
+				<div
+					data-has-view-transition
+					style="view-transition-name: tag-heading;"
+				>
+					<p class="tags-intro">It is tagged as:</p>
+					<ul class="tags">
+						{tags.map((tag) => (
+							<li>
+								<a
+									href={addLinkBase('tags', slugifyText(tag))}
+									data-has-view-transition
+									style={{ viewTransitionName: slugifyText(tag) }}
+								>
+									{tag}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			)
+		}
+	</div>
+	<TableOfContents headings={headings} />
 </aside>
 
 <style>
 	aside {
 		margin-top: 0;
 		border-top: 0;
+		padding: 0;
+	}
+	aside .intro-not-toc {
 		text-align: center;
+		padding-top: 0;
+		padding-inline: 1rem;
 	}
 	.edits-details {
 		margin-bottom: 0.75rem;
@@ -135,5 +151,12 @@ const slug = slugifyPost(Astro.props.post)
 	}
 	.tags li {
 		display: inline-block;
+	}
+	@media (min-width: 80ch) {
+		aside {
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+			gap: 1rem;
+		}
 	}
 </style>

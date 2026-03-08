@@ -81,12 +81,15 @@ const headingsObject = {
 
 <style>
 	details {
-		width: 100%;
-		max-width: 30ch;
-		border: 3px solid var(--colour6);
+		width: calc(100% - 2rem);
 		padding-inline: 1rem;
-		padding-block: 0.5rem;
+		padding-top: 0;
+		padding-bottom: 0.5rem;
 		font-size: 0.8rem;
+		border-top: 3px solid var(--colour6);
+	}
+	summary {
+		padding-top: 0.75rem;
 	}
 	nav ul {
 		list-style-type: '⮡   ';
@@ -99,5 +102,11 @@ const headingsObject = {
 	}
 	nav ul li::marker {
 		color: var(--colour6);
+	}
+	@media (min-width: 80ch) {
+		details {
+			border-top: none;
+			border-left: 3px solid var(--colour6);
+		}
 	}
 </style>

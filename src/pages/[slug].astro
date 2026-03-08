@@ -5,7 +5,6 @@ import PreviousNextLinks from '../components/PreviousNextLinks.astro'
 import PostIntro from '../components/PostIntro.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { addLinkBase, slugifyPost, sortPosts } from '../utils'
-import TableOfContents from '../components/TableOfContents.astro'
 
 export interface Props {
 	data: {
@@ -52,8 +51,7 @@ const viewTransitionNameH1 = slugifyPost(post)
 	showBlogHomeLinkInFooter={true}
 	showRssLinkInFooter={true}
 >
-	<PostIntro post={post} />
-	<TableOfContents headings={headings} />
+	<PostIntro post={post} headings={headings} />
 
 	<main>
 		<Content />
