@@ -31,7 +31,9 @@ const makeDateSimple = (date: Date) =>
 	})
 
 const slug = slugifyPost(Astro.props.post)
+
 const { headings } = Astro.props
+const hasHeadings = headings.some((heading) => heading.depth > 1)
 ---
 
 <aside data-has-view-transition style="view-transition-name: post-intro">
@@ -109,7 +111,7 @@ const { headings } = Astro.props
 			)
 		}
 	</div>
-	<TableOfContents headings={headings} />
+	{hasHeadings && <TableOfContents headings={headings} />}
 </aside>
 
 <style>
@@ -153,7 +155,7 @@ const { headings } = Astro.props
 		display: inline-block;
 	}
 	@media (min-width: 80ch) {
-		aside {
+		aside:has(> * + *) {
 			display: grid;
 			grid-template-columns: 2fr 1fr;
 			gap: 1rem;
