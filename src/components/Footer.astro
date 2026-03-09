@@ -10,37 +10,39 @@ const { showBlogHomeLink, showRssLink } = Astro.props
 ---
 
 <footer data-has-view-transition style="view-transition-name: footer">
-	<ul>
-		{
-			showBlogHomeLink && (
-				<li>
-					<a href={addLinkBase()} title="Duncan Ritchie’s blog">
-						Blog home
-					</a>
-				</li>
-			)
-		}
-		{
-			showRssLink && (
-				<li>
-					<a href={addLinkBase('rss')} title="RSS feeds">
-						RSS
-					</a>
-				</li>
-			)
-		}
-		<li>
-			<a href="https://github.com/DuncanRitchie/blog" title="Code on GitHub">
-				See the code
-			</a>
-		</li>
-		<li>
-			<a
-				href="https://www.duncanritchie.co.uk/"
-				title="Home — Duncan Ritchie’s portfolio"
-			>
-				By Duncan Ritchie
-			</a>
-		</li>
-	</ul>
+	<nav aria-label="Footer">
+		<ul>
+			{
+				showBlogHomeLink && (
+					<li>
+						<a href={addLinkBase()} title="Duncan Ritchie’s blog">
+							Blog home
+						</a>
+					</li>
+				)
+			}
+			{
+				showRssLink && (
+					<li>
+						<a href={addLinkBase('rss')} title="RSS feeds">
+							RSS
+						</a>
+					</li>
+				)
+			}
+			<li>
+				<a href="https://github.com/DuncanRitchie/blog" title="Code on GitHub">
+					See the code
+				</a>
+			</li>
+			<li>
+				<a
+					href="https://www.duncanritchie.co.uk/"
+					title="Home — Duncan Ritchie’s portfolio"
+				>
+					By Duncan Ritchie
+				</a>
+			</li>
+		</ul>
+	</nav>
 </footer>
