@@ -14,7 +14,7 @@ export async function GET(context) {
 		description:
 			'Assorted notes about software development and other matters that I find interesting.',
 		site: context.site,
-		items: rssItemsMdx(postsSorted),
+		items: await rssItemsMdx(postsSorted),
 		customData: `<language>en-gb</language>`,
 		stylesheet: addLinkBase('rss-styles.xsl'),
 	})

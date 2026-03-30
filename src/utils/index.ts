@@ -4,6 +4,7 @@ import { experimental_AstroContainer as AstroContainer } from 'astro/container'
 import { loadRenderers } from 'astro:container'
 import sanitizeHtml from 'sanitize-html'
 import MarkdownIt from 'markdown-it'
+import type { RSSFeedItem } from '@astrojs/rss'
 
 const parser = new MarkdownIt({ html: true, breaks: true, linkify: true })
 
@@ -25,7 +26,7 @@ function addLinkBase(...urlFragments: (string | number)[]): string {
 
 /**
  * Replace HTML characters with their escaped equivalents.
- * So < becomes &gt; for example.
+ * So < becomes &lt; for example.
  */
 const escapeHtml = (text: string) => {
 	// Other characters may need to be added here.
@@ -61,14 +62,15 @@ const absoluteLinksInHtml = (html: string, pagePath: string) => {
  * @param posts Array of posts as collection entries
  * @returns The `items` field for the RSS feed
  */
-const rssItems = (posts: CollectionEntry<'posts'>[]) => {
+const rssItems = (posts: CollectionEntry<'posts'>[]): RSSFeedItem[] => {
 	return posts.map((post) => ({
 		title: escapeHtml(post.data.title),
 		pubDate: new Date(post.data.date),
-		link: `/blog/${slugifyPost(post)}/`,
+		link: addLinkBase(slugifyPost(post)),
 		// Render the post’s body to HTML, make links absolute, then encode it
+		// I don’t know why post.body would be undefined, but apparently it can be.
 		content: sanitizeHtml(
-			absoluteLinksInHtml(parser.render(post.body), slugifyPost(post)),
+			absoluteLinksInHtml(parser.render(post.body || ''), slugifyPost(post)),
 		),
 	}))
 }
@@ -78,28 +80,31 @@ const rssItems = (posts: CollectionEntry<'posts'>[]) => {
  * @param posts Array of posts as collection entries
  * @returns The `items` field for the RSS feed
  */
-const rssItemsMdx = async (postsSorted: CollectionEntry<'posts'>[]) => {
+const rssItemsMdx = async (
+	postsSorted: CollectionEntry<'posts'>[],
+): Promise<RSSFeedItem[]> => {
 	const renderers = await loadRenderers([getMdxRenderer()])
 	const container = await AstroContainer.create({ renderers })
 	// Use Astro Containers to render the posts to HTML.
-	const items = []
-	for (const post of postsSorted) {
-		const { Content } = await render(post)
-		const content = sanitizeHtml(
-			absoluteLinksInHtml(
-				await container.renderToString(Content),
-				slugifyPost(post),
-			),
-		)
-		const link = addLinkBase(slugifyPost(post))
-		items.push({
-			...post.data,
-			link,
-			content,
-			title: escapeHtml(post.data.title),
-			pubDate: new Date(post.data.date),
-		})
-	}
+
+	return Promise.all(
+		postsSorted.map(async (post) => {
+			const { Content } = await render(post)
+			const content = sanitizeHtml(
+				absoluteLinksInHtml(
+					await container.renderToString(Content),
+					slugifyPost(post),
+				),
+			)
+			const link = addLinkBase(slugifyPost(post))
+			return {
+				link,
+				content,
+				title: escapeHtml(post.data.title),
+				pubDate: new Date(post.data.date),
+			}
+		}),
+	)
 }
 
 /**
