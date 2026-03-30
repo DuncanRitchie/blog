@@ -67,6 +67,7 @@ const rssItems = (posts: CollectionEntry<'posts'>[]): RSSFeedItem[] => {
 		title: escapeHtml(post.data.title),
 		pubDate: new Date(post.data.date),
 		link: addLinkBase(slugifyPost(post)),
+		categories: post.data.tags,
 		// Render the post’s body to HTML, make links absolute, then encode it
 		// I don’t know why post.body would be undefined, but apparently it can be.
 		content: sanitizeHtml(
@@ -100,6 +101,7 @@ const rssItemsMdx = async (
 			return {
 				link,
 				content,
+				categories: post.data.tags,
 				title: escapeHtml(post.data.title),
 				pubDate: new Date(post.data.date),
 			}
