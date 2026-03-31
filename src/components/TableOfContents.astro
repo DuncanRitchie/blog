@@ -65,21 +65,23 @@ const headingsObject = {
 
 <details>
 	<summary>Contents</summary>
-	<nav id="table-of-contents" aria-label="Table of Contents">
-		<p class="heading1-wrapper">
-			<a href={'#' + headingsObject.slug}>{headingsObject.text}</a>
-		</p>
+	<div class="wrapper">
+		<nav id="table-of-contents" aria-label="Table of Contents">
+			<p class="heading1-wrapper">
+				<a href={'#' + headingsObject.slug}>{headingsObject.text}</a>
+			</p>
 
-		<TableOfContentsRecursivePart
-			headings={headingsObject.subheadings}
-			depth={headingsObject.depth}
-		/>
-	</nav>
+			<TableOfContentsRecursivePart
+				headings={headingsObject.subheadings}
+				depth={headingsObject.depth}
+			/>
+		</nav>
+	</div>
 </details>
 
 <style>
 	details {
-		width: calc(100% - 2rem);
+		width: calc(var(--toc-width) - 2rem);
 		padding-inline: 1rem;
 		padding-top: 0;
 		padding-bottom: 0.5rem;
@@ -87,11 +89,21 @@ const headingsObject = {
 	}
 	summary {
 		padding-top: 0.75rem;
+		position: relative;
+	}
+	.wrapper {
+		position: absolute;
+		left: 0;
+		right: 0.75rem;
 	}
 	nav {
 		margin-top: 0.25rem;
 		padding: 0;
-		position: absolute;
+		/* Idea of using sticky position came from https://www.jankollars.com/posts/css-only-dropdown-menu-which-does-not-exceed-screen/ */
+		position: sticky;
+		left: calc(100% - var(--toc-width) + 0.5rem + 2px);
+		width: max-content;
+		margin-right: 0.5rem;
 		z-index: 1;
 		/* Background is the page background but lightened. The list of edits in <PostIntro> has the same. */
 		background-image: linear-gradient(#ffffff60), var(--page-background);

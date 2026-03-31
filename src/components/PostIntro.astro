@@ -132,19 +132,20 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 		margin-top: 0;
 		border-top: 0;
 		padding: 0;
-		width: calc(100% - 4px);
+		width: calc(100% - 0.25rem);
 		border-left: none;
 		border-right: none;
 		z-index: 10;
 		background: #ffffff30;
+		--toc-width: 100%;
 	}
 	.intro-not-toc {
 		list-style: none;
 		display: flex;
-		justify-content: space-between;
+		justify-content: start;
 		align-content: start;
 		flex-wrap: wrap;
-		margin: 0.25rem auto 0;
+		margin: 0.25rem 0 0;
 		padding: 0.5rem 1rem 0;
 		gap: 0.5rem 0.75rem;
 	}
@@ -162,7 +163,7 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 	}
 	details > *:not(summary) {
 		margin-top: 0.25rem;
-		margin-inline: -0.25rem;
+		margin-inline: calc(-0.5rem);
 		padding: 0;
 		position: absolute;
 		z-index: 1;
@@ -181,7 +182,7 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 		list-style: none;
 	}
 	.tags li {
-		margin: 0 0.125em;
+		margin: 0 0.25em;
 	}
 	.tags a {
 		display: inline-block;
@@ -195,17 +196,17 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 	@media (min-width: 80ch) {
 		aside:has(> * + *) {
 			display: grid;
-			grid-template-columns: 2fr 1fr;
+			--toc-width: max(30ch, 20%);
+			grid-template-columns: auto var(--toc-width);
 		}
 		aside:has(> * + *) .intro-not-toc {
 			padding-bottom: 0.375rem;
 		}
+		.intro-not-toc {
+			justify-content: space-around;
+		}
 		.edits-details {
 			margin-bottom: 0.25rem;
 		}
-	}
-
-	body[data-astro-selfie] aside {
-		display: none;
 	}
 </style>
