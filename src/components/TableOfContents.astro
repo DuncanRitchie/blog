@@ -84,10 +84,23 @@ const headingsObject = {
 		padding-top: 0;
 		padding-bottom: 0.5rem;
 		font-size: 0.8rem;
-		border-top: 3px solid var(--colour6);
 	}
 	summary {
 		padding-top: 0.75rem;
+	}
+	nav {
+		margin-top: 0.25rem;
+		padding: 0;
+		position: absolute;
+		z-index: 1;
+		/* Background is the page background but lightened. The list of edits in <PostIntro> has the same. */
+		background-image: linear-gradient(#ffffff60), var(--page-background);
+		background-size: 100% 100vh;
+		background-attachment: fixed;
+		padding-inline: 0.5rem;
+		margin-inline: -0.25rem;
+		padding-bottom: 0.25rem;
+		border: 2px solid var(--colour6);
 	}
 	.heading1-wrapper {
 		margin-top: 0.25rem;

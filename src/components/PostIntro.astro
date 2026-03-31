@@ -37,9 +37,20 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 ---
 
 <aside data-has-view-transition style="view-transition-name: post-intro">
-	<div class="intro-not-toc">
-		<p>
-			This article was written on
+	<ul class="intro-not-toc">
+		<li>
+			<picture>
+				<source
+					media="(min-width:1201px)"
+					srcset="https://www.duncanritchie.co.uk/android-chrome-192x192.png"
+				/>
+				<img
+					id="fulmar-icon"
+					src="https://www.duncanritchie.co.uk/favicon-96x96.png"
+					alt="Duncan’s fulmar icon"
+				/>
+			</picture>
+			This article by&nbsp;Duncan Ritchie is from
 			<time datetime={dateIso}>
 				<span
 					data-has-view-transition
@@ -52,14 +63,13 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 					style={{ viewTransitionName: `year-${year}` }}
 				>
 					{year}</a
-				>
-			</time>
-			by&nbsp;Duncan Ritchie.
-		</p>
+				></time
+			>.
+		</li>
 
 		{
 			draft && (
-				<p>
+				<li>
 					<strong
 						data-has-view-transition
 						style={{
@@ -68,49 +78,52 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 					>
 						It is a draft.
 					</strong>
-				</p>
-			)
-		}
-
-		{
-			editHistory?.length && (
-				<details class="edits-details">
-					<summary>It has been edited since it was published.</summary>
-					<ul class="edits">
-						{editHistory.map(([editDate, description]) => (
-							<li>
-								{makeDateSimple(editDate)}: {description}
-							</li>
-						))}
-					</ul>
-				</details>
+				</li>
 			)
 		}
 
 		{
 			tags.length > 0 && (
-				<div
+				<li
 					data-has-view-transition
 					style="view-transition-name: tag-heading;"
+					class="tags"
 				>
-					<p class="tags-intro">It is tagged as:</p>
-					<ul class="tags">
-						{tags.map((tag) => (
-							<li>
-								<a
-									href={addLinkBase('tags', slugifyText(tag))}
-									data-has-view-transition
-									style={{ viewTransitionName: slugifyText(tag) }}
-								>
-									{tag}
-								</a>
-							</li>
-						))}
-					</ul>
-				</div>
+					It is tagged as:
+					{tags.map((tag, index) => (
+						<>
+							<a
+								href={addLinkBase('tags', slugifyText(tag))}
+								data-has-view-transition
+								style={{ viewTransitionName: slugifyText(tag) }}
+							>
+								{tag}
+							</a>
+							{index < tags.length - 1 ? ',' : null}
+						</>
+					))}
+					.
+				</li>
 			)
 		}
-	</div>
+
+		{
+			editHistory?.length && (
+				<li>
+					<details class="edits-details">
+						<summary>It has been edited since it was published.</summary>
+						<ul class="edits">
+							{editHistory.map(([editDate, description]) => (
+								<li>
+									{makeDateSimple(editDate)}: {description}
+								</li>
+							))}
+						</ul>
+					</details>
+				</li>
+			)
+		}
+	</ul>
 	{hasHeadings && <TableOfContents headings={headings} />}
 </aside>
 
@@ -119,20 +132,44 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 		margin-top: 0;
 		border-top: 0;
 		padding: 0;
+		width: calc(100% - 4px);
+		border-left: none;
+		border-right: none;
+		z-index: 10;
+		background: #ffffff30;
 	}
-	aside .intro-not-toc {
-		text-align: center;
-		padding-top: 0;
-		padding-inline: 1rem;
+	.intro-not-toc {
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+		align-content: start;
+		flex-wrap: wrap;
+		margin: 0.25rem auto 0;
+		padding: 0.5rem 1rem 0;
+		gap: 0.5rem 0.75rem;
 	}
-	.edits-details {
-		margin-bottom: 0.75rem;
+	.intro-not-toc:last-child {
+		padding-bottom: 0.375rem;
 	}
-	.edits {
+	#fulmar-icon {
+		width: 1.5rem;
+		height: 1.5rem;
+		vertical-align: text-top;
+		transform: translateY(-0.25rem);
+		margin-right: 0.25rem;
 		padding: 0;
+		background-color: initial;
 	}
-	.tags-intro {
-		display: inline;
+	details > *:not(summary) {
+		margin-top: 0.25rem;
+		margin-inline: -0.25rem;
+		padding: 0;
+		position: absolute;
+		z-index: 1;
+		/* Background is the page background but lightened. The <nav> in <TableOfContents> has the same. */
+		background-image: linear-gradient(#ffffff60), var(--page-background);
+		background-size: 100% 100vh;
+		background-attachment: fixed;
 	}
 	.tags {
 		padding: 0;
@@ -142,22 +179,29 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 	.tags li,
 	.edits li {
 		list-style: none;
+	}
+	.tags li {
 		margin: 0 0.125em;
 	}
-	.tags li a,
-	.edits li {
+	.tags a {
 		display: inline-block;
+		margin-right: -0.375ch;
+	}
+	.edits li {
 		border: 2px solid var(--colour6);
 		padding: 0.25em 0.5em;
 		margin-bottom: -2px;
-	}
-	.tags li {
-		display: inline-block;
 	}
 	@media (min-width: 80ch) {
 		aside:has(> * + *) {
 			display: grid;
 			grid-template-columns: 2fr 1fr;
+		}
+		aside:has(> * + *) .intro-not-toc {
+			padding-bottom: 0.375rem;
+		}
+		.edits-details {
+			margin-bottom: 0.25rem;
 		}
 	}
 
