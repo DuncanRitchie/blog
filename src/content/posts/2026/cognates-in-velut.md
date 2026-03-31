@@ -186,7 +186,7 @@ Then you’ll be able to look up any word in velut and not be missing out on any
 	q:lang(grc) {
 		quotes: none;
 	}
-	details:not(details details) > div {
+	main details:not(details details) > div {
 		border: 3px solid var(--colour6);
 		padding: 0.5rem 1rem;
 	}
