@@ -112,13 +112,15 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 				<li>
 					<details class="edits-details">
 						<summary>It has been edited since it was published.</summary>
-						<ul class="edits">
-							{editHistory.map(([editDate, description]) => (
-								<li>
-									{makeDateSimple(editDate)}: {description}
-								</li>
-							))}
-						</ul>
+						<div class="edits-wrapper">
+							<ul class="edits">
+								{editHistory.map(([editDate, description]) => (
+									<li>
+										{makeDateSimple(editDate)}: {description}
+									</li>
+								))}
+							</ul>
+						</div>
 					</details>
 				</li>
 			)
@@ -166,11 +168,6 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 		margin-inline: calc(-0.5rem);
 		padding: 0;
 		position: absolute;
-		z-index: 1;
-		/* Background is the page background but lightened. The <nav> in <TableOfContents> has the same. */
-		background-image: linear-gradient(#ffffff60), var(--page-background);
-		background-size: 100% 100vh;
-		background-attachment: fixed;
 	}
 	.tags {
 		padding: 0;
@@ -187,6 +184,23 @@ const hasHeadings = headings.some((heading) => heading.depth > 1)
 	.tags a {
 		display: inline-block;
 		margin-right: -0.375ch;
+	}
+	.edits-wrapper {
+		left: 0.75rem;
+		right: 0.75rem;
+	}
+	.edits {
+		padding-left: 0;
+		position: sticky;
+		/* It would be nice if I could align the left side with the <summary>, but I can’t when the wrapper has absolute position.
+		The	wrapper needs to have absolute position to avoid horizontal overflow. */
+		left: calc(75% - 35ch);
+		width: fit-content;
+		z-index: 1;
+		/* Background is the page background but lightened. The <nav> in <TableOfContents> has the same. */
+		background-image: linear-gradient(#ffffff60), var(--page-background);
+		background-size: 100% 100vh;
+		background-attachment: fixed;
 	}
 	.edits li {
 		border: 2px solid var(--colour6);
