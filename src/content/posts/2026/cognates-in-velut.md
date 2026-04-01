@@ -2,7 +2,7 @@
 title: Cognates in velut
 date: 2026-03-30 19:45:00
 draft: false
-tags: [Software, velut]
+tags: [Linguistics, Software, velut]
 ---
 
 # Cognates in velut
