@@ -2,7 +2,7 @@
 date: 2026-02-15 21:00:00
 title: “Electricity” in Latin
 draft: false
-tags: ['velut', 'Verse']
+tags: [Linguistics, velut, Verse]
 ---
 
 <figure class="float-right">
