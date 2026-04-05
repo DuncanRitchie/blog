@@ -3,6 +3,7 @@ title: Cognates in velut
 date: 2026-03-30 19:45:00
 draft: false
 tags: [Linguistics, Software, velut]
+editHistory: [[2026-04-05, Said how non-Latin roots are now presented]]
 ---
 
 # Cognates in velut
@@ -104,7 +105,18 @@ I might even display a little flag next to the word, like I already do when a le
 Maybe the flag of modern Iraq?
 I’m already using the flags of modern Greece and Israel for Ancient Greek and Hebrew, so I’m not always averse to anachronism!)
 
-<!-- At the moment, <q lang="la">Īslandia</q>, <q lang="la">Īslandicus</q>, and <q lang="la">Īslandicē</q> are simply given as cognates of <q lang="la">Īslandia</q>. -->
+<ins>
+Update: I’ve implemented the language-code idea, so <q lang="la">Īslandia</q> has <code>Roots: ["en ice", "en land"]</code> — I think language-codes should be lower-case.
+The front-end displays the word along with a name for the language, with <code>lang</code> attributes used correctly.
+I’ve decided against using flags here, because English is the only language in my cognates data that could have an unambiguous unanachronistic flag.
+</ins>
+
+<ins><img alt="Screenshot of information about Īslandia" src="./images/2026/lemma-islandia.webp" width="600" style="aspect-ratio: 830 / 450;" /><img alt="Screenshot of information about Gualterius" src="./images/2026/lemma-gualterius.webp" width="600" style="aspect-ratio: 830 / 450;" /></ins>
+
+<ins>
+Fun fact: the name Walter is Harald (or Harold) backwards, etymologically.
+One looks like it’s from Proto-Germanic <q lang="gem">*waldaz</q> (“ruler”) and <q lang="gem">*harjaz</q> (“army, army leader”), and the other from <q lang="gem">*harjaz</q> and <q lang="gem">*waldaz</q>. The <q lang="gem">*harjaz</q> element is cognate with Ancient Greek <span lang="grc">κοίρανος</span> (“leader”).
+</ins>
 
 ## Software changes
 
