@@ -3,7 +3,11 @@ title: Cognates in velut
 date: 2026-03-30 19:45:00
 draft: false
 tags: [Linguistics, Software, velut]
-editHistory: [[2026-04-05, Said how non-Latin roots are now presented]]
+editHistory:
+  [
+    [2026-04-05, Said how non-Latin roots are now presented],
+    [2026-04-07, Corrected statement about sēmi-/hēmi-],
+  ]
 ---
 
 # Cognates in velut
@@ -46,7 +50,7 @@ The noun <q lang="la"><a href="https://www.velut.co.uk/adverbium">adverbium</a><
 
 Numeric prefixes (ūni-, bi-, tri-, etc) do count towards the roots.
 They are related to the numerals <q lang="la"><a href="https://www.velut.co.uk/u-nus">ūnus</a></q>, <q lang="la"><a href="https://www.velut.co.uk/duo">duo</a></q>, <q lang="la"><a href="https://www.velut.co.uk/tre-s">trēs</a></q>, etc.
-Less obviously, the prefix sēmi- (“half”) and its Greek equivalent hēmi- are also related to <q lang="la">ūnus</q>.
+Less obviously, the prefix sēmi- (“half”) and its Greek equivalent hēmi- are related to <q lang="la">singulī</q> (“one by one”).
 
 Fun fact: <q lang="la"><a href="https://www.velut.co.uk/vi-ginti-">vīgintī</a></q> (“twenty”) comes from words for “two” and “ten”, so it’s cognate to both <q lang="la">duo</q> and <q lang="la"><a href="https://www.velut.co.uk/decem">decem</a></q>.
 I only realised this when going through the roots for velut.
