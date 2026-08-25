@@ -26,7 +26,7 @@ editHistory: [
 	[2024-11-27, 'Updated much of the text'],
 	[2025-02-19, 'I’ve used <address> & <search>'],
 	[2025-08-28, 'I’ve used <audio>'],
-	[2026-08-25, 'I’ve used <object>']
+	[2026-08-25, 'Updated <track> info & said I’ve used <object>']
 ]
 ---
 
@@ -1645,7 +1645,8 @@ But I find it interesting to keep count; I’ve used <data value="used">91</data
 	<dd>
 		<p>
 			This would be for specifying subtitles for audio- or video-players.
-			I’ve never used <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code>, so I’ve not used <code>&lt;track&gt;</code> either.
+			I’ve never used <code>&lt;video&gt;</code>, so I’ve not used <code>&lt;track&gt;</code> either.
+			I have used <a href="#audio"><code>&lt;audio&gt;</code></a>, but nowhere that would require subtitles.
 		</p>
 	</dd>
 </div>
