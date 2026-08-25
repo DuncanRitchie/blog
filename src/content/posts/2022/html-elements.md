@@ -1241,7 +1241,7 @@ But I find it interesting to keep count; I’ve used <data value="used">91</data
 	<dt><code>&lt;progress&gt;</code></dt>
 	<dd>
 		<p>
-			There’s a <code>&lt;progress&gt;</code>-bar on the JavaScript (client–side—rendered) version of the “Look-up of many words” page on velut.
+			There’s a <code>&lt;progress&gt;</code>-bar on the JavaScript (client-side–rendered) version of the “Look-up of many words” page on velut.
 			It goes from 0 to 100% as the words load on the page.
 		</p>
 		<p>
