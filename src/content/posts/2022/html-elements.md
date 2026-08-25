@@ -25,7 +25,8 @@ editHistory: [
 	[2024-11-27, 'Elements fade in/out nicely (in Chrome at least)'],
 	[2024-11-27, 'Updated much of the text'],
 	[2025-02-19, 'I’ve used <address> & <search>'],
-	[2025-08-28, 'I’ve used <audio>']
+	[2025-08-28, 'I’ve used <audio>'],
+	[2026-08-25, 'I’ve used <object>']
 ]
 ---
 
@@ -240,7 +241,7 @@ Since publishing this page, I’ve updated it several times when I’ve used ele
 Of <data value="total">137</data> elements, <data value="deprecated">27</data> are deprecated and <data value="experimental">1</data> is experimental.
 The other <data value="usable">109</data> I consider to be usable, if the right opportunity presents itself.
 Some elements are very esoteric and there is no need for a web developer to have used all of them.
-But I find it interesting to keep count; I’ve used <data value="used">90</data>.
+But I find it interesting to keep count; I’ve used <data value="used">91</data>.
 
 <label for="meter">
 	HTML elements that are neither deprecated nor experimental
@@ -260,16 +261,16 @@ But I find it interesting to keep count; I’ve used <data value="used">90</data
 <label for="progress">
 	Usable elements that I’ve used
 	<small>
-		<data value="used">90</data>
+		<data value="used">91</data>
 		of
 		<data value="usable">109</data>
-		(<data value="used-percent-of-usable">82.6</data>%)
+		(<data value="used-percent-of-usable">83.5</data>%)
 	</small>
 </label>
 <progress id="progress"	min="0"
-	value="90" max="109"
+	value="91" max="109"
 	data-value="used" data-max="usable"
-	style="--percentage: 82.6%"
+	style="--percentage: 83.5%"
 ></progress>
 
 ## Filters
@@ -1135,11 +1136,11 @@ But I find it interesting to keep count; I’ve used <data value="used">90</data
     </dd>
 </div>
 
-<div class="usable-unused" id="object">
+<div class="used" id="object">
 	<dt><code>&lt;object&gt;</code></dt>
 	<dd>
 		<p>
-			I’ve never used this.
+			I’ve used this to embed a PDF in a webpage.
 		</p>
 	</dd>
 </div>
