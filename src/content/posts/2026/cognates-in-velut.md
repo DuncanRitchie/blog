@@ -7,6 +7,7 @@ editHistory:
   [
     [2026-04-05, Said how non-Latin roots are now presented],
     [2026-04-07, Corrected statement about sēmi-/hēmi-],
+	[2026-10-04, Copied country flag images from velut]
   ]
 ---
 
@@ -103,7 +104,7 @@ I haven’t totally decided how to deal with this, but I’m investigating.
 
 The best idea I’ve had would be to store each root as a word with a language-code (eg `"EN ice"` or `"EN land"`).
 On the website, this could be rendered to HTML as a word with a language attribute — such as `<span lang="EN">ice</span>`.
-I might even display a little flag next to the word, like I already do when a lemma has transliterations in <span><img class="inline-flag" alt="Flag of Greece" src="https://www.velut.co.uk/images/greece.png" /> Ancient Greek</span> or <span><img class="inline-flag" alt="Flag of Israel" src="https://www.velut.co.uk/images/israel.png" /> Hebrew</span>.
+I might even display a little flag next to the word, like I already do when a lemma has transliterations in <span><img class="inline-flag" alt="Flag of Greece" src="./images/2026/greece.png" /> Ancient Greek</span> or <span><img class="inline-flag" alt="Flag of Israel" src="./images/2026/israel.png" /> Hebrew</span>.
 
 (Don’t ask me what flag I’d use for Akkadian.
 Maybe the flag of modern Iraq?
